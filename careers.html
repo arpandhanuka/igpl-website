@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="igpl-logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGPL — Careers</title>
+  <script src="https://cdn.tailwindcss.com/3.4.0"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
+    /* Scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .stagger > * {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+    .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+    .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+    .stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+    .stagger.visible > *:nth-child(5) { transition-delay: 0.35s; }
+    .stagger.visible > *:nth-child(6) { transition-delay: 0.4s; }
+    .stagger.visible > * { opacity: 1; transform: translateY(0); }
+    /* Card lift on hover */
+    .card-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,124,102,0.1);
+    }
+    /* Nav link underline on hover */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: #007C66; transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+  </style>
+</head>
+<body class="bg-white text-[#0F172A]">
+  <nav class="bg-white border-b-[3px] border-[#007C66] sticky top-0 z-[100]">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center"><img src="igpl-logo.png" alt="IGPL" class="h-10 w-auto"></a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">About</a>
+          <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Products</a>
+          <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Sustainability</a>
+          <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Investors</a>
+          <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">CSR</a>
+          <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Careers</a>
+          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded hover:bg-[#005E4D] transition-colors">Contact</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden p-2 text-[#374151]" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#E5E7EB] z-[150]">
+      <div class="px-6 py-4 flex flex-col gap-4">
+        <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">About</a>
+        <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
+        <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Sustainability</a>
+        <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Investors</a>
+        <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">CSR</a>
+        <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66] font-bold">Careers</a>
+        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded text-center">Contact</a>
+      </div>
+    </div>
+  </nav>
+    <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.getElementById('menu-backdrop').classList.add('hidden')"></div>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden min-h-[420px] flex items-end">
+    <img src="careers-team.jpg" alt="IGPL team members at Taloja facility" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(10,20,10,0.1) 0%, rgba(10,20,10,0.08) 40%, rgba(10,20,10,0.65) 100%);"></div>
+    <div class="max-w-[1280px] mx-auto px-6 py-16 relative z-10 w-full">
+      <p class="font-[Montserrat] font-semibold text-xs uppercase tracking-[0.14em] text-[#00D4AA] mb-3">Build Your Career in Petrochemical Manufacturing</p>
+      <h1 class="font-[Montserrat] font-black text-[48px] lg:text-[60px] text-white leading-tight">Careers</h1>
+    </div>
+  </section>
+
+  <!-- Why IGPL -->
+  <section class="py-20 reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <div class="rounded-xl overflow-hidden mb-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+            <img src="dcs-control-room.png" alt="Process engineer at DCS control panel, IGPL" class="w-full h-56 object-cover object-top">
+          </div>
+          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
+          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Why IGPL</p>
+          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6">Work That Matters at Scale</h2>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">IGPL runs five Phthalic Anhydride plants on a single site — the largest such complex in India. That means our engineers, operators, and analysts work on equipment, processes, and problems that few other facilities in the country can offer.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-6">When you join IGPL, you join a team that produces 270,000 tonnes of specialty chemicals per year, using technology licensed from Wacker Chemie, Germany. You operate DCS-controlled reactors, troubleshoot catalyst performance, manage continuous process streams, and maintain infrastructure that India's plastics, coatings, and resin industries depend on.</p>
+        </div>
+        <div>
+          <div class="bg-[#F8FAFC] border border-[#E5E7EB] rounded-lg border-l-[4px] border-l-[#007C66] p-8 mb-6">
+            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-6">What You Work With</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#ECFDF5] flex items-center justify-center flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </span>
+                <span class="font-[Inter] font-medium text-[16px] text-[#0F172A]">Wacker Chemie-licensed PA production technology</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#ECFDF5] flex items-center justify-center flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                </span>
+                <span class="font-[Inter] font-medium text-[16px] text-[#0F172A]">Distributed Control Systems (DCS) for real-time process monitoring</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#ECFDF5] flex items-center justify-center flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </span>
+                <span class="font-[Inter] font-medium text-[16px] text-[#0F172A]">ISO 9001:2015 quality management systems</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#ECFDF5] flex items-center justify-center flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                </span>
+                <span class="font-[Inter] font-medium text-[16px] text-[#0F172A]">Steam recovery and cogeneration infrastructure</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#ECFDF5] flex items-center justify-center flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </span>
+                <span class="font-[Inter] font-medium text-[16px] text-[#0F172A]">In-house laboratory for quality testing and R&D</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roles & Growth -->
+  <section class="py-20 bg-[#F8FAFC] reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
+      <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Who Thrives Here</p>
+      <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-12">Roles That Build Real Expertise</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
+
+        <!-- Engineers -->
+        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg p-6">
+          <div class="w-12 h-12 bg-[#ECFDF5] rounded-lg flex items-center justify-center mb-4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Chemical & Process Engineers</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Run reaction optimisation, troubleshoot catalyst behaviour, improve yields. You'll own process parameters for continuous units, not just monitor screens.</p>
+        </div>
+
+        <!-- Operators -->
+        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg p-6">
+          <div class="w-12 h-12 bg-[#ECFDF5] rounded-lg flex items-center justify-center mb-4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Plant Operators</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Manage DCS operations across five PA plants. Learn continuous process control at industrial scale — handling reactor startups, shutdown sequences, and abnormal situation management.</p>
+        </div>
+
+        <!-- Analysts -->
+        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg p-6">
+          <div class="w-12 h-12 bg-[#ECFDF5] rounded-lg flex items-center justify-center mb-4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Quality & Lab Analysts</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Test every batch. Calibrate instruments. Ensure that PA, MA, Benzoic Acid, and DEP shipments meet spec. Your work directly affects product acceptance by downstream manufacturers.</p>
+        </div>
+
+        <!-- Managers -->
+        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg p-6">
+          <div class="w-12 h-12 bg-[#ECFDF5] rounded-lg flex items-center justify-center mb-4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Operations & Maintenance Managers</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Lead shift teams. Plan turnarounds. Coordinate between production, maintenance, and safety. Build the operational leadership that keeps a complex of this scale running reliably.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Growth & Learning -->
+  <section class="py-20 reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
+          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Long-Term Growth</p>
+          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6">A Career, Not Just a Job</h2>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">IGPL is not a company where you'll rotate through departments for two years and leave. We are a manufacturing company with deep operational knowledge, and our people build expertise over years — in process chemistry, equipment reliability, safety management, and plant operations.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-6">Many of our senior engineers and managers have been with IGPL for 15+ years. They know the plants intimately. That institutional knowledge is our competitive advantage, and we invest in growing it.</p>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
+              <span class="font-[Inter] text-sm text-[#475569]">On-the-job training with experienced operators and engineers</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
+              <span class="font-[Inter] text-sm text-[#475569]">Technical training on Wacker-licensed process technology</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
+              <span class="font-[Inter] text-sm text-[#475569]">Safety certifications and regulatory compliance training</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
+              <span class="font-[Inter] text-sm text-[#475569]">Exposure to plant expansion and capital project execution</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
+              <span class="font-[Inter] text-sm text-[#475569]">Clear progression from trainee to shift-in-charge to plant head</span>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.1)]">
+          <img src="team-outdoor.png" alt="IGPL operations team at Taloja plant" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-[#F8FAFC] relative overflow-hidden reveal">
+    <img src="plant-night.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-20">
+    <div class="max-w-[1280px] mx-auto px-6 relative z-10">
+      <div class="bg-[#0F2B4F] rounded-2xl p-8 md:p-12 text-center">
+        <p class="font-[Montserrat] font-semibold text-xs uppercase tracking-[0.14em] text-[#00D4AA] mb-3">Join IGPL</p>
+        <h2 class="font-[Montserrat] font-extrabold text-[30px] lg:text-[36px] text-white mb-6">Ready to Build India's Chemical Infrastructure?</h2>
+        <p class="font-[Inter] text-[16px] text-[rgba(255,255,255,0.7)] leading-relaxed max-w-2xl mx-auto mb-8">We're looking for people who want to do meaningful work at industrial scale. If you're an engineer, operator, analyst, or manager who takes pride in running complex plants well — we want to hear from you.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="mailto:careers@igpetro.com" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-8 py-4 rounded hover:bg-[#005E4D] transition-colors">Send Your Resume</a>
+          <a href="contact.html" class="border-2 border-[#007C66] text-[#007C66] font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-8 py-4 rounded hover:bg-[#007C66] hover:text-white transition-colors">Contact HR</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-1 bg-[#007C66]"></div>
+  <footer class="bg-white border-t border-[#E5E7EB]">
+    <div class="max-w-[1280px] mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div class="col-span-1">
+          <span class="font-[Montserrat] font-black text-2xl text-[#0F172A]">IGPL</span>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed mt-4">IG Petrochemicals Ltd.<br>India's largest single-site PA complex.</p>
+          <p class="font-[Inter] text-xs text-[#94A3B8] mt-3">NSE: IGPL | BSE: 500199</p>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Products</h4>
+          <ul class="space-y-2">
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Phthalic Anhydride</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Maleic Anhydride</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Benzoic Acid</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Diethyl Phthalate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">About Us</a></li>
+            <li><a href="investors.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Investors</a></li>
+            <li><a href="sustainability.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Sustainability</a></li>
+            <li><a href="csr.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">CSR</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Contact</h4>
+          <p class="font-[Inter] text-sm text-[#475569]">401-404, Raheja Centre, 214<br>Nariman Point, Mumbai 400021</p>
+          <a href="tel:+912240586100" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-2 block">+91 22 4058 6100</a>
+          <a href="mailto:igpl@igpetro.com" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-1 block">igpl@igpetro.com</a>
+        </div>
+      </div>
+      <div class="border-t border-[#E5E7EB] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="font-[Inter] text-xs text-[#94A3B8]">&copy; 2026 IG Petrochemicals Ltd. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Privacy Policy</a>
+          <a href="#" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>  <script>
+    // Scroll reveal
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => obs.observe(el));
+
+  </script>
+  <script>
+
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('menu-backdrop').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

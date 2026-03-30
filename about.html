@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="igpl-logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGPL — About Us</title>
+  <script src="https://cdn.tailwindcss.com/3.4.0"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
+    /* Scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .stagger > * {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+    .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+    .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+    .stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+    .stagger.visible > *:nth-child(5) { transition-delay: 0.35s; }
+    .stagger.visible > *:nth-child(6) { transition-delay: 0.4s; }
+    .stagger.visible > * { opacity: 1; transform: translateY(0); }
+    /* Card lift on hover */
+    .card-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,124,102,0.1);
+    }
+    /* Nav link underline on hover */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: #007C66; transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+  </style>
+</head>
+<body class="bg-white text-[#0F172A]">
+
+<nav class="bg-white border-b-[3px] border-[#007C66] sticky top-0 z-[100]">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center"><img src="igpl-logo.png" alt="IGPL" class="h-10 w-auto"></a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">About</a>
+          <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Products</a>
+          <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Sustainability</a>
+          <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Investors</a>
+          <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">CSR</a>
+          <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Careers</a>
+          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded hover:bg-[#005E4D] transition-colors">Contact</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden p-2 text-[#374151]" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#E5E7EB] z-[150]">
+      <div class="px-6 py-4 flex flex-col gap-4">
+        <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66] font-bold">About</a>
+        <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
+        <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Sustainability</a>
+        <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Investors</a>
+        <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">CSR</a>
+        <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Careers</a>
+        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded text-center">Contact</a>
+      </div>
+    </div>
+  </nav>
+    <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.getElementById('menu-backdrop').classList.add('hidden')"></div>
+
+  <!-- Hero with plant aerial image -->
+  <section class="relative overflow-hidden min-h-[420px] flex items-end">
+    <img src="plant-aerial.png" alt="IGPL Taloja facility aerial view — India's largest single-site PA complex" class="absolute inset-0 w-full h-full object-cover object-center">
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(10,20,30,0.25) 0%, rgba(10,20,30,0.15) 40%, rgba(10,20,30,0.7) 100%);"></div>
+    <div class="max-w-[1280px] mx-auto px-6 py-16 relative z-10 w-full">
+      <p class="font-[Montserrat] font-semibold text-xs uppercase tracking-[0.14em] text-[#00D4AA] mb-3">India's Dominant PA Manufacturer</p>
+      <h1 class="font-[Montserrat] font-black text-[48px] lg:text-[60px] text-white leading-tight">About IGPL</h1>
+      <p class="font-[Inter] text-[17px] text-white/80 mt-4 max-w-2xl leading-relaxed">Who we are, what we have built, and why it matters to the industries that depend on us.</p>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE — Strategic Identity Statement -->
+  <section class="py-20 bg-white reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <div>
+          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Who We Are</p>
+          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6 leading-tight">India's Largest Single-Site<br>Phthalic Anhydride Producer</h2>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">IG Petrochemicals Ltd. is not a small regional player. We are India's dominant Phthalic Anhydride manufacturer — with approximately 50% domestic market share, 270,000 MTPA of installed capacity, and five PA production lines operating at our Taloja, Maharashtra facility.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">Our products are critical inputs for the plasticizer, resin, dye, pigment, pharmaceutical, and coatings industries. Every major PVC pipe manufacturer, paint company, and polyester resin producer in India either sources from us or competes with those who do.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">Listed on NSE and BSE, we are a publicly traded chemical company with the scale, technology, and operational depth to serve as a reliable long-term supply partner.</p>
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="inline-flex items-center bg-[#F0FDF9] border border-[#A7F3D0] text-[#007C66] font-[Montserrat] font-bold text-xs px-3 py-1.5 rounded-full">NSE: IGPL</span>
+            <span class="inline-flex items-center bg-[#F0FDF9] border border-[#A7F3D0] text-[#007C66] font-[Montserrat] font-bold text-xs px-3 py-1.5 rounded-full">BSE: 500199</span>
+            <span class="inline-flex items-center bg-[#F0FDF9] border border-[#A7F3D0] text-[#007C66] font-[Montserrat] font-bold text-xs px-3 py-1.5 rounded-full">Est. 1988</span>
+          </div>
+        </div>
+        <div class="relative rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+          <img src="dcs-control-room.png" alt="IGPL DCS control room — world-class process automation" class="w-full h-auto object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE GOT HERE — Timeline / Journey -->
+  <section class="py-20 bg-[#F8FAFC] reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3 text-center">How We Got Here</p>
+      <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] text-center mb-4">Built for Scale</h2>
+      <div class="w-16 h-1 bg-[#007C66] rounded-full mx-auto mb-14"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
+        <div class="card-lift bg-white rounded-xl p-7 border border-[#E5E7EB] border-t-[3px] border-t-[#007C66]">
+          <div class="font-[Montserrat] font-black text-[28px] text-[#007C66] mb-2">1988</div>
+          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Foundation</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">IGPL was incorporated with a clear ambition: become a serious player in India's petrochemical value chain.</p>
+        </div>
+        <div class="card-lift bg-white rounded-xl p-7 border border-[#E5E7EB] border-t-[3px] border-t-[#007C66]">
+          <div class="font-[Montserrat] font-black text-[28px] text-[#007C66] mb-2">1992</div>
+          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Commercial Production</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Commenced PA production at Taloja using the Wacker Von-Heyden Low Energy Process — a technology choice that defined our competitive edge.</p>
+        </div>
+        <div class="card-lift bg-white rounded-xl p-7 border border-[#E5E7EB] border-t-[3px] border-t-[#007C66]">
+          <div class="font-[Montserrat] font-black text-[28px] text-[#007C66] mb-2">Scale-Up</div>
+          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Continuous Expansion</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Multiple capacity additions over two decades. Five PA plants built at a single location. Maleic Anhydride and Benzoic Acid added as integrated byproducts.</p>
+        </div>
+        <div class="card-lift bg-white rounded-xl p-7 border border-[#E5E7EB] border-t-[3px] border-t-[#007C66]">
+          <div class="font-[Montserrat] font-black text-[28px] text-[#007C66] mb-2">Today</div>
+          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Market Leadership</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">270,000 MTPA PA capacity. ~50% India market share. DEP added as a downstream value-add. The largest single-site PA complex in the country.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE HAVE BUILT — Facility + Stats -->
+  <section class="py-0 reveal">
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+      <div class="relative overflow-hidden min-h-[350px]">
+        <img src="plant-night.jpg" alt="IGPL facility at night — five PA plants operating at Taloja" class="absolute inset-0 w-full h-full object-cover object-center">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+      </div>
+      <div class="bg-[#0F2B4F] p-10 lg:p-14 flex flex-col justify-center relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 rounded-full bg-[rgba(0,124,102,0.1)] -translate-y-1/2 translate-x-1/2"></div>
+        <div class="relative z-10">
+          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">What We Have Built</p>
+          <h2 class="font-[Montserrat] font-extrabold text-[32px] text-white mb-6">Industrial Depth at One Site</h2>
+          <p class="font-[Inter] text-[15px] text-[#93C5FD] leading-relaxed mb-8">Our Taloja facility is not just a factory — it is an integrated chemical manufacturing complex. Five PA plants, co-product recovery lines, a captive steam system, and direct logistics access to JNPT port (50 km) give us structural advantages that are difficult to replicate.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white/[0.08] border border-white/10 rounded-lg p-5">
+              <div class="font-[Montserrat] font-black text-[32px] text-[#00A882]">270K</div>
+              <div class="font-[Inter] text-sm text-[#93C5FD]">MTPA PA Capacity</div>
+            </div>
+            <div class="bg-white/[0.08] border border-white/10 rounded-lg p-5">
+              <div class="font-[Montserrat] font-black text-[32px] text-[#00A882]">~50%</div>
+              <div class="font-[Inter] text-sm text-[#93C5FD]">India Market Share</div>
+            </div>
+            <div class="bg-white/[0.08] border border-white/10 rounded-lg p-5">
+              <div class="font-[Montserrat] font-black text-[32px] text-[#00A882]">5</div>
+              <div class="font-[Inter] text-sm text-[#93C5FD]">PA Production Lines</div>
+            </div>
+            <div class="bg-white/[0.08] border border-white/10 rounded-lg p-5">
+              <div class="font-[Montserrat] font-black text-[32px] text-[#00A882]">50 km</div>
+              <div class="font-[Inter] text-sm text-[#93C5FD]">To JNPT Port</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPERATING PHILOSOPHY -->
+  <section class="py-20 bg-white reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3 text-center">Operating Philosophy</p>
+      <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] text-center mb-4">How We Operate</h2>
+      <div class="w-16 h-1 bg-[#007C66] rounded-full mx-auto mb-14"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger">
+        <div class="card-lift bg-[#F8FAFC] rounded-xl p-8 border border-[#E5E7EB] border-l-[4px] border-l-[#007C66]">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#007C66] to-[#00A882] flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Proven Technology, Relentlessly Optimized</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">We operate on Wacker Chemie GmbH's Von-Heyden Low Energy Process — the global benchmark for PA production. But we did not stop at the license. We have continuously debottlenecked, upgraded instrumentation, and fine-tuned our five plants to run at consistently high capacity utilization.</p>
+        </div>
+        <div class="card-lift bg-[#F8FAFC] rounded-xl p-8 border border-[#E5E7EB] border-l-[4px] border-l-[#007C66]">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#007C66] to-[#00A882] flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Integrated Waste-to-Value Recovery</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Maleic Anhydride is recovered from PA process wash water. Benzoic Acid is captured as a byproduct. Steam generated from our exothermic reactions feeds back into the process. This is not sustainability theater — it is process economics, and it makes us a lower-cost producer.</p>
+        </div>
+        <div class="card-lift bg-[#F8FAFC] rounded-xl p-8 border border-[#E5E7EB] border-l-[4px] border-l-[#007C66]">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#007C66] to-[#00A882] flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Customer-First, Not Volume-First</h3>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">We run on annual contracts with India's major plasticizer, resin, and pigment manufacturers. Our customer base is diversified across end-use industries, reducing concentration risk. We compete on reliability and consistency — not just price.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY OUR POSITION MATTERS — Strategic Advantages -->
+  <section class="py-20 bg-[#0F2B4F] relative overflow-hidden reveal">
+    <div class="absolute top-0 left-0 w-64 h-64 rounded-full bg-[rgba(0,124,102,0.08)] -translate-y-1/2 -translate-x-1/2"></div>
+    <div class="absolute bottom-0 right-0 w-48 h-48 rounded-full bg-[rgba(0,168,130,0.06)] translate-y-1/2 translate-x-1/2"></div>
+    <div class="max-w-[1280px] mx-auto px-6 relative z-10">
+      <p class="font-[Inter] font-semibold text-xs text-[#00A882] uppercase tracking-[0.1em] mb-3 text-center">Why Our Position Matters</p>
+      <h2 class="font-[Montserrat] font-extrabold text-[36px] text-white text-center mb-4">Structural Advantages, Not Temporary Gains</h2>
+      <div class="w-16 h-1 bg-[#00A882] rounded-full mx-auto mb-14"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger">
+        <div class="bg-white/[0.06] border border-white/10 rounded-xl p-7">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-[Montserrat] font-black text-[32px] text-[#00A882]">01</span>
+            <div class="h-px flex-1 bg-white/10"></div>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-white mb-2">Scale Creates Reliability</h3>
+          <p class="font-[Inter] text-sm text-[#93C5FD] leading-relaxed">270,000 MTPA across five plants means no single shutdown disrupts supply. A procurement manager sourcing from IGPL is not betting on a single reactor — they are accessing a diversified production base at one site.</p>
+        </div>
+        <div class="bg-white/[0.06] border border-white/10 rounded-xl p-7">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-[Montserrat] font-black text-[32px] text-[#00A882]">02</span>
+            <div class="h-px flex-1 bg-white/10"></div>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-white mb-2">Location Is a Competitive Moat</h3>
+          <p class="font-[Inter] text-sm text-[#93C5FD] leading-relaxed">Taloja sits in Maharashtra's chemical belt, 50 km from JNPT. Our feedstock (o-xylene) arrives by pipeline and road from nearby refineries. Finished goods reach port customers with minimal freight. This geography cannot be easily replicated by a new entrant.</p>
+        </div>
+        <div class="bg-white/[0.06] border border-white/10 rounded-xl p-7">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-[Montserrat] font-black text-[32px] text-[#00A882]">03</span>
+            <div class="h-px flex-1 bg-white/10"></div>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-white mb-2">Downstream Integration Strengthens Margins</h3>
+          <p class="font-[Inter] text-sm text-[#93C5FD] leading-relaxed">By producing DEP in-house, we capture value beyond the commodity PA cycle. Our byproducts — MA and BA — are not waste streams but revenue streams. This integrated model smooths earnings across business cycles.</p>
+        </div>
+        <div class="bg-white/[0.06] border border-white/10 rounded-xl p-7">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-[Montserrat] font-black text-[32px] text-[#00A882]">04</span>
+            <div class="h-px flex-1 bg-white/10"></div>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-white mb-2">India's PA Demand Is Growing</h3>
+          <p class="font-[Inter] text-sm text-[#93C5FD] leading-relaxed">India's plasticizer, construction, automotive, and packaging sectors are expanding. PA is a foundational input for all of them. As India's largest PA producer, IGPL is positioned to capture a disproportionate share of that growth without needing to build greenfield capacity elsewhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology & Quality -->
+  <section class="py-20 bg-white reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <div class="relative rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+          <img src="steam-pipes.png" alt="IGPL plant infrastructure — steam and process piping" class="w-full h-auto object-cover">
+        </div>
+        <div>
+          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Technology & Quality</p>
+          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6 leading-tight">Engineered in Germany.<br>Operated in India.</h2>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">Our PA plants are based on the Wacker Von-Heyden Low Energy Process — originally engineered by Lurgi GmbH, Germany. This is the same technology platform used by leading PA producers globally.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">We produce Phthalic Anhydride at >=99.8% purity, in snow-white free-flowing flakes that meet international specifications. Our quality control is continuous — from feedstock analysis through in-process monitoring to final product testing.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">Technical Data Sheets (TDS) and Safety Data Sheets (SDS) are available for all products. Contact our commercial team for specifications, trial quantities, or supply agreements.</p>
+          <a href="contact.html" class="inline-flex items-center gap-2 mt-6 bg-[#007C66] text-white font-[Montserrat] font-bold text-sm px-6 py-3 rounded-lg hover:bg-[#005E4D] transition-colors cursor-pointer w-fit">
+            Contact Our Team
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="py-14 bg-[#007C66] reveal">
+    <div class="max-w-[1280px] mx-auto px-6 text-center">
+      <h2 class="font-[Montserrat] font-extrabold text-[30px] text-white mb-4">Partner With India's PA Leader</h2>
+      <p class="font-[Inter] text-lg text-white/80 mb-8 max-w-xl mx-auto">Whether you need Phthalic Anhydride, Maleic Anhydride, Benzoic Acid, or DEP — we have the scale and reliability to be your long-term supplier.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="products.html" class="inline-block bg-white text-[#007C66] font-[Montserrat] font-bold text-sm uppercase tracking-[0.06em] px-10 py-4 rounded hover:bg-[#F0FDF9] transition-colors">View Products</a>
+        <a href="contact.html" class="inline-block bg-transparent text-white border-2 border-white font-[Montserrat] font-bold text-sm uppercase tracking-[0.06em] px-10 py-4 rounded hover:bg-white/10 transition-colors">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-[#0B2240]">
+    <div class="max-w-[1280px] mx-auto px-6 py-14">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+        <div class="col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="igpl-logo.png" alt="IGPL" class="h-9 w-auto brightness-0 invert">
+          </div>
+          <p class="font-[Inter] text-sm text-slate-400 leading-relaxed">IG Petrochemicals Ltd.<br>India's largest single-site PA complex.</p>
+          <p class="font-[Inter] text-xs text-slate-500 mt-3">NSE: IGPL &nbsp;|&nbsp; BSE: 500199</p>
+          <!-- Social links -->
+          <div class="flex gap-3 mt-5">
+            <a href="#" aria-label="LinkedIn" class="w-8 h-8 rounded-md bg-white/[0.07] hover:bg-[#007C66] flex items-center justify-center transition-colors cursor-pointer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="text-slate-300"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter / X" class="w-8 h-8 rounded-md bg-white/[0.07] hover:bg-[#007C66] flex items-center justify-center transition-colors cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-slate-300"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="BSE/NSE Listing" class="w-8 h-8 rounded-md bg-white/[0.07] hover:bg-[#007C66] flex items-center justify-center transition-colors cursor-pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-300"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-slate-500 mb-4">Products</h4>
+          <ul class="space-y-2.5">
+            <li><a href="products.html" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors">Phthalic Anhydride</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors">Maleic Anhydride</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors">Benzoic Acid</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors">Diethyl Phthalate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-slate-500 mb-4">Company</h4>
+          <ul class="space-y-2.5">
+            <li><a href="about.html" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors">About Us</a></li>
+            <li><a href="investors.html" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors">Investors</a></li>
+            <li><a href="sustainability.html" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors">Sustainability</a></li>
+            <li><a href="csr.html" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors">CSR</a></li>
+            <li><a href="careers.html" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-slate-500 mb-4">Contact</h4>
+          <p class="font-[Inter] text-sm text-slate-400 leading-relaxed">401-404, Raheja Centre, 214<br>Nariman Point, Mumbai 400021</p>
+          <a href="tel:+912****6100" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors mt-3 block">+91 22 4058 6100</a>
+          <a href="mailto:igpl@igpetro.com" class="font-[Inter] text-sm text-slate-400 hover:text-[#00A882] transition-colors mt-1 block">igpl@igpetro.com</a>
+        </div>
+      </div>
+      <div class="border-t border-white/[0.08] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="font-[Inter] text-xs text-slate-500">&copy; 2026 IG Petrochemicals Ltd. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="font-[Inter] text-xs text-slate-500 hover:text-[#00A882] transition-colors">Privacy Policy</a>
+          <a href="#" class="font-[Inter] text-xs text-slate-500 hover:text-[#00A882] transition-colors">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => obs.observe(el));
+
+  </script>
+  <script>
+
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('menu-backdrop').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

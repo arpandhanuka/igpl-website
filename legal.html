@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="igpl-logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGPL — Legal</title>
+  <script src="https://cdn.tailwindcss.com/3.4.0"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #007C66; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .prose h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: #0F172A; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose p, .prose li { font-family: 'Inter', sans-serif; color: #475569; line-height: 1.7; font-size: 15px; }
+    .prose ul { list-style: disc; padding-left: 1.5rem; margin: 0.75rem 0; }
+    .prose li { margin-bottom: 0.4rem; }
+  </style>
+</head>
+<body class="bg-white text-[#0F172A]">
+
+  <nav class="bg-white border-b-[3px] border-[#007C66] sticky top-0 z-[100]">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center"><img src="igpl-logo.png" alt="IGPL" class="h-10 w-auto"></a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">About</a>
+          <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Products</a>
+          <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Sustainability</a>
+          <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Investors</a>
+          <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">CSR</a>
+          <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Careers</a>
+          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded hover:bg-[#005E4D] transition-colors">Contact</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden p-2 text-[#374151]" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#E5E7EB]">
+      <div class="px-6 py-4 flex flex-col gap-4">
+        <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">About</a>
+        <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
+        <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Sustainability</a>
+        <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Investors</a>
+        <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">CSR</a>
+        <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Careers</a>
+        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded text-center">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.getElementById('menu-backdrop').classList.add('hidden')"></div>
+
+  <!-- Page header -->
+  <section class="bg-[#F8FAFC] border-b border-[#E5E7EB] py-12">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
+      <h1 class="font-[Montserrat] font-black text-[36px] text-[#0F172A]">Legal</h1>
+      <p class="font-[Inter] text-[#94A3B8] text-sm mt-2">Privacy Policy &amp; Terms of Use</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16">
+    <div class="max-w-[860px] mx-auto px-6">
+
+      <!-- Tabs -->
+      <div class="flex gap-2 mb-10 border-b border-[#E5E7EB]">
+        <button id="tab-privacy" onclick="showTab('privacy')" class="font-[Montserrat] font-bold text-sm uppercase tracking-[0.06em] px-5 py-3 border-b-[3px] border-[#007C66] text-[#007C66] -mb-px">Privacy Policy</button>
+        <button id="tab-terms" onclick="showTab('terms')" class="font-[Montserrat] font-bold text-sm uppercase tracking-[0.06em] px-5 py-3 border-b-[3px] border-transparent text-[#94A3B8] hover:text-[#374151] -mb-px transition-colors">Terms of Use</button>
+      </div>
+
+      <!-- Privacy Policy -->
+      <div id="section-privacy" class="prose">
+        <p class="text-[#94A3B8] text-xs mb-6">Last updated: March 2026</p>
+
+        <h3>1. Information We Collect</h3>
+        <p>IG Petrochemicals Ltd. ("IGPL", "we", "us", or "our") collects information you voluntarily provide when using this website, including your name, company name, email address, and any message you submit through our contact form. We do not collect any personal data through automated tracking beyond standard web server logs.</p>
+
+        <h3>2. How We Use Your Information</h3>
+        <p>Information submitted through this website is used solely to:</p>
+        <ul>
+          <li>Respond to your enquiries, requests for product data sheets (TDS/SDS), or business proposals</li>
+          <li>Provide investor-related information as requested</li>
+          <li>Improve the functionality and content of this website</li>
+        </ul>
+        <p>We do not sell, rent, or share your personal information with any third party for marketing purposes.</p>
+
+        <h3>3. Data Retention</h3>
+        <p>Contact enquiries are retained for a period necessary to respond to your request and for record-keeping purposes required under applicable Indian law. You may request deletion of your information by writing to <a href="mailto:igpl@igpetro.com" class="text-[#007C66] hover:underline">igpl@igpetro.com</a>.</p>
+
+        <h3>4. Cookies</h3>
+        <p>This website does not use tracking cookies. Standard browser session data may be used solely for website functionality.</p>
+
+        <h3>5. Security</h3>
+        <p>We take reasonable technical precautions to protect information submitted through this website. However, no transmission over the internet can be guaranteed to be completely secure.</p>
+
+        <h3>6. Third-Party Links</h3>
+        <p>This website may contain links to BSE India, NSE India, and other external sites. IGPL is not responsible for the privacy practices or content of those websites.</p>
+
+        <h3>7. Governing Law</h3>
+        <p>This Privacy Policy is governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of courts in Mumbai, Maharashtra.</p>
+
+        <h3>8. Contact</h3>
+        <p>For privacy-related queries, contact our registered office at 401-404 Raheja Centre, 214 Nariman Point, Mumbai 400021, or write to <a href="mailto:igpl@igpetro.com" class="text-[#007C66] hover:underline">igpl@igpetro.com</a>.</p>
+      </div>
+
+      <!-- Terms of Use -->
+      <div id="section-terms" class="prose hidden">
+        <p class="text-[#94A3B8] text-xs mb-6">Last updated: March 2026</p>
+
+        <h3>1. Acceptance</h3>
+        <p>By accessing or using this website (igpetro.com), you agree to be bound by these Terms of Use. If you do not agree, please discontinue use immediately.</p>
+
+        <h3>2. Purpose of Website</h3>
+        <p>This website is operated by IG Petrochemicals Ltd. for informational purposes only. Nothing on this website constitutes an offer to sell, a solicitation of an offer to buy, or a recommendation of any security or investment product.</p>
+
+        <h3>3. Intellectual Property</h3>
+        <p>All content on this website — including text, images, logos, data, and documents — is the property of IGPL or its licensors and is protected under applicable Indian and international intellectual property laws. No content may be reproduced, distributed, or transmitted without prior written permission from IGPL.</p>
+
+        <h3>4. Accuracy of Information</h3>
+        <p>IGPL endeavours to keep information on this website accurate and up to date. However, we make no warranty, express or implied, regarding the accuracy, completeness, or timeliness of any information published here. Financial data, stock prices, and production figures are for reference only and may not reflect current conditions.</p>
+
+        <h3>5. Limitation of Liability</h3>
+        <p>IGPL shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of or inability to use this website, or from reliance on any information contained herein.</p>
+
+        <h3>6. Forward-Looking Statements</h3>
+        <p>This website may contain forward-looking statements. These statements involve known and unknown risks, uncertainties, and other factors that may cause actual results to differ materially from those expressed or implied. IGPL undertakes no obligation to update forward-looking statements.</p>
+
+        <h3>7. Governing Law</h3>
+        <p>These Terms of Use are governed by the laws of India. Disputes shall be subject to the exclusive jurisdiction of courts in Mumbai, Maharashtra.</p>
+
+        <h3>8. Changes</h3>
+        <p>IGPL reserves the right to modify these Terms of Use at any time. Continued use of the website after changes constitutes acceptance of the revised terms.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="h-1 bg-[#007C66]"></div>
+  <footer class="bg-white border-t border-[#E5E7EB]">
+    <div class="max-w-[1280px] mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div class="col-span-1">
+          <span class="font-[Montserrat] font-black text-2xl text-[#0F172A]">IGPL</span>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed mt-4">IG Petrochemicals Ltd.<br>India's largest single-site PA complex.</p>
+          <p class="font-[Inter] text-xs text-[#94A3B8] mt-3">NSE: IGPL | BSE: 500199</p>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Products</h4>
+          <ul class="space-y-2">
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Phthalic Anhydride</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Maleic Anhydride</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Benzoic Acid</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Diethyl Phthalate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">About Us</a></li>
+            <li><a href="investors.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Investors</a></li>
+            <li><a href="sustainability.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Sustainability</a></li>
+            <li><a href="csr.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">CSR</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Contact</h4>
+          <p class="font-[Inter] text-sm text-[#475569]">401-404, Raheja Centre, 214<br>Nariman Point, Mumbai 400021</p>
+          <a href="tel:+912240586100" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-2 block">+91 22 4058 6100</a>
+          <a href="mailto:igpl@igpetro.com" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-1 block">igpl@igpetro.com</a>
+        </div>
+      </div>
+      <div class="border-t border-[#E5E7EB] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="font-[Inter] text-xs text-[#94A3B8]">&copy; 2026 IG Petrochemicals Ltd. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="legal.html" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Privacy Policy</a>
+          <a href="legal.html" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showTab(tab) {
+      ['privacy','terms'].forEach(t => {
+        document.getElementById('section-' + t).classList.toggle('hidden', t !== tab);
+        const btn = document.getElementById('tab-' + t);
+        if (t === tab) {
+          btn.classList.add('border-[#007C66]', 'text-[#007C66]');
+          btn.classList.remove('border-transparent', 'text-[#94A3B8]');
+        } else {
+          btn.classList.remove('border-[#007C66]', 'text-[#007C66]');
+          btn.classList.add('border-transparent', 'text-[#94A3B8]');
+        }
+      });
+    }
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('menu-backdrop').classList.toggle('hidden');
+    });
+    // Show correct tab if hash present
+    if (window.location.hash === '#terms') showTab('terms');
+  </script>
+</body>
+</html>

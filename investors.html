@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="igpl-logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGPL — Investor Relations</title>
+  <script src="https://cdn.tailwindcss.com/3.4.0"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
+    /* Scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .stagger > * {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+    .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+    .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+    .stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+    .stagger.visible > *:nth-child(5) { transition-delay: 0.35s; }
+    .stagger.visible > *:nth-child(6) { transition-delay: 0.4s; }
+    .stagger.visible > * { opacity: 1; transform: translateY(0); }
+    /* Card lift on hover */
+    .card-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,124,102,0.1);
+    }
+    /* Nav link underline on hover */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: #007C66; transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+  </style>
+</head>
+<body class="bg-white text-[#0F172A]">
+  <nav class="bg-white border-b-[3px] border-[#007C66] sticky top-0 z-[100]">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center"><img src="igpl-logo.png" alt="IGPL" class="h-10 w-auto"></a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">About</a>
+          <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Products</a>
+          <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Sustainability</a>
+          <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Investors</a>
+          <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">CSR</a>
+          <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Careers</a>
+          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded hover:bg-[#005E4D] transition-colors">Contact</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden p-2 text-[#374151]" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#E5E7EB] z-[150]">
+      <div class="px-6 py-4 flex flex-col gap-4">
+        <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">About</a>
+        <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
+        <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Sustainability</a>
+        <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66] font-bold">Investors</a>
+        <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">CSR</a>
+        <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Careers</a>
+        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded text-center">Contact</a>
+      </div>
+    </div>
+  </nav>
+    <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.getElementById('menu-backdrop').classList.add('hidden')"></div>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden min-h-[420px] flex items-end">
+    <img src="investors-hero.png" alt="IGPL plant complex at Taloja" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 12%">
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(10,20,10,0.1) 0%, rgba(10,20,10,0.08) 40%, rgba(10,20,10,0.65) 100%);"></div>
+    <div class="max-w-[1280px] mx-auto px-6 py-16 relative z-10 w-full">
+      <p class="font-[Montserrat] font-semibold text-xs uppercase tracking-[0.14em] text-[#00D4AA] mb-3">NSE: IGPL | BSE: 500199</p>
+      <h1 class="font-[Montserrat] font-black text-[48px] lg:text-[60px] text-white leading-tight">Investor Relations</h1>
+    </div>
+  </section>
+
+  <!-- Financial Snapshot -->
+  <section class="py-12">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-white border border-[#E5E7EB] rounded-lg border-l-[4px] border-l-[#0F2B4F] p-5 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-shadow">
+          <p class="font-[Inter] text-xs text-[#94A3B8] uppercase tracking-[0.05em] mb-2">BSE Price</p>
+          <div id="bse-price" class="font-[Montserrat] font-black text-[32px] text-[#0F2B4F]">₹371.00</div>
+          <p id="bse-date" class="font-[Inter] text-xs text-[#94A3B8]">as on Feb 2026</p>
+        </div>
+        <div class="bg-white border border-[#E5E7EB] rounded-lg border-l-[4px] border-l-[#0F2B4F] p-5 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-shadow">
+          <p class="font-[Inter] text-xs text-[#94A3B8] uppercase tracking-[0.05em] mb-2">NSE Price</p>
+          <div id="nse-price" class="font-[Montserrat] font-black text-[32px] text-[#0F2B4F]">₹370.60</div>
+          <p id="nse-date" class="font-[Inter] text-xs text-[#94A3B8]">as on Feb 2026</p>
+        </div>
+        <div class="bg-white border border-[#E5E7EB] rounded-lg border-l-[4px] border-l-[#0F2B4F] p-5 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-shadow">
+          <p class="font-[Inter] text-xs text-[#94A3B8] uppercase tracking-[0.05em] mb-2">Market Cap</p>
+          <div id="market-cap" class="font-[Montserrat] font-black text-[32px] text-[#0F2B4F]">₹1,142 Cr</div>
+          <p id="market-cap-date" class="font-[Inter] text-xs text-[#94A3B8]">as on Feb 2026</p>
+        </div>
+        <div class="bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5] border border-[#A7F3D0] rounded-lg border-l-[4px] border-l-[#0F2B4F] p-5 hover:shadow-[0_4px_16px_rgba(0,124,102,0.1)] transition-shadow">
+          <p class="font-[Inter] text-xs text-[#94A3B8] uppercase tracking-[0.05em] mb-2">Experience</p>
+          <div class="font-[Montserrat] font-black text-[32px] text-[#0F2B4F]">34 Years</div>
+          <p class="font-[Inter] text-xs text-[#475569]">of Manufacturing</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Position -->
+  <section class="py-20 reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
+          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Market Position</p>
+          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6">India's Largest Single-Site PA Complex</h2>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">IGPL operates five Phthalic Anhydride plants at a single location in Taloja, Maharashtra, with a combined installed capacity of 270,000 MTPA. We hold approximately 50% of India's PA market.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-6">Our production technology is licensed from Wacker Chemie, Germany. Our Taloja facility is 50 km from JNPT, giving us direct access to port logistics for raw material imports and product exports.</p>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="text-center p-4 bg-[#F8FAFC] rounded-lg">
+              <div class="font-[Montserrat] font-black text-2xl text-[#007C66]">270K</div>
+              <p class="font-[Inter] text-xs text-[#475569] mt-1">MTPA Capacity</p>
+            </div>
+            <div class="text-center p-4 bg-[#F8FAFC] rounded-lg">
+              <div class="font-[Montserrat] font-black text-2xl text-[#007C66]">5</div>
+              <p class="font-[Inter] text-xs text-[#475569] mt-1">PA Plants</p>
+            </div>
+            <div class="text-center p-4 bg-[#F8FAFC] rounded-lg">
+              <div class="font-[Montserrat] font-black text-2xl text-[#007C66]">~50%</div>
+              <p class="font-[Inter] text-xs text-[#475569] mt-1">Market Share</p>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.1)]">
+          <img src="plant-aerial.png" alt="Aerial view of IGPL plant complex at Taloja" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Annual Reports -->
+  <section class="py-20 bg-[#F8FAFC] reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
+      <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Disclosures</p>
+      <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-8">Annual Reports</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger">
+        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow">
+          <div class="bg-[#F8FAFC] px-6 py-4 border-b border-[#E5E7EB]">
+            <div class="font-[Montserrat] font-black text-2xl text-[#0F2B4F]">FY 2024-25</div>
+            <div class="font-[Inter] text-sm text-[#94A3B8] mt-1">Annual Report</div>
+          </div>
+          <div class="px-6 py-4">
+            <a href="docs/annual-reports/fy2425.pdf" target="_blank" data-pdf="docs/annual-reports/fy2425.pdf" class="pdf-link flex items-center gap-2 font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66] hover:text-[#005E4D]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+          </div>
+        </div>
+        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow">
+          <div class="bg-[#F8FAFC] px-6 py-4 border-b border-[#E5E7EB]">
+            <div class="font-[Montserrat] font-black text-2xl text-[#0F2B4F]">FY 2023-24</div>
+            <div class="font-[Inter] text-sm text-[#94A3B8] mt-1">Annual Report</div>
+          </div>
+          <div class="px-6 py-4">
+            <a href="docs/annual-reports/fy2324.pdf" target="_blank" data-pdf="docs/annual-reports/fy2324.pdf" class="pdf-link flex items-center gap-2 font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66] hover:text-[#005E4D]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+          </div>
+        </div>
+        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow">
+          <div class="bg-[#F8FAFC] px-6 py-4 border-b border-[#E5E7EB]">
+            <div class="font-[Montserrat] font-black text-2xl text-[#0F2B4F]">FY 2022-23</div>
+            <div class="font-[Inter] text-sm text-[#94A3B8] mt-1">Annual Report</div>
+          </div>
+          <div class="px-6 py-4">
+            <a href="docs/annual-reports/fy2223.pdf" target="_blank" data-pdf="docs/annual-reports/fy2223.pdf" class="pdf-link flex items-center gap-2 font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66] hover:text-[#005E4D]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance & Compliance -->
+  <section class="py-20 reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.1)]">
+          <img src="governance-report.png" alt="Corporate governance and board review" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
+          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Governance</p>
+          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6">Structured Oversight</h2>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">IGPL maintains board-level committees for audit, nomination and remuneration, and stakeholder relationships. Our governance framework is aligned with SEBI Listing Obligations and Disclosure Requirements.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-6">We disclose quarterly financials, shareholding patterns, and corporate governance reports in compliance with regulatory timelines. All filings are available through NSE and BSE.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Investor Information Links -->
+  <section class="py-20 bg-[#F8FAFC] reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-4">Investor Information</h2>
+      <div class="w-16 h-1 bg-[#007C66] rounded-full mb-8"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
+        <a href="https://www.bseindia.com/corporates/ann.html?scripcd=500199" target="_blank" class="card-lift bg-white border border-[#E5E7EB] rounded-lg p-6 hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow">
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-2">Business Reports</h3>
+          <p class="font-[Inter] text-sm text-[#475569]">Quarterly and annual business performance reports.</p>
+        </a>
+        <a href="docs/investor-info/corporate-governance.pdf" target="_blank" data-pdf="docs/investor-info/corporate-governance.pdf" class="pdf-link card-lift bg-white border border-[#E5E7EB] rounded-lg p-6 hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow">
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-2">Corporate Governance</h3>
+          <p class="font-[Inter] text-sm text-[#475569]">Board composition, committees, and governance policies.</p>
+          <span class="pdf-badge font-[Inter] text-xs text-[#94A3B8] mt-2 block hidden">(Upload required)</span>
+        </a>
+        <a href="https://www.nseindia.com/get-quotes/equity?symbol=IGPL" target="_blank" class="card-lift bg-white border border-[#E5E7EB] rounded-lg p-6 hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow">
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-2">Corporate Announcements</h3>
+          <p class="font-[Inter] text-sm text-[#475569]">Latest regulatory filings and disclosures.</p>
+        </a>
+        <a href="docs/investor-info/shareholding-pattern.pdf" target="_blank" data-pdf="docs/investor-info/shareholding-pattern.pdf" class="pdf-link card-lift bg-white border border-[#E5E7EB] rounded-lg p-6 hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow">
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-2">Investor Information</h3>
+          <p class="font-[Inter] text-sm text-[#475569]">Shareholding pattern, stock exchange information.</p>
+          <span class="pdf-badge font-[Inter] text-xs text-[#94A3B8] mt-2 block hidden">(Upload required)</span>
+        </a>
+        <a href="docs/investor-info/subsidiary-financials.pdf" target="_blank" data-pdf="docs/investor-info/subsidiary-financials.pdf" class="pdf-link card-lift bg-white border border-[#E5E7EB] rounded-lg p-6 hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow">
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-2">Subsidiary Financials</h3>
+          <p class="font-[Inter] text-sm text-[#475569]">Financial statements of subsidiary companies.</p>
+          <span class="pdf-badge font-[Inter] text-xs text-[#94A3B8] mt-2 block hidden">(Upload required)</span>
+        </a>
+        <a href="contact.html" class="bg-[#007C66] rounded-lg p-6 text-center">
+          <h3 class="font-[Montserrat] font-bold text-lg text-white mb-2">Contact IR Team</h3>
+          <p class="font-[Inter] text-sm text-[rgba(255,255,255,0.7)]">For investor queries and relations.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IR Contact -->
+  <section class="py-20 reveal">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="bg-[#0F2B4F] rounded-2xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <p class="font-[Montserrat] font-semibold text-xs uppercase tracking-[0.14em] text-[#00D4AA] mb-3">Investor Queries</p>
+          <h2 class="font-[Montserrat] font-extrabold text-[30px] text-white mb-4">Investor Relations Contact</h2>
+          <p class="font-[Inter] text-[16px] text-[rgba(255,255,255,0.7)] leading-relaxed mb-6">For share transfer, transmission, change of address, dividend queries, or any investor-related communication, please reach out to our registered office or write to us directly.</p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D4AA" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <p class="font-[Inter] text-sm text-[rgba(255,255,255,0.8)]">401-404, Raheja Centre, 214 Nariman Point, Mumbai 400021</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D4AA" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <p class="font-[Inter] text-sm text-[rgba(255,255,255,0.8)]">+91 22 4058 6100</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D4AA" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <p class="font-[Inter] text-sm text-[rgba(255,255,255,0.8)]">igpl@igpetro.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white/10 rounded-xl p-6 border border-white/20">
+          <h3 class="font-[Montserrat] font-bold text-lg text-white mb-4">Stock Exchange Information</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="font-[Inter] text-xs text-[#00D4AA] uppercase tracking-[0.08em] mb-1">National Stock Exchange</p>
+              <p class="font-[Montserrat] font-bold text-xl text-white">NSE: IGPL</p>
+            </div>
+            <div>
+              <p class="font-[Inter] text-xs text-[#00D4AA] uppercase tracking-[0.08em] mb-1">Bombay Stock Exchange</p>
+              <p class="font-[Montserrat] font-bold text-xl text-white">BSE: 500199</p>
+            </div>
+            <div class="pt-4 border-t border-white/20">
+              <p class="font-[Inter] text-xs text-[rgba(255,255,255,0.5)]">ISIN: INE204A01010</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-1 bg-[#007C66]"></div>
+  <footer class="bg-white border-t border-[#E5E7EB]">
+    <div class="max-w-[1280px] mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div class="col-span-1">
+          <span class="font-[Montserrat] font-black text-2xl text-[#0F172A]">IGPL</span>
+          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed mt-4">IG Petrochemicals Ltd.<br>India's largest single-site PA complex.</p>
+          <p class="font-[Inter] text-xs text-[#94A3B8] mt-3">NSE: IGPL | BSE: 500199</p>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Products</h4>
+          <ul class="space-y-2">
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Phthalic Anhydride</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Maleic Anhydride</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Benzoic Acid</a></li>
+            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Diethyl Phthalate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">About Us</a></li>
+            <li><a href="investors.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Investors</a></li>
+            <li><a href="sustainability.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Sustainability</a></li>
+            <li><a href="csr.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">CSR</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Contact</h4>
+          <p class="font-[Inter] text-sm text-[#475569]">401-404, Raheja Centre, 214<br>Nariman Point, Mumbai 400021</p>
+          <a href="tel:+912240586100" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-2 block">+91 22 4058 6100</a>
+          <a href="mailto:igpl@igpetro.com" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-1 block">igpl@igpetro.com</a>
+        </div>
+      </div>
+      <div class="border-t border-[#E5E7EB] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="font-[Inter] text-xs text-[#94A3B8]">&copy; 2026 IG Petrochemicals Ltd. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="legal.html" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Privacy Policy</a>
+          <a href="legal.html" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>  <script>
+    // Scroll reveal
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => obs.observe(el));
+
+  </script>
+  <script>
+
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('menu-backdrop').classList.toggle('hidden');
+    });
+  </script>
+  <script>
+    // IGPL shares outstanding (3.08 crore = 30,800,000)
+    const SHARES = 30800000;
+
+    function fmtDate(ts) {
+      const d = ts ? new Date(ts * 1000) : new Date();
+      return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    async function fetchQuote(ticker) {
+      const r = await fetch(`/api/quote?symbol=${ticker}`);
+      return await r.json();
+    }
+
+    async function updatePrices() {
+      try {
+        const [bse, nse] = await Promise.all([fetchQuote('IGPL.BO'), fetchQuote('IGPL.NS')]);
+        const dateStr = 'as on ' + fmtDate(nse.time);
+        const marketCapCr = Math.round(nse.price * SHARES / 10000000);
+
+        document.getElementById('bse-price').textContent = '₹' + bse.price.toFixed(2);
+        document.getElementById('bse-date').textContent = 'as on ' + fmtDate(bse.time);
+        document.getElementById('nse-price').textContent = '₹' + nse.price.toFixed(2);
+        document.getElementById('nse-date').textContent = dateStr;
+        document.getElementById('market-cap').textContent = '₹' + marketCapCr.toLocaleString('en-IN') + ' Cr';
+        document.getElementById('market-cap-date').textContent = dateStr;
+      } catch (e) {
+        console.warn('Live price fetch failed — showing last known values.', e);
+      }
+    }
+
+    updatePrices();
+  </script>
+  <script>
+    // Check PDF availability — show "(Upload required)" badge if file missing
+    // and show "(Coming Soon)" next to Download PDF if annual report PDF is missing
+    document.querySelectorAll('.pdf-link[data-pdf]').forEach(async (el) => {
+      const path = el.getAttribute('data-pdf');
+      try {
+        const r = await fetch('/' + path, { method: 'HEAD' });
+        if (!r.ok) {
+          const badge = el.querySelector('.pdf-badge');
+          if (badge) badge.classList.remove('hidden');
+          // For annual report links (no badge, just a download link text)
+          const dlText = el.querySelector('svg + text, svg');
+          if (!badge && dlText) {
+            const span = document.createElement('span');
+            span.className = 'font-[Inter] text-xs text-[#94A3B8] ml-2';
+            span.textContent = '(Coming Soon)';
+            el.appendChild(span);
+          }
+        }
+      } catch (_) { /* server may not support HEAD for non-existent files */ }
+    });
+    // Annual report links (no .pdf-badge, they have the Download PDF text)
+    document.querySelectorAll('a.pdf-link').forEach(async (el) => {
+      if (el.querySelector('.pdf-badge')) return; // already handled above
+      const path = el.getAttribute('data-pdf');
+      if (!path) return;
+      try {
+        const r = await fetch('/' + path, { method: 'HEAD' });
+        if (!r.ok) {
+          const span = document.createElement('span');
+          span.className = 'font-[Inter] text-xs text-[#94A3B8] ml-2 normal-case';
+          span.textContent = '(Coming Soon)';
+          el.appendChild(span);
+        }
+      } catch (_) {}
+    });
+  </script>
+</body>
+</html>
