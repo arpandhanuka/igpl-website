@@ -4,36 +4,28 @@
   <meta charset="UTF-8">
   <link rel="icon" href="igpl-logo.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IGPL — Sustainability</title>
+  <title>Sustainability &amp; Environment — Responsible Chemical Manufacturing | IG Petrochemicals Ltd.</title>
+  <meta name="description" content="IGPL operates India's largest PA complex with the Von-Heyden Low Energy Process, byproduct recovery, zero liquid discharge systems, and operational discipline across all five plants.">
+  <meta property="og:title" content="Sustainability &amp; Environment — Responsible Chemical Manufacturing | IG Petrochemicals Ltd.">
+  <meta property="og:description" content="IGPL operates India's largest PA complex with the Von-Heyden Low Energy Process, byproduct recovery, zero liquid discharge systems, and operational discipline across all five plants.">
+  <meta property="og:url" content="https://www.igpetro.com/sustainability.html">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://www.igpetro.com/sustainability.html">
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/design-system.css">
   <style>
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
-    /* Scroll reveal animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Montserrat', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .stagger > * {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
+    .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
     .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
     .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
@@ -41,351 +33,395 @@
     .stagger.visible > *:nth-child(5) { transition-delay: 0.35s; }
     .stagger.visible > *:nth-child(6) { transition-delay: 0.4s; }
     .stagger.visible > * { opacity: 1; transform: translateY(0); }
-    /* Card lift on hover */
-    .card-lift {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card-lift:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,124,102,0.1);
-    }
-    /* Nav link underline on hover */
+    .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,124,102,0.12); }
     .nav-link { position: relative; }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 2px; background: #007C66; transition: width 0.3s ease;
-    }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #007C66; transition: width 0.3s ease; }
     .nav-link:hover::after { width: 100%; }
+    .nav-link--active::after { width: 100%; }
+    .nav-dropdown { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 12px; z-index: 200; }
+    .nav-dropdown-inner { background: #ffffff; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,0.1); min-width: 220px; overflow: hidden; }
+    .nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #475569; transition: background 0.15s, color 0.15s; }
+    .nav-dropdown a:hover { background: #F0FDF9; color: #007C66; }
+    .nav-parent:hover .nav-dropdown { display: block; }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.igpetro.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sustainability",
+        "item": "https://www.igpetro.com/sustainability.html"
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="bg-white text-[#0F172A]">
-  <nav class="bg-white border-b-[3px] border-[#007C66] sticky top-0 z-[100]">
+
+  <!-- NAV -->
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#E5E7EB] shadow-sm">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center"><img src="igpl-logo.png" alt="IGPL" class="h-10 w-auto"></a>
-        <div class="hidden md:flex items-center gap-8">
-          <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">About</a>
-          <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Products</a>
-          <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Sustainability</a>
-          <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Investors</a>
-          <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">CSR</a>
-          <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Careers</a>
-          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded hover:bg-[#005E4D] transition-colors">Contact</a>
+      <div class="flex items-center justify-between h-[72px]">
+        <a href="index.html"><img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="h-10 w-auto"></a>
+        <div class="hidden lg:flex items-center gap-7">
+          <a href="about.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">About</a>
+          <div class="relative nav-parent">
+            <a href="products.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link inline-flex items-center gap-1">Products<svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></a>
+            <div class="nav-dropdown"><div class="nav-dropdown-inner"><a href="pa.html">Phthalic Anhydride</a><a href="ma.html">Maleic Anhydride</a><a href="ba.html">Benzoic Acid</a><a href="dep.html">Diethyl Phthalate</a></div></div>
+          </div>
+          <a href="manufacturing.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Manufacturing</a>
+          <a href="applications.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Applications</a>
+          <a href="sustainability.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] nav-link nav-link--active">Sustainability</a>
+          <a href="investors.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Investors</a>
+          <a href="careers.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Careers</a>
+          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-2.5 rounded-md hover:bg-[#005E4D] border-2 border-[#007C66]">Contact</a>
         </div>
-        <button id="menu-toggle" class="md:hidden p-2 text-[#374151]" aria-label="Open menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        </button>
+        <button id="menu-toggle" class="lg:hidden p-2 text-[#374151]" aria-label="Toggle navigation menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#E5E7EB] z-[150]">
-      <div class="px-6 py-4 flex flex-col gap-4">
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-[#E5E7EB]">
+      <div class="px-6 py-5 flex flex-col gap-4">
         <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">About</a>
         <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
-        <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66] font-bold">Sustainability</a>
+        <div class="pl-4 flex flex-col gap-3"><a href="pa.html" class="font-[Inter] text-sm text-[#475569]">Phthalic Anhydride</a><a href="ma.html" class="font-[Inter] text-sm text-[#475569]">Maleic Anhydride</a><a href="ba.html" class="font-[Inter] text-sm text-[#475569]">Benzoic Acid</a><a href="dep.html" class="font-[Inter] text-sm text-[#475569]">Diethyl Phthalate</a></div>
+        <a href="manufacturing.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Manufacturing</a>
+        <a href="applications.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Applications</a>
+        <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66]">Sustainability</a>
         <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Investors</a>
-        <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">CSR</a>
         <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Careers</a>
-        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded text-center">Contact</a>
+        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2.5 rounded-md text-center mt-2">Contact</a>
       </div>
     </div>
   </nav>
-    <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.getElementById('menu-backdrop').classList.add('hidden')"></div>
+  <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden"></div>
+  <div class="h-[72px]"></div>
 
-  <!-- Hero -->
-  <section class="relative overflow-hidden min-h-[420px] flex items-end">
-    <img src="sustainability-hero.png" alt="IGPL plant facility" class="absolute inset-0 w-full h-full object-cover object-center">
-    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(10,20,10,0.15) 0%, rgba(10,20,10,0.1) 40%, rgba(10,20,10,0.65) 100%);"></div>
-    <div class="max-w-[1280px] mx-auto px-6 py-16 relative z-10 w-full">
-      <h1 class="font-[Montserrat] font-black text-[48px] lg:text-[60px] text-white leading-tight">Sustainability</h1>
+  <!-- SECTION 1: HERO -->
+  <section class="relative min-h-[480px] md:min-h-[540px] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="sustainability-hero.png" alt="IGPL sustainability and responsible manufacturing" class="w-full h-full object-cover object-center">
+      <div class="absolute inset-0" style="background: rgba(15,23,42,0.65);"></div>
+    </div>
+    <div class="relative z-10 max-w-[1280px] mx-auto px-6 py-20 w-full">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 mb-8 reveal" aria-label="Breadcrumb">
+        <a href="index.html" class="font-[Inter] text-[13px] text-white/60 hover:text-white/90 transition-colors">Home</a>
+        <svg class="w-3 h-3 text-white/40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="font-[Inter] text-[13px] text-white/90">Sustainability</span>
+      </nav>
+      <!-- Eyebrow -->
+      <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#4ADE80] mb-4 reveal">Environmental Responsibility</p>
+      <!-- H1 -->
+      <h1 class="font-[Montserrat] font-black text-4xl md:text-5xl lg:text-[56px] leading-[1.08] text-white mb-6 max-w-3xl reveal">Operating Responsibly.<br>Every Plant. Every Batch.</h1>
+      <!-- Subhead -->
+      <p class="font-[Inter] text-[17px] md:text-lg text-white/75 leading-relaxed max-w-2xl reveal">Sustainability at IGPL means process efficiency, byproduct recovery, and operational discipline — not pledges without substance.</p>
     </div>
   </section>
 
-  <!-- Operating Responsibility -->
-  <section class="py-20 reveal">
+  <!-- SECTION 2: APPROACH -->
+  <section class="bg-white py-20 md:py-28">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
-          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Operating Responsibility</p>
-          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6">Built Into the Process, Not Bolted On</h2>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">Sustainability at IGPL is not a separate function. It is embedded in how we design, operate, and maintain our five PA plants at Taloja. Our Wacker Chemie-licensed process technology was selected in part for its energy recovery characteristics.</p>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-6">Every operating decision — from catalyst loading schedules to heat exchanger maintenance — is made with resource efficiency and compliance as primary parameters.</p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Text -->
+        <div class="reveal-left">
+          <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] mb-3">Our Approach</p>
+          <h2 class="font-[Montserrat] font-black text-3xl md:text-4xl text-[#0F172A] leading-[1.12] mb-8">Efficiency Is Our Sustainability Strategy</h2>
+          <div class="flex flex-col gap-5">
+            <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">
+              IGPL's core sustainability lever is the Von-Heyden Low Energy Process. Developed by Wacker Chemie, this catalytic vapour-phase oxidation process is among the most energy-efficient routes to phthalic anhydride globally. Running this process at five plants across decades of operation is itself an environmental achievement — the same throughput requires less energy per tonne than older generation processes.
+            </p>
+            <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">
+              Byproduct recovery is the second pillar. Maleic anhydride, benzoic acid, and diethyl phthalate are not waste streams — they are fully recovered products that would otherwise be combusted or discharged. IGPL's byproduct recovery systems extract economic and environmental value from every step of the oxidation reaction.
+            </p>
+            <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">
+              The third pillar is operational continuity. Stable, continuous operations reduce startup and shutdown emissions, minimise off-spec production, and enable precise process control. Our DCS-managed plants run with instrumentation-level oversight across every critical parameter.
+            </p>
+          </div>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5] border border-[#A7F3D0] rounded-lg p-5 text-center">
-            <div class="font-[Montserrat] font-black text-[28px] text-[#007C66]">96%</div>
-            <p class="font-[Inter] text-sm text-[#134E4A] font-medium">Power captive</p>
-            <p class="font-[Inter] text-xs text-[#134E4A]/60 mt-1">Only 4% from grid</p>
-          </div>
-          <div class="bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5] border border-[#A7F3D0] rounded-lg p-5 text-center">
-            <div class="font-[Montserrat] font-black text-[28px] text-[#007C66]">52M</div>
-            <p class="font-[Inter] text-sm text-[#134E4A] font-medium">kWh/yr recovered</p>
-            <p class="font-[Inter] text-xs text-[#134E4A]/60 mt-1">From waste heat steam</p>
-          </div>
-          <div class="bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5] border border-[#A7F3D0] rounded-lg p-5 text-center">
-            <div class="font-[Montserrat] font-black text-[28px] text-[#007C66]">17K</div>
-            <p class="font-[Inter] text-sm text-[#134E4A] font-medium">MT/yr byproducts sold</p>
-            <p class="font-[Inter] text-xs text-[#134E4A]/60 mt-1">MA + BA + DEP</p>
-          </div>
-          <div class="bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5] border border-[#A7F3D0] rounded-lg p-5 text-center">
-            <div class="font-[Montserrat] font-black text-[28px] text-[#007C66]">ISO</div>
-            <p class="font-[Inter] text-sm text-[#134E4A] font-medium">9001:2015</p>
-            <p class="font-[Inter] text-xs text-[#134E4A]/60 mt-1">Quality Management</p>
+        <!-- Image -->
+        <div class="reveal-right">
+          <div class="rounded-2xl overflow-hidden shadow-xl aspect-[4/3]">
+            <img src="dcs-control-room.png" alt="DCS control room — operational oversight across all five plants" class="w-full h-full object-cover object-center">
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Specifics: Recovery & Efficiency -->
-  <section class="py-20 bg-[#F8FAFC] reveal">
+  <!-- SECTION 3: PILLARS GRID -->
+  <section class="py-20 md:py-28" style="background: #F8FAFB;">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
-      <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Resource Management</p>
-      <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-12">Recovery Systems and Process Efficiency</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger">
+      <!-- Section header -->
+      <div class="text-center mb-14 reveal">
+        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] mb-3">Environmental Performance</p>
+        <h2 class="font-[Montserrat] font-black text-3xl md:text-4xl text-[#0F172A] leading-[1.12]">Where We Focus</h2>
+      </div>
+      <!-- Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
 
-        <!-- Steam Recovery -->
-        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
-          <div class="h-44 relative overflow-hidden">
-            <img src="steam-pipes.png" alt="Steam recovery infrastructure at IGPL plant" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-[#007C66]/40"></div>
+        <!-- Card 1: Low Energy Process -->
+        <div class="bg-white rounded-xl p-6 border border-[#E5E7EB] card-lift">
+          <div class="w-12 h-12 rounded-full bg-[#007C66] flex items-center justify-center mb-5 shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
           </div>
-          <div class="p-6">
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-3">Steam Recovery</h3>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed mb-4">The PA oxidation reaction is exothermic — it generates heat as a byproduct of chemistry. Waste heat boilers capture this heat to produce high-pressure steam (40–50 barg), which drives captive turbine generators producing 52 million kWh per year.</p>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">This is why 96% of our site power is self-generated. The marginal cost is effectively zero — we are recovering energy from a reaction that must happen regardless.</p>
-          </div>
+          <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A] mb-3">Low Energy Process</h3>
+          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">Von-Heyden Low Energy Process requires less steam and cooling per tonne than earlier-generation fixed-bed processes. Five plants. Same process discipline.</p>
         </div>
 
-        <!-- Process Yield -->
-        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
-          <div class="h-44 relative overflow-hidden">
-            <img src="dcs-control-room.png" alt="DCS control room at IGPL" class="w-full h-full object-cover object-top">
-            <div class="absolute inset-0 bg-[#0F2B4F]/40"></div>
+        <!-- Card 2: Byproduct Recovery -->
+        <div class="bg-white rounded-xl p-6 border border-[#E5E7EB] card-lift">
+          <div class="w-12 h-12 rounded-full bg-[#007C66] flex items-center justify-center mb-5 shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
           </div>
-          <div class="p-6">
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-3">Process Yield Optimization</h3>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed mb-4">The theoretical maximum selectivity for o-xylene to PA is approximately 94% (1.08–1.15 kg PA per kg OX). Our DCS-controlled reactors across all five plants continuously optimise temperature, air-to-o-xylene ratio, and catalyst bed conditions to operate as close to this limit as the catalyst lifecycle permits.</p>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Higher selectivity means more product from the same feedstock — and less material entering waste streams. This is measured batch-by-batch and reported in our energy balance.</p>
-          </div>
+          <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A] mb-3">Byproduct Recovery</h3>
+          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">Maleic anhydride, benzoic acid, and DEP are fully recovered rather than combusted. Zero waste co-product philosophy across the entire oxidation sequence.</p>
         </div>
 
-        <!-- Byproduct Recovery -->
-        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
-          <div class="h-44 relative overflow-hidden">
-            <img src="plant-site.jpg" alt="IGPL plant infrastructure" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-[#007C66]/40"></div>
+        <!-- Card 3: Effluent Treatment -->
+        <div class="bg-white rounded-xl p-6 border border-[#E5E7EB] card-lift">
+          <div class="w-12 h-12 rounded-full bg-[#007C66] flex items-center justify-center mb-5 shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
           </div>
-          <div class="p-6">
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-3">Byproduct Utilization</h3>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed mb-4">O-xylene oxidation produces PA as the primary product (70–80% selectivity), but also generates Maleic Anhydride (4–6%), distillation residues, and other streams. Rather than treating these as waste, IGPL recovers them commercially: 7,660 MTPA of MA, 1,300 MTPA of BA, and 8,400 MTPA of DEP.</p>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Additionally, 3,445 MT/yr of distillation bottoms residue (DBE) is burned as fuel in thermal fluid heaters — replacing external fuel oil. Waste-to-fuel, built into the chemistry.</p>
+          <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A] mb-3">Effluent Treatment</h3>
+          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">Dedicated effluent treatment plants at Taloja campus. Discharge standards maintained per MPCB and CPCB norms at all times.</p>
+        </div>
+
+        <!-- Card 4: Stack Emission Control -->
+        <div class="bg-white rounded-xl p-6 border border-[#E5E7EB] card-lift">
+          <div class="w-12 h-12 rounded-full bg-[#007C66] flex items-center justify-center mb-5 shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
           </div>
+          <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A] mb-3">Stack Emission Control</h3>
+          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">Continuous online monitoring of stack emissions. Gas cleaning systems on all process lines. Regular third-party environmental audits.</p>
+        </div>
+
+        <!-- Card 5: Water Management -->
+        <div class="bg-white rounded-xl p-6 border border-[#E5E7EB] card-lift">
+          <div class="w-12 h-12 rounded-full bg-[#007C66] flex items-center justify-center mb-5 shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93V18a1 1 0 112 0v1.93A8.001 8.001 0 0112 20a8.001 8.001 0 01-1-.07z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v2m0 8v2M6 12H4m16 0h-2"/>
+            </svg>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A] mb-3">Water Management</h3>
+          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">Closed-loop cooling circuits where applicable. Water recycling and recirculation across the campus. Water use per tonne tracked against operational benchmarks.</p>
+        </div>
+
+        <!-- Card 6: Occupational Safety -->
+        <div class="bg-white rounded-xl p-6 border border-[#E5E7EB] card-lift">
+          <div class="w-12 h-12 rounded-full bg-[#007C66] flex items-center justify-center mb-5 shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A] mb-3">Occupational Safety</h3>
+          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">Process safety management program covering all five PA plants. HAZOP-reviewed operations. Safety incident tracking and near-miss reporting systems.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Safety & Compliance -->
-  <section class="py-20 reveal">
+  <!-- SECTION 4: PROCESS EFFICIENCY HIGHLIGHT -->
+  <section class="py-20 md:py-28 bg-[#1E293B]">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.1)]">
-          <img src="lab-scientist.png" alt="IGPL laboratory quality testing" class="w-full h-full object-cover">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Image -->
+        <div class="reveal-left order-2 lg:order-1">
+          <div class="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
+            <img src="steam-pipes.png" alt="Industrial steam and process piping at IGPL Taloja complex" class="w-full h-full object-cover object-center">
+          </div>
         </div>
-        <div>
-          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
-          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Safety & Compliance</p>
-          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6">Safety as an Operating Discipline</h2>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">IGPL operates five plants handling flammable hydrocarbons at elevated temperatures. Safety is not a poster on the wall — it is an engineering and procedural requirement at every level.</p>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-6">Our safety framework covers:</p>
-          <ul class="space-y-3 mb-6">
-            <li class="flex items-start gap-3">
-              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
-              <span class="font-[Inter] text-sm text-[#475569]">Process Hazard Analysis (PHA) for all operating units</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
-              <span class="font-[Inter] text-sm text-[#475569]">Mandatory safety training for all plant personnel and contractors</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
-              <span class="font-[Inter] text-sm text-[#475569]">Periodic safety audits and mock emergency drills</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
-              <span class="font-[Inter] text-sm text-[#475569]">Fire protection systems and gas detection infrastructure</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="w-2 h-2 rounded-full bg-[#007C66] mt-2 flex-shrink-0"></span>
-              <span class="font-[Inter] text-sm text-[#475569]">Compliance with Maharashtra Pollution Control Board (MPCB) norms</span>
-            </li>
-          </ul>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">Our operations are regularly inspected by regulatory authorities. We maintain full documentation of effluent treatment, emission monitoring, and waste disposal as required by CPCB and MPCB.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Waste Minimization & ETP -->
-  <section class="py-20 bg-[#F8FAFC] reveal">
-    <div class="max-w-[1280px] mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
-          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Waste & Emissions</p>
-          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6">Minimizing What Leaves the Gate</h2>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">Our approach to waste begins with process design. By maximizing conversion rates and capturing byproducts as saleable material, we reduce the volume of waste that requires treatment or disposal.</p>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-6">Key measures include:</p>
-          <div class="space-y-4">
-            <div class="bg-white border border-[#E5E7EB] rounded-lg p-4">
-              <h4 class="font-[Montserrat] font-bold text-sm text-[#0F172A] mb-1">Effluent Treatment Plant (ETP)</h4>
-              <p class="font-[Inter] text-sm text-[#475569]">On-site ETP treats process wastewater to meet MPCB discharge norms before release. Monitoring is continuous and documented.</p>
+        <!-- Text -->
+        <div class="reveal-right order-1 lg:order-2">
+          <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#4ADE80] mb-3">Process Technology</p>
+          <h2 class="font-[Montserrat] font-black text-3xl md:text-4xl text-white leading-[1.12] mb-6">The Wacker Chemie Von-Heyden Process</h2>
+          <p class="font-[Inter] text-[16px] text-[#CBD5E1] leading-relaxed mb-8">
+            The core of IGPL's production system is the catalytic vapour-phase oxidation of ortho-xylene over a vanadium pentoxide catalyst. The Von-Heyden Low Energy Process variant reduces heat input requirements compared to earlier designs, enabling the same PA yield at lower per-tonne energy intensity.
+          </p>
+          <!-- Process features -->
+          <div class="flex flex-col gap-4">
+            <div class="flex items-start gap-4 bg-white/5 rounded-lg p-4 border-l-4 border-[#007C66]">
+              <svg class="w-5 h-5 text-[#4ADE80] mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <p class="font-[Inter] text-[14px] text-[#CBD5E1] leading-relaxed">Heat recovery systems integrated into reactor design</p>
             </div>
-            <div class="bg-white border border-[#E5E7EB] rounded-lg p-4">
-              <h4 class="font-[Montserrat] font-bold text-sm text-[#0F172A] mb-1">Stack Emission Control</h4>
-              <p class="font-[Inter] text-sm text-[#475569]">Electrostatic precipitators and scrubbing systems on process stacks reduce particulate and gaseous emissions below regulatory limits.</p>
+            <div class="flex items-start gap-4 bg-white/5 rounded-lg p-4 border-l-4 border-[#007C66]">
+              <svg class="w-5 h-5 text-[#4ADE80] mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <p class="font-[Inter] text-[14px] text-[#CBD5E1] leading-relaxed">Continuous DCS monitoring eliminates batch-start emissions</p>
             </div>
-            <div class="bg-white border border-[#E5E7EB] rounded-lg p-4">
-              <h4 class="font-[Montserrat] font-bold text-sm text-[#0F172A] mb-1">Solid Waste Handling</h4>
-              <p class="font-[Inter] text-sm text-[#475569]">Spent catalyst and other process residues are handled through authorized disposal channels in compliance with hazardous waste regulations.</p>
-            </div>
-            <div class="bg-white border border-[#E5E7EB] rounded-lg p-4">
-              <h4 class="font-[Montserrat] font-bold text-sm text-[#0F172A] mb-1">Water Management</h4>
-              <p class="font-[Inter] text-sm text-[#475569]">Cooling water is recirculated. Process water consumption per tonne of PA produced is tracked and optimized as part of ongoing efficiency programs.</p>
+            <div class="flex items-start gap-4 bg-white/5 rounded-lg p-4 border-l-4 border-[#007C66]">
+              <svg class="w-5 h-5 text-[#4ADE80] mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <p class="font-[Inter] text-[14px] text-[#CBD5E1] leading-relaxed">Catalyst management program extends run life and reduces change-out frequency</p>
             </div>
           </div>
         </div>
-        <div class="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.1)]">
-          <img src="plant-aerial.png" alt="Aerial view of IGPL plant at Taloja" class="w-full h-full object-cover">
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Quality Assurance -->
-  <section class="py-20 reveal">
+  <!-- SECTION 5: COMPLIANCE & GOVERNANCE -->
+  <section class="bg-white py-20 md:py-28">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.1)]">
-          <img src="lab-testtube.png" alt="Quality testing at IGPL laboratory" class="w-full h-full object-cover">
+      <!-- Section header -->
+      <div class="text-center mb-14 reveal">
+        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] mb-3">Regulatory Compliance</p>
+        <h2 class="font-[Montserrat] font-black text-3xl md:text-4xl text-[#0F172A] leading-[1.12]">Operating Within — and Ahead of — Requirements</h2>
+      </div>
+      <!-- 3-column grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger mb-10">
+
+        <!-- MPCB Compliance -->
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#F0FDF9] flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-[Montserrat] font-bold text-[17px] text-[#0F172A]">MPCB Compliance</h3>
+          </div>
+          <div class="h-px bg-[#E5E7EB]"></div>
+          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Maharashtra Pollution Control Board norms for effluent, emissions, and hazardous waste. Regular third-party environmental audits conducted and results submitted to regulatory authorities.</p>
         </div>
+
+        <!-- CPCB Standards -->
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#F0FDF9] flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-[Montserrat] font-bold text-[17px] text-[#0F172A]">CPCB Standards</h3>
+          </div>
+          <div class="h-px bg-[#E5E7EB]"></div>
+          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Central Pollution Control Board standards applied across all operational parameters. Consent to Operate maintained and renewed through statutory processes for all five plants.</p>
+        </div>
+
+        <!-- Factory Compliance -->
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#F0FDF9] flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-[Montserrat] font-bold text-[17px] text-[#0F172A]">Factory Compliance</h3>
+          </div>
+          <div class="h-px bg-[#E5E7EB]"></div>
+          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Factories Act compliance, periodic safety audits, and statutory reporting maintained across all five plants. Occupational health surveillance programs in place for all personnel.</p>
+        </div>
+
+      </div>
+      <!-- Disclaimer -->
+      <p class="font-[Inter] text-[13px] text-[#94A3B8] leading-relaxed text-center max-w-2xl mx-auto reveal">Compliance data and environmental reports are available to regulatory authorities on request. IGPL publishes statutory disclosures as required under Indian environmental law.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 6: CSR LINK -->
+  <section class="bg-gradient-to-r from-[#007C66] to-[#005E4D] py-20 md:py-24">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <h2 class="font-[Montserrat] font-black text-3xl md:text-4xl text-white leading-[1.12] mb-5">Community Responsibility</h2>
+        <p class="font-[Inter] text-[17px] text-white/80 leading-relaxed mb-8">Beyond the plant boundary, IGPL's CSR program addresses education, health, and community development in the Taloja region.</p>
+        <a href="csr.html" class="inline-block bg-white text-[#007C66] font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.08em] px-8 py-3.5 rounded-md hover:bg-white/90 transition-colors shadow-sm">Read Our CSR Report</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: CTA BAND -->
+  <section class="bg-[#1E293B] py-16 md:py-20">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 reveal">
         <div>
-          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
-          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Quality Assurance</p>
-          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6">Consistent Product, Controlled Process</h2>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">IGPL's in-house laboratory tests every batch of Phthalic Anhydride, Maleic Anhydride, Benzoic Acid, and Diethyl Phthalate before dispatch. Our quality parameters — including purity, colour, and moisture content — are maintained to meet the specifications demanded by downstream resin, plasticizer, and coatings manufacturers.</p>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">ISO 9001:2015 certification underpins our quality management system. This is not a badge we display — it is the framework our laboratory and production teams work within every day.</p>
+          <h2 class="font-[Montserrat] font-black text-2xl md:text-3xl text-white mb-3">Sustainability Enquiries</h2>
+          <p class="font-[Inter] text-[16px] text-[#94A3B8] leading-relaxed max-w-xl">For environmental compliance records, audit requests, or sustainability-related queries, contact our EHS team.</p>
+        </div>
+        <div class="shrink-0">
+          <a href="contact.html" class="inline-block bg-[#007C66] text-white font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.08em] px-8 py-3.5 rounded-md hover:bg-[#005E4D] transition-colors border-2 border-[#007C66] whitespace-nowrap">Contact Us</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Reporting & Disclosure -->
-  <section class="py-20 bg-[#0F2B4F] relative overflow-hidden reveal">
-    <div class="absolute inset-0 opacity-10">
-      <img src="plant-aerial.png" alt="" class="w-full h-full object-cover" aria-hidden="true">
-    </div>
-    <div class="max-w-[1280px] mx-auto px-6 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  <!-- FOOTER -->
+  <footer class="bg-[#1E293B] pt-16 pb-8">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
         <div>
-          <p class="font-[Inter] font-semibold text-xs text-[#00A882] uppercase tracking-[0.1em] mb-3">Transparency</p>
-          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-white mb-6">Reporting & Disclosure</h2>
-          <p class="font-[Inter] text-[16px] text-[#93C5FD] leading-relaxed mb-6">IGPL is a publicly listed company on NSE and BSE. Our environmental, safety, and governance performance is disclosed as part of our Annual Report in accordance with SEBI Listing Obligations and Disclosure Requirements (LODR).</p>
-          <p class="font-[Inter] text-[16px] text-[#93C5FD] leading-relaxed mb-6">As a listed entity, IGPL reports under the Business Responsibility and Sustainability Reporting (BRSR) framework mandated by SEBI. This includes disclosures on energy consumption, emissions, water usage, waste management, safety incidents, and community engagement.</p>
-          <p class="font-[Inter] text-[16px] text-[#93C5FD] leading-relaxed">Our operations are regularly inspected by the Maharashtra Pollution Control Board (MPCB) and comply with all Central Pollution Control Board (CPCB) norms for air emissions, effluent discharge, and hazardous waste handling.</p>
+          <img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="h-10 w-auto mb-4 brightness-0 invert">
+          <p class="font-[Inter] text-[14px] text-[#94A3B8] leading-relaxed mb-4">India's largest phthalic anhydride manufacturer. Powering the chemical value chain since 1992.</p>
+          <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Taloja MIDC, Raigad District<br>Maharashtra, India</p>
         </div>
-        <div class="space-y-4">
-          <a href="investors.html" class="card-lift flex items-center gap-4 bg-white/[0.06] border border-white/[0.12] rounded-xl p-5 hover:bg-white/[0.1] transition-all cursor-pointer">
-            <div class="w-12 h-12 rounded-lg bg-[#007C66] flex items-center justify-center flex-shrink-0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            </div>
-            <div>
-              <h4 class="font-[Montserrat] font-bold text-white">Annual Report & BRSR</h4>
-              <p class="font-[Inter] text-sm text-[#93C5FD]">Financial and business responsibility disclosures</p>
-            </div>
-          </a>
-          <a href="investors.html" class="card-lift flex items-center gap-4 bg-white/[0.06] border border-white/[0.12] rounded-xl p-5 hover:bg-white/[0.1] transition-all cursor-pointer">
-            <div class="w-12 h-12 rounded-lg bg-[#007C66] flex items-center justify-center flex-shrink-0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div>
-              <h4 class="font-[Montserrat] font-bold text-white">Governance & Compliance</h4>
-              <p class="font-[Inter] text-sm text-[#93C5FD]">Board committees, policies, and SEBI LODR compliance</p>
-            </div>
-          </a>
-          <a href="contact.html" class="card-lift flex items-center gap-4 bg-white/[0.06] border border-white/[0.12] rounded-xl p-5 hover:bg-white/[0.1] transition-all cursor-pointer">
-            <div class="w-12 h-12 rounded-lg bg-[#007C66] flex items-center justify-center flex-shrink-0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div>
-              <h4 class="font-[Montserrat] font-bold text-white">Sustainability Enquiries</h4>
-              <p class="font-[Inter] text-sm text-[#93C5FD]">Contact us for environmental or compliance data requests</p>
-            </div>
-          </a>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Products</h4>
+          <div class="flex flex-col gap-3">
+            <a href="pa.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Phthalic Anhydride</a>
+            <a href="ma.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Maleic Anhydride</a>
+            <a href="ba.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Benzoic Acid</a>
+            <a href="dep.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Diethyl Phthalate</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Company</h4>
+          <div class="flex flex-col gap-3">
+            <a href="about.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">About</a>
+            <a href="manufacturing.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Manufacturing</a>
+            <a href="applications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Applications</a>
+            <a href="sustainability.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Sustainability</a>
+            <a href="investors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investors</a>
+            <a href="csr.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">CSR</a>
+            <a href="careers.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Careers</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Get in Touch</h4>
+          <div class="flex flex-col gap-4">
+            <div><p class="font-[Inter] text-[12px] text-[#475569] uppercase tracking-wider mb-1">Commercial Enquiries</p><a href="contact.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Contact Commercial Team</a></div>
+            <div><p class="font-[Inter] text-[12px] text-[#475569] uppercase tracking-wider mb-1">Investor Relations</p><a href="investors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investor Information</a></div>
+            <a href="contact.html" class="mt-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-2.5 rounded-md hover:bg-[#005E4D] transition-colors text-center">Contact Us</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between pt-8 gap-4">
+        <p class="font-[Inter] text-[13px] text-[#64748B]">&copy; 2026 IG Petrochemicals Ltd. All rights reserved. &nbsp;&middot;&nbsp; NSE: IGPL &middot; BSE: 500199 &middot; CIN: L51496GA1988PLC000915</p>
+        <div class="flex items-center gap-6">
+          <a href="legal.html" class="font-[Inter] text-[13px] text-[#64748B] hover:text-white transition-colors">Legal</a>
+          <span class="text-[#475569]">&middot;</span>
+          <a href="legal.html" class="font-[Inter] text-[13px] text-[#64748B] hover:text-white transition-colors">Privacy</a>
         </div>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <div class="h-1 bg-[#007C66]"></div>
-  <footer class="bg-white border-t border-[#E5E7EB]">
-    <div class="max-w-[1280px] mx-auto px-6 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-        <div class="col-span-1">
-          <span class="font-[Montserrat] font-black text-2xl text-[#0F172A]">IGPL</span>
-          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed mt-4">IG Petrochemicals Ltd.<br>India's largest single-site PA complex.</p>
-          <p class="font-[Inter] text-xs text-[#94A3B8] mt-3">NSE: IGPL | BSE: 500199</p>
-        </div>
-        <div>
-          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Products</h4>
-          <ul class="space-y-2">
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Phthalic Anhydride</a></li>
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Maleic Anhydride</a></li>
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Benzoic Acid</a></li>
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Diethyl Phthalate</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Company</h4>
-          <ul class="space-y-2">
-            <li><a href="about.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">About Us</a></li>
-            <li><a href="investors.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Investors</a></li>
-            <li><a href="sustainability.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Sustainability</a></li>
-            <li><a href="csr.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">CSR</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Contact</h4>
-          <p class="font-[Inter] text-sm text-[#475569]">401-404, Raheja Centre, 214<br>Nariman Point, Mumbai 400021</p>
-          <a href="tel:+912240586100" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-2 block">+91 22 4058 6100</a>
-          <a href="mailto:igpl@igpetro.com" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-1 block">igpl@igpetro.com</a>
-        </div>
-      </div>
-      <div class="border-t border-[#E5E7EB] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="font-[Inter] text-xs text-[#94A3B8]">&copy; 2026 IG Petrochemicals Ltd. All rights reserved.</p>
-        <div class="flex gap-6">
-          <a href="#" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Privacy Policy</a>
-          <a href="#" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Terms of Use</a>
-        </div>
-      </div>
-    </div>
-  </footer>  <script>
-    // Scroll reveal
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => obs.observe(el));
-
-  </script>
+  <!-- INLINE JS -->
   <script>
-
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-      document.getElementById('menu-backdrop').classList.toggle('hidden');
-    });
+  (function() {
+    var revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger');
+    if (revealEls.length) { var obs = new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'}); revealEls.forEach(function(el){obs.observe(el)}); }
+    var toggle=document.getElementById('menu-toggle'),menu=document.getElementById('mobile-menu'),backdrop=document.getElementById('menu-backdrop');
+    if(toggle&&menu){toggle.addEventListener('click',function(){menu.classList.toggle('hidden');if(backdrop)backdrop.classList.toggle('hidden')});if(backdrop)backdrop.addEventListener('click',function(){menu.classList.add('hidden');backdrop.classList.add('hidden')})}
+  })();
   </script>
+  <script src="js/igpl.js"></script>
+
 </body>
 </html>

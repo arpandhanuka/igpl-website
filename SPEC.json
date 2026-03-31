@@ -1,0 +1,197 @@
+{
+  "project": {
+    "name": "IGPL Corporate Website v2",
+    "objective": "Premium industrial corporate website for IG Petrochemicals Ltd. that serves customers, investors, prospective employees, and stakeholders while being search-visible and AI-retrievable.",
+    "success_criteria": [
+      "A chemical buyer understands what IGPL makes and how to enquire within 10 seconds.",
+      "An investor sees category leadership, manufacturing depth, and governance seriousness immediately.",
+      "A candidate sees ambition and meaningful work, not generic HR copy.",
+      "The site feels like a market-leading industrial company, not a template.",
+      "Core messages are easy for search engines and AI assistants to extract accurately."
+    ],
+    "core_positioning": {
+      "primary": "IGPL is India's leading manufacturer of Phthalic Anhydride and a critical supplier to downstream plasticizers, coatings, resins, and specialty chemical value chains.",
+      "secondary": "IGPL combines scale, process technology, operational experience, and strategic logistics to serve domestic and international customers.",
+      "future_facing": "IGPL is positioned as a platform for disciplined downstream and specialty chemical growth."
+    },
+    "tone": {
+      "desired": ["confident", "industrial", "factual", "clear", "credible", "professional", "forward-looking", "restrained"],
+      "avoid": ["generic corporate fluff", "startup hype", "empty sustainability language", "keyword stuffing", "cheesy slogans"]
+    }
+  },
+  "design_system": {
+    "brand_feel": "premium industrial, modern listed company, trust-first but visually distinctive",
+    "color_palette": {
+      "primary": "#007C66",
+      "primary_dark": "#005E4D",
+      "primary_gradient": "linear-gradient(135deg, #007C66 0%, #00A88A 100%)",
+      "secondary": "#1E293B",
+      "accent": "#0F172A",
+      "surface_warm": "#F8FAFB",
+      "surface_card": "rgba(255,255,255,0.7)",
+      "surface_frosted": "rgba(0,124,102,0.06)",
+      "text_primary": "#0F172A",
+      "text_secondary": "#475569",
+      "text_on_dark": "#F1F5F9",
+      "border": "#E2E8F0",
+      "notes": "Teal/green is primary. Blue is secondary only. User prefers more green, less blue. Use gradient sparingly for hero backgrounds and accent moments."
+    },
+    "typography": {
+      "headline": "Inter or similar clean sans-serif, 700-800 weight, tight tracking for impact",
+      "body": "Inter 400-500, optimized for screen readability",
+      "mono_stats": "tabular numerals for capacities, dates, and KPIs",
+      "scale": {
+        "hero_headline": "clamp(2.5rem, 5vw, 4.5rem)",
+        "section_headline": "clamp(1.75rem, 3vw, 2.5rem)",
+        "card_title": "1.125rem",
+        "body": "1rem",
+        "small": "0.875rem"
+      }
+    },
+    "layout_principles": [
+      "Bento grid for stats, KPIs, and data-dense sections -- not just text blocks",
+      "Split layouts with media on one side, copy on the other",
+      "Frosted glass cards for key proof points (backdrop-filter: blur, subtle border)",
+      "Generous whitespace with clear section rhythm",
+      "Every page shows at least one concrete proof layer: capacity, years, process, geography",
+      "Real photography only -- plant, control room, operators, lab, packaging, logistics",
+      "Interactive value chain diagram on homepage (not a flat image)",
+      "CTAs visible without feeling salesy"
+    ],
+    "interactive_elements": {
+      "value_chain": "Interactive horizontal flow: OX -> PA -> Downstreams. Hover reveals byproducts (MA, BA) branching off. Animated on scroll.",
+      "stat_counters": "Animated number counters on scroll for key stats (270K MTPA, 5 plants, 30+ years, ~50% share)",
+      "stock_ticker": "Live IGPL stock price on investor page via Yahoo Finance API, with timestamp",
+      "scroll_reveal": "Sections fade/slide in on scroll. Not excessive -- subtle, 0.5s ease transitions",
+      "nav_behavior": "Sticky header, solid background after scroll, subtle shadow on scroll"
+    },
+    "frosted_glass_usage": {
+      "when": "Hero overlays, stat cards on image backgrounds, key proof point cards",
+      "style": "background: rgba(255,255,255,0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); border-radius: 12px;",
+      "constraint": "Use sparingly -- not every card. Only where it adds depth over imagery."
+    },
+    "bento_grid_usage": {
+      "when": "Stats sections, product portfolio overview, investor KPIs, manufacturing strengths",
+      "style": "Asymmetric grid (e.g., 1 large + 2 small, or 2x2 with one spanning). Each cell is a frosted or solid card.",
+      "constraint": "Keep grid items data-driven, not decorative."
+    },
+    "ui_rules": {
+      "header": {
+        "behavior": "sticky",
+        "initial_state": "transparent over hero, solid white after scroll with shadow",
+        "left": "IGPL logo",
+        "center_or_right": ["About", "Products", "Applications", "Manufacturing", "Sustainability", "Investors", "CSR", "Careers"],
+        "right_cta": "Contact (teal button)"
+      },
+      "footer": {
+        "style": "dark (secondary #1E293B), dense but elegant",
+        "columns": ["Company", "Products", "Applications", "Investors", "Contact"],
+        "must_include": [
+          "Corporate office: 401-404, Raheja Centre, 214 Nariman Point, Mumbai 400021",
+          "Plant: Taloja, Maharashtra",
+          "Phone: +91 22 4058 6100",
+          "Email: igpl@igpetro.com",
+          "NSE: IGPL | BSE: 500199",
+          "LinkedIn link",
+          "Privacy Policy",
+          "Terms of Use",
+          "CIN: L51496GA1988PLC000915"
+        ]
+      },
+      "buttons": {
+        "primary": "solid teal (#007C66), white text, subtle rounded corners",
+        "secondary": "outline teal, transparent bg",
+        "ghost": "text-only with hover underline"
+      },
+      "card_styles": {
+        "default": "white bg, subtle border, 12px radius, soft shadow on hover",
+        "frosted": "frosted glass style as defined above",
+        "dark": "dark bg (#1E293B), light text, for contrast sections"
+      }
+    }
+  },
+  "audiences": {
+    "customers": {
+      "jobs": ["Understand product relevance", "Assess reliability and quality", "Check application fit", "Request TDS/SDS", "Find contact path"],
+      "proof_needed": ["capacity", "specs", "process technology", "location/logistics", "years of operation", "downstream applications"]
+    },
+    "investors": {
+      "jobs": ["Understand category position", "See governance seriousness", "Access reports", "Interpret strategic relevance"],
+      "proof_needed": ["market position", "operating scale", "years of operations", "manufacturing footprint", "reports", "governance materials"]
+    },
+    "prospective_employees": {
+      "jobs": ["Judge company quality", "See growth opportunity", "Understand roles and environment", "Decide whether to apply"],
+      "proof_needed": ["real team/site imagery", "role categories", "growth narrative", "professional standards"]
+    },
+    "stakeholders": {
+      "jobs": ["Assess responsibility", "See environmental seriousness", "Understand community impact", "Trust stability"],
+      "proof_needed": ["specific initiatives", "compliance", "operational discipline", "local impact"]
+    }
+  },
+  "content_rules": {
+    "must_repeat": [
+      "India's leading manufacturer of Phthalic Anhydride",
+      "270,000 MTPA Phthalic Anhydride capacity",
+      "Five PA plants",
+      "Strategically located near JNPT / western India chemical belt",
+      "Supplies downstream plasticizers, coatings, resins, and specialty chemicals"
+    ],
+    "writing_rules": [
+      "Lead with substance, not adjectives",
+      "Every major page needs at least one section explaining why IGPL matters in the value chain",
+      "Prefer proof points over claims",
+      "Short paragraphs, scannable bullets, stat bands",
+      "Sentence case, not ALL CAPS except in technical tables"
+    ],
+    "seo_rules": [
+      "Page titles and H1s map to real user queries",
+      "Structured FAQ blocks on product pages",
+      "Organization, Product, BreadcrumbList, FAQ, ContactPoint schema",
+      "Important facts in visible HTML, not only images or PDFs",
+      "Consistent entity naming: IG Petrochemicals Ltd. (IGPL)"
+    ]
+  },
+  "site_architecture": {
+    "primary_pages": ["home", "about", "products_overview", "product_phthalic_anhydride", "product_maleic_anhydride", "product_benzoic_acid", "product_dep", "applications", "manufacturing", "sustainability", "investors", "csr", "careers", "contact", "legal"],
+    "secondary_pages": ["leadership", "annual_reports_archive", "governance", "announcements", "tds_sds_request"],
+    "routing": {
+      "products": "Overview with cards linking to dedicated detail pages",
+      "investors": "Main hub plus subpages for reports/governance/shareholder info",
+      "careers": "Role families plus optional openings feed"
+    }
+  },
+  "build_order": [
+    "1. Design system (colors, typography, component styles) as CSS variables",
+    "2. Homepage (hero, stat strip, value chain, why_igpl, products, manufacturing, careers, contact CTA)",
+    "3. About + Manufacturing",
+    "4. Products overview + Phthalic Anhydride detail page",
+    "5. Applications",
+    "6. Contact + TDS/SDS workflow",
+    "7. Investors hub",
+    "8. Sustainability + CSR",
+    "9. Careers",
+    "10. Secondary product pages (MA, BA, DEP)",
+    "11. Legal"
+  ],
+  "tech_notes": {
+    "framework": "Static HTML + CSS + vanilla JS. No framework needed for this scope.",
+    "css": "Custom properties for design tokens.",
+    "js_dependencies": ["Intersection Observer for scroll reveals", "Fetch API for stock ticker", "Simple accordion for FAQ"],
+    "images": "All existing images in repo. Optimize with next-gen formats (WebP) where possible.",
+    "performance": "Target <3s LCP. Lazy-load below-fold images. Minimize JS.",
+    "deployment": "Vercel static deploy with existing GitHub repo. vercel.json already configured."
+  },
+  "instructions_to_builder": {
+    "summary": "Build a premium industrial corporate website. Trust and clarity first, visual distinction second. Use teal/green as primary color. Bento grids for data. Frosted glass sparingly. Real images only. Animated counters for stats. Interactive value chain.",
+    "non_negotiables": [
+      "Most important IGPL facts above the fold on homepage",
+      "Do not bury Phthalic Anhydride behind vague corporate language",
+      "Do not show incomplete sections as 'coming soon'",
+      "Use real proof points and strong information hierarchy",
+      "Every page scannable on desktop and mobile",
+      "Teal (#007C66) is primary color, not blue",
+      "Numbers animate on scroll for key stats",
+      "Value chain is interactive, not a flat image"
+    ]
+  }
+}

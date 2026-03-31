@@ -2,264 +2,634 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="igpl-logo.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IGPL — Contact Us</title>
+  <link rel="icon" href="igpl-logo.png" type="image/png">
+
+  <!-- SEO -->
+  <title>Contact IG Petrochemicals Ltd. — Commercial, Investor &amp; General Enquiries</title>
+  <meta name="description" content="Contact IGPL for product enquiries, technical data sheets, investor relations, or HR. Registered office: Nariman Point, Mumbai. Plant: Taloja, Maharashtra.">
+  <link rel="canonical" href="https://www.igpetro.com/contact.html">
+  <meta property="og:title" content="Contact IG Petrochemicals Ltd. — Commercial, Investor &amp; General Enquiries">
+  <meta property="og:description" content="Contact IGPL for product enquiries, technical data sheets, investor relations, or HR. Registered office: Nariman Point, Mumbai. Plant: Taloja, Maharashtra.">
+  <meta property="og:url" content="https://www.igpetro.com/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.igpetro.com/igpl-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Structured Data: BreadcrumbList + ContactPoint -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.igpetro.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.igpetro.com/contact.html"}
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "IG Petrochemicals Ltd.",
+      "url": "https://www.igpetro.com",
+      "telephone": "+91-22-4058-6100",
+      "email": "igpl@igpetro.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "401-404, Raheja Centre, 214 Nariman Point",
+        "addressLocality": "Mumbai",
+        "postalCode": "400021",
+        "addressCountry": "IN"
+      },
+      "contactPoint": [
+        {"@type": "ContactPoint", "contactType": "sales", "email": "igpl@igpetro.com", "telephone": "+91-22-4058-6100"},
+        {"@type": "ContactPoint", "contactType": "investor relations", "email": "igpl@igpetro.com"},
+        {"@type": "ContactPoint", "contactType": "customer service", "email": "igpl@igpetro.com"}
+      ]
+    }
+  ]
+  </script>
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="css/design-system.css">
+
   <style>
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
-    /* Scroll reveal animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .stagger > * {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
+    .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
     .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
     .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
     .stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
-    .stagger.visible > *:nth-child(5) { transition-delay: 0.35s; }
-    .stagger.visible > *:nth-child(6) { transition-delay: 0.4s; }
     .stagger.visible > * { opacity: 1; transform: translateY(0); }
-    /* Card lift on hover */
-    .card-lift {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card-lift:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,124,102,0.1);
-    }
-    /* Nav link underline on hover */
+
+    .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,124,102,0.12); }
+
     .nav-link { position: relative; }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 2px; background: #007C66; transition: width 0.3s ease;
-    }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #007C66; transition: width 0.3s ease; }
     .nav-link:hover::after { width: 100%; }
+    .nav-link--active::after { width: 100%; }
+
+    .nav-dropdown { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 12px; z-index: 200; }
+    .nav-dropdown-inner { background: #ffffff; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,0.1); min-width: 220px; overflow: hidden; }
+    .nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #475569; transition: background 0.15s, color 0.15s; }
+    .nav-dropdown a:hover { background: #F0FDF9; color: #007C66; }
+    .nav-parent:hover .nav-dropdown { display: block; }
+
+    /* Form styles */
+    .form-input {
+      width: 100%; padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #0F172A;
+      background: white; transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-input:focus { border-color: #007C66; box-shadow: 0 0 0 3px rgba(0,124,102,0.1); }
+    .form-label { display: block; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* Hero subtle dot pattern */
+    .hero-pattern {
+      background-image: radial-gradient(circle, #CBD5E1 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
   </style>
 </head>
 <body class="bg-white text-[#0F172A]">
-  <nav class="bg-white border-b-[3px] border-[#007C66] sticky top-0 z-[100]">
+
+  <!-- ===================== NAV ===================== -->
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#E5E7EB] shadow-sm">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center"><img src="igpl-logo.png" alt="IGPL" class="h-10 w-auto"></a>
-        <div class="hidden md:flex items-center gap-8">
-          <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">About</a>
-          <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Products</a>
-          <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Sustainability</a>
-          <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Investors</a>
-          <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">CSR</a>
-          <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Careers</a>
-          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded hover:bg-[#005E4D] transition-colors">Contact</a>
+      <div class="flex items-center justify-between h-[72px]">
+        <a href="index.html"><img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="h-10 w-auto"></a>
+        <div class="hidden lg:flex items-center gap-7">
+          <a href="about.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">About</a>
+          <div class="relative nav-parent">
+            <a href="products.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link inline-flex items-center gap-1">Products<svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></a>
+            <div class="nav-dropdown"><div class="nav-dropdown-inner"><a href="pa.html">Phthalic Anhydride</a><a href="ma.html">Maleic Anhydride</a><a href="ba.html">Benzoic Acid</a><a href="dep.html">Diethyl Phthalate</a></div></div>
+          </div>
+          <a href="manufacturing.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Manufacturing</a>
+          <a href="applications.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Applications</a>
+          <a href="sustainability.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Sustainability</a>
+          <a href="investors.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Investors</a>
+          <a href="careers.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Careers</a>
+          <a href="contact.html" class="bg-[#005E4D] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-2.5 rounded-md border-2 border-[#007C66]">Contact</a>
         </div>
-        <button id="menu-toggle" class="md:hidden p-2 text-[#374151]" aria-label="Open menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        </button>
+        <button id="menu-toggle" class="lg:hidden p-2 text-[#374151]" aria-label="Toggle navigation menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#E5E7EB] z-[150]">
-      <div class="px-6 py-4 flex flex-col gap-4">
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-[#E5E7EB]">
+      <div class="px-6 py-5 flex flex-col gap-4">
         <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">About</a>
         <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
+        <div class="pl-4 flex flex-col gap-3"><a href="pa.html" class="font-[Inter] text-sm text-[#475569]">Phthalic Anhydride</a><a href="ma.html" class="font-[Inter] text-sm text-[#475569]">Maleic Anhydride</a><a href="ba.html" class="font-[Inter] text-sm text-[#475569]">Benzoic Acid</a><a href="dep.html" class="font-[Inter] text-sm text-[#475569]">Diethyl Phthalate</a></div>
+        <a href="manufacturing.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Manufacturing</a>
+        <a href="applications.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Applications</a>
         <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Sustainability</a>
         <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Investors</a>
-        <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">CSR</a>
         <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Careers</a>
-        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded text-center">Contact</a>
+        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2.5 rounded-md text-center mt-2">Contact</a>
       </div>
     </div>
   </nav>
-    <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.getElementById('menu-backdrop').classList.add('hidden')"></div>
-  <section class="relative overflow-hidden">
-    <img src="plant-site.jpg" alt="IGPL manufacturing facility at Taloja, Maharashtra" class="absolute inset-0 w-full h-full object-cover object-center">
-    <div class="max-w-[1280px] mx-auto px-6 py-24 relative z-10">
-      <h1 class="font-[Montserrat] font-black text-[48px] lg:text-[60px] text-white leading-tight mb-4">Contact Us</h1>
-      
-    </div>
-  </section>
+  <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden"></div>
+  <div class="h-[72px]"></div>
+  <!-- ===================== END NAV ===================== -->
 
-  <section class="py-20 reveal">
+
+  <!-- ===================== SECTION 1: HERO ===================== -->
+  <section class="bg-[#F8FAFB] hero-pattern pt-16 pb-12 relative overflow-hidden">
+    <!-- Subtle teal gradient accent at top -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#007C66] via-[#00A888] to-[#005E4D]"></div>
+
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- Contact Form -->
-        <div>
-          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
-          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Send a Message</p>
-          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-8">Get in Touch</h2>
-          <form id="contact-form" class="space-y-5">
-            <div>
-              <label for="name" class="block font-[Inter] font-semibold text-[14px] text-[#1E293B] mb-1.5">Full Name *</label>
-              <input type="text" id="name" name="name" required class="w-full border border-[#E5E7EB] rounded px-4 py-3 font-[Inter] text-[15px] text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#007C66] focus:ring-1 focus:ring-[#007C66]" placeholder="Your name">
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label for="email" class="block font-[Inter] font-semibold text-[14px] text-[#1E293B] mb-1.5">Email *</label>
-                <input type="email" id="email" name="email" required class="w-full border border-[#E5E7EB] rounded px-4 py-3 font-[Inter] text-[15px] text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#007C66] focus:ring-1 focus:ring-[#007C66]" placeholder="you@company.com">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 mb-8 reveal" aria-label="Breadcrumb">
+        <a href="index.html" class="font-[Inter] text-[13px] text-[#64748B] hover:text-[#007C66] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5 text-[#CBD5E1]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="font-[Inter] text-[13px] text-[#007C66] font-semibold">Contact</span>
+      </nav>
+
+      <div class="max-w-3xl reveal">
+        <!-- Eyebrow -->
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-0.5 bg-[#007C66]"></div>
+          <span class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.1em] text-[#007C66]">Get in Touch</span>
+        </div>
+        <h1 class="font-[Montserrat] font-black text-[44px] lg:text-[54px] text-[#0F172A] leading-[1.1] mb-5">Contact IG Petrochemicals Ltd.</h1>
+        <p class="font-[Inter] text-[18px] text-[#475569] leading-relaxed max-w-2xl">
+          Commercial enquiries, technical data requests, investor questions, or career interest — reach the right team directly.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- ===================== END SECTION 1 ===================== -->
+
+
+  <!-- ===================== SECTION 2: MAIN CONTACT ===================== -->
+  <section class="bg-white py-20">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 xl:gap-16">
+
+        <!-- LEFT: Contact Form -->
+        <div class="reveal-left">
+          <div class="bg-white rounded-xl border border-[#E5E7EB] shadow-sm p-8">
+            <h3 class="font-[Montserrat] font-bold text-[22px] text-[#0F172A] mb-2">Send an Enquiry</h3>
+            <p class="font-[Inter] text-[14px] text-[#64748B] mb-8 leading-relaxed">Fill in the form below and the relevant team will respond. For urgent matters, call or email directly using the details on this page.</p>
+
+            <!-- Success Message (hidden until form submitted) -->
+            <div id="form-success" class="hidden bg-[#F0FDF9] border border-[#A7F3D0] rounded-xl p-8 text-center">
+              <div class="w-14 h-14 bg-[#007C66] rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
+              <h4 class="font-[Montserrat] font-bold text-[18px] text-[#0F172A] mb-2">Enquiry Received</h4>
+              <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Thank you — we'll respond within 2 business days. For urgent matters, call <a href="tel:+912240586100" class="text-[#007C66] font-semibold hover:underline">+91 22 4058 6100</a>.</p>
+            </div>
+
+            <form id="contact-form" class="space-y-5" novalidate>
+              <!-- Row 1: Full Name -->
               <div>
-                <label for="phone" class="block font-[Inter] font-semibold text-[14px] text-[#1E293B] mb-1.5">Phone</label>
-                <input type="tel" id="phone" name="phone" class="w-full border border-[#E5E7EB] rounded px-4 py-3 font-[Inter] text-[15px] text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#007C66] focus:ring-1 focus:ring-[#007C66]" placeholder="+91">
+                <label for="f-name" class="form-label">Full Name <span class="text-[#DC2626]">*</span></label>
+                <input type="text" id="f-name" name="name" required autocomplete="name"
+                  class="form-input" placeholder="Your full name">
               </div>
-            </div>
-            <div>
-              <label for="company" class="block font-[Inter] font-semibold text-[14px] text-[#1E293B] mb-1.5">Company Name</label>
-              <input type="text" id="company" name="company" class="w-full border border-[#E5E7EB] rounded px-4 py-3 font-[Inter] text-[15px] text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#007C66] focus:ring-1 focus:ring-[#007C66]" placeholder="Your company">
-            </div>
-            <div>
-              <label for="subject" class="block font-[Inter] font-semibold text-[14px] text-[#1E293B] mb-1.5">Subject *</label>
-              <select id="subject" name="subject" required class="w-full border border-[#E5E7EB] rounded px-4 py-3 font-[Inter] text-[15px] text-[#0F172A] focus:outline-none focus:border-[#007C66] focus:ring-1 focus:ring-[#007C66]">
-                <option value="">Select a topic</option>
-                <option value="product">Product Inquiry</option>
-                <option value="investor">Investor Relations</option>
-                <option value="career">Careers</option>
-                <option value="general">General Inquiry</option>
-              </select>
-            </div>
-            <div>
-              <label for="message" class="block font-[Inter] font-semibold text-[14px] text-[#1E293B] mb-1.5">Message *</label>
-              <textarea id="message" name="message" rows="4" required class="w-full border border-[#E5E7EB] rounded px-4 py-3 font-[Inter] text-[15px] text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#007C66] focus:ring-1 focus:ring-[#007C66]" placeholder="Your message..."></textarea>
-            </div>
-            <button type="submit" class="w-full bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] py-4 rounded cursor-pointer hover:bg-[#005E4D] transition-colors">Send Message</button>
-          </form>
+
+              <!-- Row 2: Company -->
+              <div>
+                <label for="f-company" class="form-label">Company <span class="font-normal normal-case text-[#94A3B8] tracking-normal ml-1">— optional</span></label>
+                <input type="text" id="f-company" name="company" autocomplete="organization"
+                  class="form-input" placeholder="Your organisation">
+              </div>
+
+              <!-- Row 3: Email + Phone -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="f-email" class="form-label">Email Address <span class="text-[#DC2626]">*</span></label>
+                  <input type="email" id="f-email" name="email" required autocomplete="email"
+                    class="form-input" placeholder="you@company.com">
+                </div>
+                <div>
+                  <label for="f-phone" class="form-label">Phone <span class="font-normal normal-case text-[#94A3B8] tracking-normal ml-1">— optional</span></label>
+                  <input type="tel" id="f-phone" name="phone" autocomplete="tel"
+                    class="form-input" placeholder="+91 00000 00000">
+                </div>
+              </div>
+
+              <!-- Row 4: Enquiry Type -->
+              <div>
+                <label for="f-type" class="form-label">Enquiry Type <span class="text-[#DC2626]">*</span></label>
+                <select id="f-type" name="enquiry_type" required class="form-input">
+                  <option value="" disabled selected>Select a topic</option>
+                  <option value="product">Product Enquiry</option>
+                  <option value="tds">Technical Data Request (TDS/SDS)</option>
+                  <option value="investor">Investor Relations</option>
+                  <option value="hr">HR / Careers</option>
+                  <option value="general">General</option>
+                </select>
+              </div>
+
+              <!-- Row 5: Message -->
+              <div>
+                <label for="f-message" class="form-label">Message <span class="text-[#DC2626]">*</span></label>
+                <textarea id="f-message" name="message" rows="5" required
+                  class="form-input resize-y" placeholder="Describe your enquiry — product grade, volume, timeline, or any other details that help us respond accurately."></textarea>
+              </div>
+
+              <!-- Submit -->
+              <button type="submit"
+                class="w-full bg-[#007C66] hover:bg-[#005E4D] text-white font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.08em] py-4 px-6 rounded-lg transition-colors duration-200 cursor-pointer">
+                Send Enquiry
+              </button>
+
+              <p class="font-[Inter] text-[12px] text-[#94A3B8] leading-relaxed text-center pt-1">
+                This form sends your enquiry to IGPL's commercial team. For urgent matters, please call or email directly.
+              </p>
+            </form>
+          </div>
         </div>
 
-        <!-- Contact Info -->
-        <div>
-          <div class="bg-[#F8FAFC] border border-[#E5E7EB] rounded-lg border-l-[4px] border-l-[#007C66] p-8 mb-6">
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-6">Corporate Office</h3>
-            <div class="space-y-4">
+        <!-- RIGHT: Contact Detail Cards -->
+        <div class="flex flex-col gap-5 reveal-right">
+
+          <!-- Card 1: Corporate Office -->
+          <div class="bg-white rounded-xl border border-[#E5E7EB] p-6 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-full bg-[#F0FDF9] flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A]">Corporate Office</h3>
+            </div>
+            <div class="space-y-3 pl-1">
               <div class="flex items-start gap-3">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2" class="flex-shrink-0 mt-0.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <p class="font-[Inter] text-[15px] text-[#475569]">401-404, Raheja Centre, 214<br>Nariman Point, Mumbai 400021</p>
+                <svg class="w-4 h-4 text-[#007C66] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">
+                  401-404, Raheja Centre<br>
+                  214 Nariman Point<br>
+                  Mumbai 400021, Maharashtra, India
+                </p>
               </div>
               <div class="flex items-center gap-3">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2" class="flex-shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+912240586100" class="font-[Inter] text-[15px] text-[#007C66]">+91 22 4058 6100</a>
+                <svg class="w-4 h-4 text-[#007C66] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 16a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 5.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 12.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+                <a href="tel:+912240586100" class="font-[Inter] text-[14px] text-[#007C66] font-semibold hover:underline">+91 22 4058 6100</a>
               </div>
               <div class="flex items-center gap-3">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2" class="flex-shrink-0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:igpl@igpetro.com" class="font-[Inter] text-[15px] text-[#007C66]">igpl@igpetro.com</a>
+                <svg class="w-4 h-4 text-[#007C66] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:igpl@igpetro.com" class="font-[Inter] text-[14px] text-[#007C66] font-semibold hover:underline">igpl@igpetro.com</a>
               </div>
             </div>
           </div>
 
-          <div class="bg-[#F8FAFC] border border-[#E5E7EB] rounded-lg border-l-[4px] border-l-[#007C66] p-8">
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-6">Registered Office</h3>
-            <div class="space-y-4">
+          <!-- Card 2: Manufacturing Plant -->
+          <div class="bg-white rounded-xl border border-[#E5E7EB] p-6 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-full bg-[#F0FDF9] flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path d="M2 20h20"/>
+                  <path d="M2 20V10l6-4v4l6-4v4l6-4v14"/>
+                  <rect x="8" y="14" width="4" height="6" rx="0.5"/>
+                  <rect x="14" y="12" width="3" height="8" rx="0.5"/>
+                </svg>
+              </div>
+              <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A]">Manufacturing Plant</h3>
+            </div>
+            <div class="space-y-3 pl-1">
               <div class="flex items-start gap-3">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2" class="flex-shrink-0 mt-0.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <p class="font-[Inter] text-[15px] text-[#475569]">T-10, 3rd Floor, Jairam Complex, Mala<br>Neugi Nagar, Panaji, Goa 403 001</p>
+                <svg class="w-4 h-4 text-[#007C66] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">
+                  Taloja MIDC, Raigad District<br>
+                  Maharashtra 410208, India
+                </p>
               </div>
               <div class="flex items-center gap-3">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2" class="flex-shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:08322970973" class="font-[Inter] text-[15px] text-[#007C66]">0832 2970973</a>
+                <svg class="w-4 h-4 text-[#007C66] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <p class="font-[Inter] text-[14px] text-[#475569]">50 km from JNPT</p>
               </div>
             </div>
           </div>
 
-          <div class="mt-6 flex gap-4">
-            <a href="https://www.facebook.com/I-G-Petrochemicals-Ltd-1733716246944462/" class="w-10 h-10 bg-[#F8FAFC] border border-[#E5E7EB] rounded-full flex items-center justify-center hover:border-[#007C66] transition-colors" target="_blank">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#475569"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-            <a href="https://in.linkedin.com/company/ig-petrochemicals-ltd" class="w-10 h-10 bg-[#F8FAFC] border border-[#E5E7EB] rounded-full flex items-center justify-center hover:border-[#007C66] transition-colors" target="_blank">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#475569"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </a>
+          <!-- Card 3: Exchanges & Identifiers -->
+          <div class="bg-white rounded-xl border border-[#E5E7EB] p-6 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-full bg-[#F0FDF9] flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </div>
+              <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A]">Exchanges &amp; Identifiers</h3>
+            </div>
+            <div class="space-y-3 pl-1">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="bg-[#F8FAFB] rounded-lg p-3">
+                  <p class="font-[Inter] text-[11px] text-[#64748B] uppercase tracking-wider mb-1">NSE</p>
+                  <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A]">IGPL</p>
+                </div>
+                <div class="bg-[#F8FAFB] rounded-lg p-3">
+                  <p class="font-[Inter] text-[11px] text-[#64748B] uppercase tracking-wider mb-1">BSE</p>
+                  <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A]">500199</p>
+                </div>
+              </div>
+              <div class="bg-[#F8FAFB] rounded-lg p-3">
+                <p class="font-[Inter] text-[11px] text-[#64748B] uppercase tracking-wider mb-1">CIN</p>
+                <p class="font-[Montserrat] font-bold text-[13px] text-[#0F172A] tracking-wide">L51496GA1988PLC000915</p>
+              </div>
+              <div class="flex gap-3 pt-1">
+                <a href="https://www.nseindia.com/get-quotes/equity?symbol=IGPL" target="_blank" rel="noopener noreferrer"
+                  class="flex-1 text-center font-[Inter] text-[12px] font-semibold text-[#007C66] border border-[#007C66] rounded-lg py-2 hover:bg-[#F0FDF9] transition-colors">
+                  NSE Listing &rarr;
+                </a>
+                <a href="https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/" target="_blank" rel="noopener noreferrer"
+                  class="flex-1 text-center font-[Inter] text-[12px] font-semibold text-[#007C66] border border-[#007C66] rounded-lg py-2 hover:bg-[#F0FDF9] transition-colors">
+                  BSE Listing &rarr;
+                </a>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
   </section>
-  <div class="h-1 bg-[#007C66]"></div>
-  <footer class="bg-white border-t border-[#E5E7EB]">
-    <div class="max-w-[1280px] mx-auto px-6 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-        <div class="col-span-1">
-          <span class="font-[Montserrat] font-black text-2xl text-[#0F172A]">IGPL</span>
-          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed mt-4">IG Petrochemicals Ltd.<br>India's largest single-site PA complex.</p>
-          <p class="font-[Inter] text-xs text-[#94A3B8] mt-3">NSE: IGPL | BSE: 500199</p>
+  <!-- ===================== END SECTION 2 ===================== -->
+
+
+  <!-- ===================== SECTION 3: DEPARTMENT CONTACTS ===================== -->
+  <section class="bg-[#F8FAFB] py-20">
+    <div class="max-w-[1280px] mx-auto px-6">
+
+      <!-- Section header -->
+      <div class="reveal mb-12">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-0.5 bg-[#007C66]"></div>
+          <span class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.1em] text-[#007C66]">Who to Contact</span>
+        </div>
+        <h2 class="font-[Montserrat] font-black text-[36px] lg:text-[42px] text-[#0F172A] leading-tight">Direct Contact by Function</h2>
+        <p class="font-[Inter] text-[16px] text-[#475569] mt-3 max-w-xl leading-relaxed">Every enquiry goes to a specialist team. Use these contacts to reach the right person without delay.</p>
+      </div>
+
+      <!-- 4-column department cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
+
+        <!-- 1: Commercial Sales -->
+        <div class="bg-white rounded-xl border border-[#E5E7EB] p-6 card-lift">
+          <div class="w-11 h-11 rounded-full bg-[#F0FDF9] flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </div>
+          <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Commercial Sales</h4>
+          <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed mb-5">
+            Product purchasing, pricing, logistics, and volume agreements for PA, MA, BA, and DEP.
+          </p>
+          <div class="space-y-2 pt-3 border-t border-[#F1F5F9]">
+            <a href="mailto:igpl@igpetro.com" class="flex items-center gap-2 font-[Inter] text-[13px] text-[#007C66] font-semibold hover:underline">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              igpl@igpetro.com
+            </a>
+            <a href="tel:+912240586100" class="flex items-center gap-2 font-[Inter] text-[13px] text-[#007C66] font-semibold hover:underline">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 16a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 5.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 12.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+              +91 22 4058 6100
+            </a>
+          </div>
+        </div>
+
+        <!-- 2: Technical / QC -->
+        <div class="bg-white rounded-xl border border-[#E5E7EB] p-6 card-lift">
+          <div class="w-11 h-11 rounded-full bg-[#F0FDF9] flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+            </svg>
+          </div>
+          <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Technical / QC</h4>
+          <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed mb-5">
+            Product specifications, TDS and SDS documents, application support, and quality certification requests.
+          </p>
+          <div class="space-y-2 pt-3 border-t border-[#F1F5F9]">
+            <a href="mailto:igpl@igpetro.com" class="flex items-center gap-2 font-[Inter] text-[13px] text-[#007C66] font-semibold hover:underline">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              igpl@igpetro.com
+            </a>
+            <p class="font-[Inter] text-[12px] text-[#94A3B8]">Mention "TDS" or "SDS" in subject</p>
+          </div>
+        </div>
+
+        <!-- 3: Investor Relations -->
+        <div class="bg-white rounded-xl border border-[#E5E7EB] p-6 card-lift">
+          <div class="w-11 h-11 rounded-full bg-[#F0FDF9] flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Investor Relations</h4>
+          <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed mb-5">
+            Shareholder queries, analyst briefings, governance documents, and stock exchange filings.
+          </p>
+          <div class="space-y-2 pt-3 border-t border-[#F1F5F9]">
+            <a href="mailto:igpl@igpetro.com" class="flex items-center gap-2 font-[Inter] text-[13px] text-[#007C66] font-semibold hover:underline">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              igpl@igpetro.com
+            </a>
+            <a href="investors.html" class="flex items-center gap-2 font-[Inter] text-[13px] text-[#007C66] font-semibold hover:underline">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              NSE/BSE Filings
+            </a>
+          </div>
+        </div>
+
+        <!-- 4: HR / Careers -->
+        <div class="bg-white rounded-xl border border-[#E5E7EB] p-6 card-lift">
+          <div class="w-11 h-11 rounded-full bg-[#F0FDF9] flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">HR / Careers</h4>
+          <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed mb-5">
+            Job applications, internships, campus recruitment, and HR policy enquiries.
+          </p>
+          <div class="space-y-2 pt-3 border-t border-[#F1F5F9]">
+            <a href="mailto:hr@igpetro.com" class="flex items-center gap-2 font-[Inter] text-[13px] text-[#007C66] font-semibold hover:underline">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              hr@igpetro.com
+            </a>
+            <a href="careers.html" class="flex items-center gap-2 font-[Inter] text-[13px] text-[#007C66] font-semibold hover:underline">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open Positions
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ===================== END SECTION 3 ===================== -->
+
+
+  <!-- ===================== SECTION 4: MAP CONTEXT ===================== -->
+  <section class="bg-[#1E293B] py-20 overflow-hidden">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <!-- Left: Text Content -->
+        <div class="reveal-left">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-0.5 bg-[#007C66]"></div>
+            <span class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.1em] text-[#007C66]">Location</span>
+          </div>
+          <h2 class="font-[Montserrat] font-black text-[36px] lg:text-[44px] text-white leading-tight mb-6">
+            Taloja — India's Chemical Hub
+          </h2>
+          <p class="font-[Inter] text-[16px] text-[#94A3B8] leading-relaxed mb-10">
+            IGPL's manufacturing campus is located in Taloja MIDC, Raigad District, Maharashtra — approximately 50 km from JNPT (Jawaharlal Nehru Port Trust), India's largest container port. This proximity enables efficient import of o-xylene feedstock and export of finished products to global markets.
+          </p>
+
+          <!-- Location proof points -->
+          <div class="space-y-4 stagger">
+            <div class="bg-white/5 border-l-4 border-[#007C66] rounded-r-xl pl-5 pr-4 py-4">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#007C66] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <p class="font-[Inter] text-[14px] text-white font-semibold">50 km from JNPT — direct road connectivity</p>
+              </div>
+            </div>
+            <div class="bg-white/5 border-l-4 border-[#007C66] rounded-r-xl pl-5 pr-4 py-4">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#007C66] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <p class="font-[Inter] text-[14px] text-white font-semibold">Western India chemical belt — Rasayani, Roha, Patalganga nearby</p>
+              </div>
+            </div>
+            <div class="bg-white/5 border-l-4 border-[#007C66] rounded-r-xl pl-5 pr-4 py-4">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#007C66] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <p class="font-[Inter] text-[14px] text-white font-semibold">Mumbai corporate office: Nariman Point financial district</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Map / Logistics Image -->
+        <div class="reveal-right">
+          <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+            <img
+              src="jnpt-global-map.png"
+              alt="IGPL logistics map showing Taloja plant proximity to JNPT port and global shipping routes"
+              class="w-full h-auto object-cover"
+              loading="lazy">
+          </div>
+          <!-- Caption -->
+          <p class="font-[Inter] text-[12px] text-[#475569] mt-3 text-center leading-relaxed">
+            Taloja MIDC to JNPT: approx. 50 km via NH-348. Primary gateway for o-xylene import and PA export.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ===================== END SECTION 4 ===================== -->
+
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-[#1E293B] pt-16 pb-8">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <div>
+          <img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="h-10 w-auto mb-4 brightness-0 invert">
+          <p class="font-[Inter] text-[14px] text-[#94A3B8] leading-relaxed mb-4">India's largest phthalic anhydride manufacturer. Powering the chemical value chain since 1992.</p>
+          <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Taloja MIDC, Raigad District<br>Maharashtra, India</p>
         </div>
         <div>
-          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Products</h4>
-          <ul class="space-y-2">
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Phthalic Anhydride</a></li>
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Maleic Anhydride</a></li>
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Benzoic Acid</a></li>
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Diethyl Phthalate</a></li>
-          </ul>
+          <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Products</h4>
+          <div class="flex flex-col gap-3">
+            <a href="pa.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Phthalic Anhydride</a>
+            <a href="ma.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Maleic Anhydride</a>
+            <a href="ba.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Benzoic Acid</a>
+            <a href="dep.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Diethyl Phthalate</a>
+          </div>
         </div>
         <div>
-          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Company</h4>
-          <ul class="space-y-2">
-            <li><a href="about.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">About Us</a></li>
-            <li><a href="investors.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Investors</a></li>
-            <li><a href="sustainability.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Sustainability</a></li>
-            <li><a href="csr.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">CSR</a></li>
-          </ul>
+          <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Company</h4>
+          <div class="flex flex-col gap-3">
+            <a href="about.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">About</a>
+            <a href="manufacturing.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Manufacturing</a>
+            <a href="applications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Applications</a>
+            <a href="sustainability.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Sustainability</a>
+            <a href="investors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investors</a>
+            <a href="csr.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">CSR</a>
+            <a href="careers.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Careers</a>
+          </div>
         </div>
         <div>
-          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Contact</h4>
-          <p class="font-[Inter] text-sm text-[#475569]">401-404, Raheja Centre, 214<br>Nariman Point, Mumbai 400021</p>
-          <a href="tel:+912240586100" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-2 block">+91 22 4058 6100</a>
-          <a href="mailto:igpl@igpetro.com" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-1 block">igpl@igpetro.com</a>
+          <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Get in Touch</h4>
+          <div class="flex flex-col gap-4">
+            <div><p class="font-[Inter] text-[12px] text-[#475569] uppercase tracking-wider mb-1">Commercial Enquiries</p><a href="contact.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Contact Commercial Team</a></div>
+            <div><p class="font-[Inter] text-[12px] text-[#475569] uppercase tracking-wider mb-1">Investor Relations</p><a href="investors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investor Information</a></div>
+            <a href="contact.html" class="mt-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-2.5 rounded-md hover:bg-[#005E4D] transition-colors text-center">Contact Us</a>
+          </div>
         </div>
       </div>
-      <div class="border-t border-[#E5E7EB] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="font-[Inter] text-xs text-[#94A3B8]">&copy; 2026 IG Petrochemicals Ltd. All rights reserved.</p>
-        <div class="flex gap-6">
-          <a href="#" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Privacy Policy</a>
-          <a href="#" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Terms of Use</a>
+      <div class="flex flex-col md:flex-row items-center justify-between pt-8 gap-4">
+        <p class="font-[Inter] text-[13px] text-[#64748B]">&copy; 2026 IG Petrochemicals Ltd. All rights reserved. &nbsp;&middot;&nbsp; NSE: IGPL &middot; BSE: 500199 &middot; CIN: L51496GA1988PLC000915</p>
+        <div class="flex items-center gap-6">
+          <a href="legal.html" class="font-[Inter] text-[13px] text-[#64748B] hover:text-white transition-colors">Legal</a>
+          <span class="text-[#475569]">&middot;</span>
+          <a href="legal.html" class="font-[Inter] text-[13px] text-[#64748B] hover:text-white transition-colors">Privacy</a>
         </div>
       </div>
     </div>
-  </footer>  <script>
-    // Scroll reveal
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => obs.observe(el));
+  </footer>
+  <!-- ===================== END FOOTER ===================== -->
 
-  </script>
-  <script>
 
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-      document.getElementById('menu-backdrop').classList.toggle('hidden');
-    });
-  </script>
+  <!-- ===================== INLINE JS ===================== -->
   <script>
-    // Scroll reveal
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => obs.observe(el));
+  (function() {
+    var revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger');
+    if (revealEls.length) { var obs = new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'}); revealEls.forEach(function(el){obs.observe(el)}); }
+    var toggle=document.getElementById('menu-toggle'),menu=document.getElementById('mobile-menu'),backdrop=document.getElementById('menu-backdrop');
+    if(toggle&&menu){toggle.addEventListener('click',function(){menu.classList.toggle('hidden');if(backdrop)backdrop.classList.toggle('hidden')});if(backdrop)backdrop.addEventListener('click',function(){menu.classList.add('hidden');backdrop.classList.add('hidden')})}
+    // Contact form submit handler
+    var form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var originalText = btn.textContent;
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        setTimeout(function() {
+          var success = document.getElementById('form-success');
+          if (success) { success.classList.remove('hidden'); form.classList.add('hidden'); }
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }, 1200);
+      });
+    }
+  })();
+  </script>
+  <script src="js/igpl.js"></script>
+  <!-- ===================== END INLINE JS ===================== -->
 
-  </script>
-  <script>
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you for your message! We will get back to you soon.');
-      this.reset();
-    });
-  </script>
 </body>
 </html>

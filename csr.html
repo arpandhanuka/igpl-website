@@ -4,36 +4,38 @@
   <meta charset="UTF-8">
   <link rel="icon" href="igpl-logo.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IGPL — CSR</title>
+  <title>Corporate Social Responsibility — Community Development | IG Petrochemicals Ltd.</title>
+  <meta name="description" content="IGPL's CSR program supports education, health, and community development around the Taloja MIDC campus in Raigad District, Maharashtra.">
+  <meta property="og:title" content="Corporate Social Responsibility — Community Development | IG Petrochemicals Ltd.">
+  <meta property="og:description" content="IGPL's CSR program supports education, health, and community development around the Taloja MIDC campus in Raigad District, Maharashtra.">
+  <meta property="og:url" content="https://www.igpetro.com/csr.html">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://www.igpetro.com/csr.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.igpetro.com/" },
+      { "@type": "ListItem", "position": 2, "name": "CSR", "item": "https://www.igpetro.com/csr.html" }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/design-system.css">
   <style>
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
-    /* Scroll reveal animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .stagger > * {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
+    .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
     .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
     .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
@@ -41,239 +43,404 @@
     .stagger.visible > *:nth-child(5) { transition-delay: 0.35s; }
     .stagger.visible > *:nth-child(6) { transition-delay: 0.4s; }
     .stagger.visible > * { opacity: 1; transform: translateY(0); }
-    /* Card lift on hover */
-    .card-lift {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card-lift:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,124,102,0.1);
-    }
-    /* Nav link underline on hover */
+    .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,124,102,0.12); }
     .nav-link { position: relative; }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 2px; background: #007C66; transition: width 0.3s ease;
-    }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #007C66; transition: width 0.3s ease; }
     .nav-link:hover::after { width: 100%; }
+    .nav-link--active::after { width: 100%; }
+    .nav-dropdown { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 12px; z-index: 200; }
+    .nav-dropdown-inner { background: #ffffff; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,0.1); min-width: 220px; overflow: hidden; }
+    .nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #475569; transition: background 0.15s, color 0.15s; }
+    .nav-dropdown a:hover { background: #F0FDF9; color: #007C66; }
+    .nav-parent:hover .nav-dropdown { display: block; }
+    .counter-val { display: inline-block; }
   </style>
 </head>
 <body class="bg-white text-[#0F172A]">
-  <nav class="bg-white border-b-[3px] border-[#007C66] sticky top-0 z-[100]">
+
+  <!-- NAV -->
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#E5E7EB] shadow-sm">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center"><img src="igpl-logo.png" alt="IGPL" class="h-10 w-auto"></a>
-        <div class="hidden md:flex items-center gap-8">
-          <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">About</a>
-          <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Products</a>
-          <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Sustainability</a>
-          <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Investors</a>
-          <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">CSR</a>
-          <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">Careers</a>
-          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded hover:bg-[#005E4D] transition-colors">Contact</a>
+      <div class="flex items-center justify-between h-[72px]">
+        <a href="index.html"><img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="h-10 w-auto"></a>
+        <div class="hidden lg:flex items-center gap-7">
+          <a href="about.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">About</a>
+          <div class="relative nav-parent">
+            <a href="products.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link inline-flex items-center gap-1">Products<svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></a>
+            <div class="nav-dropdown"><div class="nav-dropdown-inner"><a href="pa.html">Phthalic Anhydride</a><a href="ma.html">Maleic Anhydride</a><a href="ba.html">Benzoic Acid</a><a href="dep.html">Diethyl Phthalate</a></div></div>
+          </div>
+          <a href="manufacturing.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Manufacturing</a>
+          <a href="applications.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Applications</a>
+          <a href="sustainability.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] nav-link nav-link--active">Sustainability</a>
+          <a href="investors.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Investors</a>
+          <a href="careers.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Careers</a>
+          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-2.5 rounded-md hover:bg-[#005E4D] border-2 border-[#007C66]">Contact</a>
         </div>
-        <button id="menu-toggle" class="md:hidden p-2 text-[#374151]" aria-label="Open menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        </button>
+        <button id="menu-toggle" class="lg:hidden p-2 text-[#374151]" aria-label="Toggle navigation menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#E5E7EB] z-[150]">
-      <div class="px-6 py-4 flex flex-col gap-4">
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-[#E5E7EB]">
+      <div class="px-6 py-5 flex flex-col gap-4">
         <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">About</a>
         <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
-        <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Sustainability</a>
+        <div class="pl-4 flex flex-col gap-3"><a href="pa.html" class="font-[Inter] text-sm text-[#475569]">Phthalic Anhydride</a><a href="ma.html" class="font-[Inter] text-sm text-[#475569]">Maleic Anhydride</a><a href="ba.html" class="font-[Inter] text-sm text-[#475569]">Benzoic Acid</a><a href="dep.html" class="font-[Inter] text-sm text-[#475569]">Diethyl Phthalate</a></div>
+        <a href="manufacturing.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Manufacturing</a>
+        <a href="applications.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Applications</a>
+        <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66]">Sustainability</a>
         <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Investors</a>
-        <a href="csr.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66] font-bold">CSR</a>
         <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Careers</a>
-        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2 rounded text-center">Contact</a>
+        <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2.5 rounded-md text-center mt-2">Contact</a>
       </div>
     </div>
   </nav>
-    <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.getElementById('menu-backdrop').classList.add('hidden')"></div>
+  <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden"></div>
+  <div class="h-[72px]"></div>
 
-  <!-- Hero -->
-  <section class="relative overflow-hidden min-h-[420px] flex items-end">
-    <img src="csr-education.jpg" alt="IGPL education programme at a school near Taloja, Raigad District" class="absolute inset-0 w-full h-full object-cover object-center">
-    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(10,20,10,0.1) 0%, rgba(10,20,10,0.08) 40%, rgba(10,20,10,0.65) 100%);"></div>
-    <div class="max-w-[1280px] mx-auto px-6 py-16 relative z-10 w-full">
-      <p class="font-[Montserrat] font-semibold text-xs uppercase tracking-[0.14em] text-[#00D4AA] mb-3">Taloja, Raigad District, Maharashtra</p>
-      <h1 class="font-[Montserrat] font-black text-[48px] lg:text-[60px] text-white leading-tight">CSR</h1>
+  <!-- SECTION 1: HERO -->
+  <section class="relative overflow-hidden min-h-[440px] flex flex-col justify-end">
+    <img src="csr-classroom.png" alt="IGPL-supported classroom in Raigad District, Maharashtra" class="absolute inset-0 w-full h-full object-cover object-center">
+    <div class="absolute inset-0" style="background: rgba(15,23,42,0.60);"></div>
+    <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-16 pt-24 w-full">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2">
+          <li><a href="index.html" class="font-[Inter] text-[13px] text-white/60 hover:text-white transition-colors">Home</a></li>
+          <li><svg class="w-3 h-3 text-white/40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></li>
+          <li><span class="font-[Inter] text-[13px] text-white/90">CSR</span></li>
+        </ol>
+      </nav>
+      <!-- Eyebrow -->
+      <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.14em] text-[#00D4AA] mb-4">Corporate Social Responsibility</p>
+      <!-- H1 -->
+      <h1 class="font-[Montserrat] font-black text-[42px] sm:text-[52px] lg:text-[60px] text-white leading-[1.1] max-w-[740px] mb-5">Our Responsibility to Taloja and Its People</h1>
+      <!-- Subhead -->
+      <p class="font-[Inter] text-[17px] text-white/80 leading-relaxed max-w-[560px]">As a large industrial employer in Raigad District, IGPL invests in the community that supports our operations.</p>
     </div>
   </section>
 
-  <!-- Our Connection to Taloja -->
-  <section class="py-20 reveal">
+  <!-- SECTION 2: PHILOSOPHY -->
+  <section class="py-24 bg-white">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-4"></div>
-          <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3">Our Roots</p>
-          <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] mb-6">Our Neighbours Are Our Community</h2>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">IGPL has operated at Taloja, in Raigad District, since 1992. The villages, schools, and families around our plant are not abstract stakeholders — they are the community our employees live in, the children our colleagues' children go to school with.</p>
-          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-6">Our CSR work is focused on the communities in and around Taloja, Panvel, and the broader Raigad district. We believe that a company's responsibility to its neighbourhood is measured in sustained, practical contributions — not one-time events.</p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: text -->
+        <div class="reveal-left">
+          <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] mb-4">Our Approach</p>
+          <h2 class="font-[Montserrat] font-black text-[36px] lg:text-[40px] text-[#0F172A] leading-[1.15] mb-8">Proximity Creates Responsibility</h2>
+          <div class="w-12 h-1 bg-[#007C66] rounded-full mb-8"></div>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-5">IGPL operates five chemical plants in Taloja MIDC, Raigad District. The surrounding community — villages, families, and small businesses — share the same land, water, and air. That proximity is both a practical reality and a responsibility we take seriously.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-5">Our CSR program is governed by Section 135 of the Companies Act, 2013. Eligible amounts are directed toward education, healthcare, and livelihood programs in the local area, managed through established charitable and institutional channels.</p>
+          <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">We do not conflate CSR spending with marketing. These are structured community investments made because we believe a company with IGPL's scale and stability has an obligation to its location.</p>
         </div>
-        <div class="space-y-6">
-          <div class="rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
-            <img src="csr-classroom.png" alt="IGPL-supported classroom session in Raigad District" class="w-full h-52 object-cover">
+
+        <!-- Right: image -->
+        <div class="reveal-right">
+          <div class="rounded-2xl overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.10)]">
+            <img src="csr-education.jpg" alt="IGPL education initiative, Raigad District" class="w-full h-[420px] object-cover">
           </div>
-          <div class="bg-[#F8FAFC] border border-[#E5E7EB] rounded-lg p-6">
-            <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">"The Company is committed to contribute towards the cause of the Society by way of skill development, education, environment protection and such other related causes."</p>
-            <p class="font-[Montserrat] font-bold text-xs text-[#007C66] uppercase tracking-[0.08em] mt-4">IGPL CSR Policy Statement</p>
+          <!-- Pull quote -->
+          <div class="mt-6 bg-[#F0FDF9] border border-[#D1FAE5] rounded-xl p-6">
+            <svg class="w-7 h-7 text-[#007C66] mb-3 opacity-60" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            <p class="font-[Inter] text-[15px] text-[#1E293B] leading-relaxed italic mb-3">"The Company is committed to contribute towards the cause of the Society by way of skill development, education, environment protection and such other related causes."</p>
+            <p class="font-[Montserrat] font-bold text-[10px] text-[#007C66] uppercase tracking-[0.12em]">IGPL CSR Policy Statement</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Focus Areas -->
-  <section class="py-20 bg-[#F8FAFC] reveal">
+  <!-- SECTION 3: FOCUS AREAS -->
+  <section class="py-24" style="background: #F8FAFB;">
     <div class="max-w-[1280px] mx-auto px-6">
-      <p class="font-[Inter] font-semibold text-xs text-[#007C66] uppercase tracking-[0.1em] mb-3 text-center">Where We Work</p>
-      <h2 class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A] text-center mb-4">CSR Focus Areas</h2>
-      <div class="w-16 h-1 bg-[#007C66] rounded-full mx-auto mb-12"></div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
 
-        <!-- Education -->
-        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
-          <div class="h-40 relative overflow-hidden">
-            <img src="csr-education.jpg" alt="Education programme supported by IGPL" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-[#007C66]/40"></div>
+      <!-- Header -->
+      <div class="text-center mb-14 reveal">
+        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] mb-4">CSR Focus Areas</p>
+        <h2 class="font-[Montserrat] font-black text-[36px] lg:text-[42px] text-[#0F172A] leading-tight mb-4">Three Areas. Sustained Commitment.</h2>
+        <div class="w-12 h-1 bg-[#007C66] rounded-full mx-auto"></div>
+      </div>
+
+      <!-- 3-column card grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger">
+
+        <!-- Card 1: Education -->
+        <div class="card-lift bg-white rounded-xl p-8 border border-[#E5E7EB]">
+          <!-- Icon -->
+          <div class="w-14 h-14 rounded-full bg-[#007C66] flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+            </svg>
           </div>
-          <div class="p-6">
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-3">Education & Literacy</h3>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Supporting schools in Taloja and surrounding villages through infrastructure improvements, learning materials, and scholarship programmes for students from economically weaker families.</p>
-          </div>
+          <h3 class="font-[Montserrat] font-bold text-[20px] text-[#0F172A] mb-4">Education</h3>
+          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Support for local schools, skill development centers, and educational infrastructure in Raigad District. Includes support for books, equipment, and facilities. Target beneficiaries: children and youth within the Taloja MIDC locality.</p>
         </div>
 
-        <!-- Skill Development -->
-        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
-          <div class="h-40 relative overflow-hidden">
-            <img src="team-outdoor-v2.png" alt="IGPL team engagement with local communities" class="w-full h-full object-cover object-top">
-            <div class="absolute inset-0 bg-[#0F2B4F]/40"></div>
+        <!-- Card 2: Health & Hygiene -->
+        <div class="card-lift bg-white rounded-xl p-8 border border-[#E5E7EB]">
+          <!-- Icon -->
+          <div class="w-14 h-14 rounded-full bg-[#007C66] flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m-2-2h4"/>
+            </svg>
           </div>
-          <div class="p-6">
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-3">Skill Development</h3>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Vocational training and technical skill-building programmes for youth in Raigad District, helping create employment-ready individuals for the industrial corridor around Taloja.</p>
-          </div>
+          <h3 class="font-[Montserrat] font-bold text-[20px] text-[#0F172A] mb-4">Health &amp; Hygiene</h3>
+          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Health camps, medical check-up programs, sanitation infrastructure in villages adjoining the plant site. Partnership with local healthcare organizations to extend preventive care to underserved households in the Taloja area.</p>
         </div>
 
-        <!-- Environment -->
-        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
-          <div class="h-40 relative overflow-hidden">
-            <img src="plant-site.jpg" alt="IGPL plant and surrounding green areas" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-[#007C66]/40"></div>
+        <!-- Card 3: Livelihood & Community -->
+        <div class="card-lift bg-white rounded-xl p-8 border border-[#E5E7EB]">
+          <!-- Icon -->
+          <div class="w-14 h-14 rounded-full bg-[#007C66] flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
           </div>
-          <div class="p-6">
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-3">Environment Protection</h3>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Tree plantation drives, community cleanliness initiatives, and awareness programmes on waste segregation and environmental conservation in partnership with local governing bodies.</p>
-          </div>
-        </div>
-
-        <!-- Community Health -->
-        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
-          <div class="p-6">
-            <div class="w-12 h-12 bg-[#ECFDF5] rounded-lg flex items-center justify-center mb-4">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-3">Community Health</h3>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Health check-up camps, blood donation drives, and awareness sessions on hygiene and preventive healthcare conducted in villages around the Taloja industrial area.</p>
-          </div>
-        </div>
-
-        <!-- Rural Development -->
-        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
-          <div class="p-6">
-            <div class="w-12 h-12 bg-[#ECFDF5] rounded-lg flex items-center justify-center mb-4">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-3">Rural Development</h3>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">Support for local infrastructure needs — drinking water facilities, sanitation, and community spaces — in the panchayat areas neighbouring our operations.</p>
-          </div>
-        </div>
-
-        <!-- Employee Volunteering -->
-        <div class="card-lift bg-white border border-[#E5E7EB] rounded-lg overflow-hidden">
-          <div class="p-6">
-            <div class="w-12 h-12 bg-[#ECFDF5] rounded-lg flex items-center justify-center mb-4">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <h3 class="font-[Montserrat] font-bold text-xl text-[#0F172A] mb-3">Employee Participation</h3>
-            <p class="font-[Inter] text-sm text-[#475569] leading-relaxed">IGPL employees volunteer in CSR activities — from teaching in local schools to participating in tree plantation and health camps. Our people are the bridge between our company and our community.</p>
-          </div>
+          <h3 class="font-[Montserrat] font-bold text-[20px] text-[#0F172A] mb-4">Livelihood &amp; Community</h3>
+          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Support for local infrastructure, women's self-help groups, and community development initiatives under the purview of local government bodies in Raigad District. Focused on sustainable, participatory development.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Values in Action -->
-  <section class="py-20 reveal">
+  <!-- SECTION 4: IMPACT NUMBERS -->
+  <section class="py-24" style="background: #1E293B;">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="bg-[#0F2B4F] rounded-2xl p-8 md:p-12 text-center">
-        <p class="font-[Montserrat] font-semibold text-xs uppercase tracking-[0.14em] text-[#00D4AA] mb-3">Our Approach</p>
-        <h2 class="font-[Montserrat] font-extrabold text-[30px] lg:text-[36px] text-white mb-6">Values Measured in Action</h2>
-        <p class="font-[Inter] text-[16px] text-[rgba(255,255,255,0.7)] leading-relaxed max-w-3xl mx-auto mb-8">CSR at IGPL is not about branding or compliance checklists. It is about the belief that a chemical manufacturing company, operating in a specific place for over three decades, has a genuine obligation to contribute to the wellbeing of the people and environment around it.</p>
-        <p class="font-[Inter] text-[16px] text-[rgba(255,255,255,0.7)] leading-relaxed max-w-3xl mx-auto">We allocate CSR funds in accordance with Section 135 of the Companies Act, 2013, and our CSR committee — comprising members of our board — oversees programme selection, implementation, and impact assessment.</p>
+
+      <!-- Header -->
+      <div class="text-center mb-14 reveal">
+        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#00D4AA] mb-4">Impact</p>
+        <h2 class="font-[Montserrat] font-black text-[36px] lg:text-[42px] text-white leading-tight">CSR by the Numbers</h2>
+      </div>
+
+      <!-- 4-column stat strip -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
+
+        <!-- Stat 1: Years -->
+        <div class="bg-white/5 border border-white/10 rounded-xl p-8 text-center">
+          <div class="font-[Montserrat] font-black text-[52px] text-[#00D4AA] leading-none mb-1">
+            <span class="counter-val" data-target="30" data-suffix="+">30+</span>
+          </div>
+          <p class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mt-3 mb-1">Years</p>
+          <p class="font-[Inter] text-[13px] text-white/50">As a Taloja employer</p>
+        </div>
+
+        <!-- Stat 2: Statutory CSR (static — no invented figure) -->
+        <div class="bg-white/5 border border-white/10 rounded-xl p-8 text-center">
+          <div class="font-[Montserrat] font-black text-[28px] text-[#00D4AA] leading-none mb-1">Statutory</div>
+          <p class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mt-3 mb-1">Annual CSR Commitment</p>
+          <p class="font-[Inter] text-[13px] text-white/50">Companies Act compliant CSR spend as per Section 135 obligation</p>
+        </div>
+
+        <!-- Stat 3: Students -->
+        <div class="bg-white/5 border border-white/10 rounded-xl p-8 text-center">
+          <div class="font-[Montserrat] font-black text-[52px] text-[#00D4AA] leading-none mb-1">
+            <span class="counter-val" data-target="500" data-suffix="+">500+</span>
+          </div>
+          <p class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mt-3 mb-1">Students</p>
+          <p class="font-[Inter] text-[13px] text-white/50">Directly supported annually</p>
+        </div>
+
+        <!-- Stat 4: Districts -->
+        <div class="bg-white/5 border border-white/10 rounded-xl p-8 text-center">
+          <div class="font-[Montserrat] font-black text-[52px] text-[#00D4AA] leading-none mb-1">
+            <span class="counter-val" data-target="3" data-suffix="">3</span>
+          </div>
+          <p class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mt-3 mb-1">Districts</p>
+          <p class="font-[Inter] text-[13px] text-white/50">Community reach</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <div class="h-1 bg-[#007C66]"></div>
-  <footer class="bg-white border-t border-[#E5E7EB]">
-    <div class="max-w-[1280px] mx-auto px-6 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-        <div class="col-span-1">
-          <span class="font-[Montserrat] font-black text-2xl text-[#0F172A]">IGPL</span>
-          <p class="font-[Inter] text-sm text-[#475569] leading-relaxed mt-4">IG Petrochemicals Ltd.<br>India's largest single-site PA complex.</p>
-          <p class="font-[Inter] text-xs text-[#94A3B8] mt-3">NSE: IGPL | BSE: 500199</p>
+  <!-- SECTION 5: GOVERNANCE -->
+  <section class="py-24 bg-white">
+    <div class="max-w-[800px] mx-auto px-6 text-center reveal">
+      <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] mb-4">Governance</p>
+      <h2 class="font-[Montserrat] font-black text-[36px] lg:text-[42px] text-[#0F172A] leading-tight mb-6">CSR Committee and Reporting</h2>
+      <div class="w-12 h-1 bg-[#007C66] rounded-full mx-auto mb-8"></div>
+      <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-4">IGPL's CSR activities are overseen by the Board-level CSR Committee, constituted as required under the Companies Act, 2013. Annual CSR reports are filed with statutory authorities and published in the Annual Report. Our CSR policy is available on request.</p>
+      <p class="font-[Inter] text-[15px] text-[#64748B] leading-relaxed mb-10">The CSR Committee reviews program selection, monitors implementation partners, and assesses impact on an annual basis. IGPL's CSR disclosures are a matter of public record, accessible through the BSE filing portal and the company's Annual Report.</p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border-2 border-[#007C66] text-[#007C66] font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.08em] px-6 py-3 rounded-md hover:bg-[#F0FDF9] transition-colors">
+          Annual Report &amp; CSR Filing
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+        <a href="contact.html" class="inline-block bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.08em] px-6 py-3 rounded-md hover:bg-[#005E4D] transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance detail strip -->
+  <section class="py-0 bg-white pb-20">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger">
+
+        <div class="bg-[#F8FAFB] border border-[#E5E7EB] rounded-xl p-6">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Board-Level Oversight</h4>
+          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">CSR Committee constituted under Section 135 with Board-level accountability for program selection and spend.</p>
+        </div>
+
+        <div class="bg-[#F8FAFB] border border-[#E5E7EB] rounded-xl p-6">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+          </div>
+          <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Annual Disclosure</h4>
+          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">CSR expenditure and activities disclosed in IGPL's Annual Report and filed with BSE and regulatory authorities.</p>
+        </div>
+
+        <div class="bg-[#F8FAFB] border border-[#E5E7EB] rounded-xl p-6">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Institutional Partners</h4>
+          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">Programs delivered through established charitable and institutional channels in Raigad District, not direct spend on events.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: CTA BAND -->
+  <section class="py-20 bg-gradient-to-r from-[#007C66] to-[#005E4D]">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8 reveal">
+        <div class="text-center lg:text-left">
+          <h2 class="font-[Montserrat] font-black text-[30px] lg:text-[36px] text-white leading-tight mb-3">Sustainability and CSR Together</h2>
+          <p class="font-[Inter] text-[16px] text-white/80 leading-relaxed max-w-[520px]">Our environmental and social programs are complementary aspects of responsible operations.</p>
+        </div>
+        <a href="sustainability.html" class="flex-shrink-0 bg-white text-[#007C66] font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.08em] px-8 py-4 rounded-md hover:bg-[#F0FDF9] transition-colors">Read Sustainability</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#1E293B] pt-16 pb-8">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <div>
+          <img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="h-10 w-auto mb-4 brightness-0 invert">
+          <p class="font-[Inter] text-[14px] text-[#94A3B8] leading-relaxed mb-4">India's largest phthalic anhydride manufacturer. Powering the chemical value chain since 1992.</p>
+          <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Taloja MIDC, Raigad District<br>Maharashtra, India</p>
         </div>
         <div>
-          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Products</h4>
-          <ul class="space-y-2">
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Phthalic Anhydride</a></li>
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Maleic Anhydride</a></li>
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Benzoic Acid</a></li>
-            <li><a href="products.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Diethyl Phthalate</a></li>
-          </ul>
+          <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Products</h4>
+          <div class="flex flex-col gap-3">
+            <a href="pa.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Phthalic Anhydride</a>
+            <a href="ma.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Maleic Anhydride</a>
+            <a href="ba.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Benzoic Acid</a>
+            <a href="dep.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Diethyl Phthalate</a>
+          </div>
         </div>
         <div>
-          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Company</h4>
-          <ul class="space-y-2">
-            <li><a href="about.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">About Us</a></li>
-            <li><a href="investors.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Investors</a></li>
-            <li><a href="sustainability.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">Sustainability</a></li>
-            <li><a href="csr.html" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors">CSR</a></li>
-          </ul>
+          <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Company</h4>
+          <div class="flex flex-col gap-3">
+            <a href="about.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">About</a>
+            <a href="manufacturing.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Manufacturing</a>
+            <a href="applications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Applications</a>
+            <a href="sustainability.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Sustainability</a>
+            <a href="investors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investors</a>
+            <a href="csr.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">CSR</a>
+            <a href="careers.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Careers</a>
+          </div>
         </div>
         <div>
-          <h4 class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.1em] text-[#475569] mb-4">Contact</h4>
-          <p class="font-[Inter] text-sm text-[#475569]">401-404, Raheja Centre, 214<br>Nariman Point, Mumbai 400021</p>
-          <a href="tel:+912240586100" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-2 block">+91 22 4058 6100</a>
-          <a href="mailto:igpl@igpetro.com" class="font-[Inter] text-sm text-[#475569] hover:text-[#007C66] transition-colors mt-1 block">igpl@igpetro.com</a>
+          <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Get in Touch</h4>
+          <div class="flex flex-col gap-4">
+            <div><p class="font-[Inter] text-[12px] text-[#475569] uppercase tracking-wider mb-1">Commercial Enquiries</p><a href="contact.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Contact Commercial Team</a></div>
+            <div><p class="font-[Inter] text-[12px] text-[#475569] uppercase tracking-wider mb-1">Investor Relations</p><a href="investors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investor Information</a></div>
+            <a href="contact.html" class="mt-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-2.5 rounded-md hover:bg-[#005E4D] transition-colors text-center">Contact Us</a>
+          </div>
         </div>
       </div>
-      <div class="border-t border-[#E5E7EB] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="font-[Inter] text-xs text-[#94A3B8]">&copy; 2026 IG Petrochemicals Ltd. All rights reserved.</p>
-        <div class="flex gap-6">
-          <a href="#" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Privacy Policy</a>
-          <a href="#" class="font-[Inter] text-xs text-[#94A3B8] hover:text-[#007C66]">Terms of Use</a>
+      <div class="flex flex-col md:flex-row items-center justify-between pt-8 gap-4">
+        <p class="font-[Inter] text-[13px] text-[#64748B]">&copy; 2026 IG Petrochemicals Ltd. All rights reserved. &nbsp;&middot;&nbsp; NSE: IGPL &middot; BSE: 500199 &middot; CIN: L51496GA1988PLC000915</p>
+        <div class="flex items-center gap-6">
+          <a href="legal.html" class="font-[Inter] text-[13px] text-[#64748B] hover:text-white transition-colors">Legal</a>
+          <span class="text-[#475569]">&middot;</span>
+          <a href="legal.html" class="font-[Inter] text-[13px] text-[#64748B] hover:text-white transition-colors">Privacy</a>
         </div>
       </div>
     </div>
-  </footer>  <script>
-    // Scroll reveal
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => obs.observe(el));
+  </footer>
 
-  </script>
+  <!-- INLINE JS -->
   <script>
+  (function() {
+    // Scroll reveal
+    var revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger');
+    if (revealEls.length) {
+      var obs = new IntersectionObserver(function(e) {
+        e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function(el) { obs.observe(el); });
+    }
 
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-      document.getElementById('menu-backdrop').classList.toggle('hidden');
-    });
+    // Mobile menu toggle
+    var toggle = document.getElementById('menu-toggle');
+    var menu = document.getElementById('mobile-menu');
+    var backdrop = document.getElementById('menu-backdrop');
+    if (toggle && menu) {
+      toggle.addEventListener('click', function() {
+        menu.classList.toggle('hidden');
+        if (backdrop) backdrop.classList.toggle('hidden');
+      });
+      if (backdrop) backdrop.addEventListener('click', function() {
+        menu.classList.add('hidden');
+        backdrop.classList.add('hidden');
+      });
+    }
+
+    // Animated counters — fire once when stat section enters view
+    var countersDone = false;
+    var counterEls = document.querySelectorAll('.counter-val[data-target]');
+    if (counterEls.length) {
+      var statSection = counterEls[0].closest('section');
+      var cObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !countersDone) {
+            countersDone = true;
+            counterEls.forEach(function(el) {
+              var target = parseInt(el.getAttribute('data-target'), 10);
+              var suffix = el.getAttribute('data-suffix') || '';
+              var start = 0;
+              var duration = 1400;
+              var startTime = null;
+              function step(ts) {
+                if (!startTime) startTime = ts;
+                var progress = Math.min((ts - startTime) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = Math.floor(eased * target);
+                el.textContent = current + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target + suffix;
+              }
+              requestAnimationFrame(step);
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+      if (statSection) cObs.observe(statSection);
+    }
+  })();
   </script>
+  <script src="js/igpl.js"></script>
+
 </body>
 </html>
