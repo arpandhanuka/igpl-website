@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.igpetro.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.igpetro.com/about</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.igpetro.com/products</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.igpetro.com/pa</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.igpetro.com/ma</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.igpetro.com/ba</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.igpetro.com/dep</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.igpetro.com/applications</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.igpetro.com/manufacturing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.igpetro.com/sustainability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.igpetro.com/investors</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.igpetro.com/investor-library</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.igpetro.com/csr</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.igpetro.com/careers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.igpetro.com/contact</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.igpetro.com/legal</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+</urlset>
