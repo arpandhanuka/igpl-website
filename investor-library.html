@@ -272,6 +272,44 @@
     </div>
   </section>
 
+  <!-- ===== SECTION 3b: DYNAMIC DOCUMENT LIBRARY ===== -->
+  <section class="bg-[#F8FAFC] border-t border-[#E5E7EB] py-14 md:py-18" aria-label="Document Downloads">
+    <div class="max-w-[1280px] mx-auto px-6">
+
+      <!-- Section heading + filter pills -->
+      <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+        <div>
+          <h2 class="font-[Montserrat] font-extrabold text-2xl md:text-3xl text-[#0F172A] mb-2">Download Documents</h2>
+          <p class="font-[Inter] text-[15px] text-[#475569]">Investor reports, governance documents, and product data sheets available for direct download.</p>
+        </div>
+        <div class="flex flex-wrap gap-2" id="lib-filters" role="tablist">
+          <button class="filter-pill filter-pill--active" data-cat="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-pill" data-cat="annual-reports" role="tab">Annual Reports</button>
+          <button class="filter-pill" data-cat="earnings" role="tab">Results</button>
+          <button class="filter-pill" data-cat="presentations" role="tab">Presentations</button>
+          <button class="filter-pill" data-cat="governance" role="tab">Governance</button>
+          <button class="filter-pill" data-cat="products" role="tab">Product Docs</button>
+        </div>
+      </div>
+
+      <!-- Loading skeleton -->
+      <div id="lib-loading" class="flex items-center justify-center py-16 gap-3 text-[#94A3B8]">
+        <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
+        <span class="font-[Inter] text-sm">Loading documents…</span>
+      </div>
+
+      <!-- Empty state -->
+      <div id="lib-empty" class="hidden text-center py-16">
+        <p class="font-[Inter] text-[#94A3B8] text-sm">No documents available in this category yet.</p>
+        <p class="font-[Inter] text-[#B0B8C5] text-xs mt-1">Check back soon or contact investor relations.</p>
+      </div>
+
+      <!-- Document grid -->
+      <div id="lib-grid" class="hidden space-y-8"></div>
+
+    </div>
+  </section>
+
   <!-- ===== SECTION 4: CTA BAND ===== -->
   <section class="bg-[#F8FAFC] border-t border-[#E5E7EB] py-14 md:py-16" aria-label="Contact Investor Relations">
     <div class="max-w-[1280px] mx-auto px-6">
@@ -380,5 +418,212 @@
   })();
   </script>
     <script src="js/igpl.js"></script>
+
+  <!-- Document Library: fetch manifest and render download cards -->
+  <script>
+  (function() {
+    'use strict';
+
+    // Map blob pathnames to human-readable labels and categories
+    var DOC_META = {
+      // Annual Reports
+      'docs/annual-reports/fy2526.pdf': { label: 'Annual Report FY 2025-26', cat: 'annual-reports', icon: 'report' },
+      'docs/annual-reports/fy2425.pdf': { label: 'Annual Report FY 2024-25', cat: 'annual-reports', icon: 'report' },
+      'docs/annual-reports/fy2324.pdf': { label: 'Annual Report FY 2023-24', cat: 'annual-reports', icon: 'report' },
+      'docs/annual-reports/fy2223.pdf': { label: 'Annual Report FY 2022-23', cat: 'annual-reports', icon: 'report' },
+      'docs/annual-reports/fy2122.pdf': { label: 'Annual Report FY 2021-22', cat: 'annual-reports', icon: 'report' },
+      'docs/annual-reports/fy2021.pdf': { label: 'Annual Report FY 2020-21', cat: 'annual-reports', icon: 'report' },
+      // Quarterly Results
+      'docs/earnings/q3fy2526.pdf': { label: 'Q3 FY 2025-26 Financial Results', cat: 'earnings', icon: 'chart' },
+      'docs/earnings/q2fy2526.pdf': { label: 'Q2 FY 2025-26 Financial Results', cat: 'earnings', icon: 'chart' },
+      'docs/earnings/q1fy2526.pdf': { label: 'Q1 FY 2025-26 Financial Results', cat: 'earnings', icon: 'chart' },
+      'docs/earnings/q4fy2425.pdf': { label: 'Q4 FY 2024-25 Financial Results', cat: 'earnings', icon: 'chart' },
+      'docs/earnings/q3fy2425.pdf': { label: 'Q3 FY 2024-25 Financial Results', cat: 'earnings', icon: 'chart' },
+      'docs/earnings/q2fy2425.pdf': { label: 'Q2 FY 2024-25 Financial Results', cat: 'earnings', icon: 'chart' },
+      'docs/earnings/q1fy2425.pdf': { label: 'Q1 FY 2024-25 Financial Results', cat: 'earnings', icon: 'chart' },
+      // Presentations
+      'docs/investor-presentations/q3fy2526-presentation.pdf': { label: 'Q3 FY 2025-26 Investor Presentation', cat: 'presentations', icon: 'slides' },
+      'docs/investor-presentations/q2fy2526-presentation.pdf': { label: 'Q2 FY 2025-26 Investor Presentation', cat: 'presentations', icon: 'slides' },
+      'docs/investor-presentations/q1fy2526-presentation.pdf': { label: 'Q1 FY 2025-26 Investor Presentation', cat: 'presentations', icon: 'slides' },
+      'docs/investor-presentations/q4fy2425-presentation.pdf': { label: 'Q4 FY 2024-25 Investor Presentation', cat: 'presentations', icon: 'slides' },
+      // Shareholding
+      'docs/shareholding/q3fy2526.pdf': { label: 'Shareholding Pattern — Q3 FY 2025-26', cat: 'governance', icon: 'pie' },
+      'docs/shareholding/q2fy2526.pdf': { label: 'Shareholding Pattern — Q2 FY 2025-26', cat: 'governance', icon: 'pie' },
+      'docs/shareholding/q1fy2526.pdf': { label: 'Shareholding Pattern — Q1 FY 2025-26', cat: 'governance', icon: 'pie' },
+      'docs/shareholding/q4fy2425.pdf': { label: 'Shareholding Pattern — Q4 FY 2024-25', cat: 'governance', icon: 'pie' },
+      // Governance
+      'docs/governance/memorandum-articles.pdf': { label: 'Memorandum & Articles of Association', cat: 'governance', icon: 'shield' },
+      'docs/governance/board-committees.pdf': { label: 'Board & Committees', cat: 'governance', icon: 'shield' },
+      'docs/governance/dividend-policy.pdf': { label: 'Dividend Policy', cat: 'governance', icon: 'shield' },
+      'docs/governance/vigil-mechanism.pdf': { label: 'Vigil Mechanism Policy', cat: 'governance', icon: 'shield' },
+      // Investor Info
+      'docs/investor-info/corporate-governance.pdf': { label: 'Corporate Governance Report', cat: 'governance', icon: 'shield' },
+      'docs/investor-info/shareholding-pattern.pdf': { label: 'Shareholding Pattern (Latest)', cat: 'governance', icon: 'pie' },
+      'docs/investor-info/subsidiary-financials.pdf': { label: 'Subsidiary Financials', cat: 'earnings', icon: 'chart' },
+      'docs/investor-info/related-party-transactions.pdf': { label: 'Related Party Transactions', cat: 'governance', icon: 'shield' },
+      // Policies
+      'docs/policies/csr-policy.pdf': { label: 'CSR Policy', cat: 'governance', icon: 'doc' },
+      'docs/policies/remuneration-policy.pdf': { label: 'Remuneration Policy', cat: 'governance', icon: 'doc' },
+      'docs/policies/risk-management.pdf': { label: 'Risk Management Policy', cat: 'governance', icon: 'doc' },
+      'docs/policies/sustainability-report.pdf': { label: 'Sustainability / BRSR Report', cat: 'governance', icon: 'doc' },
+      // Product TDS
+      'docs/products/tds-pa.pdf': { label: 'Phthalic Anhydride (PA) — Technical Data Sheet', cat: 'products', icon: 'flask' },
+      'docs/products/tds-ma.pdf': { label: 'Maleic Anhydride (MA) — Technical Data Sheet', cat: 'products', icon: 'flask' },
+      'docs/products/tds-ba.pdf': { label: 'Benzoic Acid (BA) — Technical Data Sheet', cat: 'products', icon: 'flask' },
+      'docs/products/tds-dep.pdf': { label: 'Diethyl Phthalate (DEP) — Technical Data Sheet', cat: 'products', icon: 'flask' },
+      // Product SDS
+      'docs/products/sds-pa.pdf': { label: 'Phthalic Anhydride (PA) — Safety Data Sheet', cat: 'products', icon: 'warning' },
+      'docs/products/sds-ma.pdf': { label: 'Maleic Anhydride (MA) — Safety Data Sheet', cat: 'products', icon: 'warning' },
+      'docs/products/sds-ba.pdf': { label: 'Benzoic Acid (BA) — Safety Data Sheet', cat: 'products', icon: 'warning' },
+      'docs/products/sds-dep.pdf': { label: 'Diethyl Phthalate (DEP) — Safety Data Sheet', cat: 'products', icon: 'warning' },
+    };
+
+    var SECTION_LABELS = {
+      'annual-reports': 'Annual Reports',
+      'earnings': 'Financial Results & Presentations',
+      'presentations': 'Investor Presentations',
+      'governance': 'Governance & Policies',
+      'products': 'Product Documents',
+    };
+
+    // Merge earnings + presentations into same section for display
+    var DISPLAY_ORDER = ['annual-reports', 'earnings', 'presentations', 'governance', 'products'];
+
+    var currentCat = 'all';
+    var allBlobs = [];
+
+    function iconSvg(type) {
+      var icons = {
+        report: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>',
+        chart: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+        slides: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+        pie: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21.21 15.89A10 10 0 118 2.83"/><path d="M22 12A10 10 0 0012 2v10z"/></svg>',
+        shield: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+        doc: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>',
+        flask: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 3h6m-6 0v6l-4 10h14L11 9V3"/></svg>',
+        warning: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      };
+      return icons[type] || icons['doc'];
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '';
+      try {
+        return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      } catch(e) { return ''; }
+    }
+
+    function renderLibrary() {
+      var grid = document.getElementById('lib-grid');
+      var empty = document.getElementById('lib-empty');
+      if (!grid) return;
+
+      // Filter blobs
+      var filtered = allBlobs.filter(function(b) {
+        var meta = DOC_META[b.pathname];
+        if (!meta) return false;
+        if (currentCat === 'all') return true;
+        return meta.cat === currentCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.classList.add('hidden');
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+      grid.innerHTML = '';
+
+      // Group by section
+      var groups = {};
+      filtered.forEach(function(b) {
+        var meta = DOC_META[b.pathname];
+        if (!meta) return;
+        var cat = meta.cat;
+        if (!groups[cat]) groups[cat] = [];
+        groups[cat].push({ blob: b, meta: meta });
+      });
+
+      DISPLAY_ORDER.forEach(function(cat) {
+        if (!groups[cat] || groups[cat].length === 0) return;
+
+        var section = document.createElement('div');
+        var sectionLabel = SECTION_LABELS[cat] || cat;
+        section.innerHTML = '<h3 class="font-[Montserrat] font-bold text-[13px] uppercase tracking-[0.08em] text-[#007C66] mb-4 flex items-center gap-2">' +
+          '<span class="inline-block w-5 h-px bg-[#007C66]"></span>' + sectionLabel + '</h3>';
+
+        var list = document.createElement('div');
+        list.className = 'divide-y divide-gray-100 bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm';
+
+        groups[cat].forEach(function(item) {
+          var b = item.blob;
+          var meta = item.meta;
+          var kb = b.size ? (b.size / 1024).toFixed(0) + ' KB' : '';
+          var date = formatDate(b.uploadedAt);
+
+          var row = document.createElement('a');
+          row.href = b.url;
+          row.target = '_blank';
+          row.rel = 'noopener noreferrer';
+          row.className = 'group flex items-center justify-between gap-4 px-5 py-4 hover:bg-[#F0FDF9] transition-colors';
+          row.innerHTML =
+            '<div class="flex items-center gap-4 min-w-0">' +
+              '<div class="w-9 h-9 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">' +
+                iconSvg(meta.icon) +
+              '</div>' +
+              '<div class="min-w-0">' +
+                '<div class="font-[Inter] font-semibold text-[14px] text-[#0F172A] group-hover:text-[#007C66] transition-colors truncate">' + meta.label + '</div>' +
+                '<div class="font-[Inter] text-[12px] text-[#94A3B8] mt-0.5">' + (kb ? kb + (date ? ' · ' + date : '') : (date || '')) + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="flex-shrink-0 flex items-center gap-1.5 font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] group-hover:text-[#005E4D] transition-colors">' +
+              '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>' +
+              'Download' +
+            '</div>';
+          list.appendChild(row);
+        });
+
+        section.appendChild(list);
+        grid.appendChild(section);
+      });
+
+      grid.classList.remove('hidden');
+    }
+
+    function initFilters() {
+      var pills = document.querySelectorAll('#lib-filters .filter-pill');
+      pills.forEach(function(pill) {
+        pill.addEventListener('click', function() {
+          pills.forEach(function(p) {
+            p.classList.remove('filter-pill--active');
+            p.setAttribute('aria-selected', 'false');
+          });
+          pill.classList.add('filter-pill--active');
+          pill.setAttribute('aria-selected', 'true');
+          currentCat = pill.dataset.cat;
+          renderLibrary();
+        });
+      });
+    }
+
+    function init() {
+      initFilters();
+      fetch('/api/manifest')
+        .then(function(r) { return r.ok ? r.json() : Promise.reject('HTTP ' + r.status); })
+        .then(function(data) {
+          allBlobs = (data.blobs || []).filter(function(b) { return DOC_META[b.pathname]; });
+          document.getElementById('lib-loading').style.display = 'none';
+          renderLibrary();
+        })
+        .catch(function(e) {
+          console.warn('Library manifest error:', e);
+          document.getElementById('lib-loading').style.display = 'none';
+          document.getElementById('lib-empty').classList.remove('hidden');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  })();
+  </script>
 </body>
 </html>

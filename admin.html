@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="igpl-logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGPL — Document Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="https://cdn.tailwindcss.com/3.4.0"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: #007C66; transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    input[type="file"] { display: none; }
+
+    .drop-zone {
+      border: 2px dashed #D1D5DB;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .drop-zone.drag-over {
+      border-color: #007C66;
+      background: #F0FDF9;
+    }
+
+    .slot-row { transition: background 0.2s; }
+    .slot-row:hover { background: #F8FAFC; }
+
+    .progress-bar {
+      height: 3px;
+      background: #E5E7EB;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #007C66;
+      border-radius: 9999px;
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #D1D5DB;
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+    .status-dot.uploaded { background: #10B981; }
+    .status-dot.uploading { background: #F59E0B; animation: pulse 1s infinite; }
+    .status-dot.error { background: #EF4444; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .section-header {
+      background: #0F2B4F;
+    }
+
+    .upload-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #007C66;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 7px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .upload-btn:hover { background: #005E4D; }
+    .upload-btn.locked {
+      background: #E5E7EB;
+      color: #9CA3AF;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .replace-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      color: #007C66;
+      border: 1px solid #007C66;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .replace-btn:hover { background: #007C66; color: white; }
+    .replace-btn.locked {
+      border-color: #D1D5DB;
+      color: #9CA3AF;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: transparent;
+      color: #6B7280;
+      border: 1px solid #E5E7EB;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .copy-btn:hover { border-color: #007C66; color: #007C66; }
+    .copy-btn.copied { border-color: #10B981; color: #10B981; }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#0F172A]">
+
+<!-- Nav -->
+<nav class="bg-white border-b-[3px] border-[#007C66] sticky top-0 z-[100]">
+  <div class="max-w-[1280px] mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="igpl-logo.png" alt="IGPL" class="h-10 w-auto">
+        <span class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.08em] text-[#007C66] hidden sm:block">Document Admin</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="investor-library.html" target="_blank"
+          class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">
+          Investor Library ↗
+        </a>
+        <a href="index.html"
+          class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">
+          Website
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<div class="bg-white border-b border-gray-200">
+  <div class="max-w-[1280px] mx-auto px-6 py-8">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-3 mb-1">
+          <div class="w-1 h-7 bg-[#007C66] rounded-full"></div>
+          <h1 class="font-[Montserrat] font-bold text-2xl text-[#0F2B4F]">Document Admin</h1>
+        </div>
+        <p class="text-sm text-[#6B7280] ml-4">Upload PDFs to Vercel Blob. Files are served publicly via CDN.</p>
+      </div>
+      <!-- Summary badges updated via JS -->
+      <div class="flex items-center gap-3 ml-4">
+        <div id="badge-total" class="flex items-center gap-1.5 bg-gray-100 text-[#374151] font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-3 py-1.5 rounded-full">
+          <span id="badge-total-num">—</span> Total
+        </div>
+        <div id="badge-uploaded" class="flex items-center gap-1.5 bg-[#ECFDF5] text-[#065F46] font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-3 py-1.5 rounded-full">
+          <span id="badge-uploaded-num">—</span> Uploaded
+        </div>
+        <div id="badge-missing" class="flex items-center gap-1.5 bg-[#FEF3C7] text-[#92400E] font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-3 py-1.5 rounded-full">
+          <span id="badge-missing-num">—</span> Missing
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-[1280px] mx-auto px-6 py-8">
+
+  <!-- Auth card -->
+  <div class="mb-8 bg-white border border-gray-200 rounded-xl p-5 shadow-sm flex flex-col sm:flex-row sm:items-center gap-4">
+    <div class="flex-1">
+      <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-[0.08em] text-[#0F2B4F] mb-2">
+        Admin Password
+      </label>
+      <div class="relative max-w-sm">
+        <input id="admin-pw" type="password" placeholder="Enter upload password" autocomplete="current-password"
+          class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm pr-20 focus:outline-none focus:ring-2 focus:ring-[#007C66] focus:border-transparent">
+        <button id="pw-toggle" type="button" onclick="togglePwVisibility()"
+          class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-[#6B7280] hover:text-[#007C66] font-medium px-2">
+          Show
+        </button>
+      </div>
+      <p class="mt-1 text-xs text-[#9CA3AF]">Saved in your browser. Upload buttons unlock once a valid password is entered.</p>
+    </div>
+    <div id="auth-status-badge" class="hidden flex-shrink-0 flex items-center gap-2 bg-[#ECFDF5] border border-[#6EE7B7] text-[#065F46] rounded-lg px-4 py-2 font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em]">
+      <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#34D399"/><path d="M5.5 10.5l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Unlocked
+    </div>
+  </div>
+
+  <!-- Upload sections -->
+  <div id="sections-container" class="space-y-6">
+    <!-- Sections injected by JS -->
+  </div>
+
+  <!-- All-uploaded banner -->
+  <div id="all-done-banner" class="hidden mt-6 flex items-center gap-3 bg-[#ECFDF5] border border-[#6EE7B7] text-[#065F46] rounded-xl px-6 py-4 font-[Montserrat] font-bold text-sm">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#34D399"/><path d="M5.5 10.5l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    All documents uploaded ✓
+  </div>
+
+</div>
+
+<script>
+'use strict';
+
+// ─── DOCUMENT MANIFEST ────────────────────────────────────────────────────
+const SECTIONS = [
+  {
+    id: 'annual-reports',
+    title: 'Annual Reports',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+    slots: [
+      { dest: 'docs/annual-reports/fy2526.pdf', label: 'FY 2025-26' },
+      { dest: 'docs/annual-reports/fy2425.pdf', label: 'FY 2024-25' },
+      { dest: 'docs/annual-reports/fy2324.pdf', label: 'FY 2023-24' },
+      { dest: 'docs/annual-reports/fy2223.pdf', label: 'FY 2022-23' },
+      { dest: 'docs/annual-reports/fy2122.pdf', label: 'FY 2021-22' },
+      { dest: 'docs/annual-reports/fy2021.pdf', label: 'FY 2020-21' },
+    ]
+  },
+  {
+    id: 'earnings',
+    title: 'Quarterly Results',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    slots: [
+      { dest: 'docs/earnings/q3fy2526.pdf', label: 'Q3 FY 2025-26' },
+      { dest: 'docs/earnings/q2fy2526.pdf', label: 'Q2 FY 2025-26' },
+      { dest: 'docs/earnings/q1fy2526.pdf', label: 'Q1 FY 2025-26' },
+      { dest: 'docs/earnings/q4fy2425.pdf', label: 'Q4 FY 2024-25' },
+      { dest: 'docs/earnings/q3fy2425.pdf', label: 'Q3 FY 2024-25' },
+      { dest: 'docs/earnings/q2fy2425.pdf', label: 'Q2 FY 2024-25' },
+      { dest: 'docs/earnings/q1fy2425.pdf', label: 'Q1 FY 2024-25' },
+    ]
+  },
+  {
+    id: 'investor-presentations',
+    title: 'Investor Presentations',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    slots: [
+      { dest: 'docs/investor-presentations/q3fy2526-presentation.pdf', label: 'Q3 FY 2025-26 Presentation' },
+      { dest: 'docs/investor-presentations/q2fy2526-presentation.pdf', label: 'Q2 FY 2025-26 Presentation' },
+      { dest: 'docs/investor-presentations/q1fy2526-presentation.pdf', label: 'Q1 FY 2025-26 Presentation' },
+      { dest: 'docs/investor-presentations/q4fy2425-presentation.pdf', label: 'Q4 FY 2024-25 Presentation' },
+    ]
+  },
+  {
+    id: 'shareholding',
+    title: 'Shareholding Patterns',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    slots: [
+      { dest: 'docs/shareholding/q3fy2526.pdf', label: 'Q3 FY 2025-26' },
+      { dest: 'docs/shareholding/q2fy2526.pdf', label: 'Q2 FY 2025-26' },
+      { dest: 'docs/shareholding/q1fy2526.pdf', label: 'Q1 FY 2025-26' },
+      { dest: 'docs/shareholding/q4fy2425.pdf', label: 'Q4 FY 2024-25' },
+    ]
+  },
+  {
+    id: 'governance',
+    title: 'Governance Documents',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    slots: [
+      { dest: 'docs/governance/memorandum-articles.pdf', label: 'Memorandum & Articles of Association' },
+      { dest: 'docs/governance/board-committees.pdf', label: 'Board & Committees' },
+      { dest: 'docs/governance/dividend-policy.pdf', label: 'Dividend Policy' },
+      { dest: 'docs/governance/vigil-mechanism.pdf', label: 'Vigil Mechanism / Whistle Blower Policy' },
+    ]
+  },
+  {
+    id: 'investor-info',
+    title: 'Investor Information',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></svg>`,
+    slots: [
+      { dest: 'docs/investor-info/corporate-governance.pdf', label: 'Corporate Governance Report' },
+      { dest: 'docs/investor-info/shareholding-pattern.pdf', label: 'Shareholding Pattern (Latest)' },
+      { dest: 'docs/investor-info/subsidiary-financials.pdf', label: 'Subsidiary Financials' },
+      { dest: 'docs/investor-info/related-party-transactions.pdf', label: 'Related Party Transactions' },
+    ]
+  },
+  {
+    id: 'policies',
+    title: 'Policies',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>`,
+    slots: [
+      { dest: 'docs/policies/csr-policy.pdf', label: 'CSR Policy' },
+      { dest: 'docs/policies/remuneration-policy.pdf', label: 'Remuneration Policy' },
+      { dest: 'docs/policies/risk-management.pdf', label: 'Risk Management Policy' },
+      { dest: 'docs/policies/sustainability-report.pdf', label: 'Sustainability / BRSR Report' },
+    ]
+  },
+  {
+    id: 'tds',
+    title: 'Product Technical Data Sheets (TDS)',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>`,
+    slots: [
+      { dest: 'docs/products/tds-pa.pdf', label: 'Phthalic Anhydride (PA) — TDS' },
+      { dest: 'docs/products/tds-ma.pdf', label: 'Maleic Anhydride (MA) — TDS' },
+      { dest: 'docs/products/tds-ba.pdf', label: 'Benzoic Acid (BA) — TDS' },
+      { dest: 'docs/products/tds-dep.pdf', label: 'Diethyl Phthalate (DEP) — TDS' },
+    ]
+  },
+  {
+    id: 'sds',
+    title: 'Product Safety Data Sheets (SDS)',
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+    slots: [
+      { dest: 'docs/products/sds-pa.pdf', label: 'Phthalic Anhydride (PA) — SDS' },
+      { dest: 'docs/products/sds-ma.pdf', label: 'Maleic Anhydride (MA) — SDS' },
+      { dest: 'docs/products/sds-ba.pdf', label: 'Benzoic Acid (BA) — SDS' },
+      { dest: 'docs/products/sds-dep.pdf', label: 'Diethyl Phthalate (DEP) — SDS' },
+    ]
+  },
+];
+
+// ─── STATE ─────────────────────────────────────────────────────────────────
+const PW_KEY = 'igpl_admin_pw';
+let uploadedMap = {}; // pathname → { url, size, uploadedAt }
+let allSlots = [];    // flat list of all slot dest paths
+
+// ─── INIT ──────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  buildSections();
+  const savedPw = localStorage.getItem(PW_KEY) || '';
+  document.getElementById('admin-pw').value = savedPw;
+  updateButtonStates(savedPw.length > 0);
+
+  document.getElementById('admin-pw').addEventListener('input', function() {
+    localStorage.setItem(PW_KEY, this.value);
+    updateButtonStates(this.value.trim().length > 0);
+  });
+
+  fetchManifest();
+});
+
+// ─── BUILD UI ──────────────────────────────────────────────────────────────
+function buildSections() {
+  const container = document.getElementById('sections-container');
+  allSlots = [];
+
+  // Two-column grid for sections
+  const grid = document.createElement('div');
+  grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-6';
+
+  SECTIONS.forEach(section => {
+    section.slots.forEach(s => allSlots.push(s.dest));
+
+    const card = document.createElement('div');
+    card.className = 'bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden';
+    card.innerHTML = `
+      <div class="section-header px-5 py-3 flex items-center gap-2">
+        ${section.icon}
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-[0.06em]">${section.title}</h2>
+        <span id="sec-count-${section.id}" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div id="slots-${section.id}" class="divide-y divide-gray-100"></div>
+    `;
+
+    const slotsContainer = card.querySelector(`#slots-${section.id}`);
+
+    section.slots.forEach(slot => {
+      const uid = slot.dest.replace(/[/.]/g, '-');
+      const filename = slot.dest.split('/').pop();
+      const row = document.createElement('div');
+      row.className = 'slot-row p-4';
+      row.dataset.dest = slot.dest;
+      row.dataset.uid = uid;
+      row.innerHTML = `
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="status-dot" id="dot-${uid}"></span>
+              <span class="font-[Montserrat] font-bold text-sm text-[#0F2B4F] truncate">${slot.label}</span>
+            </div>
+            <div class="flex items-center gap-2 ml-[18px] flex-wrap">
+              <code class="text-xs text-[#6B7280] font-mono">${filename}</code>
+              <span id="status-${uid}" class="text-xs text-[#9CA3AF]">Checking…</span>
+              <span id="meta-${uid}" class="text-xs text-[#9CA3AF] hidden"></span>
+            </div>
+            <div class="progress-bar ml-[18px] hidden" id="progress-${uid}">
+              <div class="progress-fill" id="progress-fill-${uid}"></div>
+            </div>
+            <div id="url-row-${uid}" class="ml-[18px] mt-1 hidden flex items-center gap-2">
+              <a id="url-link-${uid}" href="#" target="_blank"
+                class="text-xs text-[#007C66] hover:underline font-mono truncate max-w-[260px]"></a>
+              <button class="copy-btn" id="copy-${uid}" onclick="copyUrl('${uid}')">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                Copy
+              </button>
+            </div>
+            <div id="result-${uid}" class="mt-1 ml-[18px] text-xs hidden"></div>
+          </div>
+          <div class="flex-shrink-0 flex items-center gap-2">
+            <label id="btn-${uid}" for="file-${uid}" class="upload-btn locked">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
+              Upload
+            </label>
+            <input type="file" id="file-${uid}" accept=".pdf" data-dest="${slot.dest}" data-uid="${uid}">
+          </div>
+        </div>
+      `;
+
+      // Drag and drop
+      row.addEventListener('dragover', e => { e.preventDefault(); row.classList.add('drag-over'); });
+      row.addEventListener('dragleave', () => row.classList.remove('drag-over'));
+      row.addEventListener('drop', e => {
+        e.preventDefault();
+        row.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file) triggerUpload(file, slot.dest, uid);
+      });
+
+      // File input change
+      const fileInput = row.querySelector(`#file-${uid}`);
+      fileInput.addEventListener('change', function() {
+        if (this.files[0]) triggerUpload(this.files[0], slot.dest, uid);
+      });
+
+      slotsContainer.appendChild(row);
+    });
+
+    grid.appendChild(card);
+  });
+
+  container.appendChild(grid);
+}
+
+// ─── MANIFEST ──────────────────────────────────────────────────────────────
+async function fetchManifest() {
+  try {
+    const res = await fetch('/api/manifest');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    uploadedMap = {};
+    (data.blobs || []).forEach(b => { uploadedMap[b.pathname] = b; });
+    applyManifest();
+  } catch (e) {
+    console.warn('Manifest fetch failed:', e);
+    // Mark all as unknown
+    allSlots.forEach(dest => {
+      const uid = dest.replace(/[/.]/g, '-');
+      setSlotStatus(uid, 'unknown');
+    });
+    updateBadges();
+  }
+}
+
+function applyManifest() {
+  allSlots.forEach(dest => {
+    const uid = dest.replace(/[/.]/g, '-');
+    const blob = uploadedMap[dest];
+    if (blob) {
+      setSlotStatus(uid, 'uploaded', blob);
+    } else {
+      setSlotStatus(uid, 'missing');
+    }
+  });
+  updateBadges();
+  updateSectionCounts();
+}
+
+// ─── SLOT STATUS ───────────────────────────────────────────────────────────
+function setSlotStatus(uid, state, blob) {
+  const dot = document.getElementById('dot-' + uid);
+  const statusEl = document.getElementById('status-' + uid);
+  const metaEl = document.getElementById('meta-' + uid);
+  const urlRow = document.getElementById('url-row-' + uid);
+  const urlLink = document.getElementById('url-link-' + uid);
+
+  if (!dot) return;
+
+  dot.className = 'status-dot';
+  if (state === 'uploaded' && blob) {
+    dot.classList.add('uploaded');
+    statusEl.textContent = 'Uploaded';
+    statusEl.className = 'text-xs text-emerald-600 font-medium';
+    const kb = (blob.size / 1024).toFixed(1);
+    const date = blob.uploadedAt ? new Date(blob.uploadedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+    metaEl.textContent = kb + ' KB' + (date ? ' · ' + date : '');
+    metaEl.className = 'text-xs text-[#9CA3AF]';
+    metaEl.classList.remove('hidden');
+    if (blob.url) {
+      urlLink.href = blob.url;
+      urlLink.textContent = blob.url;
+      urlRow.classList.remove('hidden');
+      urlRow.style.display = 'flex';
+    }
+    // Swap to Replace button
+    const btn = document.getElementById('btn-' + uid);
+    if (btn) {
+      btn.className = 'replace-btn' + (document.getElementById('admin-pw').value.trim() ? '' : ' locked');
+      btn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Replace`;
+    }
+    dot.dataset.uploaded = '1';
+  } else if (state === 'uploading') {
+    dot.classList.add('uploading');
+    statusEl.textContent = 'Uploading…';
+    statusEl.className = 'text-xs text-amber-500 font-medium';
+    metaEl.classList.add('hidden');
+    dot.dataset.uploaded = '0';
+  } else if (state === 'error') {
+    dot.classList.add('error');
+    statusEl.textContent = 'Error';
+    statusEl.className = 'text-xs text-red-500 font-medium';
+    dot.dataset.uploaded = '0';
+  } else if (state === 'missing') {
+    statusEl.textContent = 'Not uploaded';
+    statusEl.className = 'text-xs text-[#9CA3AF]';
+    metaEl.classList.add('hidden');
+    urlRow.classList.add('hidden');
+    dot.dataset.uploaded = '0';
+  } else {
+    statusEl.textContent = 'Unknown';
+    statusEl.className = 'text-xs text-[#9CA3AF]';
+    dot.dataset.uploaded = '0';
+  }
+}
+
+// ─── UPLOAD ────────────────────────────────────────────────────────────────
+async function triggerUpload(file, dest, uid) {
+  const pw = document.getElementById('admin-pw').value.trim();
+  if (!pw) {
+    alert('Enter the admin password first.');
+    return;
+  }
+  if (!file.name.endsWith('.pdf')) {
+    showResult(uid, 'error', 'Only PDF files are allowed.');
+    return;
+  }
+  if (file.size > 30 * 1024 * 1024) {
+    showResult(uid, 'error', 'File too large (max 30MB).');
+    return;
+  }
+
+  setSlotStatus(uid, 'uploading');
+  showProgress(uid, true);
+  hideResult(uid);
+
+  const fd = new FormData();
+  fd.append('password', pw);
+  fd.append('dest_path', dest);
+  fd.append('file', file);
+
+  try {
+    // Simulate progress (XHR not available in all environments; use fetch + fake progress)
+    const progressEl = document.getElementById('progress-fill-' + uid);
+    let prog = 0;
+    const ticker = setInterval(() => {
+      prog = Math.min(prog + Math.random() * 15, 85);
+      if (progressEl) progressEl.style.width = prog + '%';
+    }, 200);
+
+    const res = await fetch('/api/upload', { method: 'POST', body: fd });
+    clearInterval(ticker);
+    if (progressEl) progressEl.style.width = '100%';
+
+    const data = await res.json();
+    if (res.ok && data.ok) {
+      showProgress(uid, false);
+      uploadedMap[dest] = { url: data.url, pathname: dest, size: data.size, uploadedAt: new Date().toISOString() };
+      setSlotStatus(uid, 'uploaded', uploadedMap[dest]);
+      showResult(uid, 'success', 'Uploaded — ' + (data.size / 1024).toFixed(1) + ' KB');
+      updateBadges();
+      updateSectionCounts();
+    } else {
+      showProgress(uid, false);
+      setSlotStatus(uid, 'error');
+      showResult(uid, 'error', data.error || ('HTTP ' + res.status));
+      if (res.status === 401) {
+        document.getElementById('admin-pw').value = '';
+        localStorage.removeItem(PW_KEY);
+        updateButtonStates(false);
+      }
+    }
+  } catch (e) {
+    showProgress(uid, false);
+    setSlotStatus(uid, 'error');
+    showResult(uid, 'error', 'Network error: ' + e.message);
+  }
+}
+
+function showProgress(uid, show) {
+  const bar = document.getElementById('progress-' + uid);
+  if (bar) bar.classList.toggle('hidden', !show);
+  if (!show) {
+    const fill = document.getElementById('progress-fill-' + uid);
+    if (fill) fill.style.width = '0%';
+  }
+}
+
+function showResult(uid, type, msg) {
+  const el = document.getElementById('result-' + uid);
+  if (!el) return;
+  el.className = 'mt-1 ml-[18px] text-xs font-medium ' + (type === 'success' ? 'text-emerald-600' : 'text-red-500');
+  el.textContent = msg;
+  el.classList.remove('hidden');
+  setTimeout(() => el.classList.add('hidden'), 6000);
+}
+
+function hideResult(uid) {
+  const el = document.getElementById('result-' + uid);
+  if (el) el.classList.add('hidden');
+}
+
+// ─── BADGES ────────────────────────────────────────────────────────────────
+function updateBadges() {
+  const total = allSlots.length;
+  let uploaded = 0;
+  allSlots.forEach(dest => {
+    const uid = dest.replace(/[/.]/g, '-');
+    const dot = document.getElementById('dot-' + uid);
+    if (dot && dot.dataset.uploaded === '1') uploaded++;
+  });
+  const missing = total - uploaded;
+  document.getElementById('badge-total-num').textContent = total;
+  document.getElementById('badge-uploaded-num').textContent = uploaded;
+  document.getElementById('badge-missing-num').textContent = missing;
+  document.getElementById('all-done-banner').classList.toggle('hidden', missing !== 0);
+}
+
+function updateSectionCounts() {
+  SECTIONS.forEach(section => {
+    let uploaded = 0;
+    section.slots.forEach(s => {
+      const uid = s.dest.replace(/[/.]/g, '-');
+      const dot = document.getElementById('dot-' + uid);
+      if (dot && dot.dataset.uploaded === '1') uploaded++;
+    });
+    const el = document.getElementById('sec-count-' + section.id);
+    if (el) {
+      el.textContent = uploaded + '/' + section.slots.length;
+      el.className = 'ml-auto font-[Montserrat] font-bold text-xs ' +
+        (uploaded === section.slots.length ? 'text-emerald-400' :
+          uploaded === 0 ? 'text-[#94A3B8]' : 'text-amber-400');
+    }
+  });
+}
+
+// ─── BUTTON STATES ─────────────────────────────────────────────────────────
+function updateButtonStates(enabled) {
+  const badge = document.getElementById('auth-status-badge');
+  if (badge) badge.classList.toggle('hidden', !enabled);
+
+  document.querySelectorAll('[id^="btn-"]').forEach(btn => {
+    const isReplace = btn.classList.contains('replace-btn');
+    if (enabled) {
+      btn.classList.remove('locked');
+    } else {
+      btn.classList.add('locked');
+    }
+  });
+}
+
+// ─── UTILS ─────────────────────────────────────────────────────────────────
+function togglePwVisibility() {
+  const input = document.getElementById('admin-pw');
+  const btn = document.getElementById('pw-toggle');
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = 'Hide';
+  } else {
+    input.type = 'password';
+    btn.textContent = 'Show';
+  }
+}
+
+function copyUrl(uid) {
+  const link = document.getElementById('url-link-' + uid);
+  const btn = document.getElementById('copy-' + uid);
+  if (!link || !link.href) return;
+  navigator.clipboard.writeText(link.href).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied`;
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy`;
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
