@@ -4,703 +4,679 @@
   <meta charset="UTF-8">
   <link rel="icon" href="igpl-logo.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IGPL — Document Admin</title>
   <meta name="robots" content="noindex, nofollow">
+  <title>IGPL — Document Admin</title>
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, .font-display { font-family: 'Montserrat', sans-serif; }
-
-    .nav-link { position: relative; }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 2px; background: #007C66; transition: width 0.3s ease;
-    }
-    .nav-link:hover::after { width: 100%; }
-
+    h1,h2,h3,h4,.font-display { font-family: 'Montserrat', sans-serif; }
     input[type="file"] { display: none; }
-
-    .drop-zone {
-      border: 2px dashed #D1D5DB;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .drop-zone.drag-over {
-      border-color: #007C66;
-      background: #F0FDF9;
-    }
-
     .slot-row { transition: background 0.2s; }
     .slot-row:hover { background: #F8FAFC; }
-
-    .progress-bar {
-      height: 3px;
-      background: #E5E7EB;
-      border-radius: 9999px;
-      overflow: hidden;
-      margin-top: 4px;
-    }
-    .progress-fill {
-      height: 100%;
-      background: #007C66;
-      border-radius: 9999px;
-      width: 0%;
-      transition: width 0.2s ease;
-    }
-
-    .status-dot {
-      display: inline-block;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: #D1D5DB;
-      flex-shrink: 0;
-      transition: background 0.3s;
-    }
+    .slot-row.drag-over { background: #F0FDF9; outline: 2px dashed #007C66; border-radius: 8px; }
+    .status-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #D1D5DB; flex-shrink: 0; transition: background 0.3s; }
     .status-dot.uploaded { background: #10B981; }
     .status-dot.uploading { background: #F59E0B; animation: pulse 1s infinite; }
     .status-dot.error { background: #EF4444; }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .section-header {
-      background: #0F2B4F;
-    }
-
-    .upload-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #007C66;
-      color: white;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 7px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-    .upload-btn:hover { background: #005E4D; }
-    .upload-btn.locked {
-      background: #E5E7EB;
-      color: #9CA3AF;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    .replace-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: transparent;
-      color: #007C66;
-      border: 1px solid #007C66;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 5px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .replace-btn:hover { background: #007C66; color: white; }
-    .replace-btn.locked {
-      border-color: #D1D5DB;
-      color: #9CA3AF;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    .copy-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: transparent;
-      color: #6B7280;
-      border: 1px solid #E5E7EB;
-      font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.15s;
-      font-family: 'Inter', sans-serif;
-    }
-    .copy-btn:hover { border-color: #007C66; color: #007C66; }
-    .copy-btn.copied { border-color: #10B981; color: #10B981; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+    .progress-bar { height: 3px; background: #E5E7EB; border-radius: 9999px; overflow: hidden; margin-top: 4px; }
+    .progress-fill { height: 100%; background: #007C66; width: 0%; transition: width 0.2s ease; }
+    .upload-btn { display:inline-flex;align-items:center;gap:6px;background:#007C66;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding:7px 14px;border-radius:6px;cursor:pointer;transition:background .2s; }
+    .upload-btn:hover { background:#005E4D; }
+    .upload-btn.locked { background:#E5E7EB;color:#9CA3AF;cursor:not-allowed;pointer-events:none; }
+    .replace-btn { display:inline-flex;align-items:center;gap:5px;background:transparent;color:#007C66;border:1px solid #007C66;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:5px 10px;border-radius:6px;cursor:pointer;transition:all .2s; }
+    .replace-btn:hover { background:#007C66;color:#fff; }
+    .replace-btn.locked { border-color:#D1D5DB;color:#9CA3AF;cursor:not-allowed;pointer-events:none; }
+    .copy-btn { display:inline-flex;align-items:center;gap:4px;background:transparent;color:#6B7280;border:1px solid #E5E7EB;font-size:10px;padding:3px 8px;border-radius:4px;cursor:pointer;transition:all .15s; }
+    .copy-btn:hover { border-color:#007C66;color:#007C66; }
+    .tab-btn { font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding:12px 20px;border-bottom:2px solid transparent;transition:all .2s;cursor:pointer;background:transparent;color:#6B7280;white-space:nowrap; }
+    .tab-btn:hover { color:#374151; }
+    .tab-btn.active { border-bottom-color:#007C66;color:#007C66; }
+    .section-hdr { background:#0F2B4F; }
+    .yr-tab { font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:6px 14px;border-radius:9999px;border:1px solid #E5E7EB;background:#fff;color:#374151;cursor:pointer;transition:all .2s;white-space:nowrap; }
+    .yr-tab.active { background:#007C66;color:#fff;border-color:#007C66; }
   </style>
 </head>
 <body class="bg-[#F8FAFC] text-[#0F172A]">
 
 <!-- Nav -->
 <nav class="bg-white border-b-[3px] border-[#007C66] sticky top-0 z-[100]">
-  <div class="max-w-[1280px] mx-auto px-6">
+  <div class="max-w-[1440px] mx-auto px-6">
     <div class="flex items-center justify-between h-16">
       <a href="index.html" class="flex items-center gap-3">
         <img src="igpl-logo.png" alt="IGPL" class="h-10 w-auto">
         <span class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.08em] text-[#007C66] hidden sm:block">Document Admin</span>
       </a>
       <div class="flex items-center gap-4">
-        <a href="investor-library.html" target="_blank"
-          class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">
-          Investor Library ↗
-        </a>
-        <a href="index.html"
-          class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151] hover:text-[#007C66] transition-colors nav-link">
-          Website
-        </a>
+        <a href="investor-library.html" target="_blank" class="font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#374151] hover:text-[#007C66] transition-colors">Financial Reports ↗</a>
+        <a href="governance.html" target="_blank" class="font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#374151] hover:text-[#007C66] transition-colors">Governance ↗</a>
+        <a href="filings.html" target="_blank" class="font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#374151] hover:text-[#007C66] transition-colors">Filings ↗</a>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- Page Header -->
-<div class="bg-white border-b border-gray-200">
-  <div class="max-w-[1280px] mx-auto px-6 py-8">
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-      <div>
-        <div class="flex items-center gap-3 mb-1">
-          <div class="w-1 h-7 bg-[#007C66] rounded-full"></div>
-          <h1 class="font-[Montserrat] font-bold text-2xl text-[#0F2B4F]">Document Admin</h1>
-        </div>
-        <p class="text-sm text-[#6B7280] ml-4">Upload PDFs to Vercel Blob. Files are served publicly via CDN.</p>
-      </div>
-      <!-- Summary badges updated via JS -->
-      <div class="flex items-center gap-3 ml-4">
-        <div id="badge-total" class="flex items-center gap-1.5 bg-gray-100 text-[#374151] font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-3 py-1.5 rounded-full">
-          <span id="badge-total-num">—</span> Total
-        </div>
-        <div id="badge-uploaded" class="flex items-center gap-1.5 bg-[#ECFDF5] text-[#065F46] font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-3 py-1.5 rounded-full">
-          <span id="badge-uploaded-num">—</span> Uploaded
-        </div>
-        <div id="badge-missing" class="flex items-center gap-1.5 bg-[#FEF3C7] text-[#92400E] font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-3 py-1.5 rounded-full">
-          <span id="badge-missing-num">—</span> Missing
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="max-w-[1280px] mx-auto px-6 py-8">
-
-  <!-- Auth card -->
-  <div class="mb-8 bg-white border border-gray-200 rounded-xl p-5 shadow-sm flex flex-col sm:flex-row sm:items-center gap-4">
+<!-- Auth + Summary -->
+<div class="bg-white border-b border-[#E5E7EB]">
+  <div class="max-w-[1440px] mx-auto px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-4">
     <div class="flex-1">
-      <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-[0.08em] text-[#0F2B4F] mb-2">
-        Admin Password
-      </label>
-      <div class="relative max-w-sm">
+      <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-[0.08em] text-[#0F2B4F] mb-2">Admin Password</label>
+      <div class="relative max-w-xs">
         <input id="admin-pw" type="password" placeholder="Enter upload password" autocomplete="current-password"
-          class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm pr-20 focus:outline-none focus:ring-2 focus:ring-[#007C66] focus:border-transparent">
-        <button id="pw-toggle" type="button" onclick="togglePwVisibility()"
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-[#6B7280] hover:text-[#007C66] font-medium px-2">
-          Show
-        </button>
+          class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm pr-16 focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        <button id="pw-toggle" type="button" onclick="togglePw()"
+          class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-[#6B7280] hover:text-[#007C66] font-medium px-2">Show</button>
       </div>
-      <p class="mt-1 text-xs text-[#9CA3AF]">Saved in your browser. Upload buttons unlock once a valid password is entered.</p>
+      <p class="mt-1 text-xs text-[#9CA3AF]">Saved in browser. Buttons unlock once a password is entered.</p>
     </div>
-    <div id="auth-status-badge" class="hidden flex-shrink-0 flex items-center gap-2 bg-[#ECFDF5] border border-[#6EE7B7] text-[#065F46] rounded-lg px-4 py-2 font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em]">
+    <div id="auth-badge" class="hidden flex-shrink-0 flex items-center gap-2 bg-[#ECFDF5] border border-[#6EE7B7] text-[#065F46] rounded-lg px-4 py-2 font-[Montserrat] font-bold text-xs uppercase tracking-wider">
       <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#34D399"/><path d="M5.5 10.5l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Unlocked
     </div>
+    <div class="flex items-center gap-3">
+      <div class="bg-[#F1F5F9] text-[#374151] font-[Montserrat] font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full"><span id="badge-total">—</span> Total</div>
+      <div class="bg-[#ECFDF5] text-[#065F46] font-[Montserrat] font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full"><span id="badge-up">—</span> Uploaded</div>
+      <div class="bg-[#FEF3C7] text-[#92400E] font-[Montserrat] font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full"><span id="badge-miss">—</span> Missing</div>
+    </div>
   </div>
-
-  <!-- Upload sections -->
-  <div id="sections-container" class="space-y-6">
-    <!-- Sections injected by JS -->
-  </div>
-
-  <!-- All-uploaded banner -->
-  <div id="all-done-banner" class="hidden mt-6 flex items-center gap-3 bg-[#ECFDF5] border border-[#6EE7B7] text-[#065F46] rounded-xl px-6 py-4 font-[Montserrat] font-bold text-sm">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#34D399"/><path d="M5.5 10.5l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    All documents uploaded ✓
-  </div>
-
 </div>
+
+<!-- Tabs -->
+<div class="bg-white border-b border-[#E5E7EB] sticky top-[64px] z-50">
+  <div class="max-w-[1440px] mx-auto px-6 flex overflow-x-auto">
+    <button class="tab-btn active" data-tab="financial">Financial Reports</button>
+    <button class="tab-btn" data-tab="governance">Governance</button>
+    <button class="tab-btn" data-tab="filings">Filings &amp; Announcements</button>
+  </div>
+</div>
+
+<div class="max-w-[1440px] mx-auto px-6 py-8">
+
+  <!-- ═══ TAB: FINANCIAL ══════════════════════════════════════════════════════ -->
+  <div id="tab-financial">
+
+    <!-- Annual Reports -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Annual Reports</h2>
+        <span id="sec-annual-reports" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-annual-reports"></div>
+    </div>
+
+    <!-- Quarterly Results — year tabs -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Quarterly Results</h2>
+        <span id="sec-earnings" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="px-5 py-3 border-b border-[#E5E7EB] flex gap-2 flex-wrap" id="yr-tabs-earnings"></div>
+      <div id="slots-earnings"></div>
+    </div>
+
+    <!-- Investor Presentations — year tabs -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Investor Presentations</h2>
+        <span id="sec-presentations" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="px-5 py-3 border-b border-[#E5E7EB] flex gap-2 flex-wrap" id="yr-tabs-presentations"></div>
+      <div id="slots-presentations"></div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: GOVERNANCE ══════════════════════════════════════════════════════ -->
+  <div id="tab-governance" class="hidden">
+
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Board &amp; Management</h2>
+        <span id="sec-board" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-board"></div>
+    </div>
+
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Policies</h2>
+        <span id="sec-policies" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-policies"></div>
+    </div>
+
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">AGM Outcomes</h2>
+        <span id="sec-agm" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-agm"></div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: FILINGS ═════════════════════════════════════════════════════════ -->
+  <div id="tab-filings" class="hidden">
+
+    <!-- Publish new announcement -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Publish New Announcement</h2>
+      </div>
+      <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="sm:col-span-2">
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">Title *</label>
+          <input id="ann-title" type="text" placeholder="e.g. Transcripts of Earnings Call for Q3 FY 2025-26"
+            class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        </div>
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">Date *</label>
+          <input id="ann-date" type="date" class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        </div>
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">Category *</label>
+          <select id="ann-cat" class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+            <option value="earnings">Earnings Call</option>
+            <option value="board">Board Meeting</option>
+            <option value="disclosure">SEBI Disclosure</option>
+            <option value="general">General</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">PDF File (optional)</label>
+          <label for="ann-pdf-file" class="inline-flex items-center gap-2 border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm cursor-pointer hover:border-[#007C66] transition-colors w-full">
+            <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <span id="ann-pdf-label" class="text-[#6B7280]">Choose PDF…</span>
+          </label>
+          <input type="file" id="ann-pdf-file" accept=".pdf">
+        </div>
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">Audio File (optional)</label>
+          <label for="ann-audio-file" class="inline-flex items-center gap-2 border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm cursor-pointer hover:border-[#007C66] transition-colors w-full">
+            <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 010 7.07"/></svg>
+            <span id="ann-audio-label" class="text-[#6B7280]">Choose MP3…</span>
+          </label>
+          <input type="file" id="ann-audio-file" accept=".mp3,.m4a">
+        </div>
+        <div class="sm:col-span-2 flex items-center gap-4">
+          <button id="ann-publish-btn" onclick="publishAnnouncement()"
+            class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-lg hover:bg-[#005E4D] transition-colors">
+            Publish Announcement
+          </button>
+          <span id="ann-publish-status" class="text-sm font-[Inter] text-[#6B7280]"></span>
+        </div>
+      </div>
+
+      <!-- Existing announcements list -->
+      <div class="border-t border-[#E5E7EB]">
+        <div class="px-5 py-3 bg-[#F8FAFC] flex items-center justify-between">
+          <span class="font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F]">Published Announcements</span>
+          <button onclick="loadAnnouncements()" class="text-xs text-[#007C66] hover:underline font-[Inter] font-medium">Refresh</button>
+        </div>
+        <div id="ann-admin-loading" class="px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">Loading…</div>
+        <div id="ann-admin-empty" class="hidden px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">No announcements published yet.</div>
+        <div id="ann-admin-list" class="hidden divide-y divide-[#E5E7EB]"></div>
+      </div>
+    </div>
+
+    <!-- Subsidiaries -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Subsidiary Financial Statements</h2>
+        <span id="sec-subsidiaries" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-subsidiaries"></div>
+    </div>
+
+    <!-- Investor Forms -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Investor Service Forms</h2>
+        <span id="sec-forms" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-forms"></div>
+    </div>
+  </div>
+
+</div><!-- /max-w -->
 
 <script>
 'use strict';
 
-// ─── DOCUMENT MANIFEST ────────────────────────────────────────────────────
-const SECTIONS = [
-  {
-    id: 'annual-reports',
-    title: 'Annual Reports',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
-    slots: [
-      { dest: 'docs/annual-reports/fy2526.pdf', label: 'FY 2025-26' },
-      { dest: 'docs/annual-reports/fy2425.pdf', label: 'FY 2024-25' },
-      { dest: 'docs/annual-reports/fy2324.pdf', label: 'FY 2023-24' },
-      { dest: 'docs/annual-reports/fy2223.pdf', label: 'FY 2022-23' },
-      { dest: 'docs/annual-reports/fy2122.pdf', label: 'FY 2021-22' },
-      { dest: 'docs/annual-reports/fy2021.pdf', label: 'FY 2020-21' },
-    ]
-  },
-  {
-    id: 'earnings',
-    title: 'Quarterly Results',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-    slots: [
-      { dest: 'docs/earnings/q3fy2526.pdf', label: 'Q3 FY 2025-26' },
-      { dest: 'docs/earnings/q2fy2526.pdf', label: 'Q2 FY 2025-26' },
-      { dest: 'docs/earnings/q1fy2526.pdf', label: 'Q1 FY 2025-26' },
-      { dest: 'docs/earnings/q4fy2425.pdf', label: 'Q4 FY 2024-25' },
-      { dest: 'docs/earnings/q3fy2425.pdf', label: 'Q3 FY 2024-25' },
-      { dest: 'docs/earnings/q2fy2425.pdf', label: 'Q2 FY 2024-25' },
-      { dest: 'docs/earnings/q1fy2425.pdf', label: 'Q1 FY 2024-25' },
-    ]
-  },
-  {
-    id: 'investor-presentations',
-    title: 'Investor Presentations',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
-    slots: [
-      { dest: 'docs/investor-presentations/q3fy2526-presentation.pdf', label: 'Q3 FY 2025-26 Presentation' },
-      { dest: 'docs/investor-presentations/q2fy2526-presentation.pdf', label: 'Q2 FY 2025-26 Presentation' },
-      { dest: 'docs/investor-presentations/q1fy2526-presentation.pdf', label: 'Q1 FY 2025-26 Presentation' },
-      { dest: 'docs/investor-presentations/q4fy2425-presentation.pdf', label: 'Q4 FY 2024-25 Presentation' },
-    ]
-  },
-  {
-    id: 'shareholding',
-    title: 'Shareholding Patterns',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
-    slots: [
-      { dest: 'docs/shareholding/q3fy2526.pdf', label: 'Q3 FY 2025-26' },
-      { dest: 'docs/shareholding/q2fy2526.pdf', label: 'Q2 FY 2025-26' },
-      { dest: 'docs/shareholding/q1fy2526.pdf', label: 'Q1 FY 2025-26' },
-      { dest: 'docs/shareholding/q4fy2425.pdf', label: 'Q4 FY 2024-25' },
-    ]
-  },
-  {
-    id: 'governance',
-    title: 'Governance Documents',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-    slots: [
-      { dest: 'docs/governance/memorandum-articles.pdf', label: 'Memorandum & Articles of Association' },
-      { dest: 'docs/governance/board-committees.pdf', label: 'Board & Committees' },
-      { dest: 'docs/governance/dividend-policy.pdf', label: 'Dividend Policy' },
-      { dest: 'docs/governance/vigil-mechanism.pdf', label: 'Vigil Mechanism / Whistle Blower Policy' },
-    ]
-  },
-  {
-    id: 'investor-info',
-    title: 'Investor Information',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/></svg>`,
-    slots: [
-      { dest: 'docs/investor-info/corporate-governance.pdf', label: 'Corporate Governance Report' },
-      { dest: 'docs/investor-info/shareholding-pattern.pdf', label: 'Shareholding Pattern (Latest)' },
-      { dest: 'docs/investor-info/subsidiary-financials.pdf', label: 'Subsidiary Financials' },
-      { dest: 'docs/investor-info/related-party-transactions.pdf', label: 'Related Party Transactions' },
-    ]
-  },
-  {
-    id: 'policies',
-    title: 'Policies',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>`,
-    slots: [
-      { dest: 'docs/policies/csr-policy.pdf', label: 'CSR Policy' },
-      { dest: 'docs/policies/remuneration-policy.pdf', label: 'Remuneration Policy' },
-      { dest: 'docs/policies/risk-management.pdf', label: 'Risk Management Policy' },
-      { dest: 'docs/policies/sustainability-report.pdf', label: 'Sustainability / BRSR Report' },
-    ]
-  },
-  {
-    id: 'tds',
-    title: 'Product Technical Data Sheets (TDS)',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>`,
-    slots: [
-      { dest: 'docs/products/tds-pa.pdf', label: 'Phthalic Anhydride (PA) — TDS' },
-      { dest: 'docs/products/tds-ma.pdf', label: 'Maleic Anhydride (MA) — TDS' },
-      { dest: 'docs/products/tds-ba.pdf', label: 'Benzoic Acid (BA) — TDS' },
-      { dest: 'docs/products/tds-dep.pdf', label: 'Diethyl Phthalate (DEP) — TDS' },
-    ]
-  },
-  {
-    id: 'sds',
-    title: 'Product Safety Data Sheets (SDS)',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
-    slots: [
-      { dest: 'docs/products/sds-pa.pdf', label: 'Phthalic Anhydride (PA) — SDS' },
-      { dest: 'docs/products/sds-ma.pdf', label: 'Maleic Anhydride (MA) — SDS' },
-      { dest: 'docs/products/sds-ba.pdf', label: 'Benzoic Acid (BA) — SDS' },
-      { dest: 'docs/products/sds-dep.pdf', label: 'Diethyl Phthalate (DEP) — SDS' },
-    ]
-  },
-];
+// ── DOCUMENT MANIFEST ────────────────────────────────────────────────────────
+var YEARS = ['fy2526','fy2425','fy2324','fy2223','fy2122','fy2021'];
+var YEAR_LABELS = {fy2526:'FY 2025-26',fy2425:'FY 2024-25',fy2324:'FY 2023-24',fy2223:'FY 2022-23',fy2122:'FY 2021-22',fy2021:'FY 2020-21'};
+var EARN_Q = {fy2526:['q3','q2','q1'],fy2425:['q4','q3','q2','q1'],fy2324:['q4','q3','q2','q1'],fy2223:['q4','q3','q2','q1'],fy2122:['q4','q3','q2','q1'],fy2021:['q4','q3','q2','q1']};
+var Q_LABELS = {q4:'Q4',q3:'Q3',q2:'Q2',q1:'Q1'};
 
-// ─── STATE ─────────────────────────────────────────────────────────────────
-const PW_KEY = 'igpl_admin_pw';
-let uploadedMap = {}; // pathname → { url, size, uploadedAt }
-let allSlots = [];    // flat list of all slot dest paths
+var SECTIONS = {
+  'annual-reports': YEARS.map(function(y){ return {dest:'docs/annual-reports/'+y+'.pdf',label:YEAR_LABELS[y]}; }),
+  board: [
+    {dest:'docs/governance/moa-aoa.pdf',label:'MOA & Articles of Association'},
+    {dest:'docs/governance/constitution-of-committees.pdf',label:'Constitution of Committees'},
+    {dest:'docs/governance/directors-familiarization-programme.pdf',label:'Directors Familiarization Programme'},
+    {dest:'docs/governance/familiarization-programme-policy.pdf',label:'Familiarization Programme Policy'},
+    {dest:'docs/governance/terms-independent-directors.pdf',label:'Terms — Independent Directors'},
+    {dest:'docs/governance/directorship-full-time-positions.pdf',label:'Directorship & Full-Time Positions'},
+    {dest:'docs/governance/kmp-contact-materiality.pdf',label:'Contact Details of KMP (Materiality)'},
+    {dest:'docs/governance/code-of-conduct-directors.pdf',label:'Code of Conduct — Directors'},
+    {dest:'docs/governance/code-fair-disclosure.pdf',label:'Code for Fair Disclosure'},
+    {dest:'docs/governance/sebi-lodr-reg46.pdf',label:'SEBI LODR Reg 46 Disclosure'},
+  ],
+  policies: [
+    {dest:'docs/policies/dividend-distribution-policy.pdf',label:'Dividend Distribution Policy'},
+    {dest:'docs/policies/whistle-blower-policy.pdf',label:'Whistle Blower Policy'},
+    {dest:'docs/policies/related-party-transactions-policy.pdf',label:'Related Party Transaction Policy'},
+    {dest:'docs/policies/nomination-remuneration-policy.pdf',label:'Nomination & Remuneration Policy'},
+    {dest:'docs/policies/risk-management-policy.pdf',label:'Risk Management Policy'},
+    {dest:'docs/policies/posh-policy.pdf',label:'POSH Policy'},
+    {dest:'docs/policies/archival-policy.pdf',label:'Archival Policy'},
+    {dest:'docs/policies/anti-bribery-policy.pdf',label:'Anti-Bribery Policy'},
+    {dest:'docs/policies/equal-opportunity-policy.pdf',label:'Equal Opportunity Policy'},
+    {dest:'docs/policies/stakeholder-grievance-policy.pdf',label:'Stakeholder Grievance Redressal Policy'},
+    {dest:'docs/policies/stakeholders-engagement-policy.pdf',label:'Stakeholders Engagement Policy'},
+    {dest:'docs/policies/board-policy-material-events.pdf',label:'Board Policy — Material Events'},
+    {dest:'docs/policies/sebi-lodr-reg30.pdf',label:'SEBI LODR Reg 30 Disclosure'},
+  ],
+  agm: ['fy2425','fy2324','fy2223','fy2122','fy2021','fy2020'].map(function(y){
+    var yLabel = YEAR_LABELS[y]||y;
+    return {dest:'docs/governance/agm-outcome-'+y+'.pdf',label:'AGM Outcome — '+yLabel};
+  }),
+  subsidiaries: [
+    {dest:'docs/subsidiaries/igpl-international-fy2425.pdf',label:'IGPL International Ltd. — FY 2024-25'},
+    {dest:'docs/subsidiaries/igpl-international-fy2324.pdf',label:'IGPL International Ltd. — FY 2023-24'},
+    {dest:'docs/subsidiaries/igpl-international-fy2223.pdf',label:'IGPL International Ltd. — FY 2022-23'},
+    {dest:'docs/subsidiaries/igpl-international-fy2122.pdf',label:'IGPL International Ltd. — FY 2021-22'},
+    {dest:'docs/subsidiaries/igpl-international-fy2021.pdf',label:'IGPL International Ltd. — FY 2020-21'},
+    {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2425.pdf',label:'IGPL Charitable Foundation — FY 2024-25'},
+    {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2324.pdf',label:'IGPL Charitable Foundation — FY 2023-24'},
+    {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2223.pdf',label:'IGPL Charitable Foundation — FY 2022-23'},
+  ],
+  forms: [
+    {dest:'docs/investor-forms/form-isr1.pdf',label:'Form ISR-1 — KYC Update'},
+    {dest:'docs/investor-forms/form-isr2.pdf',label:'Form ISR-2 — Signature Mismatch'},
+    {dest:'docs/investor-forms/form-isr3.pdf',label:'Form ISR-3 — Opt-out Nomination'},
+    {dest:'docs/investor-forms/form-isr4.pdf',label:'Form ISR-4 — Demat Securities'},
+    {dest:'docs/investor-forms/form-sh13.pdf',label:'Form SH-13 — Nomination Declaration'},
+    {dest:'docs/investor-forms/form-sh14.pdf',label:'Form SH-14 — Change in Nomination'},
+  ],
+};
 
-// ─── INIT ──────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  buildSections();
-  const savedPw = localStorage.getItem(PW_KEY) || '';
-  document.getElementById('admin-pw').value = savedPw;
-  updateButtonStates(savedPw.length > 0);
+var PW_KEY = 'igpl_admin_pw';
+var uploadedMap = {};
+var allSlots = [];
 
+document.addEventListener('DOMContentLoaded', function() {
+  buildAll();
+  var saved = localStorage.getItem(PW_KEY) || '';
+  document.getElementById('admin-pw').value = saved;
+  updateBtnStates(saved.length > 0);
   document.getElementById('admin-pw').addEventListener('input', function() {
     localStorage.setItem(PW_KEY, this.value);
-    updateButtonStates(this.value.trim().length > 0);
+    updateBtnStates(this.value.trim().length > 0);
   });
-
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      ['financial','governance','filings'].forEach(function(t){
+        document.getElementById('tab-'+t).classList.toggle('hidden', t !== btn.dataset.tab);
+      });
+    });
+  });
+  // PDF + audio file labels
+  document.getElementById('ann-pdf-file').addEventListener('change', function(){
+    document.getElementById('ann-pdf-label').textContent = this.files[0] ? this.files[0].name : 'Choose PDF…';
+  });
+  document.getElementById('ann-audio-file').addEventListener('change', function(){
+    document.getElementById('ann-audio-label').textContent = this.files[0] ? this.files[0].name : 'Choose MP3…';
+  });
+  // Default date to today
+  document.getElementById('ann-date').value = new Date().toISOString().slice(0,10);
   fetchManifest();
+  loadAnnouncements();
 });
 
-// ─── BUILD UI ──────────────────────────────────────────────────────────────
-function buildSections() {
-  const container = document.getElementById('sections-container');
+function buildAll() {
   allSlots = [];
-
-  // Two-column grid for sections
-  const grid = document.createElement('div');
-  grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-6';
-
-  SECTIONS.forEach(section => {
-    section.slots.forEach(s => allSlots.push(s.dest));
-
-    const card = document.createElement('div');
-    card.className = 'bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden';
-    card.innerHTML = `
-      <div class="section-header px-5 py-3 flex items-center gap-2">
-        ${section.icon}
-        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-[0.06em]">${section.title}</h2>
-        <span id="sec-count-${section.id}" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
-      </div>
-      <div id="slots-${section.id}" class="divide-y divide-gray-100"></div>
-    `;
-
-    const slotsContainer = card.querySelector(`#slots-${section.id}`);
-
-    section.slots.forEach(slot => {
-      const uid = slot.dest.replace(/[/.]/g, '-');
-      const filename = slot.dest.split('/').pop();
-      const row = document.createElement('div');
-      row.className = 'slot-row p-4';
-      row.dataset.dest = slot.dest;
-      row.dataset.uid = uid;
-      row.innerHTML = `
-        <div class="flex items-center justify-between gap-3 flex-wrap">
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2 mb-0.5">
-              <span class="status-dot" id="dot-${uid}"></span>
-              <span class="font-[Montserrat] font-bold text-sm text-[#0F2B4F] truncate">${slot.label}</span>
-            </div>
-            <div class="flex items-center gap-2 ml-[18px] flex-wrap">
-              <code class="text-xs text-[#6B7280] font-mono">${filename}</code>
-              <span id="status-${uid}" class="text-xs text-[#9CA3AF]">Checking…</span>
-              <span id="meta-${uid}" class="text-xs text-[#9CA3AF] hidden"></span>
-            </div>
-            <div class="progress-bar ml-[18px] hidden" id="progress-${uid}">
-              <div class="progress-fill" id="progress-fill-${uid}"></div>
-            </div>
-            <div id="url-row-${uid}" class="ml-[18px] mt-1 hidden flex items-center gap-2">
-              <a id="url-link-${uid}" href="#" target="_blank"
-                class="text-xs text-[#007C66] hover:underline font-mono truncate max-w-[260px]"></a>
-              <button class="copy-btn" id="copy-${uid}" onclick="copyUrl('${uid}')">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                Copy
-              </button>
-            </div>
-            <div id="result-${uid}" class="mt-1 ml-[18px] text-xs hidden"></div>
-          </div>
-          <div class="flex-shrink-0 flex items-center gap-2">
-            <label id="btn-${uid}" for="file-${uid}" class="upload-btn locked">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
-              Upload
-            </label>
-            <input type="file" id="file-${uid}" accept=".pdf" data-dest="${slot.dest}" data-uid="${uid}">
-          </div>
-        </div>
-      `;
-
-      // Drag and drop
-      row.addEventListener('dragover', e => { e.preventDefault(); row.classList.add('drag-over'); });
-      row.addEventListener('dragleave', () => row.classList.remove('drag-over'));
-      row.addEventListener('drop', e => {
-        e.preventDefault();
-        row.classList.remove('drag-over');
-        const file = e.dataTransfer.files[0];
-        if (file) triggerUpload(file, slot.dest, uid);
-      });
-
-      // File input change
-      const fileInput = row.querySelector(`#file-${uid}`);
-      fileInput.addEventListener('change', function() {
-        if (this.files[0]) triggerUpload(this.files[0], slot.dest, uid);
-      });
-
-      slotsContainer.appendChild(row);
-    });
-
-    grid.appendChild(card);
-  });
-
-  container.appendChild(grid);
+  buildSimple('annual-reports', SECTIONS['annual-reports']);
+  buildYearTabs('earnings', 'yr-tabs-earnings', 'slots-earnings');
+  buildYearTabs('presentations', 'yr-tabs-presentations', 'slots-presentations');
+  buildSimple('board', SECTIONS.board);
+  buildSimple('policies', SECTIONS.policies);
+  buildSimple('agm', SECTIONS.agm);
+  buildSimple('subsidiaries', SECTIONS.subsidiaries);
+  buildSimple('forms', SECTIONS.forms);
 }
 
-// ─── MANIFEST ──────────────────────────────────────────────────────────────
-async function fetchManifest() {
-  try {
-    const res = await fetch('/api/manifest');
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    uploadedMap = {};
-    (data.blobs || []).forEach(b => { uploadedMap[b.pathname] = b; });
-    applyManifest();
-  } catch (e) {
-    console.warn('Manifest fetch failed:', e);
-    // Mark all as unknown
-    allSlots.forEach(dest => {
-      const uid = dest.replace(/[/.]/g, '-');
-      setSlotStatus(uid, 'unknown');
+function uid(dest) { return dest.replace(/[/.]/g,'_'); }
+
+function buildSimple(secId, slots) {
+  var container = document.getElementById('slots-'+secId);
+  if (!container) return;
+  slots.forEach(function(slot) {
+    allSlots.push(slot.dest);
+    container.appendChild(makeRow(slot.dest, slot.label));
+  });
+}
+
+function buildYearTabs(secId, tabsId, slotsId) {
+  var tabsEl = document.getElementById(tabsId);
+  var slotsEl = document.getElementById(slotsId);
+  if (!tabsEl || !slotsEl) return;
+  YEARS.forEach(function(yc, i) {
+    var btn = document.createElement('button');
+    btn.className = 'yr-tab' + (i===0 ? ' active' : '');
+    btn.dataset.year = yc;
+    btn.dataset.sec = secId;
+    btn.textContent = YEAR_LABELS[yc];
+    btn.addEventListener('click', function() {
+      tabsEl.querySelectorAll('.yr-tab').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      slotsEl.querySelectorAll('.yr-panel').forEach(function(p){ p.classList.toggle('hidden', p.dataset.year !== yc); });
     });
-    updateBadges();
-  }
+    tabsEl.appendChild(btn);
+
+    var panel = document.createElement('div');
+    panel.className = 'yr-panel divide-y divide-[#E5E7EB]' + (i===0 ? '' : ' hidden');
+    panel.dataset.year = yc;
+
+    var qs = EARN_Q[yc] || ['q4','q3','q2','q1'];
+    qs.forEach(function(qc) {
+      var dest = secId === 'earnings' ? 'docs/earnings/'+qc+yc+'.pdf' : 'docs/investor-presentations/'+qc+yc+'-presentation.pdf';
+      var label = YEAR_LABELS[yc] + ' — ' + Q_LABELS[qc];
+      allSlots.push(dest);
+      panel.appendChild(makeRow(dest, label));
+    });
+    slotsEl.appendChild(panel);
+  });
+}
+
+function makeRow(dest, label) {
+  var u = uid(dest);
+  var filename = dest.split('/').pop();
+  var row = document.createElement('div');
+  row.className = 'slot-row p-4';
+  row.dataset.dest = dest;
+  row.dataset.uid = u;
+  row.innerHTML =
+    '<div class="flex items-center justify-between gap-3 flex-wrap">'
+    + '<div class="flex-1 min-w-0">'
+    + '<div class="flex items-center gap-2 mb-0.5">'
+    + '<span class="status-dot" id="dot-'+u+'"></span>'
+    + '<span class="font-[Montserrat] font-bold text-sm text-[#0F2B4F] truncate">'+label+'</span>'
+    + '</div>'
+    + '<div class="flex items-center gap-2 ml-[18px] flex-wrap">'
+    + '<code class="text-xs text-[#6B7280] font-mono">'+filename+'</code>'
+    + '<span id="status-'+u+'" class="text-xs text-[#9CA3AF]">Checking…</span>'
+    + '<span id="meta-'+u+'" class="text-xs text-[#9CA3AF] hidden"></span>'
+    + '</div>'
+    + '<div class="progress-bar ml-[18px] hidden" id="prog-'+u+'"><div class="progress-fill" id="progfill-'+u+'"></div></div>'
+    + '<div id="urlrow-'+u+'" class="ml-[18px] mt-1 hidden flex items-center gap-2">'
+    + '<a id="urllink-'+u+'" href="#" target="_blank" class="text-xs text-[#007C66] hover:underline font-mono truncate max-w-[260px]"></a>'
+    + '<button class="copy-btn" id="cpbtn-'+u+'" onclick="copyUrl(\''+u+'\')"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button>'
+    + '</div>'
+    + '<div id="result-'+u+'" class="mt-1 ml-[18px] text-xs hidden"></div>'
+    + '</div>'
+    + '<div class="flex-shrink-0 flex items-center gap-2">'
+    + '<label id="btn-'+u+'" for="file-'+u+'" class="upload-btn locked">'
+    + '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>'
+    + 'Upload</label>'
+    + '<input type="file" id="file-'+u+'" accept=".pdf" data-dest="'+dest+'" data-uid="'+u+'">'
+    + '</div>'
+    + '</div>';
+
+  row.addEventListener('dragover', function(e){ e.preventDefault(); row.classList.add('drag-over'); });
+  row.addEventListener('dragleave', function(){ row.classList.remove('drag-over'); });
+  row.addEventListener('drop', function(e){ e.preventDefault(); row.classList.remove('drag-over'); var f=e.dataTransfer.files[0]; if(f) triggerUpload(f,dest,u); });
+  var fi = row.querySelector('input[type="file"]');
+  fi.addEventListener('change', function(){ if(this.files[0]) triggerUpload(this.files[0],dest,u); });
+  return row;
+}
+
+function fetchManifest() {
+  fetch('/api/manifest').then(function(r){ return r.ok?r.json():Promise.reject(); })
+    .then(function(data){
+      uploadedMap = {};
+      (data.blobs||[]).forEach(function(b){ uploadedMap[b.pathname]=b; });
+      applyManifest();
+    }).catch(function(){ updateBadges(); updateSecCounts(); });
 }
 
 function applyManifest() {
-  allSlots.forEach(dest => {
-    const uid = dest.replace(/[/.]/g, '-');
-    const blob = uploadedMap[dest];
-    if (blob) {
-      setSlotStatus(uid, 'uploaded', blob);
-    } else {
-      setSlotStatus(uid, 'missing');
-    }
+  allSlots.forEach(function(dest){
+    var u = uid(dest);
+    var blob = uploadedMap[dest];
+    setSlotStatus(u, blob ? 'uploaded' : 'missing', blob);
   });
   updateBadges();
-  updateSectionCounts();
+  updateSecCounts();
 }
 
-// ─── SLOT STATUS ───────────────────────────────────────────────────────────
-function setSlotStatus(uid, state, blob) {
-  const dot = document.getElementById('dot-' + uid);
-  const statusEl = document.getElementById('status-' + uid);
-  const metaEl = document.getElementById('meta-' + uid);
-  const urlRow = document.getElementById('url-row-' + uid);
-  const urlLink = document.getElementById('url-link-' + uid);
-
+function setSlotStatus(u, state, blob) {
+  var dot = document.getElementById('dot-'+u);
+  var statusEl = document.getElementById('status-'+u);
+  var metaEl = document.getElementById('meta-'+u);
+  var urlRow = document.getElementById('urlrow-'+u);
+  var urlLink = document.getElementById('urllink-'+u);
   if (!dot) return;
-
   dot.className = 'status-dot';
   if (state === 'uploaded' && blob) {
     dot.classList.add('uploaded');
     statusEl.textContent = 'Uploaded';
     statusEl.className = 'text-xs text-emerald-600 font-medium';
-    const kb = (blob.size / 1024).toFixed(1);
-    const date = blob.uploadedAt ? new Date(blob.uploadedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
-    metaEl.textContent = kb + ' KB' + (date ? ' · ' + date : '');
-    metaEl.className = 'text-xs text-[#9CA3AF]';
+    var kb = blob.size ? (blob.size/1024).toFixed(1)+' KB' : '';
+    var d = blob.uploadedAt ? new Date(blob.uploadedAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '';
+    metaEl.textContent = [kb,d].filter(Boolean).join(' · ');
     metaEl.classList.remove('hidden');
-    if (blob.url) {
+    if (blob.url && urlRow && urlLink) {
       urlLink.href = blob.url;
       urlLink.textContent = blob.url;
       urlRow.classList.remove('hidden');
       urlRow.style.display = 'flex';
     }
-    // Swap to Replace button
-    const btn = document.getElementById('btn-' + uid);
+    var btn = document.getElementById('btn-'+u);
     if (btn) {
-      btn.className = 'replace-btn' + (document.getElementById('admin-pw').value.trim() ? '' : ' locked');
-      btn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Replace`;
+      var pw = document.getElementById('admin-pw').value.trim();
+      btn.className = 'replace-btn' + (pw ? '' : ' locked');
+      btn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Replace';
     }
     dot.dataset.uploaded = '1';
   } else if (state === 'uploading') {
     dot.classList.add('uploading');
     statusEl.textContent = 'Uploading…';
     statusEl.className = 'text-xs text-amber-500 font-medium';
-    metaEl.classList.add('hidden');
     dot.dataset.uploaded = '0';
   } else if (state === 'error') {
     dot.classList.add('error');
     statusEl.textContent = 'Error';
     statusEl.className = 'text-xs text-red-500 font-medium';
     dot.dataset.uploaded = '0';
-  } else if (state === 'missing') {
-    statusEl.textContent = 'Not uploaded';
-    statusEl.className = 'text-xs text-[#9CA3AF]';
-    metaEl.classList.add('hidden');
-    urlRow.classList.add('hidden');
-    dot.dataset.uploaded = '0';
   } else {
-    statusEl.textContent = 'Unknown';
+    statusEl.textContent = state === 'missing' ? 'Not uploaded' : 'Unknown';
     statusEl.className = 'text-xs text-[#9CA3AF]';
     dot.dataset.uploaded = '0';
   }
 }
 
-// ─── UPLOAD ────────────────────────────────────────────────────────────────
-async function triggerUpload(file, dest, uid) {
-  const pw = document.getElementById('admin-pw').value.trim();
-  if (!pw) {
-    alert('Enter the admin password first.');
-    return;
-  }
-  if (!file.name.endsWith('.pdf')) {
-    showResult(uid, 'error', 'Only PDF files are allowed.');
-    return;
-  }
-  if (file.size > 30 * 1024 * 1024) {
-    showResult(uid, 'error', 'File too large (max 30MB).');
-    return;
-  }
-
-  setSlotStatus(uid, 'uploading');
-  showProgress(uid, true);
-  hideResult(uid);
-
-  const fd = new FormData();
-  fd.append('password', pw);
-  fd.append('dest_path', dest);
-  fd.append('file', file);
-
+async function triggerUpload(file, dest, u) {
+  var pw = document.getElementById('admin-pw').value.trim();
+  if (!pw) { alert('Enter the admin password first.'); return; }
+  if (!file.name.endsWith('.pdf')) { showResult(u,'error','Only PDFs allowed.'); return; }
+  if (file.size > 50*1024*1024) { showResult(u,'error','Max 50MB.'); return; }
+  setSlotStatus(u,'uploading');
+  showProg(u,true); hideResult(u);
+  var fd = new FormData();
+  fd.append('password',pw); fd.append('dest_path',dest); fd.append('file',file);
+  var fill = document.getElementById('progfill-'+u);
+  var prog=0;
+  var tick = setInterval(function(){ prog=Math.min(prog+Math.random()*15,85); if(fill) fill.style.width=prog+'%'; },200);
   try {
-    // Simulate progress (XHR not available in all environments; use fetch + fake progress)
-    const progressEl = document.getElementById('progress-fill-' + uid);
-    let prog = 0;
-    const ticker = setInterval(() => {
-      prog = Math.min(prog + Math.random() * 15, 85);
-      if (progressEl) progressEl.style.width = prog + '%';
-    }, 200);
-
-    const res = await fetch('/api/upload', { method: 'POST', body: fd });
-    clearInterval(ticker);
-    if (progressEl) progressEl.style.width = '100%';
-
-    const data = await res.json();
+    var res = await fetch('/api/upload',{method:'POST',body:fd});
+    clearInterval(tick);
+    if (fill) fill.style.width='100%';
+    var data = await res.json();
+    showProg(u,false);
     if (res.ok && data.ok) {
-      showProgress(uid, false);
-      uploadedMap[dest] = { url: data.url, pathname: dest, size: data.size, uploadedAt: new Date().toISOString() };
-      setSlotStatus(uid, 'uploaded', uploadedMap[dest]);
-      showResult(uid, 'success', 'Uploaded — ' + (data.size / 1024).toFixed(1) + ' KB');
-      updateBadges();
-      updateSectionCounts();
+      uploadedMap[dest] = {url:data.url,pathname:dest,size:data.size,uploadedAt:new Date().toISOString()};
+      setSlotStatus(u,'uploaded',uploadedMap[dest]);
+      showResult(u,'success','Uploaded — '+(data.size/1024).toFixed(1)+' KB');
+      updateBadges(); updateSecCounts();
     } else {
-      showProgress(uid, false);
-      setSlotStatus(uid, 'error');
-      showResult(uid, 'error', data.error || ('HTTP ' + res.status));
-      if (res.status === 401) {
-        document.getElementById('admin-pw').value = '';
-        localStorage.removeItem(PW_KEY);
-        updateButtonStates(false);
-      }
+      setSlotStatus(u,'error');
+      showResult(u,'error',data.error||('HTTP '+res.status));
+      if (res.status===401) { document.getElementById('admin-pw').value=''; localStorage.removeItem(PW_KEY); updateBtnStates(false); }
     }
-  } catch (e) {
-    showProgress(uid, false);
-    setSlotStatus(uid, 'error');
-    showResult(uid, 'error', 'Network error: ' + e.message);
-  }
+  } catch(e) { clearInterval(tick); showProg(u,false); setSlotStatus(u,'error'); showResult(u,'error','Network error: '+e.message); }
 }
 
-function showProgress(uid, show) {
-  const bar = document.getElementById('progress-' + uid);
-  if (bar) bar.classList.toggle('hidden', !show);
-  if (!show) {
-    const fill = document.getElementById('progress-fill-' + uid);
-    if (fill) fill.style.width = '0%';
-  }
+function showProg(u,show){ var bar=document.getElementById('prog-'+u); if(bar) bar.classList.toggle('hidden',!show); if(!show){var f=document.getElementById('progfill-'+u);if(f)f.style.width='0%';} }
+function showResult(u,type,msg){ var el=document.getElementById('result-'+u); if(!el) return; el.className='mt-1 ml-[18px] text-xs font-medium '+(type==='success'?'text-emerald-600':'text-red-500'); el.textContent=msg; el.classList.remove('hidden'); setTimeout(function(){el.classList.add('hidden');},6000); }
+function hideResult(u){ var el=document.getElementById('result-'+u); if(el) el.classList.add('hidden'); }
+
+function updateBtnStates(enabled) {
+  document.getElementById('auth-badge').classList.toggle('hidden',!enabled);
+  document.querySelectorAll('[id^="btn-"]').forEach(function(btn){
+    if(enabled) btn.classList.remove('locked'); else btn.classList.add('locked');
+  });
 }
 
-function showResult(uid, type, msg) {
-  const el = document.getElementById('result-' + uid);
-  if (!el) return;
-  el.className = 'mt-1 ml-[18px] text-xs font-medium ' + (type === 'success' ? 'text-emerald-600' : 'text-red-500');
-  el.textContent = msg;
-  el.classList.remove('hidden');
-  setTimeout(() => el.classList.add('hidden'), 6000);
-}
-
-function hideResult(uid) {
-  const el = document.getElementById('result-' + uid);
-  if (el) el.classList.add('hidden');
-}
-
-// ─── BADGES ────────────────────────────────────────────────────────────────
 function updateBadges() {
-  const total = allSlots.length;
-  let uploaded = 0;
-  allSlots.forEach(dest => {
-    const uid = dest.replace(/[/.]/g, '-');
-    const dot = document.getElementById('dot-' + uid);
-    if (dot && dot.dataset.uploaded === '1') uploaded++;
-  });
-  const missing = total - uploaded;
-  document.getElementById('badge-total-num').textContent = total;
-  document.getElementById('badge-uploaded-num').textContent = uploaded;
-  document.getElementById('badge-missing-num').textContent = missing;
-  document.getElementById('all-done-banner').classList.toggle('hidden', missing !== 0);
+  var total=allSlots.length, up=0;
+  allSlots.forEach(function(dest){ var dot=document.getElementById('dot-'+uid(dest)); if(dot&&dot.dataset.uploaded==='1') up++; });
+  document.getElementById('badge-total').textContent=total;
+  document.getElementById('badge-up').textContent=up;
+  document.getElementById('badge-miss').textContent=total-up;
 }
 
-function updateSectionCounts() {
-  SECTIONS.forEach(section => {
-    let uploaded = 0;
-    section.slots.forEach(s => {
-      const uid = s.dest.replace(/[/.]/g, '-');
-      const dot = document.getElementById('dot-' + uid);
-      if (dot && dot.dataset.uploaded === '1') uploaded++;
+function updateSecCounts() {
+  var secSlots = {
+    'annual-reports': SECTIONS['annual-reports'].map(function(s){return s.dest;}),
+    earnings: [],
+    presentations: [],
+    board: SECTIONS.board.map(function(s){return s.dest;}),
+    policies: SECTIONS.policies.map(function(s){return s.dest;}),
+    agm: SECTIONS.agm.map(function(s){return s.dest;}),
+    subsidiaries: SECTIONS.subsidiaries.map(function(s){return s.dest;}),
+    forms: SECTIONS.forms.map(function(s){return s.dest;}),
+  };
+  YEARS.forEach(function(yc){
+    var qs=EARN_Q[yc]||['q4','q3','q2','q1'];
+    qs.forEach(function(qc){
+      secSlots.earnings.push('docs/earnings/'+qc+yc+'.pdf');
+      secSlots.presentations.push('docs/investor-presentations/'+qc+yc+'-presentation.pdf');
     });
-    const el = document.getElementById('sec-count-' + section.id);
-    if (el) {
-      el.textContent = uploaded + '/' + section.slots.length;
-      el.className = 'ml-auto font-[Montserrat] font-bold text-xs ' +
-        (uploaded === section.slots.length ? 'text-emerald-400' :
-          uploaded === 0 ? 'text-[#94A3B8]' : 'text-amber-400');
-    }
+  });
+  Object.keys(secSlots).forEach(function(secId){
+    var el=document.getElementById('sec-'+secId); if(!el) return;
+    var slots=secSlots[secId], up=0;
+    slots.forEach(function(dest){ var dot=document.getElementById('dot-'+uid(dest)); if(dot&&dot.dataset.uploaded==='1') up++; });
+    el.textContent = up+'/'+slots.length;
+    el.className = 'ml-auto font-[Montserrat] font-bold text-xs ' + (up===slots.length?'text-emerald-400':up===0?'text-[#94A3B8]':'text-amber-400');
   });
 }
 
-// ─── BUTTON STATES ─────────────────────────────────────────────────────────
-function updateButtonStates(enabled) {
-  const badge = document.getElementById('auth-status-badge');
-  if (badge) badge.classList.toggle('hidden', !enabled);
+function togglePw() {
+  var i=document.getElementById('admin-pw'),b=document.getElementById('pw-toggle');
+  if(i.type==='password'){i.type='text';b.textContent='Hide';}else{i.type='password';b.textContent='Show';}
+}
 
-  document.querySelectorAll('[id^="btn-"]').forEach(btn => {
-    const isReplace = btn.classList.contains('replace-btn');
-    if (enabled) {
-      btn.classList.remove('locked');
+function copyUrl(u) {
+  var link=document.getElementById('urllink-'+u);
+  var btn=document.getElementById('cpbtn-'+u);
+  if(!link||!link.href) return;
+  navigator.clipboard.writeText(link.href).then(function(){
+    btn.classList.add('copied'); btn.innerHTML='✓ Copied';
+    setTimeout(function(){btn.classList.remove('copied');btn.innerHTML='<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy';},2000);
+  });
+}
+
+// ── ANNOUNCEMENTS ─────────────────────────────────────────────────────────────
+var CAT_BADGE = {earnings:'bg-emerald-100 text-emerald-700',board:'bg-blue-100 text-blue-700',disclosure:'bg-amber-100 text-amber-700',general:'bg-slate-100 text-slate-600'};
+var CAT_LABEL = {earnings:'Earnings Call',board:'Board Meeting',disclosure:'Disclosure',general:'General'};
+
+function loadAnnouncements() {
+  var loading=document.getElementById('ann-admin-loading');
+  var empty=document.getElementById('ann-admin-empty');
+  var list=document.getElementById('ann-admin-list');
+  loading.style.display=''; empty.classList.add('hidden'); list.classList.add('hidden');
+  fetch('/api/announcements').then(function(r){return r.ok?r.json():Promise.reject();})
+    .then(function(data){
+      loading.style.display='none';
+      var items=data.announcements||[];
+      if(items.length===0){empty.classList.remove('hidden');return;}
+      list.classList.remove('hidden');
+      list.innerHTML=items.map(function(a){
+        var badge=CAT_BADGE[a.category]||'bg-slate-100 text-slate-600';
+        var catL=CAT_LABEL[a.category]||a.category;
+        return '<div class="px-5 py-3 flex items-center justify-between gap-3 flex-wrap hover:bg-[#F8FAFC]">'
+          +'<div class="flex items-center gap-3 min-w-0">'
+          +'<span class="font-[Inter] text-xs text-[#94A3B8] w-24 flex-shrink-0">'+a.date+'</span>'
+          +'<span class="'+badge+' font-[Montserrat] font-bold text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full flex-shrink-0">'+catL+'</span>'
+          +'<span class="font-[Inter] text-sm text-[#0F2B4F] truncate">'+a.title+'</span>'
+          +'</div>'
+          +'<button onclick="deleteAnn(\''+a.id+'\')" class="flex-shrink-0 text-xs text-red-400 hover:text-red-600 font-[Inter] font-medium transition-colors">Delete</button>'
+          +'</div>';
+      }).join('');
+    }).catch(function(){
+      loading.style.display='none';
+      empty.classList.remove('hidden');
+    });
+}
+
+async function publishAnnouncement() {
+  var pw=document.getElementById('admin-pw').value.trim();
+  if(!pw){alert('Enter the admin password first.');return;}
+  var title=document.getElementById('ann-title').value.trim();
+  var date=document.getElementById('ann-date').value;
+  var cat=document.getElementById('ann-cat').value;
+  var pdfFile=document.getElementById('ann-pdf-file').files[0];
+  var audioFile=document.getElementById('ann-audio-file').files[0];
+  if(!title){alert('Title is required.');return;}
+  if(!date){alert('Date is required.');return;}
+  var status=document.getElementById('ann-publish-status');
+  status.textContent='Publishing…'; status.className='text-sm font-[Inter] text-[#6B7280]';
+  document.getElementById('ann-publish-btn').disabled=true;
+  var fd=new FormData();
+  fd.append('password',pw); fd.append('title',title); fd.append('date',date); fd.append('category',cat);
+  if(pdfFile){fd.append('pdf',pdfFile); fd.append('pdf_path','docs/announcements/'+Date.now()+'-'+pdfFile.name.replace(/[^a-zA-Z0-9._-]/g,'_'));}
+  if(audioFile){fd.append('audio',audioFile); fd.append('audio_path','docs/announcements/'+Date.now()+'-'+audioFile.name.replace(/[^a-zA-Z0-9._-]/g,'_'));}
+  try {
+    var res=await fetch('/api/announcements',{method:'POST',body:fd});
+    var data=await res.json();
+    document.getElementById('ann-publish-btn').disabled=false;
+    if(res.ok&&data.ok){
+      status.textContent='Published!'; status.className='text-sm font-[Inter] text-emerald-600 font-medium';
+      document.getElementById('ann-title').value='';
+      document.getElementById('ann-pdf-file').value=''; document.getElementById('ann-pdf-label').textContent='Choose PDF…';
+      document.getElementById('ann-audio-file').value=''; document.getElementById('ann-audio-label').textContent='Choose MP3…';
+      setTimeout(function(){status.textContent='';},4000);
+      loadAnnouncements();
     } else {
-      btn.classList.add('locked');
+      status.textContent='Error: '+(data.error||res.status); status.className='text-sm font-[Inter] text-red-500';
     }
-  });
+  } catch(e){document.getElementById('ann-publish-btn').disabled=false;status.textContent='Network error.';status.className='text-sm font-[Inter] text-red-500';}
 }
 
-// ─── UTILS ─────────────────────────────────────────────────────────────────
-function togglePwVisibility() {
-  const input = document.getElementById('admin-pw');
-  const btn = document.getElementById('pw-toggle');
-  if (input.type === 'password') {
-    input.type = 'text';
-    btn.textContent = 'Hide';
-  } else {
-    input.type = 'password';
-    btn.textContent = 'Show';
-  }
-}
-
-function copyUrl(uid) {
-  const link = document.getElementById('url-link-' + uid);
-  const btn = document.getElementById('copy-' + uid);
-  if (!link || !link.href) return;
-  navigator.clipboard.writeText(link.href).then(() => {
-    btn.classList.add('copied');
-    btn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied`;
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy`;
-    }, 2000);
-  });
+async function deleteAnn(id) {
+  if(!confirm('Delete this announcement?')) return;
+  var pw=document.getElementById('admin-pw').value.trim();
+  if(!pw){alert('Enter password first.');return;}
+  try {
+    var res=await fetch('/api/announcements?id='+encodeURIComponent(id),{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw,id:id})});
+    if(res.ok) loadAnnouncements();
+    else alert('Delete failed.');
+  } catch(e){alert('Network error.');}
 }
 </script>
 </body>

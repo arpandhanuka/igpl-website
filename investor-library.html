@@ -3,338 +3,804 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Investor Document Library — IG Petrochemicals Ltd.</title>
-  <meta name="description" content="Access IGPL annual reports, governance documents, quarterly updates, investor presentations, and regulatory filings. NSE: IGPL | BSE: 500199.">
+  <link rel="icon" href="igpl-logo.png" type="image/png">
+  <title>Financial Reports — IG Petrochemicals Ltd.</title>
+  <meta name="description" content="Annual reports, quarterly financial results, and investor presentations. NSE: IGPL | BSE: 500199.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.igpetro.com/investor-library.html">
-  <meta property="og:title" content="Investor Document Library — IG Petrochemicals Ltd.">
-  <meta property="og:description" content="Access IGPL annual reports, governance documents, quarterly updates, investor presentations, and regulatory filings.">
-  <link rel="canonical" href="https://www.igpetro.com/investor-library.html">
+  <meta property="og:title" content="Financial Reports — IG Petrochemicals Ltd.">
   <meta property="og:image" content="https://www.igpetro.com/investors-hero.webp">
-  <link rel="icon" href="igpl-logo.png">
+  <link rel="canonical" href="https://www.igpetro.com/investor-library.html">
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/design-system.css">
-
   <style>
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Montserrat', sans-serif; }
-
-    /* Scroll reveal */
+    h1,h2,h3,h4,h5,h6,.font-display { font-family: 'Montserrat', sans-serif; }
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
     .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
-    .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
-    .stagger.visible > *:nth-child(3) { transition-delay: 0.15s; }
-    .stagger.visible > *:nth-child(4) { transition-delay: 0.2s; }
-    .stagger.visible > *:nth-child(5) { transition-delay: 0.25s; }
-    .stagger.visible > *:nth-child(6) { transition-delay: 0.3s; }
-    .stagger.visible > *:nth-child(7) { transition-delay: 0.35s; }
-    .stagger.visible > *:nth-child(8) { transition-delay: 0.4s; }
-    .stagger.visible > *:nth-child(9) { transition-delay: 0.45s; }
+    .stagger.visible > *:nth-child(2) { transition-delay: 0.05s; }
+    .stagger.visible > *:nth-child(3) { transition-delay: 0.1s; }
+    .stagger.visible > *:nth-child(4) { transition-delay: 0.15s; }
+    .stagger.visible > *:nth-child(5) { transition-delay: 0.2s; }
+    .stagger.visible > *:nth-child(6) { transition-delay: 0.25s; }
     .stagger.visible > * { opacity: 1; transform: translateY(0); }
-
-    /* Card lift */
     .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .card-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,124,102,0.12); }
-
-    /* Nav */
     .nav-link { position: relative; }
     .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #007C66; transition: width 0.3s ease; }
     .nav-link:hover::after { width: 100%; }
     .nav-link--active::after { width: 100%; }
-
-    /* Nav dropdown */
     .nav-dropdown { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 12px; z-index: 200; }
-    .nav-dropdown-inner { background: #ffffff; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,0.1); min-width: 220px; overflow: hidden; }
+    .nav-dropdown-inner { background: #fff; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,0.1); min-width: 220px; overflow: hidden; }
     .nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #475569; transition: background 0.15s, color 0.15s; }
     .nav-dropdown a:hover { background: #F0FDF9; color: #007C66; }
     .nav-parent:hover .nav-dropdown { display: block; }
-
-    /* Filter pill buttons */
-    .filter-pill {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 8px 18px;
-      border-radius: 9999px;
-      border: 1px solid #E5E7EB;
-      background: #ffffff;
-      color: #475569;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-    .filter-pill:hover {
-      border-color: #007C66;
-      color: #007C66;
-    }
-    .filter-pill--active {
-      background: #007C66;
-      border-color: #007C66;
-      color: #ffffff;
-    }
-    .filter-pill--active:hover {
-      background: #005E4D;
-      border-color: #005E4D;
-      color: #ffffff;
-    }
-
-    /* Sticky filter bar */
-    .filter-bar {
-      position: sticky;
-      top: 72px;
-      z-index: 50;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid #E5E7EB;
-    }
-
-    /* Document card */
-    .doc-card {
-      background: #ffffff;
-      border: 1px solid #E5E7EB;
-      border-radius: 12px;
-      padding: 28px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .doc-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,124,102,0.12);
-    }
-
-    /* Hide scrollbar on filter row */
-    .filter-scroll::-webkit-scrollbar { display: none; }
-    .filter-scroll { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
-
-  <!-- Structured Data: BreadcrumbList -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.igpetro.com/"},{"@type":"ListItem","position":2,"name":"Investor Relations","item":"https://www.igpetro.com/investors.html"},{"@type":"ListItem","position":3,"name":"Document Library","item":"https://www.igpetro.com/investor-library.html"}]}
-  </script>
 </head>
 <body class="bg-white text-[#0F172A]">
 
-  <!-- ===== NAVIGATION ===== -->
-  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#E5E7EB] shadow-sm">
+  <nav class="bg-white border-b border-[#E5E7EB] sticky top-0 z-[100] shadow-sm">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="flex items-center justify-between h-[72px]">
+      <div class="flex items-center justify-between h-[68px]">
         <a href="index.html"><img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="h-10 w-auto"></a>
         <div class="hidden lg:flex items-center gap-7">
           <a href="about.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">About</a>
           <div class="relative nav-parent">
-            <a href="products.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link inline-flex items-center gap-1">Products<svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></a>
-            <div class="nav-dropdown"><div class="nav-dropdown-inner"><a href="pa.html">Phthalic Anhydride</a><a href="ma.html">Maleic Anhydride</a><a href="ba.html">Benzoic Acid</a><a href="dep.html">Diethyl Phthalate</a></div></div>
+            <a href="products.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link inline-flex items-center gap-1">Products <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></a>
+            <div class="nav-dropdown"><div class="nav-dropdown-inner">
+              <a href="pa.html">Phthalic Anhydride</a><a href="ma.html">Maleic Anhydride</a>
+              <a href="ba.html">Benzoic Acid</a><a href="dep.html">Diethyl Phthalate</a>
+            </div></div>
           </div>
           <a href="manufacturing.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Manufacturing</a>
           <a href="applications.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Applications</a>
           <a href="sustainability.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Sustainability</a>
-          <a href="investors.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] nav-link nav-link--active">Investors</a>
+          <div class="relative nav-parent">
+            <a href="investors.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] nav-link nav-link--active inline-flex items-center gap-1">Investors <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></a>
+            <div class="nav-dropdown"><div class="nav-dropdown-inner">
+              <a href="investors.html">Investor Relations</a>
+              <a href="investor-library.html">Financial Reports</a>
+              <a href="governance.html">Corporate Governance</a>
+              <a href="filings.html">Filings &amp; Announcements</a>
+            </div></div>
+          </div>
           <a href="careers.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">Careers</a>
-          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-2.5 rounded-md hover:bg-[#005E4D] border-2 border-[#007C66]">Contact</a>
+          <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-2.5 rounded-md hover:bg-[#005E4D] transition-all">Contact</a>
         </div>
-        <button id="menu-toggle" class="lg:hidden p-2 text-[#374151]" aria-label="Toggle navigation menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        <button id="menu-toggle" class="lg:hidden p-2 text-[#374151]">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
     </div>
     <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-[#E5E7EB]">
       <div class="px-6 py-5 flex flex-col gap-4">
         <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">About</a>
         <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
-        <div class="pl-4 flex flex-col gap-3"><a href="pa.html" class="font-[Inter] text-sm text-[#475569]">Phthalic Anhydride</a><a href="ma.html" class="font-[Inter] text-sm text-[#475569]">Maleic Anhydride</a><a href="ba.html" class="font-[Inter] text-sm text-[#475569]">Benzoic Acid</a><a href="dep.html" class="font-[Inter] text-sm text-[#475569]">Diethyl Phthalate</a></div>
+        <div class="pl-4 flex flex-col gap-3">
+          <a href="pa.html" class="font-[Inter] text-sm text-[#475569]">Phthalic Anhydride</a>
+          <a href="ma.html" class="font-[Inter] text-sm text-[#475569]">Maleic Anhydride</a>
+          <a href="ba.html" class="font-[Inter] text-sm text-[#475569]">Benzoic Acid</a>
+          <a href="dep.html" class="font-[Inter] text-sm text-[#475569]">Diethyl Phthalate</a>
+        </div>
         <a href="manufacturing.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Manufacturing</a>
         <a href="applications.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Applications</a>
         <a href="sustainability.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Sustainability</a>
-        <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66]">Investors</a>
+        <a href="investors.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Investors</a>
+        <div class="pl-4 flex flex-col gap-3">
+          <a href="investor-library.html" class="font-[Inter] text-sm text-[#475569]">Financial Reports</a>
+          <a href="governance.html" class="font-[Inter] text-sm text-[#475569]">Corporate Governance</a>
+          <a href="filings.html" class="font-[Inter] text-sm text-[#475569]">Filings &amp; Announcements</a>
+        </div>
         <a href="careers.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Careers</a>
         <a href="contact.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] px-4 py-2.5 rounded-md text-center mt-2">Contact</a>
       </div>
     </div>
   </nav>
   <div id="menu-backdrop" class="fixed inset-0 bg-black/30 z-[90] hidden"></div>
-  <div class="h-[72px]"></div>
 
-  <!-- ===== SECTION 1: HERO ===== -->
-  <section
-    class="relative min-h-[480px] md:min-h-[540px] flex flex-col justify-center"
-    style="background: url('investors-hero.webp') center center / cover no-repeat;"
-    aria-label="Investor Document Library Hero"
-  >
-    <!-- Dark overlay -->
-    <div class="absolute inset-0" style="background: rgba(15,23,42,0.70);"></div>
-
-    <div class="relative z-10 max-w-[1280px] mx-auto px-6 py-16 md:py-20 w-full">
-      <!-- Breadcrumb -->
-      <nav aria-label="Breadcrumb" class="mb-6">
-        <ol class="flex items-center gap-2 text-[13px] font-[Inter]">
-          <li><a href="index.html" class="text-white/60 hover:text-white transition-colors">Home</a></li>
-          <li class="text-white/40">/</li>
-          <li><a href="investors.html" class="text-white/60 hover:text-white transition-colors">Investor Relations</a></li>
-          <li class="text-white/40">/</li>
-          <li class="text-white/90">Document Library</li>
-        </ol>
-      </nav>
-
-      <!-- Eyebrow -->
-      <div class="reveal">
-        <span class="inline-block font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] bg-[#007C66]/15 border border-[#007C66]/30 px-3 py-1.5 rounded-full mb-5">
-          Investor Library
-        </span>
-      </div>
-
-      <!-- H1 -->
-      <h1 class="reveal font-[Montserrat] font-extrabold text-4xl md:text-5xl lg:text-[52px] text-white leading-[1.1] max-w-3xl mb-5" style="transition-delay:0.1s;">
-        Investor Documents &amp; Reports
-      </h1>
-
-      <!-- Subtitle -->
-      <p class="reveal font-[Inter] text-[16px] md:text-[18px] text-white/70 max-w-2xl leading-relaxed" style="transition-delay:0.2s;">
-        Access annual reports, governance documents, quarterly updates, and regulatory filings.
-      </p>
+  <section class="relative flex flex-col justify-center min-h-[360px]" style="background: url('investors-hero.webp') center/cover no-repeat;">
+    <div class="absolute inset-0" style="background: rgba(15,23,42,0.72);"></div>
+    <div class="relative z-10 max-w-[1280px] mx-auto px-6 py-16 w-full">
+      <nav aria-label="Breadcrumb" class="mb-5"><ol class="flex items-center gap-2 text-[13px]">
+        <li><a href="index.html" class="text-white/60 hover:text-white">Home</a></li>
+        <li class="text-white/40">/</li><li><a href="investors.html" class="text-white/60 hover:text-white">Investors</a></li>
+        <li class="text-white/40">/</li><li class="text-white/90">Financial Reports</li>
+      </ol></nav>
+      <span class="inline-block font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] bg-[#007C66]/15 border border-[#007C66]/30 px-3 py-1.5 rounded-full mb-4">Investor Relations</span>
+      <h1 class="font-[Montserrat] font-extrabold text-4xl md:text-5xl text-white leading-tight mb-4">Financial Reports</h1>
+      <p class="font-[Inter] text-[17px] text-white/75 max-w-xl">Annual reports, quarterly results, and investor presentations.</p>
     </div>
   </section>
 
-  <!-- ===== SECTION 3: DOCUMENT ACCESS ===== -->
-  <section class="bg-white py-16 md:py-20" aria-label="Document Access">
+  <div class="bg-white border-b border-[#E5E7EB] sticky top-[68px] z-50">
     <div class="max-w-[1280px] mx-auto px-6">
-
-      <div class="reveal max-w-2xl mx-auto text-center mb-14">
-        <div class="w-16 h-16 rounded-full bg-[#E6F5F2] flex items-center justify-center mx-auto mb-6">
-          <svg class="w-8 h-8 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-          </svg>
-        </div>
-        <h2 class="font-[Montserrat] font-extrabold text-2xl md:text-3xl text-[#0F172A] mb-4">Investor Documents</h2>
-        <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed mb-2">
-          Annual reports, quarterly results, shareholding patterns, and regulatory filings are available on the BSE and NSE portals.
-        </p>
-        <p class="font-[Inter] text-[14px] text-[#94A3B8] leading-relaxed">
-          For direct document requests or analyst queries, please contact our investor relations team.
-        </p>
+      <div class="flex items-center gap-2 py-3 overflow-x-auto" id="year-tabs" style="-ms-overflow-style:none;scrollbar-width:none;">
+        <button class="year-tab bg-[#007C66] text-white border-[#007C66] font-[Montserrat] font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-full border transition-colors whitespace-nowrap" data-year="fy2526">FY 2025-26</button> <button class="year-tab bg-white text-[#374151] hover:bg-[#F0FDF9] hover:text-[#007C66] border-[#E5E7EB] font-[Montserrat] font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-full border transition-colors whitespace-nowrap" data-year="fy2425">FY 2024-25</button> <button class="year-tab bg-white text-[#374151] hover:bg-[#F0FDF9] hover:text-[#007C66] border-[#E5E7EB] font-[Montserrat] font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-full border transition-colors whitespace-nowrap" data-year="fy2324">FY 2023-24</button> <button class="year-tab bg-white text-[#374151] hover:bg-[#F0FDF9] hover:text-[#007C66] border-[#E5E7EB] font-[Montserrat] font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-full border transition-colors whitespace-nowrap" data-year="fy2223">FY 2022-23</button> <button class="year-tab bg-white text-[#374151] hover:bg-[#F0FDF9] hover:text-[#007C66] border-[#E5E7EB] font-[Montserrat] font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-full border transition-colors whitespace-nowrap" data-year="fy2122">FY 2021-22</button> <button class="year-tab bg-white text-[#374151] hover:bg-[#F0FDF9] hover:text-[#007C66] border-[#E5E7EB] font-[Montserrat] font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-full border transition-colors whitespace-nowrap" data-year="fy2021">FY 2020-21</button>
       </div>
-
-      <div class="stagger grid grid-cols-1 md:grid-cols-3 gap-5 max-w-3xl mx-auto mb-12">
-        <!-- NSE -->
-        <a href="https://www.nseindia.com/get-quotes/equity?symbol=IGPL" target="_blank" rel="noopener noreferrer"
-           class="group flex flex-col items-center text-center bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl px-6 py-7 hover:border-[#007C66]/40 hover:bg-[#F0FDF9] transition-all">
-          <div class="w-11 h-11 rounded-full bg-[#E6F5F2] flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
-          </div>
-          <div class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">NSE: IGPL</div>
-          <div class="font-[Inter] text-[13px] text-[#475569] mb-3">National Stock Exchange</div>
-          <span class="inline-flex items-center gap-1 font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] group-hover:text-[#005E4D]">
-            View on NSE
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-          </span>
-        </a>
-
-        <!-- BSE -->
-        <a href="https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/" target="_blank" rel="noopener noreferrer"
-           class="group flex flex-col items-center text-center bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl px-6 py-7 hover:border-[#007C66]/40 hover:bg-[#F0FDF9] transition-all">
-          <div class="w-11 h-11 rounded-full bg-[#E6F5F2] flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
-          </div>
-          <div class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">BSE: 500199</div>
-          <div class="font-[Inter] text-[13px] text-[#475569] mb-3">Bombay Stock Exchange</div>
-          <span class="inline-flex items-center gap-1 font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] group-hover:text-[#005E4D]">
-            View on BSE
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-          </span>
-        </a>
-
-        <!-- Contact -->
-        <a href="contact.html"
-           class="group flex flex-col items-center text-center bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl px-6 py-7 hover:border-[#007C66]/40 hover:bg-[#F0FDF9] transition-all">
-          <div class="w-11 h-11 rounded-full bg-[#E6F5F2] flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          </div>
-          <div class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Investor Relations</div>
-          <div class="font-[Inter] text-[13px] text-[#475569] mb-3">igpl@igpetro.com</div>
-          <span class="inline-flex items-center gap-1 font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] group-hover:text-[#005E4D]">
-            Contact Us
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-          </span>
-        </a>
-      </div>
-
     </div>
-  </section>
+  </div>
 
-  <!-- ===== SECTION 3b: DYNAMIC DOCUMENT LIBRARY ===== -->
-  <section class="bg-[#F8FAFC] border-t border-[#E5E7EB] py-14 md:py-18" aria-label="Document Downloads">
+  <section class="bg-[#F8FAFC] py-12 min-h-[400px]">
     <div class="max-w-[1280px] mx-auto px-6">
-
-      <!-- Section heading + filter pills -->
-      <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-        <div>
-          <h2 class="font-[Montserrat] font-extrabold text-2xl md:text-3xl text-[#0F172A] mb-2">Download Documents</h2>
-          <p class="font-[Inter] text-[15px] text-[#475569]">Investor reports, governance documents, and product data sheets available for direct download.</p>
-        </div>
-        <div class="flex flex-wrap gap-2" id="lib-filters" role="tablist">
-          <button class="filter-pill filter-pill--active" data-cat="all" role="tab" aria-selected="true">All</button>
-          <button class="filter-pill" data-cat="annual-reports" role="tab">Annual Reports</button>
-          <button class="filter-pill" data-cat="earnings" role="tab">Results</button>
-          <button class="filter-pill" data-cat="presentations" role="tab">Presentations</button>
-          <button class="filter-pill" data-cat="governance" role="tab">Governance</button>
-          <button class="filter-pill" data-cat="products" role="tab">Product Docs</button>
-        </div>
-      </div>
-
-      <!-- Loading skeleton -->
       <div id="lib-loading" class="flex items-center justify-center py-16 gap-3 text-[#94A3B8]">
         <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
         <span class="font-[Inter] text-sm">Loading documents…</span>
       </div>
-
-      <!-- Empty state -->
-      <div id="lib-empty" class="hidden text-center py-16">
-        <p class="font-[Inter] text-[#94A3B8] text-sm">No documents available in this category yet.</p>
-        <p class="font-[Inter] text-[#B0B8C5] text-xs mt-1">Check back soon or contact investor relations.</p>
+      <div id="panels-container" class="hidden">
+      <div class="year-panel" data-year="fy2526">
+        <!-- Annual Report -->
+        <div class="mb-8">
+          <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Annual Report</h3></div>
+          <div class="doc-card card-lift bg-white border border-[#E5E7EB] rounded-xl p-5 flex items-center gap-4" data-path="docs/annual-reports/fy2526.pdf">
+            <div class="w-12 h-12 rounded-xl bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-[Montserrat] font-bold text-base text-[#0F2B4F]">Annual Report FY 2025-26</div>
+              <div class="doc-meta text-sm text-[#94A3B8] mt-1"></div>
+            </div>
+            <div class="doc-action flex-shrink-0"></div>
+          </div>
+        </div>
+        <!-- Quarterly -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Quarterly Results</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q3fy2526.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2025)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q2fy2526.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2025)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q1fy2526.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2025)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Investor Presentations</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q3fy2526-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2025)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q2fy2526-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2025)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q1fy2526-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2025)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <!-- Document grid -->
-      <div id="lib-grid" class="hidden space-y-8"></div>
-
+      <div class="year-panel hidden" data-year="fy2425">
+        <!-- Annual Report -->
+        <div class="mb-8">
+          <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Annual Report</h3></div>
+          <div class="doc-card card-lift bg-white border border-[#E5E7EB] rounded-xl p-5 flex items-center gap-4" data-path="docs/annual-reports/fy2425.pdf">
+            <div class="w-12 h-12 rounded-xl bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-[Montserrat] font-bold text-base text-[#0F2B4F]">Annual Report FY 2024-25</div>
+              <div class="doc-meta text-sm text-[#94A3B8] mt-1"></div>
+            </div>
+            <div class="doc-action flex-shrink-0"></div>
+          </div>
+        </div>
+        <!-- Quarterly -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Quarterly Results</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q4fy2425.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2025)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q3fy2425.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2024)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q2fy2425.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2024)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q1fy2425.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2024)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Investor Presentations</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q4fy2425-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2025)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q3fy2425-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2024)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q2fy2425-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2024)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q1fy2425-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2024)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="year-panel hidden" data-year="fy2324">
+        <!-- Annual Report -->
+        <div class="mb-8">
+          <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Annual Report</h3></div>
+          <div class="doc-card card-lift bg-white border border-[#E5E7EB] rounded-xl p-5 flex items-center gap-4" data-path="docs/annual-reports/fy2324.pdf">
+            <div class="w-12 h-12 rounded-xl bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-[Montserrat] font-bold text-base text-[#0F2B4F]">Annual Report FY 2023-24</div>
+              <div class="doc-meta text-sm text-[#94A3B8] mt-1"></div>
+            </div>
+            <div class="doc-action flex-shrink-0"></div>
+          </div>
+        </div>
+        <!-- Quarterly -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Quarterly Results</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q4fy2324.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2024)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q3fy2324.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2023)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q2fy2324.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2023)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q1fy2324.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2023)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Investor Presentations</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q4fy2324-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2024)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q3fy2324-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2023)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q2fy2324-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2023)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q1fy2324-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2023)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="year-panel hidden" data-year="fy2223">
+        <!-- Annual Report -->
+        <div class="mb-8">
+          <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Annual Report</h3></div>
+          <div class="doc-card card-lift bg-white border border-[#E5E7EB] rounded-xl p-5 flex items-center gap-4" data-path="docs/annual-reports/fy2223.pdf">
+            <div class="w-12 h-12 rounded-xl bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-[Montserrat] font-bold text-base text-[#0F2B4F]">Annual Report FY 2022-23</div>
+              <div class="doc-meta text-sm text-[#94A3B8] mt-1"></div>
+            </div>
+            <div class="doc-action flex-shrink-0"></div>
+          </div>
+        </div>
+        <!-- Quarterly -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Quarterly Results</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q4fy2223.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2023)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q3fy2223.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2022)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q2fy2223.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2022)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q1fy2223.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2022)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Investor Presentations</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q4fy2223-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2023)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q3fy2223-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2022)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q2fy2223-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2022)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q1fy2223-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2022)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="year-panel hidden" data-year="fy2122">
+        <!-- Annual Report -->
+        <div class="mb-8">
+          <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Annual Report</h3></div>
+          <div class="doc-card card-lift bg-white border border-[#E5E7EB] rounded-xl p-5 flex items-center gap-4" data-path="docs/annual-reports/fy2122.pdf">
+            <div class="w-12 h-12 rounded-xl bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-[Montserrat] font-bold text-base text-[#0F2B4F]">Annual Report FY 2021-22</div>
+              <div class="doc-meta text-sm text-[#94A3B8] mt-1"></div>
+            </div>
+            <div class="doc-action flex-shrink-0"></div>
+          </div>
+        </div>
+        <!-- Quarterly -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Quarterly Results</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q4fy2122.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2022)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q3fy2122.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2021)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q2fy2122.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2021)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q1fy2122.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2021)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Investor Presentations</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q4fy2122-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2022)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q3fy2122-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2021)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q2fy2122-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2021)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q1fy2122-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2021)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="year-panel hidden" data-year="fy2021">
+        <!-- Annual Report -->
+        <div class="mb-8">
+          <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Annual Report</h3></div>
+          <div class="doc-card card-lift bg-white border border-[#E5E7EB] rounded-xl p-5 flex items-center gap-4" data-path="docs/annual-reports/fy2021.pdf">
+            <div class="w-12 h-12 rounded-xl bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-[Montserrat] font-bold text-base text-[#0F2B4F]">Annual Report FY 2020-21</div>
+              <div class="doc-meta text-sm text-[#94A3B8] mt-1"></div>
+            </div>
+            <div class="doc-action flex-shrink-0"></div>
+          </div>
+        </div>
+        <!-- Quarterly -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Quarterly Results</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q4fy2021.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2021)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q3fy2021.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2020)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q2fy2021.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2020)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/earnings/q1fy2021.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2020)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-4"><div class="w-1 h-6 bg-[#007C66] rounded-full"></div><h3 class="font-[Montserrat] font-bold text-sm uppercase tracking-wider text-[#0F2B4F]">Investor Presentations</h3></div>
+            <div class="space-y-3">
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q4fy2021-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q4 (Mar 2021)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q3fy2021-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q3 (Dec 2020)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q2fy2021-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q2 (Sep 2020)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            <div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-4 flex items-center gap-3" data-path="docs/investor-presentations/q1fy2021-presentation.pdf">
+              <div class="w-8 h-8 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-[Inter] font-semibold text-sm text-[#0F2B4F]">Q1 (Jun 2020)</div>
+                <div class="doc-meta text-xs text-[#94A3B8] mt-0.5"></div>
+              </div>
+              <div class="doc-action flex-shrink-0"></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
   </section>
 
-  <!-- ===== SECTION 4: CTA BAND ===== -->
-  <section class="bg-[#F8FAFC] border-t border-[#E5E7EB] py-14 md:py-16" aria-label="Contact Investor Relations">
+  <section class="bg-white border-t border-[#E5E7EB] py-14">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="reveal flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <h2 class="font-[Montserrat] font-extrabold text-2xl md:text-[28px] text-[#0F172A] mb-2">Need a specific document?</h2>
-          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed max-w-lg">
-            If you cannot find what you are looking for, our investor relations team can help locate the right document for you.
-          </p>
-        </div>
-        <a href="contact.html?subject=investor" class="shrink-0 inline-flex items-center gap-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-7 py-3.5 rounded-md hover:bg-[#005E4D] transition-colors shadow-md">
-          Contact Investor Relations
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      <div class="stagger grid grid-cols-1 md:grid-cols-3 gap-5 max-w-3xl mx-auto">
+        <a href="https://www.nseindia.com/get-quotes/equity?symbol=IGPL" target="_blank" rel="noopener" class="group flex flex-col items-center text-center bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl px-6 py-7 hover:border-[#007C66]/40 hover:bg-[#F0FDF9] transition-all card-lift">
+          <div class="w-11 h-11 rounded-full bg-[#E6F5F2] flex items-center justify-center mb-4"><svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg></div>
+          <div class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">NSE: IGPL</div>
+          <div class="font-[Inter] text-[13px] text-[#475569] mb-3">National Stock Exchange</div>
+          <span class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66]">View on NSE ↗</span>
+        </a>
+        <a href="https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/" target="_blank" rel="noopener" class="group flex flex-col items-center text-center bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl px-6 py-7 hover:border-[#007C66]/40 hover:bg-[#F0FDF9] transition-all card-lift">
+          <div class="w-11 h-11 rounded-full bg-[#E6F5F2] flex items-center justify-center mb-4"><svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg></div>
+          <div class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">BSE: 500199</div>
+          <div class="font-[Inter] text-[13px] text-[#475569] mb-3">Bombay Stock Exchange</div>
+          <span class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66]">View on BSE ↗</span>
+        </a>
+        <a href="contact.html?subject=investor" class="group flex flex-col items-center text-center bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl px-6 py-7 hover:border-[#007C66]/40 hover:bg-[#F0FDF9] transition-all card-lift">
+          <div class="w-11 h-11 rounded-full bg-[#E6F5F2] flex items-center justify-center mb-4"><svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+          <div class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Investor Relations</div>
+          <div class="font-[Inter] text-[13px] text-[#475569] mb-3">igpl@igpetro.com</div>
+          <span class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66]">Contact Us →</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="bg-[#1E293B] pt-16 pb-8">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
         <div>
           <img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="h-10 w-auto mb-4 brightness-0 invert">
-          <p class="font-[Inter] text-[14px] text-[#94A3B8] leading-relaxed mb-4">India's largest single-site phthalic anhydride producer. Part of India's industrial value chain since 1992.</p>
+          <p class="font-[Inter] text-[14px] text-[#94A3B8] leading-relaxed mb-4">India&#39;s largest single-site phthalic anhydride producer. Part of India&#39;s industrial value chain since 1992.</p>
           <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Taloja MIDC, Raigad District<br>Maharashtra, India</p>
         </div>
         <div>
@@ -351,10 +817,10 @@
           <div class="flex flex-col gap-3">
             <a href="about.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">About</a>
             <a href="manufacturing.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Manufacturing</a>
-            <a href="applications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Applications</a>
             <a href="sustainability.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Sustainability</a>
             <a href="investors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investors</a>
-            <a href="investor-library.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investor Library</a>
+            <a href="governance.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Corporate Governance</a>
+            <a href="filings.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Filings &amp; Announcements</a>
             <a href="csr.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">CSR</a>
             <a href="careers.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Careers</a>
           </div>
@@ -369,10 +835,6 @@
             <div>
               <p class="font-[Inter] text-[12px] text-[#475569] uppercase tracking-wider mb-1">Investor Relations</p>
               <a href="investors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investor Information</a>
-            </div>
-            <div>
-              <p class="font-[Inter] text-[12px] text-[#475569] uppercase tracking-wider mb-1">Careers</p>
-              <a href="careers.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">View Opportunities</a>
             </div>
             <a href="contact.html" class="mt-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-2.5 rounded-md hover:bg-[#005E4D] transition-colors text-center">Contact Us</a>
           </div>
@@ -389,19 +851,15 @@
     </div>
   </footer>
 
-  <!-- ===== INLINE SCRIPTS ===== -->
   <script>
   (function() {
-    'use strict';
-    // Scroll reveal
-    var revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger');
+    var revealEls = document.querySelectorAll('.reveal,.stagger');
     if (revealEls.length) {
       var obs = new IntersectionObserver(function(e) {
         e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); });
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
       revealEls.forEach(function(el) { obs.observe(el); });
     }
-    // Mobile menu
     var toggle = document.getElementById('menu-toggle');
     var menu = document.getElementById('mobile-menu');
     var backdrop = document.getElementById('menu-backdrop');
@@ -411,218 +869,65 @@
         if (backdrop) backdrop.classList.toggle('hidden');
       });
       if (backdrop) backdrop.addEventListener('click', function() {
-        menu.classList.add('hidden');
-        backdrop.classList.add('hidden');
+        menu.classList.add('hidden'); backdrop.classList.add('hidden');
       });
     }
   })();
   </script>
-    <script src="js/igpl.js"></script>
-
-  <!-- Document Library: fetch manifest and render download cards -->
+  <script src="js/igpl.js"></script>
   <script>
   (function() {
     'use strict';
-
-    // Map blob pathnames to human-readable labels and categories
-    var DOC_META = {
-      // Annual Reports
-      'docs/annual-reports/fy2526.pdf': { label: 'Annual Report FY 2025-26', cat: 'annual-reports', icon: 'report' },
-      'docs/annual-reports/fy2425.pdf': { label: 'Annual Report FY 2024-25', cat: 'annual-reports', icon: 'report' },
-      'docs/annual-reports/fy2324.pdf': { label: 'Annual Report FY 2023-24', cat: 'annual-reports', icon: 'report' },
-      'docs/annual-reports/fy2223.pdf': { label: 'Annual Report FY 2022-23', cat: 'annual-reports', icon: 'report' },
-      'docs/annual-reports/fy2122.pdf': { label: 'Annual Report FY 2021-22', cat: 'annual-reports', icon: 'report' },
-      'docs/annual-reports/fy2021.pdf': { label: 'Annual Report FY 2020-21', cat: 'annual-reports', icon: 'report' },
-      // Quarterly Results
-      'docs/earnings/q3fy2526.pdf': { label: 'Q3 FY 2025-26 Financial Results', cat: 'earnings', icon: 'chart' },
-      'docs/earnings/q2fy2526.pdf': { label: 'Q2 FY 2025-26 Financial Results', cat: 'earnings', icon: 'chart' },
-      'docs/earnings/q1fy2526.pdf': { label: 'Q1 FY 2025-26 Financial Results', cat: 'earnings', icon: 'chart' },
-      'docs/earnings/q4fy2425.pdf': { label: 'Q4 FY 2024-25 Financial Results', cat: 'earnings', icon: 'chart' },
-      'docs/earnings/q3fy2425.pdf': { label: 'Q3 FY 2024-25 Financial Results', cat: 'earnings', icon: 'chart' },
-      'docs/earnings/q2fy2425.pdf': { label: 'Q2 FY 2024-25 Financial Results', cat: 'earnings', icon: 'chart' },
-      'docs/earnings/q1fy2425.pdf': { label: 'Q1 FY 2024-25 Financial Results', cat: 'earnings', icon: 'chart' },
-      // Presentations
-      'docs/investor-presentations/q3fy2526-presentation.pdf': { label: 'Q3 FY 2025-26 Investor Presentation', cat: 'presentations', icon: 'slides' },
-      'docs/investor-presentations/q2fy2526-presentation.pdf': { label: 'Q2 FY 2025-26 Investor Presentation', cat: 'presentations', icon: 'slides' },
-      'docs/investor-presentations/q1fy2526-presentation.pdf': { label: 'Q1 FY 2025-26 Investor Presentation', cat: 'presentations', icon: 'slides' },
-      'docs/investor-presentations/q4fy2425-presentation.pdf': { label: 'Q4 FY 2024-25 Investor Presentation', cat: 'presentations', icon: 'slides' },
-      // Shareholding
-      'docs/shareholding/q3fy2526.pdf': { label: 'Shareholding Pattern — Q3 FY 2025-26', cat: 'governance', icon: 'pie' },
-      'docs/shareholding/q2fy2526.pdf': { label: 'Shareholding Pattern — Q2 FY 2025-26', cat: 'governance', icon: 'pie' },
-      'docs/shareholding/q1fy2526.pdf': { label: 'Shareholding Pattern — Q1 FY 2025-26', cat: 'governance', icon: 'pie' },
-      'docs/shareholding/q4fy2425.pdf': { label: 'Shareholding Pattern — Q4 FY 2024-25', cat: 'governance', icon: 'pie' },
-      // Governance
-      'docs/governance/memorandum-articles.pdf': { label: 'Memorandum & Articles of Association', cat: 'governance', icon: 'shield' },
-      'docs/governance/board-committees.pdf': { label: 'Board & Committees', cat: 'governance', icon: 'shield' },
-      'docs/governance/dividend-policy.pdf': { label: 'Dividend Policy', cat: 'governance', icon: 'shield' },
-      'docs/governance/vigil-mechanism.pdf': { label: 'Vigil Mechanism Policy', cat: 'governance', icon: 'shield' },
-      // Investor Info
-      'docs/investor-info/corporate-governance.pdf': { label: 'Corporate Governance Report', cat: 'governance', icon: 'shield' },
-      'docs/investor-info/shareholding-pattern.pdf': { label: 'Shareholding Pattern (Latest)', cat: 'governance', icon: 'pie' },
-      'docs/investor-info/subsidiary-financials.pdf': { label: 'Subsidiary Financials', cat: 'earnings', icon: 'chart' },
-      'docs/investor-info/related-party-transactions.pdf': { label: 'Related Party Transactions', cat: 'governance', icon: 'shield' },
-      // Policies
-      'docs/policies/csr-policy.pdf': { label: 'CSR Policy', cat: 'governance', icon: 'doc' },
-      'docs/policies/remuneration-policy.pdf': { label: 'Remuneration Policy', cat: 'governance', icon: 'doc' },
-      'docs/policies/risk-management.pdf': { label: 'Risk Management Policy', cat: 'governance', icon: 'doc' },
-      'docs/policies/sustainability-report.pdf': { label: 'Sustainability / BRSR Report', cat: 'governance', icon: 'doc' },
-      // Product TDS
-      'docs/products/tds-pa.pdf': { label: 'Phthalic Anhydride (PA) — Technical Data Sheet', cat: 'products', icon: 'flask' },
-      'docs/products/tds-ma.pdf': { label: 'Maleic Anhydride (MA) — Technical Data Sheet', cat: 'products', icon: 'flask' },
-      'docs/products/tds-ba.pdf': { label: 'Benzoic Acid (BA) — Technical Data Sheet', cat: 'products', icon: 'flask' },
-      'docs/products/tds-dep.pdf': { label: 'Diethyl Phthalate (DEP) — Technical Data Sheet', cat: 'products', icon: 'flask' },
-      // Product SDS
-      'docs/products/sds-pa.pdf': { label: 'Phthalic Anhydride (PA) — Safety Data Sheet', cat: 'products', icon: 'warning' },
-      'docs/products/sds-ma.pdf': { label: 'Maleic Anhydride (MA) — Safety Data Sheet', cat: 'products', icon: 'warning' },
-      'docs/products/sds-ba.pdf': { label: 'Benzoic Acid (BA) — Safety Data Sheet', cat: 'products', icon: 'warning' },
-      'docs/products/sds-dep.pdf': { label: 'Diethyl Phthalate (DEP) — Safety Data Sheet', cat: 'products', icon: 'warning' },
-    };
-
-    var SECTION_LABELS = {
-      'annual-reports': 'Annual Reports',
-      'earnings': 'Financial Results & Presentations',
-      'presentations': 'Investor Presentations',
-      'governance': 'Governance & Policies',
-      'products': 'Product Documents',
-    };
-
-    // Merge earnings + presentations into same section for display
-    var DISPLAY_ORDER = ['annual-reports', 'earnings', 'presentations', 'governance', 'products'];
-
-    var currentCat = 'all';
-    var allBlobs = [];
-
-    function iconSvg(type) {
-      var icons = {
-        report: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>',
-        chart: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
-        slides: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
-        pie: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21.21 15.89A10 10 0 118 2.83"/><path d="M22 12A10 10 0 0012 2v10z"/></svg>',
-        shield: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-        doc: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>',
-        flask: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 3h6m-6 0v6l-4 10h14L11 9V3"/></svg>',
-        warning: '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
-      };
-      return icons[type] || icons['doc'];
+    var blobMap = {};
+    function dlBtn(url) {
+      return '<a href="'+url+'" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-[#007C66] text-white font-[Montserrat] font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded hover:bg-[#005E4D] transition-colors whitespace-nowrap"><svg class=\"w-3 h-3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewBox=\"0 0 24 24\"><path d=\"M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17\"/></svg>Download</a>';
     }
-
-    function formatDate(iso) {
-      if (!iso) return '';
-      try {
-        return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-      } catch(e) { return ''; }
+    function naSpan() { return '<span class=\"text-xs text-[#9CA3AF]\">Not yet available</span>'; }
+    function renderCards() {
+      document.querySelectorAll('.doc-card').forEach(function(card) {
+        var path = card.dataset.path;
+        var blob = blobMap[path];
+        var actionEl = card.querySelector('.doc-action');
+        var metaEl = card.querySelector('.doc-meta');
+        if (blob) {
+          if (actionEl) actionEl.innerHTML = dlBtn(blob.url);
+          if (metaEl) {
+            var kb = blob.size ? (blob.size/1024).toFixed(0)+' KB' : '';
+            var d = blob.uploadedAt ? new Date(blob.uploadedAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '';
+            metaEl.textContent = [kb,d].filter(Boolean).join(' · ');
+          }
+        } else {
+          if (actionEl) actionEl.innerHTML = naSpan();
+        }
+      });
     }
-
-    function renderLibrary() {
-      var grid = document.getElementById('lib-grid');
-      var empty = document.getElementById('lib-empty');
-      if (!grid) return;
-
-      // Filter blobs
-      var filtered = allBlobs.filter(function(b) {
-        var meta = DOC_META[b.pathname];
-        if (!meta) return false;
-        if (currentCat === 'all') return true;
-        return meta.cat === currentCat;
-      });
-
-      if (filtered.length === 0) {
-        grid.classList.add('hidden');
-        empty.classList.remove('hidden');
-        return;
-      }
-      empty.classList.add('hidden');
-      grid.innerHTML = '';
-
-      // Group by section
-      var groups = {};
-      filtered.forEach(function(b) {
-        var meta = DOC_META[b.pathname];
-        if (!meta) return;
-        var cat = meta.cat;
-        if (!groups[cat]) groups[cat] = [];
-        groups[cat].push({ blob: b, meta: meta });
-      });
-
-      DISPLAY_ORDER.forEach(function(cat) {
-        if (!groups[cat] || groups[cat].length === 0) return;
-
-        var section = document.createElement('div');
-        var sectionLabel = SECTION_LABELS[cat] || cat;
-        section.innerHTML = '<h3 class="font-[Montserrat] font-bold text-[13px] uppercase tracking-[0.08em] text-[#007C66] mb-4 flex items-center gap-2">' +
-          '<span class="inline-block w-5 h-px bg-[#007C66]"></span>' + sectionLabel + '</h3>';
-
-        var list = document.createElement('div');
-        list.className = 'divide-y divide-gray-100 bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm';
-
-        groups[cat].forEach(function(item) {
-          var b = item.blob;
-          var meta = item.meta;
-          var kb = b.size ? (b.size / 1024).toFixed(0) + ' KB' : '';
-          var date = formatDate(b.uploadedAt);
-
-          var row = document.createElement('a');
-          row.href = b.url;
-          row.target = '_blank';
-          row.rel = 'noopener noreferrer';
-          row.className = 'group flex items-center justify-between gap-4 px-5 py-4 hover:bg-[#F0FDF9] transition-colors';
-          row.innerHTML =
-            '<div class="flex items-center gap-4 min-w-0">' +
-              '<div class="w-9 h-9 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">' +
-                iconSvg(meta.icon) +
-              '</div>' +
-              '<div class="min-w-0">' +
-                '<div class="font-[Inter] font-semibold text-[14px] text-[#0F172A] group-hover:text-[#007C66] transition-colors truncate">' + meta.label + '</div>' +
-                '<div class="font-[Inter] text-[12px] text-[#94A3B8] mt-0.5">' + (kb ? kb + (date ? ' · ' + date : '') : (date || '')) + '</div>' +
-              '</div>' +
-            '</div>' +
-            '<div class="flex-shrink-0 flex items-center gap-1.5 font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] group-hover:text-[#005E4D] transition-colors">' +
-              '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>' +
-              'Download' +
-            '</div>';
-          list.appendChild(row);
-        });
-
-        section.appendChild(list);
-        grid.appendChild(section);
-      });
-
-      grid.classList.remove('hidden');
-    }
-
-    function initFilters() {
-      var pills = document.querySelectorAll('#lib-filters .filter-pill');
-      pills.forEach(function(pill) {
-        pill.addEventListener('click', function() {
-          pills.forEach(function(p) {
-            p.classList.remove('filter-pill--active');
-            p.setAttribute('aria-selected', 'false');
+    function initTabs() {
+      var tabs = document.querySelectorAll('.year-tab');
+      var panels = document.querySelectorAll('.year-panel');
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          tabs.forEach(function(t) {
+            t.classList.remove('bg-[#007C66]','text-white','border-[#007C66]');
+            t.classList.add('bg-white','text-[#374151]','border-[#E5E7EB]');
           });
-          pill.classList.add('filter-pill--active');
-          pill.setAttribute('aria-selected', 'true');
-          currentCat = pill.dataset.cat;
-          renderLibrary();
+          tab.classList.add('bg-[#007C66]','text-white','border-[#007C66]');
+          tab.classList.remove('bg-white','text-[#374151]','border-[#E5E7EB]');
+          var y = tab.dataset.year;
+          panels.forEach(function(p) { p.classList.toggle('hidden', p.dataset.year !== y); });
         });
       });
     }
-
-    function init() {
-      initFilters();
-      fetch('/api/manifest')
-        .then(function(r) { return r.ok ? r.json() : Promise.reject('HTTP ' + r.status); })
-        .then(function(data) {
-          allBlobs = (data.blobs || []).filter(function(b) { return DOC_META[b.pathname]; });
-          document.getElementById('lib-loading').style.display = 'none';
-          renderLibrary();
-        })
-        .catch(function(e) {
-          console.warn('Library manifest error:', e);
-          document.getElementById('lib-loading').style.display = 'none';
-          document.getElementById('lib-empty').classList.remove('hidden');
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
+    fetch('/api/manifest').then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function(data) {
+        (data.blobs||[]).forEach(function(b) { blobMap[b.pathname] = b; });
+        document.getElementById('lib-loading').style.display='none';
+        document.getElementById('panels-container').classList.remove('hidden');
+        renderCards(); initTabs();
+      }).catch(function() {
+        document.getElementById('lib-loading').style.display='none';
+        document.getElementById('panels-container').classList.remove('hidden');
+        initTabs();
+      });
   })();
   </script>
 </body>
