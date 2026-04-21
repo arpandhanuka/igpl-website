@@ -159,6 +159,15 @@
       </div>
       <div class="divide-y divide-[#E5E7EB]" id="slots-agm"></div>
     </div>
+
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Annual Return</h2>
+        <span id="sec-annual-return" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-annual-return"></div>
+    </div>
   </div>
 
   <!-- ═══ TAB: FILINGS ═════════════════════════════════════════════════════════ -->
@@ -226,7 +235,27 @@
       </div>
     </div>
 
-    <!-- Subsidiaries -->
+    <!-- Shareholding Pattern -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Shareholding Pattern</h2>
+        <span id="sec-shareholding" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-shareholding"></div>
+    </div>
+
+    <!-- Secretarial Compliance Report -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Secretarial Compliance Report</h2>
+        <span id="sec-secretarial" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-secretarial"></div>
+    </div>
+
+    <!-- Subsidiary Financial Statements -->
     <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
       <div class="section-hdr px-5 py-3 flex items-center gap-2">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -291,12 +320,34 @@ var SECTIONS = {
     var yLabel = YEAR_LABELS[y]||y;
     return {dest:'docs/governance/agm-outcome-'+y+'.pdf',label:'AGM Outcome — '+yLabel};
   }),
+  'annual-return': ['fy2425','fy2324','fy2223','fy2122','fy2021'].map(function(y){
+    var yLabel = YEAR_LABELS[y]||y;
+    return {dest:'docs/governance/annual-return-'+y+'.pdf',label:yLabel};
+  }),
+  shareholding: [
+    {dest:'docs/shareholding/q3fy2526.pdf',label:'Q3 (Dec 2025) — FY 2025-26'},
+    {dest:'docs/shareholding/q2fy2526.pdf',label:'Q2 (Sep 2025) — FY 2025-26'},
+    {dest:'docs/shareholding/q1fy2526.pdf',label:'Q1 (Jun 2025) — FY 2025-26'},
+    {dest:'docs/shareholding/q4fy2425.pdf',label:'Q4 (Mar 2025) — FY 2024-25'},
+    {dest:'docs/shareholding/q3fy2425.pdf',label:'Q3 (Dec 2024) — FY 2024-25'},
+    {dest:'docs/shareholding/q2fy2425.pdf',label:'Q2 (Sep 2024) — FY 2024-25'},
+    {dest:'docs/shareholding/q1fy2425.pdf',label:'Q1 (Jun 2024) — FY 2024-25'},
+  ],
+  secretarial: [
+    {dest:'docs/filings/secretarial-compliance-fy2425.pdf',label:'FY 2024-25'},
+    {dest:'docs/filings/secretarial-compliance-fy2324.pdf',label:'FY 2023-24'},
+    {dest:'docs/filings/secretarial-compliance-fy2223.pdf',label:'FY 2022-23'},
+    {dest:'docs/filings/secretarial-compliance-fy2122.pdf',label:'FY 2021-22'},
+    {dest:'docs/filings/secretarial-compliance-fy2021.pdf',label:'FY 2020-21'},
+  ],
   subsidiaries: [
+    {dest:'docs/subsidiaries/igpl-international-fy2526.pdf',label:'IGPL International Ltd. — FY 2025-26'},
     {dest:'docs/subsidiaries/igpl-international-fy2425.pdf',label:'IGPL International Ltd. — FY 2024-25'},
     {dest:'docs/subsidiaries/igpl-international-fy2324.pdf',label:'IGPL International Ltd. — FY 2023-24'},
     {dest:'docs/subsidiaries/igpl-international-fy2223.pdf',label:'IGPL International Ltd. — FY 2022-23'},
     {dest:'docs/subsidiaries/igpl-international-fy2122.pdf',label:'IGPL International Ltd. — FY 2021-22'},
     {dest:'docs/subsidiaries/igpl-international-fy2021.pdf',label:'IGPL International Ltd. — FY 2020-21'},
+    {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2526.pdf',label:'IGPL Charitable Foundation — FY 2025-26'},
     {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2425.pdf',label:'IGPL Charitable Foundation — FY 2024-25'},
     {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2324.pdf',label:'IGPL Charitable Foundation — FY 2023-24'},
     {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2223.pdf',label:'IGPL Charitable Foundation — FY 2022-23'},
@@ -355,6 +406,9 @@ function buildAll() {
   buildSimple('board', SECTIONS.board);
   buildSimple('policies', SECTIONS.policies);
   buildSimple('agm', SECTIONS.agm);
+  buildSimple('annual-return', SECTIONS['annual-return']);
+  buildSimple('shareholding', SECTIONS.shareholding);
+  buildSimple('secretarial', SECTIONS.secretarial);
   buildSimple('subsidiaries', SECTIONS.subsidiaries);
   buildSimple('forms', SECTIONS.forms);
 }

@@ -162,6 +162,15 @@
           <div id="list-agm" class="bg-white border border-[#E5E7EB] rounded-xl overflow-hidden divide-y divide-[#F1F5F9]"></div>
         </div>
 
+        <!-- Section D: Annual Return -->
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-1 h-8 bg-[#007C66] rounded-full mr-3"></div>
+            <h2 class="font-[Montserrat] font-extrabold text-2xl md:text-3xl text-[#0F2B4F]">Annual Return</h2>
+          </div>
+          <div id="list-annual-return" class="bg-white border border-[#E5E7EB] rounded-xl overflow-hidden divide-y divide-[#F1F5F9]"></div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -298,6 +307,14 @@
       { label: 'FY 2019-20', path: 'docs/governance/agm-outcome-fy2020.pdf' },
     ];
 
+    var ANNUAL_RETURN_DOCS = [
+      { label: 'FY 2024-25', path: 'docs/governance/annual-return-fy2425.pdf' },
+      { label: 'FY 2023-24', path: 'docs/governance/annual-return-fy2324.pdf' },
+      { label: 'FY 2022-23', path: 'docs/governance/annual-return-fy2223.pdf' },
+      { label: 'FY 2021-22', path: 'docs/governance/annual-return-fy2122.pdf' },
+      { label: 'FY 2020-21', path: 'docs/governance/annual-return-fy2021.pdf' },
+    ];
+
     function pdfIcon() {
       return '<svg class="w-6 h-6 text-[#007C66] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>';
     }
@@ -371,6 +388,10 @@
 
       agmList.innerHTML = '';
       AGM_DOCS.forEach(function(d) { agmList.appendChild(buildAgmRow(d)); });
+
+      var annualReturnList = document.getElementById('list-annual-return');
+      annualReturnList.innerHTML = '';
+      ANNUAL_RETURN_DOCS.forEach(function(d) { annualReturnList.appendChild(buildAgmRow(d)); });
 
       document.getElementById('gov-loading').style.display = 'none';
       document.getElementById('gov-content').classList.remove('hidden');
