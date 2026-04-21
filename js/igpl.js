@@ -89,17 +89,92 @@
     const backdrop = document.getElementById('menu-backdrop');
     if (!toggle || !menu) return;
 
+    function openMenu() {
+      menu.classList.remove('hidden');
+      if (backdrop) backdrop.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      menu.classList.add('hidden');
+      if (backdrop) backdrop.classList.add('hidden');
+      document.body.style.overflow = '';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
     toggle.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      if (backdrop) backdrop.classList.toggle('hidden');
+      if (menu.classList.contains('hidden')) openMenu();
+      else closeMenu();
     });
 
-    if (backdrop) {
-      backdrop.addEventListener('click', () => {
-        menu.classList.add('hidden');
-        backdrop.classList.add('hidden');
+    if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+    // Close menu when any nav link (that isn't an accordion trigger) is clicked
+    menu.querySelectorAll('a[href]').forEach(a => {
+      a.addEventListener('click', () => closeMenu());
+    });
+
+    // Close with Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) closeMenu();
+    });
+
+    // Progressive-enhance: collapse Products / Investors sub-items into accordions
+    initMobileAccordions(menu);
+  }
+
+  // ---- Mobile Accordion Enhancement ----
+  // Finds Products / Investors parent links in the mobile menu and wraps the
+  // immediately-following sub-item list into a collapsible panel with a chevron.
+  function initMobileAccordions(menu) {
+    const parents = [
+      { href: 'products.html', label: 'Products' },
+      { href: 'investors.html', label: 'Investors' }
+    ];
+
+    parents.forEach(({ href, label }) => {
+      // Find the parent link inside the mobile menu
+      const parentLink = menu.querySelector('a[href="' + href + '"]');
+      if (!parentLink) return;
+
+      // The sibling sub-list uses pl-4 (padding-left-4) on a flex-col wrapper
+      const subList = parentLink.nextElementSibling;
+      if (!subList || !subList.classList.contains('pl-4')) return;
+
+      // Build the wrapper: a row with parent label + chevron toggle
+      const wrapper = document.createElement('div');
+      wrapper.className = 'mobile-accordion-wrapper';
+
+      const triggerRow = document.createElement('div');
+      triggerRow.className = 'flex items-center justify-between';
+
+      // Move parentLink into triggerRow (it keeps its own click-to-navigate)
+      parentLink.parentNode.insertBefore(wrapper, parentLink);
+      triggerRow.appendChild(parentLink);
+
+      // Create the chevron button
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('data-mobile-accordion-trigger', '');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Toggle ' + label + ' sub-menu');
+      btn.className = 'p-2 -mr-2 text-[#374151]';
+      btn.innerHTML = '<svg class="chevron w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>';
+      triggerRow.appendChild(btn);
+
+      wrapper.appendChild(triggerRow);
+
+      // Move subList into wrapper, add the accordion data-attr + collapsed class
+      subList.setAttribute('data-mobile-accordion', '');
+      wrapper.appendChild(subList);
+
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = subList.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
-    }
+    });
   }
 
   // ---- Value Chain Interactivity ----

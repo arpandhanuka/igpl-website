@@ -929,6 +929,41 @@ img {
   font-variant-numeric: tabular-nums;
 }
 
+/* ---- Mobile menu overlay (below 1280px when hamburger active) ---- */
+/* Turn the mobile menu into a full-viewport overlay when open so hero content
+   behind it cannot bleed through at the bottom. */
+@media (max-width: 1279px) {
+  #mobile-menu:not(.hidden) {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    overflow-y: auto;
+    background: #ffffff;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+    border-top: 1px solid #E5E7EB;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mobile accordion animations */
+  [data-mobile-accordion] {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  [data-mobile-accordion].is-open {
+    max-height: 600px;
+  }
+  [data-mobile-accordion-trigger] .chevron {
+    transition: transform 0.25s ease;
+  }
+  [data-mobile-accordion-trigger][aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+  }
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 1024px) {
   :root {
