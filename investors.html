@@ -194,7 +194,7 @@
             <span data-counter data-target="30" data-suffix="+" id="counter-3">0+</span>
           </div>
           <div class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.1em] text-[#007C66] mt-2 mb-0.5">Years</div>
-          <div class="font-[Inter] text-[13px] text-[#64748B]">Listed on NSE &amp; BSE</div>
+          <div class="font-[Inter] text-[13px] text-[#64748B]">In Operation</div>
         </div>
 
         <!-- Divider -->
@@ -485,30 +485,59 @@
             <div class="font-[Inter] text-[13px] text-white/60 italic">Live data: see NSE / BSE links below</div>
           </div>
 
-      <!-- Static stock info — links to live data on NSE/BSE -->
-      <div class="px-6 py-10">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-[#E6F5F2] flex items-center justify-center">
-            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
-            </svg>
-          </div>
-          <div class="flex-1">
-            <p class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1">Live Stock Price</p>
-            <p class="font-[Inter] text-[14px] text-[#475569] mb-4">For real-time pricing and trading data, please visit NSE or BSE directly.</p>
-            <div class="flex flex-wrap gap-3">
-              <a href="https://www.nseindia.com/get-quotes/equity?symbol=IGPL" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-4 py-2.5 rounded-md hover:bg-[#005E4D] transition-colors">
-                View on NSE
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-              </a>
-              <a href="https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-[#007C66] text-[#007C66] font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-4 py-2.5 rounded-md hover:bg-[#007C66] hover:text-white transition-colors">
-                View on BSE
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-              </a>
+      <!-- Live stock ticker — populated by /api/stock -->
+      <div class="px-6 py-8" id="stock-ticker-wrap">
+        <!-- Loading state -->
+        <div id="stock-loading" class="flex items-center gap-3 text-[#94A3B8] py-4">
+          <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
+          <span class="font-[Inter] text-[13px]">Fetching live price…</span>
+        </div>
+        <!-- Live data — hidden until loaded -->
+        <div id="stock-live" class="hidden">
+          <div class="flex flex-wrap items-end gap-6 mb-5">
+            <div>
+              <p class="font-[Inter] text-[12px] text-[#94A3B8] uppercase tracking-wider mb-1">NSE: IGPL &nbsp;·&nbsp; Last Price</p>
+              <div class="flex items-baseline gap-3">
+                <span class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A]">&#8377;<span id="live-ltp">—</span></span>
+                <span id="live-change-badge" class="font-[Montserrat] font-bold text-[13px] px-2 py-0.5 rounded-full">—</span>
+              </div>
+            </div>
+            <div class="flex gap-6 pb-1">
+              <div>
+                <p class="font-[Inter] text-[11px] text-[#94A3B8] uppercase tracking-wider mb-0.5">52w High</p>
+                <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A]">&#8377;<span id="live-high">—</span></p>
+              </div>
+              <div>
+                <p class="font-[Inter] text-[11px] text-[#94A3B8] uppercase tracking-wider mb-0.5">52w Low</p>
+                <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A]">&#8377;<span id="live-low">—</span></p>
+              </div>
+              <div>
+                <p class="font-[Inter] text-[11px] text-[#94A3B8] uppercase tracking-wider mb-0.5">Mkt Cap</p>
+                <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A]">&#8377;<span id="live-mktcap">—</span> Cr</p>
+              </div>
             </div>
           </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://www.nseindia.com/get-quotes/equity?symbol=IGPL" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-4 py-2.5 rounded-md hover:bg-[#005E4D] transition-colors">
+              View on NSE
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+            <a href="https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-[#007C66] text-[#007C66] font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-4 py-2.5 rounded-md hover:bg-[#007C66] hover:text-white transition-colors">
+              View on BSE
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+          </div>
+          <p id="stock-updated-at" class="font-[Inter] text-[11px] text-[#94A3B8] mt-4"></p>
         </div>
-        <p class="font-[Inter] text-[12px] text-[#94A3B8] leading-relaxed mt-5">Stock information shown on this page is for reference only. For live pricing, please visit NSE or BSE. Not investment advice.</p>
+        <!-- Error fallback -->
+        <div id="stock-error" class="hidden">
+          <p class="font-[Inter] text-[13px] text-[#94A3B8] mb-3">Live price temporarily unavailable. For current data visit:</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://www.nseindia.com/get-quotes/equity?symbol=IGPL" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-4 py-2.5 rounded-md hover:bg-[#005E4D] transition-colors">NSE &rarr;</a>
+            <a href="https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-[#007C66] text-[#007C66] font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-4 py-2.5 rounded-md">BSE &rarr;</a>
+          </div>
+        </div>
+        <p class="font-[Inter] text-[12px] text-[#94A3B8] leading-relaxed mt-4">Delayed by up to 5 minutes. For live pricing visit NSE or BSE. Not investment advice.</p>
       </div>
 
         </div>
@@ -546,12 +575,12 @@
               </tr>
               <tr>
                 <td class="px-6 py-3.5 font-[Inter] text-[13px] text-[#64748B] font-medium">Paid-Up Capital</td>
-                <td class="px-6 py-3.5 font-[Inter] text-[14px] text-[#0F172A] font-semibold">~&#8377;31 Cr</td>
+                <td id="fact-paidup" class="px-6 py-3.5 font-[Inter] text-[14px] text-[#0F172A] font-semibold">~&#8377;31 Cr</td>
               </tr>
               <tr>
                 <td class="px-6 py-3.5 font-[Inter] text-[13px] text-[#64748B] font-medium">Market Cap</td>
                 <td class="px-6 py-3.5 font-[Inter] text-[14px] text-[#0F172A] font-semibold">
-                  ~&#8377;1,306 Cr
+                  <span id="fact-mktcap">~&#8377;1,306 Cr</span>
                   <span class="font-[Inter] font-normal text-[11px] text-[#94A3B8] block">As per last available data</span>
                 </td>
               </tr>
@@ -1124,7 +1153,74 @@
     counterObs.observe(metricsSection);
   })();
 
-  // V1: Document library not yet populated — placeholder is shown statically.
+  // ---- Live stock data from /api/stock ----
+  (function() {
+    var REFRESH_MS = 5 * 60 * 1000; // 5 minutes
+
+    function fmt(n) { return Number(n).toLocaleString('en-IN'); }
+
+    function applyStockData(d) {
+      // Ticker UI
+      var liveWrap = document.getElementById('stock-live');
+      var loading  = document.getElementById('stock-loading');
+      var errWrap  = document.getElementById('stock-error');
+      if (loading) loading.classList.add('hidden');
+      if (errWrap) errWrap.classList.add('hidden');
+      if (liveWrap) liveWrap.classList.remove('hidden');
+
+      var ltpEl = document.getElementById('live-ltp');
+      var badgeEl = document.getElementById('live-change-badge');
+      var highEl = document.getElementById('live-high');
+      var lowEl = document.getElementById('live-low');
+      var mcEl = document.getElementById('live-mktcap');
+      var updEl = document.getElementById('stock-updated-at');
+
+      if (ltpEl) ltpEl.textContent = fmt(d.ltp);
+      if (highEl) highEl.textContent = fmt(d.weekHigh);
+      if (lowEl) lowEl.textContent = fmt(d.weekLow);
+      if (mcEl) mcEl.textContent = fmt(d.mktCapCr);
+      if (badgeEl) {
+        var pos = d.pChange >= 0;
+        badgeEl.textContent = (pos ? '+' : '') + d.change.toFixed(2) + ' (' + (pos ? '+' : '') + d.pChange + '%)';
+        badgeEl.style.background = pos ? '#D1FAE5' : '#FEE2E2';
+        badgeEl.style.color = pos ? '#065F46' : '#991B1B';
+      }
+      if (updEl) {
+        var ts = new Date(d.updatedAt);
+        updEl.textContent = 'Data as of ' + ts.toLocaleString('en-IN', {timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',day:'2-digit',month:'short',year:'numeric'}) + ' IST' + (d.stale ? ' (cached)' : '');
+      }
+
+      // Update metrics strip counter target + re-animate
+      var counter5 = document.getElementById('counter-5');
+      if (counter5) {
+        counter5.setAttribute('data-target', String(d.mktCapCr));
+        counter5.textContent = fmt(d.mktCapCr) + ' Cr';
+      }
+
+      // Update facts table
+      var factMc = document.getElementById('fact-mktcap');
+      if (factMc) factMc.firstChild.textContent = '~₹' + fmt(d.mktCapCr) + ' Cr';
+      var factPu = document.getElementById('fact-paidup');
+      if (factPu) factPu.textContent = '~₹' + d.paidUpCapCr + ' Cr';
+    }
+
+    function showError() {
+      var loading = document.getElementById('stock-loading');
+      var errWrap = document.getElementById('stock-error');
+      if (loading) loading.classList.add('hidden');
+      if (errWrap) errWrap.classList.remove('hidden');
+    }
+
+    function fetchStock() {
+      fetch('/api/stock')
+        .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
+        .then(applyStockData)
+        .catch(showError);
+    }
+
+    fetchStock();
+    setInterval(fetchStock, REFRESH_MS);
+  })();
   </script>
   <script src="js/igpl.js"></script>
 </body>
