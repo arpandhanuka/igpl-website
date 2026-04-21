@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="css/design-system.css">
 
   <style>
+    html, body { overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; }
     h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Montserrat', sans-serif; }
 
@@ -209,8 +210,10 @@
        1. HERO
        ============================================================ -->
   <section class="relative w-full h-screen min-h-[600px] max-h-[1000px] overflow-hidden flex items-end">
-    <!-- Hero Video Background -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover object-center" poster="hero-plant.webp">
+    <!-- Hero fallback image (shown when video is blocked, e.g. iOS Low Power Mode) -->
+    <img src="hero-plant.webp" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover object-center">
+    <!-- Hero Video Background (no poster — prevents iOS native play-button overlay) -->
+    <video id="hero-video" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover object-center">
       <source src="hero-plant.webm" type="video/webm">
       <source src="hero-plant.mp4" type="video/mp4">
     </video>
@@ -366,46 +369,50 @@
       </div>
 
       <!-- Value Chain Visual -->
-      <div class="reveal overflow-x-auto pb-4">
-        <div class="flex items-center justify-center gap-0 min-w-[720px] py-8">
+      <div class="reveal">
+        <div class="flex items-stretch w-full py-10 gap-0">
           <!-- O-Xylene -->
-          <div data-vc-node class="bg-[#1E293B] rounded-xl px-6 py-4 text-center min-w-[140px] cursor-default transition-all duration-300">
-            <h4 class="font-[Montserrat] font-bold text-[14px] text-white">O-Xylene</h4>
-            <p class="font-[Inter] text-[11px] text-[#94A3B8] mt-1">Feedstock</p>
+          <div data-vc-node class="bg-[#1E293B] rounded-xl py-10 text-center flex-1 cursor-default transition-all duration-300 flex flex-col items-center justify-center">
+            <h4 class="font-[Montserrat] font-bold text-[20px] text-white">O-Xylene</h4>
+            <p class="font-[Inter] text-[14px] text-[#94A3B8] mt-2">Feedstock</p>
           </div>
 
           <!-- Arrow -->
-          <svg class="w-12 h-5 flex-shrink-0 text-[#007C66] vc-arrow" viewBox="0 0 48 20" fill="none"><path d="M0 10h40M34 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="flex items-center flex-shrink-0 px-2">
+            <svg class="w-10 h-6 text-[#007C66] vc-arrow" viewBox="0 0 48 20" fill="none"><path d="M0 10h40M34 4l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
 
           <!-- IGPL Core -->
-          <div data-vc-node class="bg-[#007C66] rounded-xl px-8 py-5 text-center min-w-[220px] cursor-default transition-all duration-300 shadow-lg relative">
-            <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#005E4D] text-white font-[Montserrat] font-bold text-[9px] uppercase tracking-widest px-3 py-0.5 rounded-full">IGPL</div>
-            <h4 class="font-[Montserrat] font-extrabold text-[15px] text-white mt-1">Phthalic Anhydride</h4>
-            <p class="font-[Inter] text-[12px] text-[#A7F3D0] mt-1">270,000 MTPA</p>
+          <div data-vc-node class="bg-[#007C66] rounded-xl py-10 text-center flex-[1.6] cursor-default transition-all duration-300 shadow-lg relative flex flex-col items-center justify-center">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#005E4D] text-white font-[Montserrat] font-bold text-[10px] uppercase tracking-widest px-4 py-1 rounded-full">IGPL</div>
+            <h4 class="font-[Montserrat] font-extrabold text-[22px] text-white mt-1">Phthalic Anhydride</h4>
+            <p class="font-[Inter] text-[15px] text-[#A7F3D0] mt-2">270,000 MTPA</p>
           </div>
 
           <!-- Arrow -->
-          <svg class="w-12 h-5 flex-shrink-0 text-[#007C66] vc-arrow" viewBox="0 0 48 20" fill="none"><path d="M0 10h40M34 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="flex items-center flex-shrink-0 px-2">
+            <svg class="w-10 h-6 text-[#007C66] vc-arrow" viewBox="0 0 48 20" fill="none"><path d="M0 10h40M34 4l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
 
           <!-- Downstream -->
-          <div class="flex flex-col gap-3">
-            <div data-vc-node class="bg-white border border-[#E5E7EB] rounded-lg px-5 py-3 text-center min-w-[160px] cursor-default transition-all duration-300 hover:border-[#007C66]">
-              <h4 class="font-[Montserrat] font-bold text-[12px] text-[#0F172A]">Plasticisers</h4>
-              <p class="font-[Inter] text-[10px] text-[#94A3B8] mt-0.5">Flexible PVC, cables</p>
+          <div class="flex flex-col gap-3 flex-[1.4]">
+            <div data-vc-node class="bg-white border border-[#E5E7EB] rounded-lg py-5 text-center w-full cursor-default transition-all duration-300 hover:border-[#007C66] flex-1 flex flex-col items-center justify-center">
+              <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A]">Plasticisers</h4>
+              <p class="font-[Inter] text-[12px] text-[#94A3B8] mt-1">Flexible PVC, cables</p>
             </div>
-            <div data-vc-node class="bg-white border border-[#E5E7EB] rounded-lg px-5 py-3 text-center min-w-[160px] cursor-default transition-all duration-300 hover:border-[#007C66]">
-              <h4 class="font-[Montserrat] font-bold text-[12px] text-[#0F172A]">Alkyd Resins</h4>
-              <p class="font-[Inter] text-[10px] text-[#94A3B8] mt-0.5">Paints &amp; coatings</p>
+            <div data-vc-node class="bg-white border border-[#E5E7EB] rounded-lg py-5 text-center w-full cursor-default transition-all duration-300 hover:border-[#007C66] flex-1 flex flex-col items-center justify-center">
+              <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A]">Alkyd Resins</h4>
+              <p class="font-[Inter] text-[12px] text-[#94A3B8] mt-1">Paints &amp; coatings</p>
             </div>
-            <div data-vc-node class="bg-white border border-[#E5E7EB] rounded-lg px-5 py-3 text-center min-w-[160px] cursor-default transition-all duration-300 hover:border-[#007C66]">
-              <h4 class="font-[Montserrat] font-bold text-[12px] text-[#0F172A]">UPR &amp; Composites</h4>
-              <p class="font-[Inter] text-[10px] text-[#94A3B8] mt-0.5">Construction, marine</p>
+            <div data-vc-node class="bg-white border border-[#E5E7EB] rounded-lg py-5 text-center w-full cursor-default transition-all duration-300 hover:border-[#007C66] flex-1 flex flex-col items-center justify-center">
+              <h4 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A]">UPR &amp; Composites</h4>
+              <p class="font-[Inter] text-[12px] text-[#94A3B8] mt-1">Construction, marine</p>
             </div>
           </div>
         </div>
 
         <!-- Byproducts Row -->
-        <div class="flex items-center justify-center gap-3 flex-wrap mt-6 min-w-[720px]">
+        <div class="flex items-center justify-center gap-3 flex-wrap mt-6">
           <span class="font-[Inter] text-[12px] text-[#94A3B8] uppercase tracking-wider mr-2">Byproducts &amp; Downstream:</span>
           <div data-vc-node class="bg-[#F0FDF9] border border-dashed border-[#007C66] rounded-lg px-5 py-2.5 text-center cursor-default transition-all duration-300">
             <h4 class="font-[Montserrat] font-bold text-[12px] text-[#007C66]">Maleic Anhydride</h4>
@@ -497,7 +504,7 @@
         <!-- PA -->
         <a href="pa.html" class="group block bg-white border border-[#E5E7EB] rounded-xl overflow-hidden card-lift">
           <div class="h-44 overflow-hidden">
-            <img src="pa-flakes.webp" alt="White phthalic anhydride flakes produced at IGPL" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+            <img src="generated-product-photos/pa-product-photo.webp" alt="Phthalic Anhydride white flakes in a clean laboratory dish" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
           </div>
           <div class="bg-[#007C66] px-5 py-3">
             <h4 class="font-[Montserrat] font-extrabold text-[15px] text-white uppercase tracking-[0.02em]">Phthalic Anhydride</h4>
@@ -515,7 +522,7 @@
         <!-- MA -->
         <a href="ma.html" class="group block bg-white border border-[#E5E7EB] rounded-xl overflow-hidden card-lift">
           <div class="h-44 overflow-hidden">
-            <img src="pa-production.webp" alt="Maleic anhydride production at IGPL Taloja" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+            <img src="generated-product-photos/ma-product-photo.webp" alt="Maleic Anhydride white flakes in a clear laboratory sample dish" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
           </div>
           <div class="bg-[#007C66] px-5 py-3">
             <h4 class="font-[Montserrat] font-extrabold text-[15px] text-white uppercase tracking-[0.02em]">Maleic Anhydride</h4>
@@ -533,7 +540,7 @@
         <!-- BA -->
         <a href="ba.html" class="group block bg-white border border-[#E5E7EB] rounded-xl overflow-hidden card-lift">
           <div class="h-44 overflow-hidden">
-            <img src="plant-site.jpg" alt="Benzoic acid processing at IGPL" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+            <img src="generated-product-photos/ba-product-photo.webp" alt="Benzoic Acid white crystalline flakes in a clean glass dish" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
           </div>
           <div class="bg-[#007C66] px-5 py-3">
             <h4 class="font-[Montserrat] font-extrabold text-[15px] text-white uppercase tracking-[0.02em]">Benzoic Acid</h4>
@@ -551,7 +558,7 @@
         <!-- DEP -->
         <a href="dep.html" class="group block bg-white border border-[#E5E7EB] rounded-xl overflow-hidden card-lift">
           <div class="h-44 overflow-hidden">
-            <img src="steam-pipes.webp" alt="DEP production infrastructure at Taloja" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+            <img src="generated-product-photos/dep-product-photo.webp" alt="Diethyl Phthalate clear colorless liquid in a clean laboratory glass bottle" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
           </div>
           <div class="bg-[#007C66] px-5 py-3">
             <h4 class="font-[Montserrat] font-extrabold text-[15px] text-white uppercase tracking-[0.02em]">Diethyl Phthalate</h4>
@@ -1089,5 +1096,19 @@
   </script>
 
   <script src="js/igpl.js"></script>
+  <script>
+    // Retry hero video play on first user interaction (handles iOS Low Power Mode)
+    (function () {
+      var v = document.getElementById('hero-video');
+      if (!v) return;
+      var played = false;
+      function tryPlay() {
+        if (played) return;
+        v.play().then(function () { played = true; }).catch(function () {});
+      }
+      document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+      document.addEventListener('click', tryPlay, { once: true });
+    })();
+  </script>
 </body>
 </html>
