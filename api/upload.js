@@ -62,6 +62,18 @@ const ALLOWED_PATHS = new Set([
   // Shareholding
   'docs/shareholding/q3fy2526.pdf','docs/shareholding/q2fy2526.pdf',
   'docs/shareholding/q1fy2526.pdf','docs/shareholding/q4fy2425.pdf',
+  'docs/shareholding/q3fy2425.pdf','docs/shareholding/q2fy2425.pdf','docs/shareholding/q1fy2425.pdf',
+  // Secretarial Compliance
+  'docs/filings/secretarial-compliance-fy2425.pdf','docs/filings/secretarial-compliance-fy2324.pdf',
+  'docs/filings/secretarial-compliance-fy2223.pdf','docs/filings/secretarial-compliance-fy2122.pdf',
+  'docs/filings/secretarial-compliance-fy2021.pdf',
+  // Annual Return
+  'docs/governance/annual-return-fy2425.pdf','docs/governance/annual-return-fy2324.pdf',
+  'docs/governance/annual-return-fy2223.pdf','docs/governance/annual-return-fy2122.pdf',
+  'docs/governance/annual-return-fy2021.pdf',
+  // FY25-26 Subsidiaries
+  'docs/subsidiaries/igpl-international-fy2526.pdf',
+  'docs/subsidiaries/igpl-charitable-foundation-fy2526.pdf',
 ]);
 
 async function parseMultipart(req) {

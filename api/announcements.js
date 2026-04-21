@@ -145,9 +145,13 @@ export default async function handler(req, res) {
     if (!pdfPath.startsWith('docs/announcements/') || !pdfPath.endsWith('.pdf')) {
       return res.status(400).json({ error: 'Invalid PDF path' });
     }
-    const blob = await put(pdfPath, files.pdf.buffer, { access: 'public', contentType: 'application/pdf', allowOverwrite: true });
-    entry.pdfUrl = blob.url;
-    entry.pdfPath = pdfPath;
+    try {
+      const blob = await put(pdfPath, files.pdf.buffer, { access: 'public', contentType: 'application/pdf', allowOverwrite: true });
+      entry.pdfUrl = blob.url;
+      entry.pdfPath = pdfPath;
+    } catch(e) {
+      return res.status(500).json({ error: 'PDF upload failed: ' + e.message });
+    }
   }
 
   // Upload audio if present
@@ -156,9 +160,13 @@ export default async function handler(req, res) {
     if (!audioPath.startsWith('docs/announcements/') || !(audioPath.endsWith('.mp3') || audioPath.endsWith('.m4a'))) {
       return res.status(400).json({ error: 'Invalid audio path' });
     }
-    const blob = await put(audioPath, files.audio.buffer, { access: 'public', contentType: 'audio/mpeg', allowOverwrite: true });
-    entry.audioUrl = blob.url;
-    entry.audioPath = audioPath;
+    try {
+      const blob = await put(audioPath, files.audio.buffer, { access: 'public', contentType: 'audio/mpeg', allowOverwrite: true });
+      entry.audioUrl = blob.url;
+      entry.audioPath = audioPath;
+    } catch(e) {
+      return res.status(500).json({ error: 'Audio upload failed: ' + e.message });
+    }
   }
 
   const items = await getIndex();
