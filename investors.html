@@ -279,7 +279,7 @@
           </div>
           <div class="flex-1">
             <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A] mb-1.5 group-hover:text-[#007C66] transition-colors">Filings &amp; Announcements</h3>
-            <p class="font-[Inter] text-[14px] text-[#6B7280] leading-relaxed">Earnings transcripts, board notices, SEBI disclosures, subsidiary accounts, and investor forms.</p>
+            <p class="font-[Inter] text-[14px] text-[#6B7280] leading-relaxed">Earnings transcripts, board notices, SEBI disclosures, shareholding pattern, secretarial compliance, and investor forms.</p>
           </div>
           <div class="flex items-center gap-1.5 font-[Montserrat] font-bold text-[11px] uppercase tracking-wider text-[#007C66]">
             View Filings
@@ -631,7 +631,7 @@
     </div>
   </section>
 
-  <!-- ===== SECTION 5: LATEST INVESTOR MATERIALS (NEW — replaces old document grid) ===== -->
+  <!-- ===== SECTION 5: DOCUMENT DIRECTORY ===== -->
   <section class="bg-white py-20 md:py-24" aria-label="Investor Materials">
     <div class="max-w-[1280px] mx-auto px-6">
 
@@ -642,34 +642,137 @@
         <p class="font-[Inter] text-[16px] text-[#475569] max-w-2xl mx-auto leading-relaxed">Access audited financials, regulatory filings, and governance documents for IG Petrochemicals Ltd.</p>
       </div>
 
-      <!-- Document cards rendered by JS -->
-      <div id="investor-docs-grid" class="stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-        <!-- Placeholder shown before JS loads or if no documents -->
-        <div id="investor-docs-placeholder" class="col-span-full">
-          <div class="bg-[#F8FAFC] border border-[#E5E7EB] border-dashed rounded-xl px-8 py-12 text-center">
-            <div class="w-14 h-14 rounded-full bg-[#E6F5F2] flex items-center justify-center mx-auto mb-5">
-              <svg class="w-7 h-7 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-            </div>
-            <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed max-w-md mx-auto mb-2">
-              Investor documents are being organized. Access the full library for updates.
-            </p>
-            <p class="font-[Inter] text-[13px] text-[#94A3B8]">
-              Annual reports, quarterly results, and governance filings are also available on BSE and NSE.
-            </p>
+      <!-- Static document category grid -->
+      <div class="stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+
+        <!-- Annual Reports -->
+        <a href="investor-library.html" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
+            <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
           </div>
-        </div>
+          <div>
+            <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Annual Reports</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Audited annual reports from FY 2020-21 onwards, including subsidiary financial statements.</p>
+          </div>
+        </a>
+
+        <!-- Quarterly Results -->
+        <a href="filings.html" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
+            <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Quarterly Results</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Financial results and board meeting outcomes filed with BSE and NSE each quarter.</p>
+          </div>
+        </a>
+
+        <!-- Investor Presentations -->
+        <a href="investor-library.html" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
+            <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Investor Presentations</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Earnings call presentations and investor day materials covering business performance and outlook.</p>
+          </div>
+        </a>
+
+        <!-- Shareholding Pattern -->
+        <a href="filings.html#shareholding" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
+            <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Shareholding Pattern</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Quarterly SEBI disclosures of promoter and public shareholding as required under LODR Regulations.</p>
+          </div>
+        </a>
+
+        <!-- Secretarial Compliance Report -->
+        <a href="filings.html#secretarial" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
+            <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Secretarial Compliance Report</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Annual secretarial audit reports certifying compliance with applicable laws and SEBI regulations.</p>
+          </div>
+        </a>
+
+        <!-- AGM Outcomes -->
+        <a href="governance.html#agm" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
+            <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">AGM Outcomes</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Notices, resolutions, and outcome reports for Annual General Meetings filed with stock exchanges.</p>
+          </div>
+        </a>
+
+        <!-- Annual Return -->
+        <a href="governance.html#annual-return" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
+            <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Annual Return</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Annual return filings under the Companies Act, 2013, detailing company structure and key information.</p>
+          </div>
+        </a>
+
+        <!-- Governance & Policies -->
+        <a href="governance.html" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
+            <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Governance &amp; Policies</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Board composition, committee charters, codes of conduct, and statutory governance policies.</p>
+          </div>
+        </a>
+
+        <!-- Investor Service Forms -->
+        <a href="investors.html#forms" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
+            <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Investor Service Forms</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">KYC update, nomination, bank mandate, and IEPF claim forms for shareholders and debenture holders.</p>
+          </div>
+        </a>
+
       </div>
 
       <!-- Library link -->
       <div class="text-center flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="investor-library.html" class="inline-flex items-center gap-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.06em] px-6 py-3 rounded-md hover:bg-[#005E4D] transition-colors">
-          View All Documents
+          View Full Document Library
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
         </a>
-        <a href="investor-library.html" class="inline-flex items-center gap-1.5 font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.06em] text-[#007C66] hover:text-[#005E4D] transition-colors">
-          Access the complete investor document library
+        <a href="filings.html" class="inline-flex items-center gap-1.5 font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.06em] text-[#007C66] hover:text-[#005E4D] transition-colors">
+          All Regulatory Filings
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
         </a>
       </div>
