@@ -169,8 +169,11 @@ export default async function handler(req, res) {
     }
   }
 
-  const items = await getIndex();
+  let items;
+  try { items = await getIndex(); } catch(e) { items = []; }
   items.push(entry);
-  await saveIndex(items);
+  try { await saveIndex(items); } catch(e) {
+    return res.status(500).json({ error: 'Failed to save index: ' + e.message });
+  }
   return res.status(200).json({ ok: true, announcement: entry });
 }
