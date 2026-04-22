@@ -553,8 +553,7 @@ function setSlotStatus(u, state, blob) {
     }
     var btn = document.getElementById('btn-'+u);
     if (btn) {
-      var pw = document.getElementById('admin-pw').value.trim();
-      btn.className = 'replace-btn' + (pw ? '' : ' locked');
+      btn.className = 'replace-btn';
       btn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Replace';
     }
     dot.dataset.uploaded = '1';
@@ -575,35 +574,73 @@ function setSlotStatus(u, state, blob) {
   }
 }
 
+async function blobClientUpload(file, dest, pw, contentType) {
+  var tokenRes = await fetch('/api/upload', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'blob.generate-client-token',
+      payload: {
+        pathname: dest,
+        callbackUrl: window.location.origin + '/api/upload',
+        multipart: false,
+        clientPayload: JSON.stringify({ password: pw })
+      }
+    })
+  });
+  if (!tokenRes.ok) {
+    var td = await tokenRes.json().catch(function(){ return {}; });
+    var err = new Error(td.error || 'Token error: HTTP ' + tokenRes.status);
+    err.status = tokenRes.status;
+    throw err;
+  }
+  var clientToken = (await tokenRes.json()).clientToken;
+  var params = new URLSearchParams({ pathname: dest });
+  var uploadRes = await fetch('https://vercel.com/api/blob/?' + params.toString(), {
+    method: 'PUT',
+    body: file,
+    headers: {
+      'Authorization': 'Bearer ' + clientToken,
+      'x-api-version': '12',
+      'x-vercel-blob-access': 'public',
+      'x-add-random-suffix': '0',
+      'x-allow-overwrite': '1',
+      'x-content-type': contentType || 'application/pdf'
+    }
+  });
+  if (!uploadRes.ok) {
+    var ue = await uploadRes.json().catch(function(){ return {}; });
+    throw new Error(ue.error || 'Upload failed: HTTP ' + uploadRes.status);
+  }
+  return await uploadRes.json();
+}
+
 async function triggerUpload(file, dest, u) {
   var pw = document.getElementById('admin-pw').value.trim();
   if (!pw) { alert('Enter the admin password first.'); return; }
-  if (!file.name.endsWith('.pdf')) { showResult(u,'error','Only PDFs allowed.'); return; }
+  if (!file.name.toLowerCase().endsWith('.pdf')) { showResult(u,'error','Only PDFs allowed.'); return; }
   if (file.size > 50*1024*1024) { showResult(u,'error','Max 50MB.'); return; }
   setSlotStatus(u,'uploading');
   showProg(u,true); hideResult(u);
-  var fd = new FormData();
-  fd.append('password',pw); fd.append('dest_path',dest); fd.append('file',file);
   var fill = document.getElementById('progfill-'+u);
-  var prog=0;
-  var tick = setInterval(function(){ prog=Math.min(prog+Math.random()*15,85); if(fill) fill.style.width=prog+'%'; },200);
+  var prog = 0;
+  var tick = setInterval(function(){ prog=Math.min(prog+Math.random()*8,55); if(fill) fill.style.width=prog+'%'; },300);
   try {
-    var res = await fetch('/api/upload',{method:'POST',body:fd});
+    var blob = await blobClientUpload(file, dest, pw, 'application/pdf');
     clearInterval(tick);
-    if (fill) fill.style.width='100%';
-    var data = await res.json();
-    showProg(u,false);
-    if (res.ok && data.ok) {
-      uploadedMap[dest] = {url:data.url,pathname:dest,size:data.size,uploadedAt:new Date().toISOString()};
-      setSlotStatus(u,'uploaded',uploadedMap[dest]);
-      showResult(u,'success','Uploaded — '+(data.size/1024).toFixed(1)+' KB');
-      updateBadges(); updateSecCounts();
-    } else {
-      setSlotStatus(u,'error');
-      showResult(u,'error',data.error||('HTTP '+res.status));
-      if (res.status===401) { document.getElementById('admin-pw').value=''; localStorage.removeItem(PW_KEY); updateBtnStates(false); }
-    }
-  } catch(e) { clearInterval(tick); showProg(u,false); setSlotStatus(u,'error'); showResult(u,'error','Network error: '+e.message); }
+    if (fill) fill.style.width = '100%';
+    showProg(u, false);
+    uploadedMap[dest] = { url: blob.url, pathname: dest, size: file.size, uploadedAt: new Date().toISOString() };
+    setSlotStatus(u, 'uploaded', uploadedMap[dest]);
+    showResult(u, 'success', 'Uploaded — ' + (file.size/1024).toFixed(1) + ' KB');
+    updateBadges(); updateSecCounts();
+  } catch(e) {
+    clearInterval(tick);
+    showProg(u, false);
+    setSlotStatus(u, 'error');
+    showResult(u, 'error', e.message || 'Network error');
+    if (e.status === 401) { document.getElementById('admin-pw').value=''; localStorage.removeItem(PW_KEY); updateBtnStates(false); }
+  }
 }
 
 function showProg(u,show){ var bar=document.getElementById('prog-'+u); if(bar) bar.classList.toggle('hidden',!show); if(!show){var f=document.getElementById('progfill-'+u);if(f)f.style.width='0%';} }
@@ -613,6 +650,7 @@ function hideResult(u){ var el=document.getElementById('result-'+u); if(el) el.c
 function updateBtnStates(enabled) {
   document.getElementById('auth-badge').classList.toggle('hidden',!enabled);
   document.querySelectorAll('[id^="btn-"]').forEach(function(btn){
+    if(btn.classList.contains('replace-btn')) return;
     if(enabled) btn.classList.remove('locked'); else btn.classList.add('locked');
   });
 }
@@ -711,14 +749,29 @@ async function publishAnnouncement() {
   if(!title){alert('Title is required.');return;}
   if(!date){alert('Date is required.');return;}
   var status=document.getElementById('ann-publish-status');
-  status.textContent='Publishing…'; status.className='text-sm font-[Inter] text-[#6B7280]';
+  status.className='text-sm font-[Inter] text-[#6B7280]';
   document.getElementById('ann-publish-btn').disabled=true;
-  var fd=new FormData();
-  fd.append('password',pw); fd.append('title',title); fd.append('date',date); fd.append('category',cat);
-  if(pdfFile){fd.append('pdf',pdfFile); fd.append('pdf_path','docs/announcements/'+Date.now()+'-'+pdfFile.name.replace(/[^a-zA-Z0-9._-]/g,'_'));}
-  if(audioFile){fd.append('audio',audioFile); fd.append('audio_path','docs/announcements/'+Date.now()+'-'+audioFile.name.replace(/[^a-zA-Z0-9._-]/g,'_'));}
   try {
-    var res=await fetch('/api/announcements',{method:'POST',body:fd});
+    var pdfUrl=null, audioUrl=null, pdfPath=null, audioPath=null;
+    if(pdfFile){
+      status.textContent='Uploading PDF…';
+      pdfPath='docs/announcements/'+Date.now()+'-'+pdfFile.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+      var pdfBlob=await blobClientUpload(pdfFile, pdfPath, pw, 'application/pdf');
+      pdfUrl=pdfBlob.url;
+    }
+    if(audioFile){
+      status.textContent='Uploading audio…';
+      audioPath='docs/announcements/'+Date.now()+'-'+audioFile.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+      var ct=audioFile.name.endsWith('.m4a')?'audio/mp4':'audio/mpeg';
+      var audioBlob=await blobClientUpload(audioFile, audioPath, pw, ct);
+      audioUrl=audioBlob.url;
+    }
+    status.textContent='Saving…';
+    var res=await fetch('/api/announcements',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:pw,title:title,date:date,category:cat,pdfUrl:pdfUrl,audioUrl:audioUrl,pdfPath:pdfPath,audioPath:audioPath})
+    });
     var data=await res.json();
     document.getElementById('ann-publish-btn').disabled=false;
     if(res.ok&&data.ok){
@@ -731,7 +784,11 @@ async function publishAnnouncement() {
     } else {
       status.textContent='Error: '+(data.error||res.status); status.className='text-sm font-[Inter] text-red-500';
     }
-  } catch(e){document.getElementById('ann-publish-btn').disabled=false;status.textContent='Network error.';status.className='text-sm font-[Inter] text-red-500';}
+  } catch(e){
+    document.getElementById('ann-publish-btn').disabled=false;
+    status.textContent='Error: '+e.message; status.className='text-sm font-[Inter] text-red-500';
+    if(e.status===401){document.getElementById('admin-pw').value='';localStorage.removeItem(PW_KEY);updateBtnStates(false);}
+  }
 }
 
 async function deleteAnn(id) {
