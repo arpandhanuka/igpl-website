@@ -78,9 +78,23 @@ const ALLOWED_PATHS = new Set([
 ]);
 
 export default async function handler(req, res) {
+  try {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method === 'GET') {
+    return res.status(200).json({
+      ok: true,
+      diagnostic: 'upload.js module loaded',
+      env: {
+        hasAdminPw: !!process.env.ADMIN_PASSWORD,
+        hasBlobToken: !!process.env.BLOB_READ_WRITE_TOKEN,
+        vercelEnv: process.env.VERCEL_ENV || null,
+        node: process.version,
+      },
+      handleUploadType: typeof handleUpload,
+    });
+  }
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const adminPw = process.env.ADMIN_PASSWORD;
@@ -147,6 +161,13 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Destination path not allowed' });
     }
     console.error('Upload handler error:', e);
-    return res.status(500).json({ error: e.message });
+    return res.status(500).json({ error: 'handleUpload failed: ' + (e && e.message ? e.message : String(e)), stack: e && e.stack ? e.stack.split('\n').slice(0,5) : null });
+  }
+  } catch (outer) {
+    try {
+      return res.status(500).json({ error: 'Outer handler crash: ' + (outer && outer.message ? outer.message : String(outer)), stack: outer && outer.stack ? outer.stack.split('\n').slice(0,5) : null });
+    } catch (_) {
+      return;
+    }
   }
 }
