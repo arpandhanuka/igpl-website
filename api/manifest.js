@@ -13,14 +13,17 @@ export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    const { blobs } = await list();
-    const manifest = blobs.map(b => ({
-      url: b.url,
-      pathname: b.pathname,
-      size: b.size,
-      uploadedAt: b.uploadedAt,
-    }));
-    return res.status(200).json({ blobs: manifest });
+    const allBlobs = [];
+    let cursor;
+    do {
+      const page = await list({ cursor });
+      for (const b of page.blobs) {
+        allBlobs.push({ url: b.url, pathname: b.pathname, size: b.size, uploadedAt: b.uploadedAt });
+      }
+      cursor = page.cursor;
+      if (!page.hasMore) break;
+    } while (true);
+    return res.status(200).json({ blobs: allBlobs });
   } catch (e) {
     console.error('Manifest error:', e);
     return res.status(500).json({ error: 'Failed to list blobs: ' + e.message });

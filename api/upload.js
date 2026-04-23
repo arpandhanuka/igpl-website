@@ -1,7 +1,8 @@
-// api/upload.js — Vercel Blob upload handler
-// POST multipart/form-data: password, dest_path, file
+// api/upload.js — Vercel Blob client-upload token handler
+// Request 1: browser POSTs blob.generate-client-token → returns signed clientToken
+// Request 2: Vercel Blob infra POSTs blob.upload-completed callback → acks ok
 
-import { put } from '@vercel/blob';
+import { handleUpload } from '@vercel/blob/client';
 
 export const config = { api: { bodyParser: false } };
 
@@ -76,58 +77,6 @@ const ALLOWED_PATHS = new Set([
   'docs/subsidiaries/igpl-charitable-foundation-fy2526.pdf',
 ]);
 
-async function parseMultipart(req) {
-  return new Promise((resolve, reject) => {
-    const boundary = (() => {
-      const ct = req.headers['content-type'] || '';
-      const m = ct.match(/boundary=([^\s;]+)/);
-      return m ? m[1] : null;
-    })();
-    if (!boundary) return reject(new Error('No boundary in Content-Type'));
-    const chunks = [];
-    req.on('data', c => chunks.push(c));
-    req.on('end', () => {
-      try {
-        const buf = Buffer.concat(chunks);
-        const fields = {};
-        let fileBuffer = null, fileName = '', fileType = '';
-        const boundaryBuf = Buffer.from('--' + boundary);
-        let start = 0;
-        const parts = [];
-        while (true) {
-          const idx = buf.indexOf(boundaryBuf, start);
-          if (idx === -1) break;
-          const partStart = idx + boundaryBuf.length;
-          start = partStart;
-          const nextIdx = buf.indexOf(boundaryBuf, start);
-          if (nextIdx === -1) break;
-          parts.push(buf.slice(partStart + 2, nextIdx - 2));
-          start = nextIdx;
-        }
-        for (const part of parts) {
-          const headerEnd = part.indexOf('\r\n\r\n');
-          if (headerEnd === -1) continue;
-          const headerStr = part.slice(0, headerEnd).toString();
-          const body = part.slice(headerEnd + 4);
-          const nameMatch = headerStr.match(/name="([^"]+)"/);
-          const filenameMatch = headerStr.match(/filename="([^"]+)"/);
-          const ctMatch = headerStr.match(/Content-Type:\s*([^\r\n]+)/i);
-          if (!nameMatch) continue;
-          if (filenameMatch) {
-            fileName = filenameMatch[1];
-            fileType = ctMatch ? ctMatch[1].trim() : 'application/octet-stream';
-            fileBuffer = body;
-          } else {
-            fields[nameMatch[1]] = body.toString();
-          }
-        }
-        resolve({ fields, fileBuffer, fileName, fileType });
-      } catch(e) { reject(e); }
-    });
-    req.on('error', reject);
-  });
-}
-
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -137,38 +86,67 @@ export default async function handler(req, res) {
   const adminPw = process.env.ADMIN_PASSWORD;
   if (!adminPw) return res.status(500).json({ error: 'ADMIN_PASSWORD not configured' });
 
-  let parsed;
-  try { parsed = await parseMultipart(req); }
-  catch(e) { return res.status(400).json({ error: 'Parse error: ' + e.message }); }
-
-  const { fields, fileBuffer, fileType } = parsed;
-  if (!fields.password || fields.password.trim() !== adminPw.trim()) {
-    return res.status(401).json({ error: 'Invalid password' });
+  // Read the small JSON body manually (bodyParser is off)
+  let body;
+  try {
+    const raw = await new Promise((resolve, reject) => {
+      const chunks = [];
+      req.on('data', c => chunks.push(c));
+      req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+      req.on('error', reject);
+    });
+    body = JSON.parse(raw);
+  } catch (e) {
+    return res.status(400).json({ error: 'Invalid JSON body: ' + e.message });
   }
-
-  const destPath = (fields.dest_path || '').trim();
-  if (!destPath) return res.status(400).json({ error: 'Missing dest_path' });
-
-  // Dynamic allow for announcements
-  const isAnnouncement = destPath.startsWith('docs/announcements/') &&
-    (destPath.endsWith('.pdf') || destPath.endsWith('.mp3') || destPath.endsWith('.m4a'));
-
-  if (!isAnnouncement && !ALLOWED_PATHS.has(destPath)) {
-    return res.status(400).json({ error: 'Destination path not allowed' });
-  }
-
-  if (!fileBuffer || fileBuffer.length === 0) return res.status(400).json({ error: 'No file uploaded' });
-  if (fileBuffer.length > 50 * 1024 * 1024) return res.status(413).json({ error: 'File too large (max 50MB)' });
 
   try {
-    const blob = await put(destPath, fileBuffer, {
-      access: 'public',
-      contentType: fileType || 'application/pdf',
-      allowOverwrite: true,
+    const jsonResponse = await handleUpload({
+      body,
+      request: req,
+      onBeforeGenerateToken: async (pathname, clientPayload) => {
+        // Validate password from clientPayload
+        let password;
+        try {
+          ({ password } = JSON.parse(clientPayload || '{}'));
+        } catch {
+          throw new Error('Invalid password');
+        }
+        if (!password || password.trim() !== adminPw.trim()) {
+          throw new Error('Invalid password');
+        }
+
+        // Validate destination path
+        const isAnnouncement =
+          pathname.startsWith('docs/announcements/') &&
+          (pathname.endsWith('.pdf') || pathname.endsWith('.mp3') || pathname.endsWith('.m4a'));
+
+        if (!isAnnouncement && !ALLOWED_PATHS.has(pathname)) {
+          throw new Error('Destination path not allowed');
+        }
+
+        return {
+          allowedContentTypes: ['application/pdf', 'audio/mpeg', 'audio/mp4', 'audio/x-m4a'],
+          maximumSizeInBytes: 50 * 1024 * 1024,
+          allowOverwrite: true,
+          addRandomSuffix: false,
+        };
+      },
+      onUploadCompleted: async ({ blob, tokenPayload }) => {
+        // Upload complete — no additional server-side work needed
+        console.log('Blob upload completed:', blob.url);
+      },
     });
-    return res.status(200).json({ ok: true, url: blob.url, path: destPath, size: fileBuffer.length });
-  } catch(e) {
-    console.error('Blob upload error:', e);
-    return res.status(500).json({ error: 'Upload failed: ' + e.message });
+
+    return res.status(200).json(jsonResponse);
+  } catch (e) {
+    if (e.message === 'Invalid password') {
+      return res.status(401).json({ error: 'Invalid password' });
+    }
+    if (e.message === 'Destination path not allowed') {
+      return res.status(400).json({ error: 'Destination path not allowed' });
+    }
+    console.error('Upload handler error:', e);
+    return res.status(500).json({ error: e.message });
   }
 }

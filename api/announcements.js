@@ -26,64 +26,6 @@ async function saveIndex(items) {
   });
 }
 
-async function parseMultipart(req) {
-  return new Promise((resolve, reject) => {
-    const ct = req.headers['content-type'] || '';
-    const boundary = (ct.match(/boundary=([^\s;]+)/) || [])[1];
-    if (!boundary) {
-      // Try JSON body
-      let body = '';
-      req.on('data', c => body += c);
-      req.on('end', () => {
-        try { resolve({ fields: JSON.parse(body), files: {} }); }
-        catch(e) { resolve({ fields: {}, files: {} }); }
-      });
-      req.on('error', reject);
-      return;
-    }
-
-    const chunks = [];
-    req.on('data', c => chunks.push(c));
-    req.on('end', () => {
-      try {
-        const buf = Buffer.concat(chunks);
-        const boundaryBuf = Buffer.from('--' + boundary);
-        const fields = {};
-        const files = {};
-        let start = 0;
-        const parts = [];
-        while (true) {
-          const idx = buf.indexOf(boundaryBuf, start);
-          if (idx === -1) break;
-          const partStart = idx + boundaryBuf.length;
-          start = partStart;
-          const nextIdx = buf.indexOf(boundaryBuf, start);
-          if (nextIdx === -1) break;
-          parts.push(buf.slice(partStart + 2, nextIdx - 2));
-          start = nextIdx;
-        }
-        for (const part of parts) {
-          const headerEnd = part.indexOf('\r\n\r\n');
-          if (headerEnd === -1) continue;
-          const headerStr = part.slice(0, headerEnd).toString();
-          const body = part.slice(headerEnd + 4);
-          const nameMatch = headerStr.match(/name="([^"]+)"/);
-          const filenameMatch = headerStr.match(/filename="([^"]+)"/);
-          const ctMatch = headerStr.match(/Content-Type:\s*([^\r\n]+)/i);
-          if (!nameMatch) continue;
-          const name = nameMatch[1];
-          if (filenameMatch) {
-            files[name] = { buffer: body, filename: filenameMatch[1], contentType: ctMatch ? ctMatch[1].trim() : 'application/octet-stream' };
-          } else {
-            fields[name] = body.toString();
-          }
-        }
-        resolve({ fields, files });
-      } catch(e) { reject(e); }
-    });
-    req.on('error', reject);
-  });
-}
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -118,11 +60,17 @@ export default async function handler(req, res) {
   // ── POST ─────────────────────────────────────────────────────────────────
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  let parsed;
-  try { parsed = await parseMultipart(req); }
-  catch(e) { return res.status(400).json({ error: 'Parse error: ' + e.message }); }
+  let rawBody = '';
+  await new Promise((resolve, reject) => {
+    req.on('data', c => rawBody += c);
+    req.on('end', resolve);
+    req.on('error', reject);
+  });
 
-  const { fields, files } = parsed;
+  let fields;
+  try { fields = JSON.parse(rawBody); }
+  catch(e) { return res.status(400).json({ error: 'Invalid JSON body' }); }
+
   if (!fields.password || fields.password.trim() !== (process.env.ADMIN_PASSWORD || '').trim()) {
     return res.status(401).json({ error: 'Invalid password' });
   }
@@ -137,37 +85,16 @@ export default async function handler(req, res) {
   }
 
   const id = Date.now().toString();
-  const entry = { id, title, date, category, pdfUrl: null, audioUrl: null, pdfPath: null, audioPath: null };
-
-  // Upload PDF if present
-  if (files.pdf && files.pdf.buffer && files.pdf.buffer.length > 0) {
-    const pdfPath = fields.pdf_path ? fields.pdf_path.trim() : `docs/announcements/${id}.pdf`;
-    if (!pdfPath.startsWith('docs/announcements/') || !pdfPath.endsWith('.pdf')) {
-      return res.status(400).json({ error: 'Invalid PDF path' });
-    }
-    try {
-      const blob = await put(pdfPath, files.pdf.buffer, { access: 'public', contentType: 'application/pdf', allowOverwrite: true });
-      entry.pdfUrl = blob.url;
-      entry.pdfPath = pdfPath;
-    } catch(e) {
-      return res.status(500).json({ error: 'PDF upload failed: ' + e.message });
-    }
-  }
-
-  // Upload audio if present
-  if (files.audio && files.audio.buffer && files.audio.buffer.length > 0) {
-    const audioPath = fields.audio_path ? fields.audio_path.trim() : `docs/announcements/${id}.mp3`;
-    if (!audioPath.startsWith('docs/announcements/') || !(audioPath.endsWith('.mp3') || audioPath.endsWith('.m4a'))) {
-      return res.status(400).json({ error: 'Invalid audio path' });
-    }
-    try {
-      const blob = await put(audioPath, files.audio.buffer, { access: 'public', contentType: 'audio/mpeg', allowOverwrite: true });
-      entry.audioUrl = blob.url;
-      entry.audioPath = audioPath;
-    } catch(e) {
-      return res.status(500).json({ error: 'Audio upload failed: ' + e.message });
-    }
-  }
+  const entry = {
+    id,
+    title,
+    date,
+    category,
+    pdfUrl: fields.pdfUrl || null,
+    audioUrl: fields.audioUrl || null,
+    pdfPath: fields.pdfPath || null,
+    audioPath: fields.audioPath || null,
+  };
 
   let items;
   try { items = await getIndex(); } catch(e) { items = []; }
