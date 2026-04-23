@@ -3,6 +3,7 @@
   "version": "3.1.0",
   "description": "IG Petrochemicals Ltd. corporate website — static V1",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@vercel/blob": "^2.3.2"
   }
