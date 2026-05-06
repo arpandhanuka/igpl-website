@@ -7,6 +7,74 @@ import { put, head } from '@vercel/blob';
 
 const INDEX_PATH = 'announcements/index.json';
 
+const EXCHANGE_ANNOUNCEMENTS = [
+  {
+    id: 'nse-106581786',
+    title: 'Disclosure under SEBI Takeover Regulations',
+    date: '2026-04-09',
+    category: 'disclosure',
+    pdfUrl: 'https://nsearchives.nseindia.com/corporate/team_sandeshc_07042026122014_11.pdf',
+    audioUrl: null,
+    pdfPath: null,
+    audioPath: null,
+    source: 'NSE',
+  },
+  {
+    id: 'nse-106580941',
+    title: 'Certificate under SEBI Depositories and Participants Regulations, 2018',
+    date: '2026-04-06',
+    category: 'disclosure',
+    pdfUrl: 'https://nsearchives.nseindia.com/corporate/IGPL_06042026183105_IGPL745Q42526.pdf',
+    audioUrl: null,
+    pdfPath: null,
+    audioPath: null,
+    source: 'NSE',
+  },
+  {
+    id: 'nse-106574154',
+    title: 'Mechanical completion of Plasticizer plant',
+    date: '2026-03-30',
+    category: 'general',
+    pdfUrl: 'https://nsearchives.nseindia.com/corporate/IGPL_30032026153516_Reg30_Plasticizer_Plant.pdf',
+    audioUrl: null,
+    pdfPath: null,
+    audioPath: null,
+    source: 'NSE',
+  },
+  {
+    id: 'nse-106565638',
+    title: 'Closure of Trading Window',
+    date: '2026-03-24',
+    category: 'disclosure',
+    pdfUrl: 'https://nsearchives.nseindia.com/corporate/IGPL_24032026161742_IGPL_ClosingOfTradingWindow.pdf',
+    audioUrl: null,
+    pdfPath: null,
+    audioPath: null,
+    source: 'NSE',
+  },
+  {
+    id: 'nse-106548011',
+    title: 'Newspaper publication regarding special window for transfer and dematerialisation of physical securities',
+    date: '2026-03-02',
+    category: 'general',
+    pdfUrl: 'https://nsearchives.nseindia.com/corporate/IGPL_02032026124855_NewspaperAdvertisement_IGPL.pdf',
+    audioUrl: null,
+    pdfPath: null,
+    audioPath: null,
+    source: 'NSE',
+  },
+];
+
+function mergeExchangeAnnouncements(items) {
+  const seen = new Set();
+  return [...items, ...EXCHANGE_ANNOUNCEMENTS].filter((item) => {
+    const key = item.pdfUrl || item.pdfPath || `${item.date}|${item.title}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 async function getIndex() {
   try {
     const blob = await head(INDEX_PATH);
@@ -36,7 +104,7 @@ export default async function handler(req, res) {
   // ── GET ──────────────────────────────────────────────────────────────────
   if (req.method === 'GET') {
     res.setHeader('Cache-Control', 'no-store');
-    const items = await getIndex();
+    const items = mergeExchangeAnnouncements(await getIndex());
     const sorted = [...items].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
     return res.status(200).json({ announcements: sorted });
   }

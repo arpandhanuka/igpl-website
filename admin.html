@@ -325,6 +325,7 @@ var SECTIONS = {
     return {dest:'docs/governance/annual-return-'+y+'.pdf',label:yLabel};
   }),
   shareholding: [
+    {dest:'docs/shareholding/q4fy2526.pdf',label:'Q4 (Mar 2026) — FY 2025-26'},
     {dest:'docs/shareholding/q3fy2526.pdf',label:'Q3 (Dec 2025) — FY 2025-26'},
     {dest:'docs/shareholding/q2fy2526.pdf',label:'Q2 (Sep 2025) — FY 2025-26'},
     {dest:'docs/shareholding/q1fy2526.pdf',label:'Q1 (Jun 2025) — FY 2025-26'},
@@ -363,6 +364,8 @@ var SECTIONS = {
     {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2425.pdf',label:'IGPL Charitable Foundation — FY 2024-25'},
     {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2324.pdf',label:'IGPL Charitable Foundation — FY 2023-24'},
     {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2223.pdf',label:'IGPL Charitable Foundation — FY 2022-23'},
+    {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2122.pdf',label:'IGPL Charitable Foundation — FY 2021-22'},
+    {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2021.pdf',label:'IGPL Charitable Foundation — FY 2020-21'},
   ],
   forms: [
     {dest:'docs/investor-forms/form-isr1.pdf',label:'Form ISR-1 — KYC Update'},
@@ -574,6 +577,56 @@ function setSlotStatus(u, state, blob) {
   }
 }
 
+async function parseJsonResponse(res) {
+  var text = await res.text();
+  if (!text) return {};
+  try { return JSON.parse(text); }
+  catch (e) { return { error: text.slice(0, 300) }; }
+}
+
+function uploadErrorMessage(error, fallback) {
+  if (!error) return fallback;
+  if (error.name === 'TypeError' && /network|fetch|load failed/i.test(error.message || '')) {
+    return 'Network error while contacting Vercel Blob. Please retry; if it persists, check that the site is on HTTPS and Vercel Blob is reachable.';
+  }
+  return error.message || fallback;
+}
+
+async function rawBlobPut(file, dest, clientToken, contentType) {
+  var params = new URLSearchParams({ pathname: dest });
+  var requestId = 'admin-upload:' + Date.now() + ':' + Math.random().toString(16).slice(2);
+  var lastError;
+
+  for (var attempt = 0; attempt < 3; attempt++) {
+    try {
+      var uploadRes = await fetch('https://vercel.com/api/blob/?' + params.toString(), {
+        method: 'PUT',
+        body: file,
+        headers: {
+          'Authorization': 'Bearer ' + clientToken,
+          'x-api-blob-request-id': requestId,
+          'x-api-blob-request-attempt': String(attempt),
+          'x-api-version': '12',
+          'x-vercel-blob-access': 'public',
+          'x-content-type': contentType || 'application/pdf'
+        }
+      });
+      var data = await parseJsonResponse(uploadRes);
+      if (!uploadRes.ok) {
+        var err = new Error(data.error || data.message || 'Upload failed: HTTP ' + uploadRes.status);
+        err.status = uploadRes.status;
+        throw err;
+      }
+      return data;
+    } catch (e) {
+      lastError = e;
+      if (e && e.status && e.status < 500) break;
+    }
+  }
+
+  throw lastError || new Error('Upload failed.');
+}
+
 async function blobClientUpload(file, dest, pw, contentType) {
   var tokenRes = await fetch('/api/upload', {
     method: 'POST',
@@ -582,37 +635,20 @@ async function blobClientUpload(file, dest, pw, contentType) {
       type: 'blob.generate-client-token',
       payload: {
         pathname: dest,
-        callbackUrl: window.location.origin + '/api/upload',
         multipart: false,
         clientPayload: JSON.stringify({ password: pw })
       }
     })
   });
   if (!tokenRes.ok) {
-    var td = await tokenRes.json().catch(function(){ return {}; });
+    var td = await parseJsonResponse(tokenRes);
     var err = new Error(td.error || 'Token error: HTTP ' + tokenRes.status);
     err.status = tokenRes.status;
     throw err;
   }
-  var clientToken = (await tokenRes.json()).clientToken;
-  var params = new URLSearchParams({ pathname: dest });
-  var uploadRes = await fetch('https://vercel.com/api/blob/?' + params.toString(), {
-    method: 'PUT',
-    body: file,
-    headers: {
-      'Authorization': 'Bearer ' + clientToken,
-      'x-api-version': '12',
-      'x-vercel-blob-access': 'public',
-      'x-add-random-suffix': '0',
-      'x-allow-overwrite': '1',
-      'x-content-type': contentType || 'application/pdf'
-    }
-  });
-  if (!uploadRes.ok) {
-    var ue = await uploadRes.json().catch(function(){ return {}; });
-    throw new Error(ue.error || 'Upload failed: HTTP ' + uploadRes.status);
-  }
-  return await uploadRes.json();
+  var tokenData = await parseJsonResponse(tokenRes);
+  if (!tokenData.clientToken) throw new Error('Token response missing clientToken.');
+  return rawBlobPut(file, dest, tokenData.clientToken, contentType);
 }
 
 async function triggerUpload(file, dest, u) {
@@ -638,7 +674,7 @@ async function triggerUpload(file, dest, u) {
     clearInterval(tick);
     showProg(u, false);
     setSlotStatus(u, 'error');
-    showResult(u, 'error', e.message || 'Network error');
+    showResult(u, 'error', uploadErrorMessage(e, 'Network error'));
     if (e.status === 401) { document.getElementById('admin-pw').value=''; localStorage.removeItem(PW_KEY); updateBtnStates(false); }
   }
 }
@@ -671,6 +707,9 @@ function updateSecCounts() {
     board: SECTIONS.board.map(function(s){return s.dest;}),
     policies: SECTIONS.policies.map(function(s){return s.dest;}),
     agm: SECTIONS.agm.map(function(s){return s.dest;}),
+    'annual-return': SECTIONS['annual-return'].map(function(s){return s.dest;}),
+    shareholding: SECTIONS.shareholding.map(function(s){return s.dest;}),
+    secretarial: SECTIONS.secretarial.map(function(s){return s.dest;}),
     subsidiaries: SECTIONS.subsidiaries.map(function(s){return s.dest;}),
     forms: SECTIONS.forms.map(function(s){return s.dest;}),
   };
@@ -762,7 +801,7 @@ async function publishAnnouncement() {
     if(audioFile){
       status.textContent='Uploading audio…';
       audioPath='docs/announcements/'+Date.now()+'-'+audioFile.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-      var ct=audioFile.name.endsWith('.m4a')?'audio/mp4':'audio/mpeg';
+      var ct=audioFile.name.toLowerCase().endsWith('.m4a')?'audio/mp4':'audio/mpeg';
       var audioBlob=await blobClientUpload(audioFile, audioPath, pw, ct);
       audioUrl=audioBlob.url;
     }
@@ -786,7 +825,7 @@ async function publishAnnouncement() {
     }
   } catch(e){
     document.getElementById('ann-publish-btn').disabled=false;
-    status.textContent='Error: '+e.message; status.className='text-sm font-[Inter] text-red-500';
+    status.textContent='Error: '+uploadErrorMessage(e, 'Network error'); status.className='text-sm font-[Inter] text-red-500';
     if(e.status===401){document.getElementById('admin-pw').value='';localStorage.removeItem(PW_KEY);updateBtnStates(false);}
   }
 }

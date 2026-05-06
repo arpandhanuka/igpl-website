@@ -1,6 +1,6 @@
 // api/upload.js — Vercel Blob client-upload token handler
 // Request 1: browser POSTs blob.generate-client-token → returns signed clientToken
-// Request 2: Vercel Blob infra POSTs blob.upload-completed callback → acks ok
+// Request 2: Browser uploads directly to Vercel Blob with the signed token
 
 import { handleUpload } from '@vercel/blob/client';
 
@@ -50,6 +50,8 @@ const ALLOWED_PATHS = new Set([
   'docs/subsidiaries/igpl-charitable-foundation-fy2425.pdf',
   'docs/subsidiaries/igpl-charitable-foundation-fy2324.pdf',
   'docs/subsidiaries/igpl-charitable-foundation-fy2223.pdf',
+  'docs/subsidiaries/igpl-charitable-foundation-fy2122.pdf',
+  'docs/subsidiaries/igpl-charitable-foundation-fy2021.pdf',
   // Investor Forms
   'docs/investor-forms/form-isr1.pdf','docs/investor-forms/form-isr2.pdf',
   'docs/investor-forms/form-isr3.pdf','docs/investor-forms/form-isr4.pdf',
@@ -61,9 +63,15 @@ const ALLOWED_PATHS = new Set([
   'docs/products/tds-pa.pdf','docs/products/tds-ma.pdf','docs/products/tds-ba.pdf','docs/products/tds-dep.pdf',
   'docs/products/sds-pa.pdf','docs/products/sds-ma.pdf','docs/products/sds-ba.pdf','docs/products/sds-dep.pdf',
   // Shareholding
-  'docs/shareholding/q3fy2526.pdf','docs/shareholding/q2fy2526.pdf',
+  'docs/shareholding/q4fy2526.pdf','docs/shareholding/q3fy2526.pdf','docs/shareholding/q2fy2526.pdf',
   'docs/shareholding/q1fy2526.pdf','docs/shareholding/q4fy2425.pdf',
   'docs/shareholding/q3fy2425.pdf','docs/shareholding/q2fy2425.pdf','docs/shareholding/q1fy2425.pdf',
+  'docs/shareholding/q4fy2324.pdf','docs/shareholding/q3fy2324.pdf',
+  'docs/shareholding/q2fy2324.pdf','docs/shareholding/q1fy2324.pdf',
+  'docs/shareholding/q4fy2223.pdf','docs/shareholding/q3fy2223.pdf',
+  'docs/shareholding/q2fy2223.pdf','docs/shareholding/q1fy2223.pdf',
+  'docs/shareholding/q4fy2122.pdf','docs/shareholding/q3fy2122.pdf',
+  'docs/shareholding/q2fy2122.pdf','docs/shareholding/q1fy2122.pdf',
   // Secretarial Compliance
   'docs/filings/secretarial-compliance-fy2425.pdf','docs/filings/secretarial-compliance-fy2324.pdf',
   'docs/filings/secretarial-compliance-fy2223.pdf','docs/filings/secretarial-compliance-fy2122.pdf',
@@ -77,10 +85,25 @@ const ALLOWED_PATHS = new Set([
   'docs/subsidiaries/igpl-charitable-foundation-fy2526.pdf',
 ]);
 
+function isAnnouncementPath(pathname) {
+  const lowerPathname = pathname.toLowerCase();
+  return pathname.startsWith('docs/announcements/') &&
+    (lowerPathname.endsWith('.pdf') || lowerPathname.endsWith('.mp3') || lowerPathname.endsWith('.m4a'));
+}
+
+function allowedContentTypesFor(pathname) {
+  const lowerPathname = pathname.toLowerCase();
+  if (lowerPathname.endsWith('.pdf')) return ['application/pdf'];
+  if (lowerPathname.endsWith('.mp3')) return ['audio/mpeg'];
+  if (lowerPathname.endsWith('.m4a')) return ['audio/mp4', 'audio/x-m4a'];
+  return [];
+}
+
 export default async function handler(req, res) {
   try {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -92,7 +115,7 @@ export default async function handler(req, res) {
   try {
     const raw = await new Promise((resolve, reject) => {
       const chunks = [];
-      req.on('data', c => chunks.push(c));
+      req.on('data', c => chunks.push(Buffer.isBuffer(c) ? c : Buffer.from(c)));
       req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
       req.on('error', reject);
     });
@@ -118,24 +141,18 @@ export default async function handler(req, res) {
         }
 
         // Validate destination path
-        const isAnnouncement =
-          pathname.startsWith('docs/announcements/') &&
-          (pathname.endsWith('.pdf') || pathname.endsWith('.mp3') || pathname.endsWith('.m4a'));
+        const isAnnouncement = isAnnouncementPath(pathname);
 
         if (!isAnnouncement && !ALLOWED_PATHS.has(pathname)) {
           throw new Error('Destination path not allowed');
         }
 
         return {
-          allowedContentTypes: ['application/pdf', 'audio/mpeg', 'audio/mp4', 'audio/x-m4a'],
+          allowedContentTypes: allowedContentTypesFor(pathname),
           maximumSizeInBytes: 50 * 1024 * 1024,
           allowOverwrite: true,
           addRandomSuffix: false,
         };
-      },
-      onUploadCompleted: async ({ blob, tokenPayload }) => {
-        // Upload complete — no additional server-side work needed
-        console.log('Blob upload completed:', blob.url);
       },
     });
 
