@@ -323,6 +323,66 @@
       </div>
     </div>
   </section>
+<!-- SECTION: POLICY DOCUMENTS (CSR Policy & Annual Action Plan tabs) -->
+<section class="py-24 bg-white">
+  <div class="max-w-[1280px] mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] mb-4">Policy Documents</p>
+      <h2 class="font-[Montserrat] font-black text-[36px] lg:text-[42px] text-[#0F172A] leading-tight mb-4">CSR Policy &amp; Annual Action Plan</h2>
+      <div class="w-12 h-1 bg-[#007C66] rounded-full mx-auto mb-4"></div>
+      <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed max-w-[600px] mx-auto">Access our CSR governance documents below. Click on a tab to view or download the policy.</p>
+    </div>
+
+    <!-- Tab Buttons -->
+    <div class="max-w-[800px] mx-auto">
+      <div class="flex border-b-2 border-[#E5E7EB] mb-0">
+        <button onclick="switchPolicyTab('csr-policy-tab', this)" class="policy-tab-btn flex-1 py-4 px-6 font-[Montserrat] font-bold text-[13px] uppercase tracking-[0.06em] text-[#007C66] border-b-[3px] border-[#007C66] bg-white transition-all text-center">CSR Policy</button>
+        <button onclick="switchPolicyTab('annual-plan-tab', this)" class="policy-tab-btn flex-1 py-4 px-6 font-[Montserrat] font-bold text-[13px] uppercase tracking-[0.06em] text-[#94A3B8] border-b-[3px] border-transparent bg-[#F8FAFB] hover:text-[#007C66] transition-all text-center">Annual Action Plan Policy</button>
+      </div>
+
+      <!-- Tab 1: CSR Policy -->
+      <div id="csr-policy-tab" class="policy-tab-content bg-white border border-t-0 border-[#E5E7EB] rounded-b-xl p-10 text-center">
+        <div class="w-16 h-16 rounded-full bg-[#ECFDF5] flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 class="font-[Montserrat] font-bold text-[22px] text-[#0F172A] mb-3">CSR Policy</h3>
+        <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed max-w-[520px] mx-auto mb-6">IGPL's CSR Policy as approved by the Board of Directors, in compliance with Section 135 of the Companies Act, 2013.</p>
+        <a href="#" class="inline-flex items-center gap-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.08em] px-7 py-3.5 rounded-md hover:bg-[#005E4D] transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Download CSR Policy (PDF)
+        </a>
+        <p class="font-[Inter] text-[12px] text-[#94A3B8] mt-4">PDF will be linked once uploaded</p>
+      </div>
+
+      <!-- Tab 2: Annual Action Plan Policy -->
+      <div id="annual-plan-tab" class="policy-tab-content bg-white border border-t-0 border-[#E5E7EB] rounded-b-xl p-10 text-center" style="display:none;">
+        <div class="w-16 h-16 rounded-full bg-[#ECFDF5] flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+        </div>
+        <h3 class="font-[Montserrat] font-bold text-[22px] text-[#0F172A] mb-3">Annual Action Plan Policy</h3>
+        <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed max-w-[520px] mx-auto mb-6">IGPL's Annual Action Plan outlining CSR projects, execution modalities, and monitoring mechanisms for the current financial year.</p>
+        <a href="#" class="inline-flex items-center gap-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.08em] px-7 py-3.5 rounded-md hover:bg-[#005E4D] transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Download Annual Action Plan (PDF)
+        </a>
+        <p class="font-[Inter] text-[12px] text-[#94A3B8] mt-4">PDF will be linked once uploaded</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function switchPolicyTab(tabId, btn) {
+  document.querySelectorAll('.policy-tab-content').forEach(function(el) { el.style.display = 'none'; });
+  document.querySelectorAll('.policy-tab-btn').forEach(function(el) {
+    el.classList.remove('text-[#007C66]', 'border-[#007C66]', 'bg-white');
+    el.classList.add('text-[#94A3B8]', 'border-transparent', 'bg-[#F8FAFB]');
+  });
+  document.getElementById(tabId).style.display = 'block';
+  btn.classList.remove('text-[#94A3B8]', 'border-transparent', 'bg-[#F8FAFB]');
+  btn.classList.add('text-[#007C66]', 'border-[#007C66]', 'bg-white');
+}
+</script>
 
   <!-- SECTION 6: CTA BAND -->
   <section class="py-20 bg-gradient-to-r from-[#007C66] to-[#005E4D]">
