@@ -12,14 +12,14 @@ const ALLOWED_PATHS = new Set([
   'docs/annual-reports/fy2324.pdf','docs/annual-reports/fy2223.pdf',
   'docs/annual-reports/fy2122.pdf','docs/annual-reports/fy2021.pdf',
   // Quarterly Results
-  'docs/earnings/q3fy2526.pdf','docs/earnings/q2fy2526.pdf','docs/earnings/q1fy2526.pdf',
+  'docs/earnings/q4fy2526.pdf','docs/earnings/q3fy2526.pdf','docs/earnings/q2fy2526.pdf','docs/earnings/q1fy2526.pdf',
   'docs/earnings/q4fy2425.pdf','docs/earnings/q3fy2425.pdf','docs/earnings/q2fy2425.pdf','docs/earnings/q1fy2425.pdf',
   'docs/earnings/q4fy2324.pdf','docs/earnings/q3fy2324.pdf','docs/earnings/q2fy2324.pdf','docs/earnings/q1fy2324.pdf',
   'docs/earnings/q4fy2223.pdf','docs/earnings/q3fy2223.pdf','docs/earnings/q2fy2223.pdf','docs/earnings/q1fy2223.pdf',
   'docs/earnings/q4fy2122.pdf','docs/earnings/q3fy2122.pdf','docs/earnings/q2fy2122.pdf','docs/earnings/q1fy2122.pdf',
   'docs/earnings/q4fy2021.pdf','docs/earnings/q3fy2021.pdf','docs/earnings/q2fy2021.pdf','docs/earnings/q1fy2021.pdf',
   // Investor Presentations
-  'docs/investor-presentations/q3fy2526-presentation.pdf','docs/investor-presentations/q2fy2526-presentation.pdf','docs/investor-presentations/q1fy2526-presentation.pdf',
+  'docs/investor-presentations/q4fy2526-presentation.pdf','docs/investor-presentations/q3fy2526-presentation.pdf','docs/investor-presentations/q2fy2526-presentation.pdf','docs/investor-presentations/q1fy2526-presentation.pdf',
   'docs/investor-presentations/q4fy2425-presentation.pdf','docs/investor-presentations/q3fy2425-presentation.pdf','docs/investor-presentations/q2fy2425-presentation.pdf','docs/investor-presentations/q1fy2425-presentation.pdf',
   'docs/investor-presentations/q4fy2324-presentation.pdf','docs/investor-presentations/q3fy2324-presentation.pdf','docs/investor-presentations/q2fy2324-presentation.pdf','docs/investor-presentations/q1fy2324-presentation.pdf',
   'docs/investor-presentations/q4fy2223-presentation.pdf','docs/investor-presentations/q3fy2223-presentation.pdf','docs/investor-presentations/q2fy2223-presentation.pdf','docs/investor-presentations/q1fy2223-presentation.pdf',
