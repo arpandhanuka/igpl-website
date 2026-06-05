@@ -18,4 +18,6 @@
   <url><loc>https://www.igpetro.com/careers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.igpetro.com/contact</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.igpetro.com/legal</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.igpetro.com/board-of-directors</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.igpetro.com/certifications</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

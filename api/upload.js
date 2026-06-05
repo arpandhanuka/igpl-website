@@ -76,6 +76,18 @@ const ALLOWED_PATHS = new Set([
   'docs/filings/secretarial-compliance-fy2425.pdf','docs/filings/secretarial-compliance-fy2324.pdf',
   'docs/filings/secretarial-compliance-fy2223.pdf','docs/filings/secretarial-compliance-fy2122.pdf',
   'docs/filings/secretarial-compliance-fy2021.pdf',
+  // Certifications (About section)
+  'docs/certifications/halal-certificate-annexure.pdf','docs/certifications/halal-certificate.pdf',
+  'docs/certifications/star-k-certificate.pdf','docs/certifications/iso-9001-2015.pdf',
+  'docs/certifications/iso-14001-2015.pdf',
+  // CSR documents
+  'docs/policies/csr-policy.pdf','docs/policies/csr-annual-action-plan-fy2627.pdf',
+  // Related Party Transactions (Financial Reports)
+  'docs/investor-info/rpt-h1-sep2025.pdf','docs/investor-info/rpt-h2-mar2026.pdf',
+  // IEPF Documents (Investor section)
+  'docs/iepf/saksham-niveshak-notice.pdf','docs/iepf/unpaid-unclaimed-dividend-fy2425.pdf',
+  'docs/iepf/unclaimed-dividend-since-fy1718.pdf','docs/iepf/shares-transferred-to-iepf.pdf',
+  'docs/iepf/shares-liable-to-iepf.pdf',
   // Annual Return
   'docs/governance/annual-return-fy2425.pdf','docs/governance/annual-return-fy2324.pdf',
   'docs/governance/annual-return-fy2223.pdf','docs/governance/annual-return-fy2122.pdf',

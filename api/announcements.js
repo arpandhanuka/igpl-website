@@ -94,6 +94,24 @@ async function saveIndex(items) {
   });
 }
 
+// Robustly read a JSON body whether or not Vercel's default body parser ran.
+// If the parser already populated req.body, use it directly (the raw stream is
+// already consumed and would yield nothing). Otherwise drain the stream.
+async function readJsonBody(req) {
+  if (req.body && typeof req.body === 'object') return req.body;
+  if (typeof req.body === 'string' && req.body.length) {
+    try { return JSON.parse(req.body); } catch { return {}; }
+  }
+  const raw = await new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', c => { data += c; });
+    req.on('end', () => resolve(data));
+    req.on('error', reject);
+  });
+  if (!raw) return {};
+  try { return JSON.parse(raw); } catch { return {}; }
+}
+
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -111,16 +129,13 @@ export default async function handler(req, res) {
 
   // ── DELETE ───────────────────────────────────────────────────────────────
   if (req.method === 'DELETE') {
-    let body = '';
-    await new Promise(r => { req.on('data', c => body += c); req.on('end', r); });
-    let parsed = {};
-    try { parsed = JSON.parse(body); } catch(e) {}
-    const pw = parsed.password || req.query.password || '';
-    const id = parsed.id || req.query.id || '';
-    if (!pw || pw !== process.env.ADMIN_PASSWORD) return res.status(401).json({ error: 'Invalid password' });
+    const parsed = await readJsonBody(req);
+    const pw = (parsed.password || req.query.password || '').trim();
+    const id = String(parsed.id || req.query.id || '');
+    if (!pw || pw !== (process.env.ADMIN_PASSWORD || '').trim()) return res.status(401).json({ error: 'Invalid password' });
     if (!id) return res.status(400).json({ error: 'Missing id' });
     const items = await getIndex();
-    const filtered = items.filter(i => i.id !== id);
+    const filtered = items.filter(i => String(i.id) !== id);
     await saveIndex(filtered);
     return res.status(200).json({ ok: true, removed: items.length - filtered.length });
   }
@@ -128,16 +143,7 @@ export default async function handler(req, res) {
   // ── POST ─────────────────────────────────────────────────────────────────
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  let rawBody = '';
-  await new Promise((resolve, reject) => {
-    req.on('data', c => rawBody += c);
-    req.on('end', resolve);
-    req.on('error', reject);
-  });
-
-  let fields;
-  try { fields = JSON.parse(rawBody); }
-  catch(e) { return res.status(400).json({ error: 'Invalid JSON body' }); }
+  const fields = await readJsonBody(req);
 
   if (!fields.password || fields.password.trim() !== (process.env.ADMIN_PASSWORD || '').trim()) {
     return res.status(401).json({ error: 'Invalid password' });

@@ -138,6 +138,16 @@
       </div>
       <div class="divide-y divide-[#E5E7EB]" id="slots-subsidiaries"></div>
     </div>
+
+    <!-- Disclosure of Related Party Transactions -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Related Party Transactions</h2>
+        <span id="sec-investor-info" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-investor-info"></div>
+    </div>
   </div>
 
   <!-- ═══ TAB: GOVERNANCE ══════════════════════════════════════════════════════ -->
@@ -177,6 +187,16 @@
         <span id="sec-annual-return" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
       </div>
       <div class="divide-y divide-[#E5E7EB]" id="slots-annual-return"></div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Certifications</h2>
+        <span id="sec-certifications" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-certifications"></div>
     </div>
   </div>
 
@@ -274,6 +294,16 @@
       </div>
       <div class="divide-y divide-[#E5E7EB]" id="slots-forms"></div>
     </div>
+
+    <!-- IEPF Documents -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">IEPF Documents</h2>
+        <span id="sec-iepf" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="divide-y divide-[#E5E7EB]" id="slots-iepf"></div>
+    </div>
   </div>
 
 </div><!-- /max-w -->
@@ -316,6 +346,8 @@ var SECTIONS = {
     {dest:'docs/policies/stakeholders-engagement-policy.pdf',label:'Stakeholders Engagement Policy'},
     {dest:'docs/policies/board-policy-material-events.pdf',label:'Board Policy — Material Events'},
     {dest:'docs/policies/sebi-lodr-reg30.pdf',label:'SEBI LODR Reg 30 Disclosure'},
+    {dest:'docs/policies/csr-policy.pdf',label:'CSR Policy'},
+    {dest:'docs/policies/csr-annual-action-plan-fy2627.pdf',label:'CSR Annual Action Plan — FY 2026-27'},
   ],
   agm: ['fy2425','fy2324','fy2223','fy2122','fy2021','fy2020'].map(function(y){
     var yLabel = YEAR_LABELS[y]||y;
@@ -376,6 +408,24 @@ var SECTIONS = {
     {dest:'docs/investor-forms/form-sh13.pdf',label:'Form SH-13 — Nomination Declaration'},
     {dest:'docs/investor-forms/form-sh14.pdf',label:'Form SH-14 — Change in Nomination'},
   ],
+  'investor-info': [
+    {dest:'docs/investor-info/rpt-h1-sep2025.pdf',label:'RPT Disclosure — Half Year Ended 30 Sep 2025'},
+    {dest:'docs/investor-info/rpt-h2-mar2026.pdf',label:'RPT Disclosure — Half Year Ended 31 Mar 2026'},
+  ],
+  certifications: [
+    {dest:'docs/certifications/halal-certificate-annexure.pdf',label:'HALAL Certificate with Annexure'},
+    {dest:'docs/certifications/halal-certificate.pdf',label:'HALAL Certificate'},
+    {dest:'docs/certifications/star-k-certificate.pdf',label:'I G Petrochemicals Limited — Star-K Certificate'},
+    {dest:'docs/certifications/iso-9001-2015.pdf',label:'ISO 9001:2015'},
+    {dest:'docs/certifications/iso-14001-2015.pdf',label:'ISO 14001:2015'},
+  ],
+  iepf: [
+    {dest:'docs/iepf/saksham-niveshak-notice.pdf',label:'Notice to Shareholders — 100 Days Campaign "Saksham Niveshak"'},
+    {dest:'docs/iepf/unpaid-unclaimed-dividend-fy2425.pdf',label:'Statement of Unpaid / Unclaimed Dividend — FY 2024-25'},
+    {dest:'docs/iepf/unclaimed-dividend-since-fy1718.pdf',label:'Shareholders — Unclaimed Dividend since FY 2017-18'},
+    {dest:'docs/iepf/shares-transferred-to-iepf.pdf',label:'Shareholders — Shares Transferred to IEPF'},
+    {dest:'docs/iepf/shares-liable-to-iepf.pdf',label:'Shareholders — Shares Liable to be Transferred to IEPF'},
+  ],
 };
 
 var PW_KEY = 'igpl_admin_pw';
@@ -427,6 +477,9 @@ function buildAll() {
   buildSimple('secretarial', SECTIONS.secretarial);
   buildSimple('subsidiaries', SECTIONS.subsidiaries);
   buildSimple('forms', SECTIONS.forms);
+  buildSimple('investor-info', SECTIONS['investor-info']);
+  buildSimple('certifications', SECTIONS.certifications);
+  buildSimple('iepf', SECTIONS.iepf);
 }
 
 function uid(dest) { return dest.replace(/[/.]/g,'_'); }
@@ -717,6 +770,9 @@ function updateSecCounts() {
     secretarial: SECTIONS.secretarial.map(function(s){return s.dest;}),
     subsidiaries: SECTIONS.subsidiaries.map(function(s){return s.dest;}),
     forms: SECTIONS.forms.map(function(s){return s.dest;}),
+    'investor-info': SECTIONS['investor-info'].map(function(s){return s.dest;}),
+    certifications: SECTIONS.certifications.map(function(s){return s.dest;}),
+    iepf: SECTIONS.iepf.map(function(s){return s.dest;}),
   };
   YEARS.forEach(function(yc){
     var qs=EARN_Q[yc]||['q4','q3','q2','q1'];
