@@ -23,10 +23,19 @@
   }
 
   // ---- Animated Counters ----
+  var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function animateCounter(el) {
     const target = parseInt(el.dataset.target, 10);
     const suffix = el.dataset.suffix || '';
     const prefix = el.dataset.prefix || '';
+
+    // Respect reduced-motion: show the final value immediately.
+    if (REDUCE_MOTION) {
+      el.textContent = prefix + target.toLocaleString('en-US') + suffix;
+      return;
+    }
+
     const duration = 1800;
     const startTime = performance.now();
 
@@ -38,7 +47,8 @@
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const value = Math.round(target * easeOut(progress));
-      el.textContent = prefix + value.toLocaleString('en-IN') + suffix;
+      // International format (270,000) — not the Indian 2,70,000 grouping.
+      el.textContent = prefix + value.toLocaleString('en-US') + suffix;
       if (progress < 1) {
         requestAnimationFrame(update);
       }
@@ -198,6 +208,10 @@
   function initAccordion() {
     const triggers = document.querySelectorAll('.igpl-accordion__trigger');
     triggers.forEach(trigger => {
+      // Reflect collapsed state to assistive tech.
+      if (!trigger.hasAttribute('aria-expanded')) {
+        trigger.setAttribute('aria-expanded', trigger.parentElement.hasAttribute('open') ? 'true' : 'false');
+      }
       trigger.addEventListener('click', () => {
         const item = trigger.parentElement;
         const isOpen = item.hasAttribute('open');
@@ -205,13 +219,19 @@
         // Close siblings
         const siblings = item.parentElement.querySelectorAll('.igpl-accordion__item[open]');
         siblings.forEach(s => {
-          if (s !== item) s.removeAttribute('open');
+          if (s !== item) {
+            s.removeAttribute('open');
+            const t = s.querySelector('.igpl-accordion__trigger');
+            if (t) t.setAttribute('aria-expanded', 'false');
+          }
         });
 
         if (isOpen) {
           item.removeAttribute('open');
+          trigger.setAttribute('aria-expanded', 'false');
         } else {
           item.setAttribute('open', '');
+          trigger.setAttribute('aria-expanded', 'true');
         }
       });
     });

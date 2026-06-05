@@ -25,13 +25,14 @@
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/design-system.css?v=2">
+  <link rel="stylesheet" href="css/igpl-2026.css?v=2">
 
   <style>
     html, body { overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Montserrat', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
 
     /* Scroll reveal animations */
     .reveal {
@@ -171,12 +172,13 @@
 
 
   <!-- ===== SECTION 1: HERO ===== -->
-  <section class="relative bg-[#1E293B] overflow-hidden" style="padding-top: 5rem; padding-bottom: 4rem;">
+  <section class="relative bg-[#0F172A] overflow-hidden" style="padding-top: 5rem; padding-bottom: 4rem; min-height: clamp(480px,60vh,600px); display:flex; align-items:center;">
     <!-- Background image -->
     <div class="absolute inset-0">
-      <img src="plant-night.jpg" alt="" class="w-full h-full object-cover opacity-[0.15]" aria-hidden="true">
+      <img src="plant-night.jpg" alt="" class="w-full h-full object-cover opacity-[0.22]" aria-hidden="true">
+      <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.50) 100%);"></div>
     </div>
-    <div class="relative z-10 max-w-[1280px] mx-auto px-6">
+    <div class="relative z-10 max-w-[1280px] mx-auto px-6 w-full">
       <!-- Breadcrumb -->
       <nav aria-label="Breadcrumb" class="mb-8">
         <ol class="flex items-center gap-2 text-[13px] font-[Inter] text-[#94A3B8]">
@@ -187,13 +189,55 @@
       </nav>
       <!-- Content -->
       <div class="max-w-3xl">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-4">Who We Are</p>
-        <h1 class="font-[Montserrat] font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white leading-[1.15] mb-6">Building India's Chemical Infrastructure Since 1992</h1>
-        <p class="font-[Inter] text-lg text-[#CBD5E1] leading-relaxed max-w-2xl">IG Petrochemicals Ltd. operates India's largest single-location phthalic anhydride complex -- 270,000 MTPA across five plants at Taloja, Maharashtra -- anchoring the country's coatings, plasticiser, and specialty chemical supply chain.</p>
+        <p class="eyebrow-2026 mb-5" style="color:#5BE9C2;">Who We Are</p>
+        <h1 class="font-[Montserrat] font-bold text-[40px] md:text-[60px] text-white leading-[1.04] tracking-[-0.02em] mb-6">India's largest single-site<br>PA complex</h1>
+        <p class="font-[Inter] text-lg text-[#CBD5E1] leading-relaxed max-w-2xl mb-10">IG Petrochemicals Ltd. holds approximately 50% of India's domestic phthalic anhydride capacity — 270,000 MTPA across five plants at a single integrated campus in Taloja, Maharashtra.</p>
+      </div>
+      <!-- Stat monuments -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mt-2">
+        <div class="stat-monument">
+          <div class="stat-monument__value">270,000<span class="unit">MTPA</span></div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">PA Capacity</p>
+        </div>
+        <div class="stat-monument">
+          <div class="stat-monument__value">5</div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">Production Plants</p>
+        </div>
+        <div class="stat-monument">
+          <div class="stat-monument__value">~50<span class="unit">%</span></div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">India Market Share</p>
+        </div>
+        <div class="stat-monument">
+          <div class="stat-monument__value">34<span class="unit">yrs</span></div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">In Operation</p>
+        </div>
       </div>
     </div>
   </section>
 
+
+  <!-- ===== SECTION 1B: SECTION TINT INTRO ===== -->
+  <section class="py-16 section-tint">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="max-w-3xl">
+        <p class="eyebrow-2026 mb-3">Our Position</p>
+        <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">IGPL is not an aspirant — it is the established benchmark. For over three decades, the Taloja campus has been the dominant domestic source of phthalic anhydride for India's paints, plasticiser, and specialty chemical industries. This page explains how that position was built and why it endures.</p>
+      </div>
+      <!-- Board + Certifications quick links -->
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="board-of-directors.html" class="btn-primary-2026">Board of Directors
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="certifications.html" class="font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.1em] px-6 py-3 rounded-[9px] border-2 border-[#007C66] text-[#007C66] hover:bg-[#007C66] hover:text-white transition-all inline-flex items-center gap-2">Certifications
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== SECTION 2: COMPANY OVERVIEW ===== -->
   <section class="py-20 lg:py-28 bg-white">
@@ -220,8 +264,19 @@
   </section>
 
 
+  <!-- ===== FULL-BLEED BAND: AERIAL ===== -->
+  <section class="fullbleed-band" style="min-height:clamp(360px,48vh,480px);display:flex;align-items:center;">
+    <img src="plant-aerial.webp" alt="" aria-hidden="true" loading="lazy">
+    <div class="fullbleed-band__scrim"></div>
+    <div class="fullbleed-band__inner w-full max-w-[1280px] mx-auto px-6 py-16">
+      <p class="eyebrow-2026 mb-4" style="color:#5BE9C2;">Taloja, Maharashtra</p>
+      <h2 class="font-[Montserrat] font-bold text-white text-[28px] md:text-[42px] leading-[1.06] tracking-[-0.02em] max-w-3xl">Five plants. One campus. 270,000 MTPA — the largest integrated PA complex in India.</h2>
+      <p class="font-[Inter] text-white/80 mt-4 max-w-2xl">Located 50 km from JNPT, with direct access to feedstock imports and domestic distribution to every major downstream industry.</p>
+    </div>
+  </section>
+
   <!-- ===== SECTION 3: INDUSTRY ROLE ===== -->
-  <section class="py-20 lg:py-28 bg-[#F8FAFC]">
+  <section class="py-20 lg:py-28 section-tint">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
         <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-4">Our Role</p>
@@ -406,66 +461,67 @@
 
 
   <!-- ===== SECTION 4: STATS BAND ===== -->
-  <section class="py-16 lg:py-20 bg-[#1E293B]">
+  <section class="py-16 lg:py-20 section-ink">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 stagger">
-        <!-- Stat 1 -->
-        <div class="text-center">
-          <p class="font-[Montserrat] font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white mb-2" data-counter data-target="270000" data-suffix=" MTPA">0 MTPA</p>
-          <p class="font-[Inter] text-[14px] text-[#94A3B8]">Installed Capacity</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div class="text-center stat-monument" style="text-align:center;">
+          <div class="stat-monument__value" style="color:#fff;">270,000<span class="unit">MTPA</span></div>
+          <div class="stat-monument__rule" style="margin-left:auto;margin-right:auto;background:var(--igpl-mint);"></div>
+          <p class="stat-monument__label">Installed Capacity</p>
         </div>
-        <!-- Stat 2 -->
-        <div class="text-center">
-          <p class="font-[Montserrat] font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white mb-2" data-counter data-target="5">0</p>
-          <p class="font-[Inter] text-[14px] text-[#94A3B8]">Production Plants</p>
+        <div class="text-center stat-monument" style="text-align:center;">
+          <div class="stat-monument__value" style="color:#fff;">5</div>
+          <div class="stat-monument__rule" style="margin-left:auto;margin-right:auto;background:var(--igpl-mint);"></div>
+          <p class="stat-monument__label">Production Plants</p>
         </div>
-        <!-- Stat 3 -->
-        <div class="text-center">
-          <p class="font-[Montserrat] font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white mb-2" data-counter data-target="50" data-prefix="~" data-suffix="%">0%</p>
-          <p class="font-[Inter] text-[14px] text-[#94A3B8]">India PA Market Share</p>
+        <div class="text-center stat-monument" style="text-align:center;">
+          <div class="stat-monument__value" style="color:#fff;">~50<span class="unit">%</span></div>
+          <div class="stat-monument__rule" style="margin-left:auto;margin-right:auto;background:var(--igpl-mint);"></div>
+          <p class="stat-monument__label">India PA Market Share</p>
         </div>
-        <!-- Stat 4 -->
-        <div class="text-center">
-          <p class="font-[Montserrat] font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white mb-2" data-counter data-target="30" data-suffix="+">0+</p>
-          <p class="font-[Inter] text-[14px] text-[#94A3B8]">Years of Operations</p>
+        <div class="text-center stat-monument" style="text-align:center;">
+          <div class="stat-monument__value" style="color:#fff;">34<span class="unit">yrs</span></div>
+          <div class="stat-monument__rule" style="margin-left:auto;margin-right:auto;background:var(--igpl-mint);"></div>
+          <p class="stat-monument__label">Years of Operation</p>
         </div>
       </div>
     </div>
   </section>
 
 
-  <!-- ===== SECTION 5: VISION & MISSION ===== -->
+  <!-- ===== SECTION 5: POSITION & MISSION ===== -->
   <section class="py-20 lg:py-28 bg-white">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-4">Purpose</p>
-        <h2 class="font-[Montserrat] font-extrabold text-2xl sm:text-3xl lg:text-[2.25rem] text-[#0F172A] leading-tight">Vision &amp; Mission</h2>
+        <p class="eyebrow-2026 mb-4">Who IGPL Is</p>
+        <h2 class="font-[Montserrat] font-extrabold text-2xl sm:text-3xl lg:text-[2.25rem] text-[#0F172A] leading-tight">Position &amp; Mission</h2>
+        <div class="w-16 h-[3px] bg-[#007C66] rounded-full mx-auto mt-5"></div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 stagger">
-        <!-- Vision -->
-        <div class="bg-white rounded-xl border border-[#E5E7EB] p-8 lg:p-10 shadow-sm relative overflow-hidden">
+        <!-- Position (reframed from aspirational to stated fact) -->
+        <div class="elevated-card p-8 lg:p-10 relative overflow-hidden">
           <div class="absolute top-0 left-0 w-1.5 h-full bg-[#007C66]"></div>
           <div class="pl-4">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-11 h-11 rounded-lg bg-[#F0FDF9] flex items-center justify-center flex-shrink-0">
+              <div class="sector-icon">
                 <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
               </div>
-              <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A]">Vision</h3>
+              <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A]">Our Position</h3>
             </div>
-            <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">To be the most reliable large-scale chemical manufacturer in India's industrial supply chain -- combining scale, process excellence, and downstream integration to deliver consistent value.</p>
+            <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">IGPL is India's largest single-location phthalic anhydride producer — operating at approximately 50% of the country's domestic PA capacity from a single integrated campus at Taloja, Maharashtra. Three decades of continuous operation have made this position structural, not circumstantial. Scale, process reliability, and proximity to JNPT are durable advantages that took decades to build.</p>
           </div>
         </div>
         <!-- Mission -->
-        <div class="bg-white rounded-xl border border-[#E5E7EB] p-8 lg:p-10 shadow-sm relative overflow-hidden">
+        <div class="elevated-card p-8 lg:p-10 relative overflow-hidden">
           <div class="absolute top-0 left-0 w-1.5 h-full bg-[#007C66]"></div>
           <div class="pl-4">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-11 h-11 rounded-lg bg-[#F0FDF9] flex items-center justify-center flex-shrink-0">
+              <div class="sector-icon">
                 <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               </div>
-              <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A]">Mission</h3>
+              <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A]">Our Mission</h3>
             </div>
-            <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">To produce phthalic anhydride and downstream products with the highest standards of process discipline, operational safety, and commercial reliability -- anchoring India's coatings, plasticiser, and specialty chemical industries.</p>
+            <p class="font-[Inter] text-[16px] text-[#475569] leading-relaxed">We manufacture phthalic anhydride and downstream products with the highest standards of process discipline, operational safety, and commercial reliability — anchoring India's coatings, plasticiser, and specialty chemical industries. Every tonne produced at Taloja strengthens a supply chain that India's downstream manufacturers depend on.</p>
           </div>
         </div>
       </div>
@@ -474,45 +530,40 @@
 
 
   <!-- ===== SECTION 6: CORE STRENGTHS ===== -->
-  <section class="py-20 lg:py-28 bg-[#F8FAFC]">
+  <section class="py-20 lg:py-28 section-tint">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-4">Our Strengths</p>
+        <p class="eyebrow-2026 mb-4">Our Strengths</p>
         <h2 class="font-[Montserrat] font-extrabold text-2xl sm:text-3xl lg:text-[2.25rem] text-[#0F172A] leading-tight">What Makes IGPL Different</h2>
+        <div class="w-16 h-[3px] bg-[#007C66] rounded-full mx-auto mt-5"></div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger">
         <!-- Strength 1 -->
-        <div class="bg-white rounded-xl border border-[#E5E7EB] p-8 shadow-sm relative overflow-hidden card-lift">
-          <div class="absolute top-0 left-0 w-1.5 h-full bg-[#007C66]"></div>
-          <div class="pl-4">
-            <div class="w-11 h-11 rounded-lg bg-[#F0FDF9] flex items-center justify-center mb-5">
-              <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-            </div>
-            <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Scale &amp; Concentration</h3>
-            <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Five PA plants on a single campus at Taloja. India's largest single-location PA complex -- a scale advantage that took three decades to build and cannot be replicated quickly.</p>
+        <div class="elevated-card p-8 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-[#007C66]"></div>
+          <div class="sector-icon mb-5">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
           </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Scale &amp; Concentration</h3>
+          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Five PA plants on a single campus at Taloja. India's largest single-location PA complex — a scale advantage that took three decades to build and cannot be replicated quickly.</p>
         </div>
         <!-- Strength 2 -->
-        <div class="bg-white rounded-xl border border-[#E5E7EB] p-8 shadow-sm relative overflow-hidden card-lift">
-          <div class="absolute top-0 left-0 w-1.5 h-full bg-[#007C66]"></div>
-          <div class="pl-4">
-            <div class="w-11 h-11 rounded-lg bg-[#F0FDF9] flex items-center justify-center mb-5">
-              <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-            </div>
-            <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Process Technology</h3>
-            <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Wacker Chemie Von-Heyden Low Energy Process. PA purity of 99.8% or above. Lowest energy consumption per tonne in its class -- proven technology operating at scale.</p>
+        <div class="elevated-card p-8 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-[#007C66]"></div>
+          <div class="sector-icon mb-5">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
           </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Process Technology</h3>
+          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Wacker Chemie Von-Heyden Low Energy Process. PA purity of 99.8% or above. Lowest energy consumption per tonne in its class — proven technology operating at scale.</p>
         </div>
         <!-- Strength 3 -->
-        <div class="bg-white rounded-xl border border-[#E5E7EB] p-8 shadow-sm relative overflow-hidden card-lift">
-          <div class="absolute top-0 left-0 w-1.5 h-full bg-[#007C66]"></div>
-          <div class="pl-4">
-            <div class="w-11 h-11 rounded-lg bg-[#F0FDF9] flex items-center justify-center mb-5">
-              <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-            </div>
-            <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Integrated Value Chain</h3>
-            <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">PA as the core, maleic anhydride and benzoic acid from byproduct recovery, diethyl phthalate from downstream integration. Multiple value streams from one feedstock cycle.</p>
+        <div class="elevated-card p-8 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-[#007C66]"></div>
+          <div class="sector-icon mb-5">
+            <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           </div>
+          <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A] mb-3">Integrated Value Chain</h3>
+          <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">PA as the core, maleic anhydride and benzoic acid from byproduct recovery, diethyl phthalate from downstream integration. Multiple value streams from one feedstock cycle.</p>
         </div>
       </div>
     </div>
@@ -523,11 +574,12 @@
   <section class="py-20 lg:py-28 bg-white">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-4">Governance &amp; Recognition</p>
+        <p class="eyebrow-2026 mb-4">Governance &amp; Recognition</p>
         <h2 class="font-[Montserrat] font-extrabold text-2xl sm:text-3xl lg:text-[2.25rem] text-[#0F172A] leading-tight">Our Board and Certifications</h2>
+        <div class="w-16 h-[3px] bg-[#007C66] rounded-full mx-auto mt-5"></div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 stagger">
-        <a href="board-of-directors.html" class="group bg-white rounded-xl border border-[#E5E7EB] p-8 shadow-sm relative overflow-hidden card-lift block">
+        <a href="board-of-directors.html" class="group elevated-card p-8 relative overflow-hidden block">
           <div class="absolute top-0 left-0 w-1.5 h-full bg-[#007C66]"></div>
           <div class="pl-4">
             <div class="w-11 h-11 rounded-lg bg-[#F0FDF9] flex items-center justify-center mb-5">
@@ -538,7 +590,7 @@
             <span class="font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.06em] text-[#007C66] inline-flex items-center gap-1">View the Board <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
           </div>
         </a>
-        <a href="certifications.html" class="group bg-white rounded-xl border border-[#E5E7EB] p-8 shadow-sm relative overflow-hidden card-lift block">
+        <a href="certifications.html" class="group elevated-card p-8 relative overflow-hidden block">
           <div class="absolute top-0 left-0 w-1.5 h-full bg-[#007C66]"></div>
           <div class="pl-4">
             <div class="w-11 h-11 rounded-lg bg-[#F0FDF9] flex items-center justify-center mb-5">
@@ -555,19 +607,15 @@
 
 
   <!-- ===== SECTION 7: FACILITY & LOCATION ADVANTAGE ===== -->
-  <section class="relative py-20 lg:py-28 bg-[#1E293B] overflow-hidden">
-    <!-- Background texture -->
-    <div class="absolute inset-0">
-
-    </div>
+  <section class="relative py-20 lg:py-28 section-ink overflow-hidden">
     <div class="relative z-10 max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-4">Location</p>
+        <p class="eyebrow-2026 mb-4">Location Advantage</p>
         <h2 class="font-[Montserrat] font-extrabold text-2xl sm:text-3xl lg:text-[2.25rem] text-white leading-tight">Strategically Located for India's Chemical Corridor</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger">
         <!-- Fact 1 -->
-        <div class="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8">
+        <div class="ink-card p-8">
           <div class="w-11 h-11 rounded-lg bg-[#007C66]/20 flex items-center justify-center mb-5">
             <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
@@ -575,7 +623,7 @@
           <p class="font-[Inter] text-[15px] text-[#CBD5E1] leading-relaxed">Maharashtra's major industrial zone with well-established chemical infrastructure, reliable utilities, and strong transport connectivity.</p>
         </div>
         <!-- Fact 2 -->
-        <div class="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8">
+        <div class="ink-card p-8">
           <div class="w-11 h-11 rounded-lg bg-[#007C66]/20 flex items-center justify-center mb-5">
             <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
@@ -583,7 +631,7 @@
           <p class="font-[Inter] text-[15px] text-[#CBD5E1] leading-relaxed">Direct access to India's largest container port for OX imports and PA exports. Proximity to Nhava Sheva reduces logistics costs and transit times for international trade.</p>
         </div>
         <!-- Fact 3 -->
-        <div class="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8">
+        <div class="ink-card p-8">
           <div class="w-11 h-11 rounded-lg bg-[#007C66]/20 flex items-center justify-center mb-5">
             <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
           </div>
@@ -710,7 +758,7 @@
             function update(now) {
               var elapsed = now - start, progress = Math.min(elapsed / duration, 1),
                   value = Math.round(target * easeOut(progress));
-              el.textContent = prefix + value.toLocaleString('en-IN') + suffix;
+              el.textContent = prefix + value.toLocaleString('en-US') + suffix;
               if (progress < 1) requestAnimationFrame(update);
             }
             requestAnimationFrame(update);

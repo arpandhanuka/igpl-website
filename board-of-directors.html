@@ -21,17 +21,31 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.igpetro.com/"},{"@type":"ListItem","position":2,"name":"About","item":"https://www.igpetro.com/about"},{"@type":"ListItem","position":3,"name":"Board of Directors","item":"https://www.igpetro.com/board-of-directors"}]}
   </script>
 
+  <!-- Structured Data: Person — Board of Directors -->
+  <script type="application/ld+json">
+  [
+    {"@context":"https://schema.org","@type":"Person","name":"Shri Nikunj Dhanuka","jobTitle":"Chairman and Managing Director","worksFor":{"@type":"Organization","name":"IG Petrochemicals Ltd.","url":"https://www.igpetro.com"},"url":"https://www.igpetro.com/board-of-directors"},
+    {"@context":"https://schema.org","@type":"Person","name":"Shri Mayank Dhanuka","jobTitle":"Executive Director & CEO","worksFor":{"@type":"Organization","name":"IG Petrochemicals Ltd.","url":"https://www.igpetro.com"},"url":"https://www.igpetro.com/board-of-directors"},
+    {"@context":"https://schema.org","@type":"Person","name":"Shri Shrikant Somani","jobTitle":"Non-Executive Independent Director","worksFor":{"@type":"Organization","name":"IG Petrochemicals Ltd.","url":"https://www.igpetro.com"},"url":"https://www.igpetro.com/board-of-directors"},
+    {"@context":"https://schema.org","@type":"Person","name":"Smt. Girija Balakrishnan","jobTitle":"Non-Executive Independent Director","worksFor":{"@type":"Organization","name":"IG Petrochemicals Ltd.","url":"https://www.igpetro.com"},"url":"https://www.igpetro.com/board-of-directors"},
+    {"@context":"https://schema.org","@type":"Person","name":"Shri Sagar Jadhav","jobTitle":"Executive Director","worksFor":{"@type":"Organization","name":"IG Petrochemicals Ltd.","url":"https://www.igpetro.com"},"url":"https://www.igpetro.com/board-of-directors"},
+    {"@context":"https://schema.org","@type":"Person","name":"Shri Jyotin Mehta","jobTitle":"Non-Executive Independent Director","worksFor":{"@type":"Organization","name":"IG Petrochemicals Ltd.","url":"https://www.igpetro.com"},"url":"https://www.igpetro.com/board-of-directors"},
+    {"@context":"https://schema.org","@type":"Person","name":"Shri Sanjoy Datta","jobTitle":"Non-Executive Independent Director","worksFor":{"@type":"Organization","name":"IG Petrochemicals Ltd.","url":"https://www.igpetro.com"},"url":"https://www.igpetro.com/board-of-directors"}
+  ]
+  </script>
+
   <!-- Fonts & Styles -->
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/design-system.css?v=2">
+  <link rel="stylesheet" href="css/igpl-2026.css?v=2">
 
   <style>
     html, body { overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Montserrat', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
 
     /* Scroll reveal animations */
     .reveal {
@@ -326,6 +340,8 @@
           <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Company</h4>
           <div class="flex flex-col gap-3">
             <a href="about.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">About</a>
+            <a href="board-of-directors.html" class="font-[Inter] text-[14px] text-white transition-colors">Board of Directors</a>
+            <a href="certifications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Certifications</a>
             <a href="manufacturing.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Manufacturing</a>
             <a href="applications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Applications</a>
             <a href="sustainability.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Sustainability</a>

@@ -8,3 +8,5 @@ __pycache__/
 DESIGN_TODO.md
 Profile 1/
 tools/
+node_modules/
+.claude/launch.json

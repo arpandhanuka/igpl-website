@@ -6,7 +6,7 @@
   <link rel="icon" href="igpl-logo.png" type="image/png">
 
   <!-- SEO -->
-  <title>Applications — Plasticizers, Coatings, Resins &amp; More | IG Petrochemicals Ltd. (IGPL)</title>
+  <title>Applications — Plasticizers, Coatings &amp; Resins | IGPL</title>
   <meta name="description" content="IGPL's phthalic anhydride, maleic anhydride, benzoic acid, and DEP serve plasticizers, coatings, unsaturated polyesters, flame retardants, textiles, and fragrance industries.">
   <meta property="og:title" content="Applications — Plasticizers, Coatings, Resins &amp; More | IGPL">
   <meta property="og:description" content="IGPL's four core products feed into 15+ downstream industries — from the plasticizer in your PVC pipe to the resin in your car's topcoat.">
@@ -30,13 +30,14 @@
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/design-system.css?v=2">
+  <link rel="stylesheet" href="css/igpl-2026.css?v=2">
 
   <style>
     html, body { overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Montserrat', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
 
     /* Scroll reveal */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -136,82 +137,92 @@
 
 
   <!-- ===== SECTION 1: HERO ===== -->
-  <section class="relative overflow-hidden min-h-[480px] md:min-h-[540px] flex items-center">
-    <!-- Background image with overlay -->
+  <section class="relative overflow-hidden flex items-center" style="min-height: clamp(500px, 60vh, 640px);">
+    <!-- Background image — real plant/supply chain photo -->
     <div class="absolute inset-0">
       <img src="supply-chain-full.webp" alt="" class="w-full h-full object-cover" aria-hidden="true">
-      <div class="absolute inset-0" style="background: rgba(15,23,42,0.65);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(8,32,27,0.94) 0%, rgba(8,32,27,0.80) 45%, rgba(8,32,27,0.50) 100%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(8,32,27,0.0) 55%, rgba(8,32,27,0.40) 100%);"></div>
     </div>
-    <div class="relative z-10 w-full max-w-[1280px] mx-auto px-6 py-20 md:py-28">
+    <div class="relative z-10 w-full max-w-[1280px] mx-auto px-6 py-24 md:py-32">
       <!-- Breadcrumb -->
       <nav aria-label="Breadcrumb" class="mb-8">
-        <ol class="flex items-center gap-2 text-[13px] font-[Inter] text-[#94A3B8]">
-          <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
-          <li class="text-[#64748B]">/</li>
-          <li class="text-[#CBD5E1]">Applications</li>
+        <ol class="flex items-center gap-2 text-[13px] font-[Inter] text-white/50">
+          <li><a href="index.html" class="hover:text-white/80 transition-colors">Home</a></li>
+          <li class="text-white/40">/</li>
+          <li class="text-white/80">Applications</li>
         </ol>
       </nav>
       <!-- Content -->
-      <div class="max-w-3xl">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-4">Downstream Applications</p>
-        <h1 class="font-[Montserrat] font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white leading-[1.15] mb-6">From Chemical Plant to Finished Product</h1>
-        <p class="font-[Inter] text-lg text-[#CBD5E1] leading-relaxed max-w-2xl">IGPL's four core products feed into 15+ downstream industries — from the plasticizer in your PVC pipe to the resin in your car's topcoat.</p>
+      <div class="max-w-4xl">
+        <p class="eyebrow-2026 mb-5" style="color:#5BE9C2;">Downstream Applications</p>
+        <h1 class="font-[Montserrat] font-bold text-[40px] md:text-[60px] text-white leading-[1.05] tracking-[-0.02em] mb-6">From Chemical Plant to Finished Product</h1>
+        <p class="font-[Inter] text-[17px] md:text-[19px] text-white/75 leading-relaxed max-w-2xl mb-10">IGPL's four core products feed into 15+ downstream industries &mdash; from the plasticizer in your PVC pipe to the resin in your car's topcoat.</p>
+        <!-- Inline stats -->
+        <div class="flex flex-wrap gap-10">
+          <div class="stat-monument">
+            <div class="stat-monument__value" style="color:#fff;">15+</div>
+            <div class="stat-monument__rule" style="background:#5BE9C2;"></div>
+            <p class="stat-monument__label" style="color:#9DC3B8;">Industries Served</p>
+          </div>
+          <div class="stat-monument">
+            <div class="stat-monument__value" style="color:#fff;">4</div>
+            <div class="stat-monument__rule" style="background:#5BE9C2;"></div>
+            <p class="stat-monument__label" style="color:#9DC3B8;">Core Products</p>
+          </div>
+          <div class="stat-monument">
+            <div class="stat-monument__value" style="color:#fff;">~50<span class="unit">%</span></div>
+            <div class="stat-monument__rule" style="background:#5BE9C2;"></div>
+            <p class="stat-monument__label" style="color:#9DC3B8;">India PA Market Share</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
 
   <!-- ===== SECTION 2: PRODUCT APPLICATION MATRIX ===== -->
-  <section class="py-20 lg:py-28 bg-white">
+  <section class="py-20 lg:py-28 section-tint">
     <div class="max-w-[1280px] mx-auto px-6">
       <!-- Section header -->
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-3">Product Portfolio</p>
-        <h2 class="font-[Montserrat] font-extrabold text-2xl sm:text-3xl lg:text-[2.25rem] text-[#0F172A] leading-tight">Four Products. Dozens of Applications.</h2>
+        <p class="eyebrow-2026 justify-center mb-3">Product Portfolio</p>
+        <h2 class="font-[Montserrat] font-bold text-2xl sm:text-3xl lg:text-[2.25rem] text-[#0F172A] leading-tight mt-2">Four Products. Dozens of Applications.</h2>
+        <div class="w-16 h-[3px] bg-[#007C66] rounded-full mx-auto mt-5 mb-4"></div>
         <p class="font-[Inter] text-[16px] text-[#475569] mt-4 max-w-2xl mx-auto leading-relaxed">Every product from Taloja enters a chain of downstream formulators and manufacturers that touch industries across the economy.</p>
       </div>
 
-      <!-- 2x2 Product cards grid -->
+      <!-- 2x2 Product cards grid — elevated-card style -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 stagger">
 
         <!-- Card 1: Phthalic Anhydride -->
-        <article class="bg-white rounded-xl overflow-hidden border border-[#E2E8F0] card-lift flex flex-col">
-          <div class="h-40 overflow-hidden">
-            <img src="pa-applications.webp" alt="Phthalic Anhydride downstream applications" class="w-full h-full object-cover" loading="lazy">
+        <article class="elevated-card overflow-hidden flex flex-col">
+          <div class="h-52 overflow-hidden">
+            <img src="pa-applications.webp" alt="Phthalic Anhydride downstream applications — coatings, plasticizers, resins" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
           </div>
-          <div class="p-7 flex flex-col flex-1">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="badge-primary font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.08em] px-2.5 py-1 rounded-full">Primary Product</span>
+          <div class="p-8 flex flex-col flex-1">
+            <div class="flex items-start gap-4 mb-5">
+              <div class="sector-icon flex-shrink-0">
+                <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"/></svg>
+              </div>
+              <div>
+                <span class="badge-primary font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.08em] px-2.5 py-1 rounded-full inline-block mb-1">Primary Product</span>
+                <h3 class="font-[Montserrat] font-bold text-[20px] text-[#0F172A] leading-tight">Phthalic Anhydride (PA)</h3>
+              </div>
             </div>
-            <h3 class="font-[Montserrat] font-bold text-[18px] text-[#0F172A] mb-2">Phthalic Anhydride (PA)</h3>
             <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed mb-5">The anchor product of IGPL's portfolio, PA is the chemical backbone of plasticizers, alkyd resins, and unsaturated polyester resins used across construction, coatings, and flexible PVC applications.</p>
             <ul class="space-y-2 mb-5 flex-1">
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Plasticizers — DOP, DINP, DIDP for flexible PVC
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Alkyd resins for decorative and industrial coatings
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Unsaturated polyester resins (UPR) for composites
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Phthalate-free plasticizers (DINCH, DOTP)
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Glyptal resins for electrical insulation
-              </li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Plasticizers — DOP, DINP, DIDP for flexible PVC</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Alkyd resins for decorative and industrial coatings</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Unsaturated polyester resins (UPR) for composites</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Phthalate-free plasticizers (DINCH, DOTP)</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Glyptal resins for electrical insulation</li>
             </ul>
             <div class="flex flex-wrap gap-2 mb-5">
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Paints &amp; Coatings</span>
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Flexible PVC</span>
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Construction</span>
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Automotive</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Paints &amp; Coatings</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Flexible PVC</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Construction</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Automotive</span>
             </div>
             <a href="pa.html" class="inline-flex items-center gap-1.5 font-[Montserrat] font-bold text-[13px] text-[#007C66] hover:text-[#005E4D] transition-colors mt-auto group">
               Product detail
@@ -221,42 +232,32 @@
         </article>
 
         <!-- Card 2: Maleic Anhydride -->
-        <article class="bg-white rounded-xl overflow-hidden border border-[#E2E8F0] card-lift flex flex-col">
-          <div class="h-40 overflow-hidden">
-            <img src="ma-applications.webp" alt="Maleic Anhydride downstream applications" class="w-full h-full object-cover" loading="lazy">
+        <article class="elevated-card overflow-hidden flex flex-col">
+          <div class="h-52 overflow-hidden">
+            <img src="ma-applications.webp" alt="Maleic Anhydride downstream applications — FRP composites, agrochemicals" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
           </div>
-          <div class="p-7 flex flex-col flex-1">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.08em] px-2.5 py-1 rounded-full">Coproduct</span>
+          <div class="p-8 flex flex-col flex-1">
+            <div class="flex items-start gap-4 mb-5">
+              <div class="sector-icon flex-shrink-0">
+                <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+              </div>
+              <div>
+                <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.08em] px-2.5 py-1 rounded-full inline-block mb-1">Coproduct</span>
+                <h3 class="font-[Montserrat] font-bold text-[20px] text-[#0F172A] leading-tight">Maleic Anhydride (MA)</h3>
+              </div>
             </div>
-            <h3 class="font-[Montserrat] font-bold text-[18px] text-[#0F172A] mb-2">Maleic Anhydride (MA)</h3>
             <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed mb-5">Recovered as a coproduct in PA synthesis, MA is a versatile intermediate widely used in composites manufacturing, food-grade acids, and agrochemical synthesis.</p>
             <ul class="space-y-2 mb-5 flex-1">
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Unsaturated polyester resins (UPR) for FRP
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Fumaric acid and malic acid production
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Agrochemicals — herbicide and pesticide synthesis
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Lubricant additives and corrosion inhibitors
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Specialty polymer modification
-              </li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Unsaturated polyester resins (UPR) for FRP</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Fumaric acid and malic acid production</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Agrochemicals — herbicide and pesticide synthesis</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Lubricant additives and corrosion inhibitors</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Specialty polymer modification</li>
             </ul>
             <div class="flex flex-wrap gap-2 mb-5">
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">FRP Composites</span>
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Food &amp; Pharma</span>
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Agrochemicals</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">FRP Composites</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Food &amp; Pharma</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Agrochemicals</span>
             </div>
             <a href="ma.html" class="inline-flex items-center gap-1.5 font-[Montserrat] font-bold text-[13px] text-[#007C66] hover:text-[#005E4D] transition-colors mt-auto group">
               Product detail
@@ -266,42 +267,32 @@
         </article>
 
         <!-- Card 3: Benzoic Acid -->
-        <article class="bg-white rounded-xl overflow-hidden border border-[#E2E8F0] card-lift flex flex-col">
-          <div class="h-40 overflow-hidden">
-            <img src="ba-applications.webp" alt="Benzoic Acid downstream applications" class="w-full h-full object-cover" loading="lazy">
+        <article class="elevated-card overflow-hidden flex flex-col">
+          <div class="h-52 overflow-hidden">
+            <img src="ba-applications.webp" alt="Benzoic Acid downstream applications — food preservatives, pharma" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
           </div>
-          <div class="p-7 flex flex-col flex-1">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.08em] px-2.5 py-1 rounded-full">Coproduct</span>
+          <div class="p-8 flex flex-col flex-1">
+            <div class="flex items-start gap-4 mb-5">
+              <div class="sector-icon flex-shrink-0">
+                <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              </div>
+              <div>
+                <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.08em] px-2.5 py-1 rounded-full inline-block mb-1">Coproduct</span>
+                <h3 class="font-[Montserrat] font-bold text-[20px] text-[#0F172A] leading-tight">Benzoic Acid (BA)</h3>
+              </div>
             </div>
-            <h3 class="font-[Montserrat] font-bold text-[18px] text-[#0F172A] mb-2">Benzoic Acid (BA)</h3>
             <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed mb-5">A high-value coproduct from PA manufacture, benzoic acid serves as a food preservative precursor, pharmaceutical intermediate, and specialty chemical building block.</p>
             <ul class="space-y-2 mb-5 flex-1">
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Sodium benzoate — food and beverage preservative
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Benzoyl chloride for pharma synthesis
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Benzaldehyde for flavor and fragrance
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Phenol precursor in chemical synthesis
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Plasticizers via benzoate esters
-              </li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Sodium benzoate — food and beverage preservative</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Benzoyl chloride for pharma synthesis</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Benzaldehyde for flavor and fragrance</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Phenol precursor in chemical synthesis</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Plasticizers via benzoate esters</li>
             </ul>
             <div class="flex flex-wrap gap-2 mb-5">
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Food &amp; Beverage</span>
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Pharmaceuticals</span>
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Specialty Chemicals</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Food &amp; Beverage</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Pharmaceuticals</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Specialty Chemicals</span>
             </div>
             <a href="ba.html" class="inline-flex items-center gap-1.5 font-[Montserrat] font-bold text-[13px] text-[#007C66] hover:text-[#005E4D] transition-colors mt-auto group">
               Product detail
@@ -311,42 +302,32 @@
         </article>
 
         <!-- Card 4: Diethyl Phthalate -->
-        <article class="bg-white rounded-xl overflow-hidden border border-[#E2E8F0] card-lift flex flex-col">
-          <div class="h-40 overflow-hidden">
-            <img src="dep-applications-v2.webp" alt="Diethyl Phthalate downstream applications" class="w-full h-full object-cover" loading="lazy">
+        <article class="elevated-card overflow-hidden flex flex-col">
+          <div class="h-52 overflow-hidden">
+            <img src="dep-applications-v2.webp" alt="Diethyl Phthalate downstream applications — cosmetics, fragrances, pharmaceuticals" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
           </div>
-          <div class="p-7 flex flex-col flex-1">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="badge-downstream font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.08em] px-2.5 py-1 rounded-full">Downstream</span>
+          <div class="p-8 flex flex-col flex-1">
+            <div class="flex items-start gap-4 mb-5">
+              <div class="sector-icon flex-shrink-0">
+                <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </div>
+              <div>
+                <span class="badge-downstream font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.08em] px-2.5 py-1 rounded-full inline-block mb-1">Downstream</span>
+                <h3 class="font-[Montserrat] font-bold text-[20px] text-[#0F172A] leading-tight">Diethyl Phthalate (DEP)</h3>
+              </div>
             </div>
-            <h3 class="font-[Montserrat] font-bold text-[18px] text-[#0F172A] mb-2">Diethyl Phthalate (DEP)</h3>
             <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed mb-5">Produced downstream from PA, DEP is a low-toxicity phthalate ester used as a fragrance fixative, cellulose solvent, and specialty plasticizer across personal care and pharmaceutical sectors.</p>
             <ul class="space-y-2 mb-5 flex-1">
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Fragrance fixative in perfumes and cosmetics
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Cellulose ester solvent for film and lacquer
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Pharmaceutical tablet coating solvent
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Insect repellent carrier solvent
-              </li>
-              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>
-                Specialty polymer and film plasticizer
-              </li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Fragrance fixative in perfumes and cosmetics</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Cellulose ester solvent for film and lacquer</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Pharmaceutical tablet coating solvent</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Insect repellent carrier solvent</li>
+              <li class="flex items-start gap-2.5 font-[Inter] text-[14px] text-[#374151]"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#007C66] flex-shrink-0"></span>Specialty polymer and film plasticizer</li>
             </ul>
             <div class="flex flex-wrap gap-2 mb-5">
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Cosmetics &amp; Fragrances</span>
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Pharmaceuticals</span>
-              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">Specialty Polymers</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Cosmetics &amp; Fragrances</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Pharmaceuticals</span>
+              <span class="font-[Inter] text-[12px] text-[#64748B] bg-[#EEF5F2] px-2.5 py-1 rounded">Specialty Polymers</span>
             </div>
             <a href="dep.html" class="inline-flex items-center gap-1.5 font-[Montserrat] font-bold text-[13px] text-[#007C66] hover:text-[#005E4D] transition-colors mt-auto group">
               Product detail
@@ -361,185 +342,186 @@
 
 
   <!-- ===== SECTION 3: SECTOR GRID ===== -->
-  <section class="py-20 lg:py-28" style="background: #F8FAFB;">
+  <section class="py-20 lg:py-28 bg-white">
     <div class="max-w-[1280px] mx-auto px-6">
       <!-- Section header -->
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-3">End Markets</p>
-        <h2 class="font-[Montserrat] font-extrabold text-2xl sm:text-3xl lg:text-[2.25rem] text-[#0F172A] leading-tight">Industries We Serve</h2>
+        <p class="eyebrow-2026 justify-center mb-3">End Markets</p>
+        <h2 class="font-[Montserrat] font-bold text-2xl sm:text-3xl lg:text-[2.25rem] text-[#0F172A] leading-tight mt-2">Industries We Serve</h2>
+        <div class="w-16 h-[3px] bg-[#007C66] rounded-full mx-auto mt-5 mb-4"></div>
         <p class="font-[Inter] text-[16px] text-[#475569] mt-4 max-w-2xl mx-auto leading-relaxed">IGPL products reach your factory through formulators, compounders, and distributors across 15+ industry verticals.</p>
       </div>
 
-      <!-- 12-tile sector grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 stagger">
+      <!-- 12-tile sector grid — elevated-card with proper sector-icon tiles -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger">
 
         <!-- 1. Plasticizers -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Plasticizers</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Plasticizers</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">DOP/DINP/DIDP from PA — the largest single end-use, making PVC cables, flooring, and films flexible.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-primary font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">PA</span>
           </div>
         </div>
 
         <!-- 2. Paints & Coatings -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13.5V19a2 2 0 002 2h16a2 2 0 002-2v-5.5"/><path d="M12 2l-2 6h4l-2-6z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Paints &amp; Coatings</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Paints &amp; Coatings</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">Alkyd resins derived from PA form the backbone of decorative and industrial coating formulations.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-primary font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">PA</span>
           </div>
         </div>
 
         <!-- 3. Construction & Infrastructure -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Construction &amp; Infrastructure</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Construction &amp; Infrastructure</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">PA and MA feed UPR-based GRP pipes, water tanks, and structural panels used in large-scale infrastructure.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-primary font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">PA</span>
             <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">MA</span>
           </div>
         </div>
 
         <!-- 4. Automotive -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3a2 2 0 01-2-2V9a2 2 0 012-2h14l4 4v4a2 2 0 01-2 2h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17H3a2 2 0 01-2-2V9a2 2 0 012-2h14l4 4v4a2 2 0 01-2 2h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Automotive</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Automotive</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">PA and MA derive UPR composites, body fillers, and alkyd-based topcoats for interior and exterior automotive applications.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-primary font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">PA</span>
             <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">MA</span>
           </div>
         </div>
 
         <!-- 5. FRP / Composites -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><polyline points="2 8.5 12 15 22 8.5"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><polyline points="2 8.5 12 15 22 8.5"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">FRP / Composites</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">FRP / Composites</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">MA into UPR is the chemistry behind fibreglass-reinforced parts, boat hulls, and composite panels in wind and construction.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">MA</span>
           </div>
         </div>
 
         <!-- 6. Food & Beverage -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Food &amp; Beverage</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Food &amp; Beverage</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">Benzoic acid converts to sodium benzoate — one of the most widely used food preservatives globally.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">BA</span>
           </div>
         </div>
 
         <!-- 7. Pharmaceuticals -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 20H4a2 2 0 01-2-2V6a2 2 0 012-2h16a2 2 0 012 2v7"/><path d="M16 19h6"/><path d="M19 16v6"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Pharmaceuticals</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Pharmaceuticals</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">BA is used in benzoyl chloride and phenol synthesis; DEP acts as a pharmaceutical-grade tablet coating solvent.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">BA</span>
             <span class="badge-downstream font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">DEP</span>
           </div>
         </div>
 
         <!-- 8. Cosmetics & Fragrances -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Cosmetics &amp; Fragrances</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Cosmetics &amp; Fragrances</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">DEP serves as a fragrance fixative and carrier solvent in perfumes, lotions, and personal care formulations.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-downstream font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">DEP</span>
           </div>
         </div>
 
         <!-- 9. Agrochemicals -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 010 20"/><path d="M12 2C6.5 2 2 6.5 2 12"/><path d="M12 6v6l4 2"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9z"/><path d="M12 22c0-4.97-4.03-9-9-9 0 4.97 4.03 9 9 9z"/><path d="M12 3v19"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Agrochemicals</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Agrochemicals</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">Maleic anhydride is a key intermediate in the synthesis of herbicides, pesticides, and plant growth regulators.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">MA</span>
           </div>
         </div>
 
         <!-- 10. Electrical & Electronics -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><polyline points="13 2 13 9 22 9"/><path d="M22 2L13 9"/><path d="M2 22V12a2 2 0 012-2h5"/><path d="M12 12h2a2 2 0 012 2v2a2 2 0 01-2 2h-2v-6z"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Electrical &amp; Electronics</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Electrical &amp; Electronics</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">PA-derived plasticizers make PVC flexible for wire insulation, cable jacketing, and electrical fittings.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-primary font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">PA</span>
           </div>
         </div>
 
         <!-- 11. Textiles -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v2H4zM4 10h16v2H4zM4 16h16v2H4z"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v2H4zM4 10h16v2H4zM4 16h16v2H4z"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Textiles</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Textiles</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">DEP is used as a plasticizer in cellulose acetate spinning — the fibre base for acetate fabrics and filtration materials.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-downstream font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">DEP</span>
           </div>
         </div>
 
         <!-- 12. Specialty Chemicals -->
-        <div class="bg-white rounded-lg p-5 border border-[#E2E8F0] card-lift flex flex-col gap-4">
-          <div class="icon-circle">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
+        <div class="elevated-card p-6 flex flex-col gap-5">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v7.527a2 2 0 01-.211.896L4.72 19.1a1 1 0 00.9 1.4h12.76a1 1 0 00.9-1.4l-5.069-8.677A2 2 0 0114 9.527V2"/><path d="M8.5 2h7"/></svg>
           </div>
           <div class="flex-1">
-            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-1.5">Specialty Chemicals</h3>
+            <h3 class="font-[Montserrat] font-bold text-[15px] text-[#0F172A] mb-2">Specialty Chemicals</h3>
             <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">MA and BA serve as versatile intermediates in specialty synthesis — including flame retardants, corrosion inhibitors, and fine chemicals.</p>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-[#F1F5F9]">
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-[#E5E7EB]">
             <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">MA</span>
             <span class="badge-coproduct font-[Montserrat] font-bold text-[10px] uppercase tracking-[0.06em] px-2 py-0.5 rounded-full">BA</span>
           </div>
@@ -549,16 +531,33 @@
     </div>
   </section>
 
+  <!-- ===== FULLBLEED BAND — lab-scientist.webp (real photo) ===== -->
+  <section class="fullbleed-band" style="min-height:clamp(360px,48vh,480px);display:flex;align-items:center;">
+    <img src="lab-scientist.webp" alt="" aria-hidden="true" loading="lazy">
+    <div class="fullbleed-band__scrim"></div>
+    <div class="fullbleed-band__inner w-full max-w-[1280px] mx-auto px-6 py-16">
+      <p class="eyebrow-2026 mb-4" style="color:#5BE9C2;">Quality First</p>
+      <h2 class="font-[Montserrat] font-bold text-white text-[28px] md:text-[42px] leading-[1.06] tracking-[-0.02em] max-w-3xl">ISO 9001:2015 and ISO 14001:2015 certified. HALAL and Star-K Kosher approved.</h2>
+      <p class="font-[Inter] text-white/80 mt-4 max-w-2xl">Every batch leaves Taloja with a Certificate of Analysis. Consistent quality from a site that has been in continuous production since 1992.</p>
+      <div class="mt-8">
+        <a href="contact.html?subject=tds" class="btn-mint-2026">
+          Request technical data sheets
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ===== SECTION 4: VALUE CHAIN VISUAL ===== -->
-  <section class="py-20 lg:py-28" style="background: #1E293B;">
+  <section class="py-20 lg:py-28 section-ink">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
         <!-- Left: Text content -->
         <div class="reveal-left">
-          <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-4">Supply Chain Position</p>
-          <h2 class="font-[Montserrat] font-extrabold text-2xl sm:text-3xl lg:text-[2.25rem] text-white leading-tight mb-8">Where IGPL Sits in the Value Chain</h2>
+          <p class="eyebrow-2026 mb-4">Supply Chain Position</p>
+          <h2 class="font-[Montserrat] font-bold text-2xl sm:text-3xl lg:text-[2.25rem] text-white leading-tight mb-8">Where IGPL Sits in the Value Chain</h2>
 
           <div class="space-y-5 mb-10">
             <p class="font-[Inter] text-[16px] text-[#CBD5E1] leading-relaxed">IGPL converts o-xylene feedstock into phthalic anhydride and recovers maleic anhydride, benzoic acid, and DEP as coproducts.</p>
@@ -606,7 +605,7 @@
 
 
   <!-- ===== SECTION 5: REQUEST TECHNICAL DOCS ===== -->
-  <section class="py-20 lg:py-24 bg-white">
+  <section class="py-20 lg:py-24 section-tint">
     <div class="max-w-[800px] mx-auto px-6 text-center reveal">
       <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.15em] text-[#007C66] mb-4">Technical Resources</p>
       <h2 class="font-[Montserrat] font-extrabold text-2xl sm:text-3xl lg:text-[2.25rem] text-[#0F172A] leading-tight mb-6">Need Technical Data or Samples?</h2>
@@ -659,6 +658,8 @@
           <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Company</h4>
           <div class="flex flex-col gap-3">
             <a href="about.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">About</a>
+            <a href="board-of-directors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Board of Directors</a>
+            <a href="certifications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Certifications</a>
             <a href="manufacturing.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Manufacturing</a>
             <a href="applications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Applications</a>
             <a href="sustainability.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Sustainability</a>

@@ -25,13 +25,14 @@
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/design-system.css?v=2">
+  <link rel="stylesheet" href="css/igpl-2026.css?v=2">
 
   <style>
     html, body { overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Montserrat', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
 
     /* Scroll reveal animations */
     .reveal {
@@ -144,29 +145,54 @@
 
 
   <!-- ===== SECTION 1: HERO ===== -->
-  <section class="relative min-h-[480px] md:min-h-[540px] flex items-center" role="banner">
+  <section class="relative flex items-center" style="min-height: clamp(560px, 65vh, 700px);" role="banner">
     <div class="absolute inset-0">
-      <img src="plant-aerial.webp" alt="Aerial view of IGPL Taloja manufacturing campus" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-[rgba(15,23,42,0.68)]"></div>
+      <img src="plant-aerial.webp" alt="Aerial view of IGPL's Taloja manufacturing campus with five PA plants" class="w-full h-full object-cover">
+      <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(8,32,27,0.94) 0%, rgba(8,32,27,0.80) 45%, rgba(8,32,27,0.45) 100%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(8,32,27,0.0) 55%, rgba(8,32,27,0.50) 100%);"></div>
     </div>
-    <div class="relative z-10 max-w-[1280px] mx-auto px-6 py-20 md:py-28 w-full">
+    <div class="relative z-10 max-w-[1280px] mx-auto px-6 py-24 md:py-32 w-full">
       <!-- Breadcrumb -->
-      <nav aria-label="Breadcrumb" class="mb-6">
-        <ol class="flex items-center gap-2 text-[13px] font-[Inter]">
-          <li><a href="index.html" class="text-white/70 hover:text-white transition-colors">Home</a></li>
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 text-[13px] font-[Inter] text-white/50">
+          <li><a href="index.html" class="hover:text-white/80 transition-colors">Home</a></li>
           <li class="text-white/40">/</li>
-          <li class="text-white font-medium">Manufacturing</li>
+          <li class="text-white/80">Manufacturing</li>
         </ol>
       </nav>
-      <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.14em] text-[#007C66] mb-4">Our Facility</p>
-      <h1 class="font-[Montserrat] font-extrabold text-3xl md:text-5xl lg:text-[56px] text-white leading-[1.1] max-w-3xl mb-6">India's Largest Single-Site PA Complex</h1>
-      <p class="font-[Inter] text-[17px] md:text-lg text-white/80 leading-relaxed max-w-2xl">Five production plants. One integrated campus. 270,000 MTPA of phthalic anhydride from Taloja, Maharashtra.</p>
+      <p class="eyebrow-2026 mb-5" style="color:#5BE9C2;">Taloja, Maharashtra</p>
+      <h1 class="font-[Montserrat] font-bold text-[40px] md:text-[60px] text-white leading-[1.05] tracking-[-0.02em] max-w-3xl mb-6">India's Largest Single-Site PA Complex</h1>
+      <p class="font-[Inter] text-[17px] md:text-[19px] text-white/75 leading-relaxed max-w-2xl mb-12">Five production plants. One integrated campus. 270,000 MTPA of phthalic anhydride from Taloja, Maharashtra.</p>
+
+      <!-- Stat monuments under hero -->
+      <div class="flex flex-wrap gap-10">
+        <div class="stat-monument">
+          <div class="stat-monument__value" style="color:#fff;">5</div>
+          <div class="stat-monument__rule" style="background:#5BE9C2;"></div>
+          <p class="stat-monument__label" style="color:#9DC3B8;">PA Plants</p>
+        </div>
+        <div class="stat-monument">
+          <div class="stat-monument__value" style="color:#fff;">270,000<span class="unit">MTPA</span></div>
+          <div class="stat-monument__rule" style="background:#5BE9C2;"></div>
+          <p class="stat-monument__label" style="color:#9DC3B8;">PA Capacity</p>
+        </div>
+        <div class="stat-monument">
+          <div class="stat-monument__value" style="color:#fff;">50<span class="unit">km</span></div>
+          <div class="stat-monument__rule" style="background:#5BE9C2;"></div>
+          <p class="stat-monument__label" style="color:#9DC3B8;">To JNPT</p>
+        </div>
+        <div class="stat-monument">
+          <div class="stat-monument__value" style="color:#fff;">1</div>
+          <div class="stat-monument__rule" style="background:#5BE9C2;"></div>
+          <p class="stat-monument__label" style="color:#9DC3B8;">Integrated Site</p>
+        </div>
+      </div>
     </div>
   </section>
 
 
   <!-- ===== SECTION 2: SITE OVERVIEW ===== -->
-  <section class="py-20 md:py-28 bg-white">
+  <section class="py-20 md:py-28 section-tint">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
         <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.14em] text-[#007C66] mb-3">Taloja Campus</p>
@@ -217,41 +243,42 @@
 
 
   <!-- ===== SECTION 3: TECHNOLOGY / PROCESS ===== -->
-  <section class="py-20 md:py-28 bg-[#F8FAFC]">
+  <section class="py-20 md:py-28 bg-white">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.14em] text-[#007C66] mb-3">Technology</p>
-        <h2 class="font-[Montserrat] font-extrabold text-3xl md:text-4xl text-[#0F172A]">Von-Heyden Low Energy Process</h2>
+        <p class="eyebrow-2026 justify-center mb-3">Technology</p>
+        <h2 class="font-[Montserrat] font-bold text-3xl md:text-4xl text-[#0F172A] mt-2">Von-Heyden Low Energy Process</h2>
+        <div class="w-16 h-[3px] bg-[#007C66] rounded-full mx-auto mt-5"></div>
       </div>
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <!-- Left: Image -->
         <div class="reveal-left">
-          <img src="dcs-control-room.webp" alt="DCS control room at IGPL Taloja campus" class="w-full rounded-xl shadow-lg object-cover">
+          <img src="steam-pipes.webp" alt="Steam pipes and process infrastructure at IGPL's Taloja manufacturing campus" class="w-full rounded-xl shadow-lg object-cover">
         </div>
         <!-- Right: Process Features -->
         <div class="reveal-right space-y-8">
-          <div>
+          <div class="elevated-card p-6">
             <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 rounded-lg bg-[#007C66]/10 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              <div class="sector-icon flex-shrink-0">
+                <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
               </div>
               <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A]">Catalytic Oxidation</h3>
             </div>
             <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Ortho-xylene is oxidised with air over a V&#8322;O&#8325;/TiO&#8322; catalyst in a fixed-bed tubular reactor. The exothermic reaction is controlled by a molten salt cooling system.</p>
           </div>
-          <div>
+          <div class="elevated-card p-6">
             <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 rounded-lg bg-[#007C66]/10 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div class="sector-icon flex-shrink-0">
+                <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               </div>
               <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A]">High Selectivity</h3>
             </div>
             <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">The Von-Heyden process is optimised for yield and selectivity. PA purity reaches &ge;99.8% through a two-stage distillation and purification system.</p>
           </div>
-          <div>
+          <div class="elevated-card p-6">
             <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 rounded-lg bg-[#007C66]/10 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <div class="sector-icon flex-shrink-0">
+                <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               </div>
               <h3 class="font-[Montserrat] font-bold text-lg text-[#0F172A]">Energy Recovery</h3>
             </div>
@@ -262,44 +289,86 @@
     </div>
   </section>
 
+  <!-- ===== FULL-BLEED BAND — dcs-control-room.webp: operational excellence ===== -->
+  <section class="fullbleed-band" style="min-height:clamp(360px,48vh,480px);display:flex;align-items:center;">
+    <img src="dcs-control-room.webp" alt="" aria-hidden="true" loading="lazy">
+    <div class="fullbleed-band__scrim"></div>
+    <div class="fullbleed-band__inner w-full max-w-[1280px] mx-auto px-6 py-16">
+      <p class="eyebrow-2026 mb-4" style="color:#5BE9C2;">Operational Excellence</p>
+      <h2 class="font-[Montserrat] font-bold text-white text-[28px] md:text-[42px] leading-[1.06] tracking-[-0.02em] max-w-3xl">Continuous operation since 1992. Five plants. Centralised DCS control.</h2>
+      <p class="font-[Inter] text-white/80 mt-4 max-w-2xl">Every production variable monitored in real time. 34 years of accumulated process knowledge embedded in a team that operates on a single integrated site.</p>
+    </div>
+  </section>
+
 
   <!-- ===== SECTION 4: STRENGTHS GRID ===== -->
-  <section class="py-20 md:py-28 bg-white">
+  <section class="py-20 md:py-28 section-tint">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.14em] text-[#007C66] mb-3">Why Our Manufacturing Matters</p>
-        <h2 class="font-[Montserrat] font-extrabold text-3xl md:text-4xl text-[#0F172A]">Built for Reliability</h2>
+        <p class="eyebrow-2026 justify-center mb-3">Why Our Manufacturing Matters</p>
+        <h2 class="font-[Montserrat] font-bold text-3xl md:text-4xl text-[#0F172A] mt-2">Built for Reliability</h2>
+        <div class="w-16 h-[3px] bg-[#007C66] rounded-full mx-auto mt-5"></div>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
         <!-- Card 1: Scale -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-7 border-l-[3px] border-l-[#007C66] card-lift">
-          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-3">Scale</h3>
-          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">270,000 MTPA. Single-site concentration means no logistics complexity between plants.</p>
+        <div class="elevated-card p-7 flex flex-col gap-4">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
+          </div>
+          <div>
+            <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Scale</h3>
+            <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">270,000 MTPA. Single-site concentration means no logistics complexity between plants.</p>
+          </div>
         </div>
         <!-- Card 2: Redundancy -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-7 border-l-[3px] border-l-[#007C66] card-lift">
-          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-3">Redundancy</h3>
-          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">Five independent PA production units. Maintenance on one does not stop supply.</p>
+        <div class="elevated-card p-7 flex flex-col gap-4">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Redundancy</h3>
+            <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">Five independent PA production units. Maintenance on one does not stop supply.</p>
+          </div>
         </div>
         <!-- Card 3: Process Depth -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-7 border-l-[3px] border-l-[#007C66] card-lift">
-          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-3">Process Depth</h3>
-          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">30+ years of operating the Von-Heyden process on the same site. Technical knowledge is embedded, not hired.</p>
+        <div class="elevated-card p-7 flex flex-col gap-4">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Process Depth</h3>
+            <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">34 years of operating the Von-Heyden process on the same site. Technical knowledge is embedded, not hired.</p>
+          </div>
         </div>
         <!-- Card 4: Byproduct Capture -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-7 border-l-[3px] border-l-[#007C66] card-lift">
-          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-3">Byproduct Capture</h3>
-          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">MA and BA are fully recovered — not flared or wasted. This improves economics per tonne and reduces environmental load.</p>
+        <div class="elevated-card p-7 flex flex-col gap-4">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"/></svg>
+          </div>
+          <div>
+            <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Byproduct Capture</h3>
+            <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">MA and BA are fully recovered — not flared or wasted. This improves economics per tonne and reduces environmental load.</p>
+          </div>
         </div>
         <!-- Card 5: Logistics -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-7 border-l-[3px] border-l-[#007C66] card-lift">
-          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-3">Logistics</h3>
-          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">50 km from JNPT/Nhava Sheva. Road and rail access for domestic delivery across Maharashtra and Gujarat.</p>
+        <div class="elevated-card p-7 flex flex-col gap-4">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Logistics</h3>
+            <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">50 km from JNPT/Nhava Sheva. Road and rail access for domestic delivery across Maharashtra and Gujarat.</p>
+          </div>
         </div>
         <!-- Card 6: Integration -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-7 border-l-[3px] border-l-[#007C66] card-lift">
-          <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-3">Integration</h3>
-          <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">DEP esterification on-site extends the value chain from basic PA to specialty downstream without additional transport.</p>
+        <div class="elevated-card p-7 flex flex-col gap-4">
+          <div class="sector-icon">
+            <svg width="28" height="28" fill="none" stroke="#007C66" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-[Montserrat] font-bold text-base text-[#0F172A] mb-2">Integration</h3>
+            <p class="font-[Inter] text-[14px] text-[#475569] leading-relaxed">DEP esterification on-site extends the value chain from basic PA to specialty downstream without additional transport.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -307,12 +376,12 @@
 
 
   <!-- ===== SECTION 5: WHY THIS MATTERS ===== -->
-  <section class="py-20 md:py-24 bg-[#F8FAFC]">
+  <section class="py-20 md:py-24 bg-white">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div class="reveal-left">
-          <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.14em] text-[#007C66] mb-3">Commercial Significance</p>
-          <h2 class="font-[Montserrat] font-extrabold text-3xl md:text-4xl text-[#0F172A] leading-tight mb-6">Why This Manufacturing Base Matters</h2>
+          <p class="eyebrow-2026 mb-3">Commercial Significance</p>
+          <h2 class="font-[Montserrat] font-bold text-3xl md:text-4xl text-[#0F172A] leading-tight mb-6 mt-2">Why This Manufacturing Base Matters</h2>
           <div class="space-y-5">
             <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">Phthalic anhydride is a heavy, bulk chemical that does not travel well. Freight costs, handling complexity, and delivery continuity all favour domestic production close to consumption centres. India's plasticiser, coatings, and resin manufacturers depend on reliable, uninterrupted PA supply to run their own operations.</p>
             <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed">IGPL's single-site concentration of capacity means customers deal with one source, one quality system, and one logistics chain. Five independent production lines provide supply continuity even during scheduled maintenance — a practical advantage that matters more than theoretical capacity numbers.</p>
@@ -328,23 +397,23 @@
 
 
   <!-- ===== SECTION 6: PHOTO GALLERY ===== -->
-  <section class="py-20 md:py-28 bg-[#1E293B]">
+  <section class="py-20 md:py-28 section-ink">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.14em] text-[#007C66] mb-3">Facility</p>
-        <h2 class="font-[Montserrat] font-extrabold text-3xl md:text-4xl text-white">The Taloja Campus</h2>
+        <p class="eyebrow-2026 justify-center mb-3">Facility</p>
+        <h2 class="font-[Montserrat] font-bold text-3xl md:text-4xl text-white mt-2">The Taloja Campus</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6 stagger">
         <div>
-          <img src="generated-content-photos/taloja-campus-aerial-premium-v2.webp" alt="Aerial view of IGPL's Taloja manufacturing campus" class="w-full h-[280px] object-cover rounded-lg">
+          <img src="plant-aerial.webp" alt="Aerial view of IGPL's Taloja manufacturing campus with five PA plants" class="w-full h-[280px] object-cover rounded-lg">
           <p class="font-[Inter] text-[13px] text-[#94A3B8] mt-3 text-center">Aerial view of the Taloja campus</p>
         </div>
         <div>
-          <img src="generated-content-photos/process-infrastructure-premium.webp" alt="Process infrastructure at IGPL Taloja" class="w-full h-[280px] object-cover rounded-lg">
+          <img src="steam-pipes.webp" alt="Process steam infrastructure at IGPL Taloja" class="w-full h-[280px] object-cover rounded-lg">
           <p class="font-[Inter] text-[13px] text-[#94A3B8] mt-3 text-center">Process infrastructure</p>
         </div>
         <div>
-          <img src="generated-content-photos/pa-production-systems-premium.webp" alt="PA production systems at IGPL" class="w-full h-[280px] object-cover rounded-lg">
+          <img src="pa-production.webp" alt="PA production systems at IGPL Taloja" class="w-full h-[280px] object-cover rounded-lg">
           <p class="font-[Inter] text-[13px] text-[#94A3B8] mt-3 text-center">PA production systems</p>
         </div>
       </div>
@@ -352,17 +421,20 @@
   </section>
 
 
-  <!-- ===== SECTION 6: LOCATION ADVANTAGE ===== -->
-  <section class="py-20 md:py-28 bg-[#F8FAFC]">
+  <!-- ===== SECTION 7: LOCATION ADVANTAGE ===== -->
+  <section class="py-20 md:py-28 bg-white">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="text-center mb-14 reveal">
-        <p class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.14em] text-[#007C66] mb-3">Location</p>
-        <h2 class="font-[Montserrat] font-extrabold text-3xl md:text-4xl text-[#0F172A]">Strategically Positioned</h2>
+        <p class="eyebrow-2026 justify-center mb-3">Location</p>
+        <h2 class="font-[Montserrat] font-bold text-3xl md:text-4xl text-[#0F172A] mt-2">Strategically Positioned</h2>
+        <div class="w-16 h-[3px] bg-[#007C66] rounded-full mx-auto mt-5"></div>
       </div>
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <!-- Left: Map Image -->
+        <!-- Left: Map Image — filled with jnpt-global-map.webp showing Taloja/JNPT -->
         <div class="reveal-left">
-
+          <div class="rounded-xl overflow-hidden shadow-lg">
+            <img src="jnpt-global-map.webp" alt="Map showing IGPL's Taloja plant location 50 km from JNPT (Jawaharlal Nehru Port Trust), Maharashtra, India" class="w-full h-auto object-cover" loading="lazy">
+          </div>
         </div>
         <!-- Right: Location Facts -->
         <div class="reveal-right space-y-8">
@@ -385,7 +457,7 @@
 
 
   <!-- ===== SECTION 8: CTA BAND ===== -->
-  <section class="py-16 md:py-20 bg-gradient-to-r from-[#007C66] to-[#005E4D]">
+  <section class="py-16 md:py-20 bg-[#007C66]">
     <div class="max-w-[1280px] mx-auto px-6 text-center reveal">
       <h2 class="font-[Montserrat] font-extrabold text-2xl md:text-3xl text-white mb-4">Questions about our manufacturing capability?</h2>
       <p class="font-[Inter] text-[16px] text-white/80 leading-relaxed max-w-xl mx-auto mb-8">Our technical and commercial teams can discuss process specifics, quality systems, and supply logistics.</p>
@@ -424,6 +496,8 @@
           <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Company</h4>
           <div class="flex flex-col gap-3">
             <a href="about.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">About</a>
+            <a href="board-of-directors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Board of Directors</a>
+            <a href="certifications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Certifications</a>
             <a href="manufacturing.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Manufacturing</a>
             <a href="applications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Applications</a>
             <a href="sustainability.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Sustainability</a>

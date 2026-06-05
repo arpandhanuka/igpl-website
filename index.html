@@ -22,13 +22,15 @@
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="preload" as="image" href="hero-plant.webp" fetchpriority="high">
+  <link rel="stylesheet" href="css/design-system.css?v=2">
+  <link rel="stylesheet" href="css/igpl-2026.css?v=2">
 
   <style>
     html, body { overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Montserrat', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
 
     /* Scroll reveal animations */
     .reveal {
@@ -209,26 +211,28 @@
   <!-- ============================================================
        1. HERO
        ============================================================ -->
-  <section class="relative w-full overflow-hidden flex items-end" style="height: clamp(560px, 82vh, 780px);">
+  <section class="relative w-full overflow-hidden flex items-end" style="height: clamp(640px, 90vh, 900px);">
     <!-- Hero fallback image (shown when video is blocked, e.g. iOS Low Power Mode) -->
     <img src="hero-plant.webp" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover object-center">
-    <!-- Hero Video Background (no poster — prevents iOS native play-button overlay) -->
-    <video id="hero-video" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover object-center">
+    <!-- Hero Video Background (preload gated — saves mobile data; poster fallback preloaded in head) -->
+    <video id="hero-video" autoplay muted loop playsinline preload="none" class="absolute inset-0 w-full h-full object-cover object-center">
       <source src="hero-plant.webm" type="video/webm">
       <source src="hero-plant.mp4" type="video/mp4">
     </video>
 
-    <!-- Gradient Overlay -->
-    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(15,23,42,0.12) 0%, rgba(15,23,42,0.20) 40%, rgba(15,23,42,0.72) 75%, rgba(15,23,42,0.88) 100%);"></div>
+    <!-- Gradient Overlay — darker toward the bottom-left so the headline & eyebrow always read -->
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(8,32,27,0.94) 0%, rgba(8,32,27,0.62) 34%, rgba(8,32,27,0.28) 66%, rgba(8,32,27,0.32) 100%), linear-gradient(105deg, rgba(8,32,27,0.55) 0%, rgba(8,32,27,0.10) 52%, rgba(8,32,27,0) 100%);"></div>
 
     <!-- Hero Content -->
     <div class="relative z-10 w-full max-w-[1280px] mx-auto px-6 pb-16 md:pb-24">
-      <p class="font-[Montserrat] font-semibold text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#00A88A] mb-4">Taloja, Maharashtra &mdash; India</p>
-      <h1 class="font-[Montserrat] font-black text-[40px] md:text-[56px] lg:text-[68px] text-white leading-[1.05] max-w-3xl">India's largest single-site Phthalic Anhydride complex</h1>
-      <p class="font-[Inter] text-[16px] md:text-[18px] text-white/75 mt-5 max-w-xl leading-relaxed">270,000 MTPA installed capacity &nbsp;&middot;&nbsp; 5 plants &nbsp;&middot;&nbsp; Commercial operations since 1992</p>
-      <div class="flex flex-wrap gap-4 mt-8">
-        <a href="products.html" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-7 py-3.5 rounded-md hover:bg-[#005E4D] transition-all border-2 border-[#007C66] hover:border-[#005E4D] hover:shadow-[0_8px_30px_rgba(0,124,102,0.3)]">Explore Products</a>
-        <a href="investors.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-7 py-3.5 rounded-md transition-all text-white border-2 border-white/60 hover:bg-white hover:text-[#1E293B]">Investor Relations</a>
+      <p class="eyebrow-2026 mb-5" style="color:#5BE9C2;">Taloja, Maharashtra &mdash; India</p>
+      <h1 class="font-[Montserrat] font-bold text-[42px] md:text-[62px] lg:text-[78px] text-white leading-[0.98] tracking-[-0.03em] max-w-5xl"><span style="white-space:nowrap;">India's largest single&#8209;site</span><br class="hidden md:block"> Phthalic Anhydride complex</h1>
+      <p class="font-[Inter] text-[17px] md:text-[20px] text-white/85 mt-6 max-w-2xl leading-relaxed">The benchmark supplier of phthalic anhydride to India's coatings, plasticiser, and resin industries &mdash; in continuous operation since 1992.</p>
+      <div class="flex flex-wrap gap-4 mt-9">
+        <a href="products.html" class="btn-primary-2026">Explore Products
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="investors.html" class="font-[Montserrat] font-bold text-[12px] uppercase tracking-[0.1em] px-7 py-3.5 rounded-[9px] transition-all text-white border border-white/40 hover:bg-white hover:text-[#08201B] inline-flex items-center">Investor Relations</a>
       </div>
     </div>
   </section>
@@ -237,40 +241,32 @@
   <!-- ============================================================
        2. KEY STATS BAND
        ============================================================ -->
-  <section class="bg-[#1E293B] py-14 md:py-16">
+  <section class="bg-[#1E293B] py-16 md:py-20">
     <div class="max-w-[1280px] mx-auto px-6">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
         <!-- Stat 1 -->
-        <div class="text-center">
-          <div class="font-[Montserrat] font-black text-[32px] md:text-[40px] text-white leading-none" style="font-variant-numeric: tabular-nums;">
-            <span data-counter data-target="270000" data-suffix="">270,000</span>
-          </div>
-          <div class="w-8 h-[2px] bg-[#007C66] mx-auto mt-3 mb-2"></div>
-          <p class="font-[Inter] text-[13px] text-[#94A3B8] uppercase tracking-wider">MTPA PA Capacity</p>
+        <div class="text-center stat-monument" style="text-align:center;">
+          <div class="stat-monument__value" style="color:#fff;"><span data-counter data-target="270000">270,000</span></div>
+          <div class="stat-monument__rule" style="margin-left:auto;margin-right:auto;background:var(--igpl-mint);"></div>
+          <p class="stat-monument__label">MTPA PA Capacity</p>
         </div>
         <!-- Stat 2 -->
-        <div class="text-center">
-          <div class="font-[Montserrat] font-black text-[32px] md:text-[40px] text-white leading-none" style="font-variant-numeric: tabular-nums;">
-            <span data-counter data-target="5">5</span>
-          </div>
-          <div class="w-8 h-[2px] bg-[#007C66] mx-auto mt-3 mb-2"></div>
-          <p class="font-[Inter] text-[13px] text-[#94A3B8] uppercase tracking-wider">Production Plants</p>
+        <div class="text-center stat-monument" style="text-align:center;">
+          <div class="stat-monument__value" style="color:#fff;"><span data-counter data-target="5">5</span></div>
+          <div class="stat-monument__rule" style="margin-left:auto;margin-right:auto;background:var(--igpl-mint);"></div>
+          <p class="stat-monument__label">Production Plants</p>
         </div>
         <!-- Stat 3 -->
-        <div class="text-center">
-          <div class="font-[Montserrat] font-black text-[32px] md:text-[40px] text-white leading-none" style="font-variant-numeric: tabular-nums;">
-            ~<span data-counter data-target="50" data-suffix="%">50%</span>
-          </div>
-          <div class="w-8 h-[2px] bg-[#007C66] mx-auto mt-3 mb-2"></div>
-          <p class="font-[Inter] text-[13px] text-[#94A3B8] uppercase tracking-wider">India Market Share</p>
+        <div class="text-center stat-monument" style="text-align:center;">
+          <div class="stat-monument__value" style="color:#fff;">~<span data-counter data-target="50" data-suffix="%">50%</span></div>
+          <div class="stat-monument__rule" style="margin-left:auto;margin-right:auto;background:var(--igpl-mint);"></div>
+          <p class="stat-monument__label">India Market Share</p>
         </div>
         <!-- Stat 4 -->
-        <div class="text-center">
-          <div class="font-[Montserrat] font-black text-[32px] md:text-[40px] text-white leading-none" style="font-variant-numeric: tabular-nums;">
-            <span data-counter data-target="30" data-suffix="+">30+</span>
-          </div>
-          <div class="w-8 h-[2px] bg-[#007C66] mx-auto mt-3 mb-2"></div>
-          <p class="font-[Inter] text-[13px] text-[#94A3B8] uppercase tracking-wider">Years of Operation</p>
+        <div class="text-center stat-monument" style="text-align:center;">
+          <div class="stat-monument__value" style="color:#fff;"><span data-counter data-target="34">34</span></div>
+          <div class="stat-monument__rule" style="margin-left:auto;margin-right:auto;background:var(--igpl-mint);"></div>
+          <p class="stat-monument__label">Years of Operation</p>
         </div>
       </div>
     </div>
@@ -310,7 +306,7 @@
   <!-- ============================================================
        3B. WHY IGPL MATTERS
        ============================================================ -->
-  <section class="py-20 md:py-28 bg-white">
+  <section class="py-20 md:py-28 section-tint">
     <div class="max-w-[1280px] mx-auto px-6">
       <!-- Header -->
       <div class="text-center mb-14 reveal">
@@ -477,6 +473,25 @@
           <h3 class="font-[Montserrat] font-extrabold text-[20px] text-white mb-3">Integrated Value Capture</h3>
           <p class="font-[Inter] text-[15px] text-[#A7F3D0] leading-relaxed">PA, maleic anhydride, and benzoic acid recovered from the same catalytic process, plus downstream DEP production. Multiple revenue streams from a single feedstock, lowering marginal cost and improving gross contribution.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       5C. FULL-BLEED SCALE BAND (chapter break)
+       ============================================================ -->
+  <section class="fullbleed-band" style="min-height:clamp(380px,52vh,520px); display:flex; align-items:center;">
+    <img src="plant-aerial.webp" alt="" aria-hidden="true" loading="lazy">
+    <div class="fullbleed-band__scrim"></div>
+    <div class="fullbleed-band__inner w-full max-w-[1280px] mx-auto px-6 py-20">
+      <p class="eyebrow-2026 mb-5" style="color:#5BE9C2;">Single-Site Scale</p>
+      <h2 class="font-[Montserrat] font-bold text-white text-[30px] md:text-[46px] leading-[1.05] tracking-[-0.02em] max-w-3xl">270,000 MTPA of phthalic anhydride,<br class="hidden md:block"> from one integrated campus.</h2>
+      <p class="font-[Inter] text-[16px] md:text-[18px] text-white/80 mt-5 max-w-2xl leading-relaxed">Five plants, shared utilities, and centralised DCS control on a single Taloja site &mdash; delivering supply continuity that distributed producers cannot match.</p>
+      <div class="flex flex-wrap gap-x-12 gap-y-6 mt-10">
+        <div class="stat-monument"><div class="stat-monument__value" style="color:#fff;font-size:clamp(2rem,3.4vw,3rem);">5</div><p class="stat-monument__label">PA Plants</p></div>
+        <div class="stat-monument"><div class="stat-monument__value" style="color:#fff;font-size:clamp(2rem,3.4vw,3rem);">1</div><p class="stat-monument__label">Integrated Site</p></div>
+        <div class="stat-monument"><div class="stat-monument__value" style="color:#fff;font-size:clamp(2rem,3.4vw,3rem);">50<span class="unit">km to JNPT</span></div><p class="stat-monument__label">Port Proximity</p></div>
       </div>
     </div>
   </section>
@@ -959,7 +974,9 @@
             <a href="investors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Investors</a>
             <a href="investor-library.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Financial Reports</a>
             <a href="governance.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Corporate Governance</a>
+            <a href="board-of-directors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Board of Directors</a>
             <a href="filings.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Filings &amp; Announcements</a>
+            <a href="certifications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Certifications</a>
             <a href="csr.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">CSR</a>
             <a href="careers.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Careers</a>
           </div>
@@ -1083,7 +1100,7 @@
                 var elapsed = now - start;
                 var progress = Math.min(elapsed / duration, 1);
                 var value = Math.round(target * easeOut(progress));
-                el.textContent = prefix + value.toLocaleString('en-IN') + suffix;
+                el.textContent = prefix + value.toLocaleString('en-US') + suffix;
                 if (progress < 1) requestAnimationFrame(update);
               }
               requestAnimationFrame(update);

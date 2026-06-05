@@ -177,11 +177,12 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Destination path not allowed' });
     }
     console.error('Upload handler error:', e);
-    return res.status(500).json({ error: 'handleUpload failed: ' + (e && e.message ? e.message : String(e)), stack: e && e.stack ? e.stack.split('\n').slice(0,5) : null });
+    return res.status(500).json({ error: 'Upload failed' });
   }
   } catch (outer) {
     try {
-      return res.status(500).json({ error: 'Outer handler crash: ' + (outer && outer.message ? outer.message : String(outer)), stack: outer && outer.stack ? outer.stack.split('\n').slice(0,5) : null });
+      console.error('Outer handler crash:', outer);
+      return res.status(500).json({ error: 'Internal server error' });
     } catch (_) {
       return;
     }

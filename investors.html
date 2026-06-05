@@ -10,17 +10,22 @@
   <meta property="og:title" content="Investor Relations — NSE: IGPL | BSE: 500199 | IG Petrochemicals Ltd.">
   <meta property="og:description" content="IGPL investor relations — stock information, annual reports, governance documents, shareholding pattern. NSE: IGPL | BSE: 500199 | CIN: L51496GA1988PLC000915.">
   <link rel="canonical" href="https://www.igpetro.com/investors">
-  <meta property="og:image" content="https://www.igpetro.com/generated-hero-photos/investors-hero-premium.webp">
+  <meta property="og:image" content="https://www.igpetro.com/plant-aerial.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Investor Relations — NSE: IGPL | BSE: 500199 | IG Petrochemicals Ltd.">
+  <meta name="twitter:description" content="IGPL investor relations — India's principal phthalic anhydride producer. 270,000 MTPA capacity, ~50% India PA share, 68.74% promoter holding.">
+  <meta name="twitter:image" content="https://www.igpetro.com/plant-aerial.webp">
   <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/design-system.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css?v=2">
+  <link rel="stylesheet" href="css/igpl-2026.css?v=2">
 
   <style>
     html, body { overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Montserrat', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
 
     /* Scroll reveal */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -59,7 +64,7 @@
     .holding-bar { height: 10px; border-radius: 9999px; }
 
     /* Document card category badge */
-    .doc-badge { display: inline-block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 9999px; }
+    .doc-badge { display: inline-block; font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 9999px; }
   </style>
 
   <!-- Structured Data: BreadcrumbList -->
@@ -68,7 +73,7 @@
   </script>
   <!-- Structured Data: Corporation -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Corporation","name":"IG Petrochemicals Ltd.","tickerSymbol":"IGPL","url":"https://www.igpetro.com","sameAs":["https://www.nseindia.com/get-quotes/equity?symbol=IGPL","https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/"]}
+  {"@context":"https://schema.org","@type":"Corporation","name":"IG Petrochemicals Ltd.","tickerSymbol":"IGPL","url":"https://www.igpetro.com","description":"India's principal phthalic anhydride producer. 270,000 MTPA installed capacity, approximately 50% domestic PA market share. Listed NSE: IGPL, BSE: 500199. CIN: L51496GA1988PLC000915.","foundingDate":"1988","location":{"@type":"Place","name":"Taloja MIDC, Raigad District, Maharashtra, India"},"memberOf":[{"@type":"Organization","name":"National Stock Exchange of India","url":"https://www.nseindia.com"},{"@type":"Organization","name":"BSE Ltd.","url":"https://www.bseindia.com"}],"sameAs":["https://www.nseindia.com/get-quotes/equity?symbol=IGPL","https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/"]}
   </script>
 </head>
 <body class="bg-white text-[#0F172A]">
@@ -118,12 +123,12 @@
 
   <!-- ===== SECTION 1: HERO ===== -->
   <section
-    class="relative min-h-[480px] md:min-h-[540px] flex flex-col justify-center"
-    style="background: url('generated-hero-photos/investors-hero-premium.webp') center center / cover no-repeat;"
+    class="relative min-h-[480px] md:min-h-[560px] flex flex-col justify-center"
+    style="background: url('plant-aerial.webp') center center / cover no-repeat;"
     aria-label="Investor Relations Hero"
   >
     <!-- Dark overlay -->
-    <div class="absolute inset-0" style="background: rgba(15,23,42,0.70);"></div>
+    <div class="absolute inset-0" style="background: rgba(15,23,42,0.72);"></div>
 
     <div class="relative z-10 max-w-[1280px] mx-auto px-6 py-16 md:py-20 w-full">
       <!-- Breadcrumb -->
@@ -137,19 +142,21 @@
 
       <!-- Eyebrow -->
       <div class="reveal">
-        <span class="inline-block font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] bg-[#007C66]/15 border border-[#007C66]/30 px-3 py-1.5 rounded-full mb-5">
-          Investor Relations
-        </span>
+        <p class="eyebrow-2026 mb-5">Investor Relations</p>
       </div>
 
-      <!-- H1 -->
-      <h1 class="reveal font-[Montserrat] font-extrabold text-4xl md:text-5xl lg:text-[52px] text-white leading-[1.1] max-w-3xl mb-5" style="transition-delay:0.1s;">
-        IG Petrochemicals Ltd. — NSE: IGPL &nbsp;|&nbsp; BSE: 500199
+      <!-- H1 — positioning line, NOT the ticker -->
+      <h1 class="reveal font-[Montserrat] font-extrabold text-[40px] md:text-[56px] lg:text-[64px] text-white leading-[1.06] tracking-[-0.02em] max-w-3xl mb-5" style="transition-delay:0.1s;">
+        India's principal phthalic anhydride producer
       </h1>
 
-      <!-- Subhead -->
+      <!-- Subhead — tickers appear ONCE here -->
       <p class="reveal font-[Inter] text-lg md:text-xl text-white/80 max-w-2xl mb-4 leading-relaxed" style="transition-delay:0.2s;">
-        NSE: IGPL &nbsp;|&nbsp; BSE: 500199 — India's largest single-site phthalic anhydride complex with 270,000 MTPA capacity.
+        270,000 MTPA capacity &nbsp;&middot;&nbsp; Taloja, Maharashtra
+        <span class="inline-flex items-center gap-2 ml-3">
+          <span class="bg-white/15 border border-white/30 text-white text-[11px] font-[Montserrat] font-bold uppercase tracking-[0.1em] px-2.5 py-1 rounded-full">NSE: IGPL</span>
+          <span class="bg-white/15 border border-white/30 text-white text-[11px] font-[Montserrat] font-bold uppercase tracking-[0.1em] px-2.5 py-1 rounded-full">BSE: 500199</span>
+        </span>
       </p>
 
       <!-- CIN -->
@@ -191,7 +198,7 @@
         <!-- Metric 3: Years listed -->
         <div class="flex flex-col items-center text-center min-w-[140px]">
           <div class="font-[Montserrat] font-extrabold text-4xl md:text-5xl text-white mb-1 leading-none">
-            <span data-counter data-target="30" data-suffix="+" id="counter-3">0+</span>
+            <span data-counter data-target="34" data-suffix="" id="counter-3">0</span>
           </div>
           <div class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.1em] text-[#007C66] mt-2 mb-0.5">Years</div>
           <div class="font-[Inter] text-[13px] text-[#64748B]">In Operation</div>
@@ -225,6 +232,50 @@
     </div>
   </section>
 
+  <!-- ===== SECTION 2A: INVESTOR SNAPSHOT STAT MONUMENTS ===== -->
+  <section class="section-ink py-16 md:py-20" aria-label="Investor Snapshot">
+    <div class="max-w-[1280px] mx-auto px-6">
+      <div class="reveal text-center mb-12">
+        <p class="eyebrow-2026 mb-3" style="color:#5BE9C2;">Investor Snapshot</p>
+        <h2 class="font-[Montserrat] font-extrabold text-2xl md:text-3xl text-white">The numbers that define IGPL</h2>
+      </div>
+      <div class="stagger flex flex-wrap justify-center gap-x-8 gap-y-10 md:gap-x-12 lg:justify-between">
+
+        <div class="stat-monument text-center">
+          <div class="stat-monument__value">270,000<span class="unit">MTPA</span></div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">PA Capacity</p>
+        </div>
+
+        <div class="stat-monument text-center">
+          <div class="stat-monument__value">~50<span class="unit">%</span></div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">India PA Market Share</p>
+        </div>
+
+        <div class="stat-monument text-center">
+          <div class="stat-monument__value">34<span class="unit">yrs</span></div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">In Operation (since 1992)</p>
+        </div>
+
+        <div class="stat-monument text-center">
+          <div class="stat-monument__value">68.74<span class="unit">%</span></div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">Promoter Holding</p>
+        </div>
+
+        <div class="stat-monument text-center">
+          <!-- TODO(owner): add FY24-25 revenue/EBITDA/PAT here when confirmed -->
+          <div class="stat-monument__value" style="font-size:1.6rem;letter-spacing:-0.01em;">NSE: IGPL<br><span style="font-size:1rem;font-weight:600;opacity:0.75;">BSE: 500199</span></div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">Dual-Listed</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===== SECTION 2B: INVESTOR RESOURCE HUB ===== -->
   <section class="bg-[#F8FAFC] py-14 border-b border-[#E5E7EB]" aria-label="Investor Resources">
     <div class="max-w-[1280px] mx-auto px-6">
@@ -244,7 +295,7 @@
           </div>
           <div class="flex-1">
             <h3 class="font-[Montserrat] font-bold text-[16px] text-[#0F172A] mb-1.5 group-hover:text-[#007C66] transition-colors">Financial Reports</h3>
-            <p class="font-[Inter] text-[14px] text-[#6B7280] leading-relaxed">Annual reports, quarterly results, and investor presentations — FY 2020-21 onwards.</p>
+            <p class="font-[Inter] text-[14px] text-[#6B7280] leading-relaxed">Annual reports, quarterly results, and investor presentations — latest: FY 2024-25; full archive from FY 2020-21.<!-- TODO(owner): confirm latest filed FY --></p>
           </div>
           <div class="flex items-center gap-1.5 font-[Montserrat] font-bold text-[11px] uppercase tracking-wider text-[#007C66]">
             View Reports
@@ -531,10 +582,21 @@
         </div>
         <!-- Error fallback -->
         <div id="stock-error" class="hidden">
-          <p class="font-[Inter] text-[13px] text-[#94A3B8] mb-3">Live price temporarily unavailable. For current data visit:</p>
+          <div class="flex items-start gap-4 mb-4">
+            <div class="flex-1">
+              <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">View live price on the exchange</p>
+              <p class="font-[Inter] text-[13px] text-[#475569] leading-relaxed">Real-time price data is available directly on NSE and BSE. Click below to view IGPL's current stock information, historical data, and trading activity.</p>
+            </div>
+          </div>
           <div class="flex flex-wrap gap-3">
-            <a href="https://www.nseindia.com/get-quotes/equity?symbol=IGPL" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-4 py-2.5 rounded-md hover:bg-[#005E4D] transition-colors">NSE &rarr;</a>
-            <a href="https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-[#007C66] text-[#007C66] font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-4 py-2.5 rounded-md">BSE &rarr;</a>
+            <a href="https://www.nseindia.com/get-quotes/equity?symbol=IGPL" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#007C66] text-white font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-3 rounded-md hover:bg-[#005E4D] transition-colors">
+              View live on NSE
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+            <a href="https://www.bseindia.com/stock-share-price/ig-petrochemicals-ltd/igpl/500199/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-[#007C66] text-[#007C66] font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] px-5 py-3 rounded-md hover:bg-[#007C66] hover:text-white transition-colors">
+              View live on BSE
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
           </div>
         </div>
         <p class="font-[Inter] text-[12px] text-[#94A3B8] leading-relaxed mt-4">Delayed by up to 5 minutes. For live pricing visit NSE or BSE. Not investment advice.</p>
@@ -683,7 +745,7 @@
           </div>
           <div>
             <p class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] mb-1">Annual Reports</p>
-            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Audited annual reports from FY 2020-21 onwards, including subsidiary financial statements.</p>
+            <p class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed">Audited annual reports — latest: FY 2024-25; full archive from FY 2020-21, including subsidiary financial statements.</p>
           </div>
         </a>
 
@@ -1142,6 +1204,8 @@
           <h4 class="font-[Montserrat] font-bold text-[12px] text-white uppercase tracking-wider mb-5">Company</h4>
           <div class="flex flex-col gap-3">
             <a href="about.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">About</a>
+            <a href="board-of-directors.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Board of Directors</a>
+            <a href="certifications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Certifications</a>
             <a href="manufacturing.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Manufacturing</a>
             <a href="applications.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Applications</a>
             <a href="sustainability.html" class="font-[Inter] text-[14px] text-[#94A3B8] hover:text-white transition-colors">Sustainability</a>
@@ -1218,11 +1282,11 @@
         if (!startTime) startTime = timestamp;
         var progress = Math.min((timestamp - startTime) / duration, 1);
         var current = Math.floor(easeOutCubic(progress) * target);
-        el.textContent = current.toLocaleString('en-IN') + suffix;
+        el.textContent = current.toLocaleString('en-US') + suffix;
         if (progress < 1) {
           requestAnimationFrame(step);
         } else {
-          el.textContent = target.toLocaleString('en-IN') + suffix;
+          el.textContent = target.toLocaleString('en-US') + suffix;
         }
       }
       requestAnimationFrame(step);
@@ -1250,7 +1314,7 @@
   (function() {
     var REFRESH_MS = 5 * 60 * 1000; // 5 minutes
 
-    function fmt(n) { return Number(n).toLocaleString('en-IN'); }
+    function fmt(n) { return Number(n).toLocaleString('en-US'); }
 
     function applyStockData(d) {
       // Ticker UI
