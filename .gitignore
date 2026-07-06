@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.DS_Store
+.vercel
+.env*.local
+.firecrawl/
+*.bak
+DESIGN_TODO.md
+Profile 1/
+tools/
+node_modules/
+.claude/launch.json
+
+.vercel
+.env*

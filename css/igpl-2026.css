@@ -1,0 +1,263 @@
+/* ==========================================================================
+   IGPL 2026 — Bold Premium Theme Layer
+   Loads AFTER design-system.css and the Tailwind CDN. Retrofits a richer,
+   more confident visual language onto the existing markup (font, depth,
+   tonal rhythm, monumental stats, elevated cards) and adds new premium
+   components used by the rebuilt pages.
+   Uses !important on the retrofit overrides only, to beat Tailwind's
+   runtime-injected utilities regardless of load order.
+   ========================================================================== */
+
+:root {
+  /* New depth + accent on top of the existing teal brand */
+  --igpl-ink:       #08201B;   /* forest-ink — the new "dark" (replaces flat slate) */
+  --igpl-ink-2:     #0E2A23;   /* raised surface on ink */
+  --igpl-ink-3:     #143A30;   /* hairline / border on ink */
+  --igpl-mint:      #36DDB0;   /* luminous accent — dark sections + stat highlights ONLY */
+  --igpl-teal:      #007C66;
+  --igpl-teal-600:  #00A88A;
+  --igpl-tint:      #EEF5F2;   /* teal-tinted light surface */
+  --igpl-tint-2:    #F4F8F6;   /* faintest tint */
+  --igpl-hairline:  rgba(8,32,27,0.10);
+
+  /* Display face — the single biggest "this is new" signal */
+  --igpl-font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+
+  /* Elevation scale */
+  --igpl-elev-1: 0 1px 2px rgba(8,32,27,0.04), 0 4px 16px rgba(8,32,27,0.06);
+  --igpl-elev-2: 0 2px 4px rgba(8,32,27,0.05), 0 18px 40px rgba(8,32,27,0.10);
+  --igpl-elev-teal: 0 18px 44px rgba(0,124,102,0.20);
+}
+
+/* --------------------------------------------------------------------------
+   1. DISPLAY TYPEFACE — remap every Montserrat usage to Space Grotesk
+   -------------------------------------------------------------------------- */
+.font-\[Montserrat\],
+.font-display,
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--igpl-font-display) !important;
+  letter-spacing: -0.02em;
+}
+/* Eyebrows / overline labels read better with positive tracking */
+[class*="tracking-\[0\.06em\]"],
+[class*="tracking-\[0\.1em\]"],
+[class*="tracking-\[0\.12em\]"],
+[class*="tracking-\[0\.14em\]"],
+[class*="uppercase"][class*="tracking"] {
+  letter-spacing: 0.14em !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. TONAL DEPTH — turn the flat slate darks into rich forest-ink
+   Scoped to BACKGROUND utilities only (never touches text-[#…]).
+   -------------------------------------------------------------------------- */
+.bg-\[\#1E293B\],
+.bg-\[\#0F172A\],
+.bg-\[\#0f172a\],
+.igpl-surface-dark,
+.igpl-page-hero {
+  background-color: var(--igpl-ink) !important;
+  background-image:
+    radial-gradient(120% 140% at 12% 0%, rgba(0,124,102,0.22) 0%, rgba(0,124,102,0) 46%),
+    radial-gradient(110% 120% at 100% 100%, rgba(54,221,176,0.10) 0%, rgba(54,221,176,0) 50%) !important;
+}
+.igpl-footer { background-color: var(--igpl-ink) !important; }
+
+/* Mint eyebrow on dark sections (was washed-out teal) */
+.bg-\[\#1E293B\] .text-\[\#00A88A\],
+.igpl-surface-dark .text-\[\#00A88A\],
+.igpl-page-hero .text-\[\#00A88A\] { color: var(--igpl-mint) !important; }
+
+/* --------------------------------------------------------------------------
+   3. ELEVATED CARDS — kill the thin-border-in-a-void look
+   -------------------------------------------------------------------------- */
+/* White feature/product/application cards → elevated, hairline, teal top-accent */
+.card-lift.bg-white,
+a.card-lift.bg-white {
+  border: 1px solid var(--igpl-hairline) !important;
+  border-top: 3px solid var(--igpl-teal) !important;
+  box-shadow: var(--igpl-elev-1) !important;
+  border-radius: 14px !important;
+}
+.card-lift.bg-white:hover,
+a.card-lift.bg-white:hover {
+  box-shadow: var(--igpl-elev-2) !important;
+  transform: translateY(-6px);
+}
+/* Product cards have a coloured header strip already — keep top square there */
+a.card-lift.overflow-hidden { border-top-width: 1px !important; }
+a.card-lift.overflow-hidden:hover { box-shadow: var(--igpl-elev-2) !important; }
+
+/* The "border-left accent" insight cards → soften the slab, add depth */
+.card-lift.border-l-4 {
+  box-shadow: var(--igpl-elev-1) !important;
+  border-radius: 0 14px 14px 0 !important;
+}
+
+/* Teal solid cards → richer gradient + glow on hover */
+.card-lift.bg-\[\#007C66\] {
+  background-image: linear-gradient(150deg, #00917A 0%, #006353 100%) !important;
+  background-color: var(--igpl-teal) !important;
+  box-shadow: 0 10px 30px rgba(0,124,102,0.18) !important;
+}
+.card-lift.bg-\[\#007C66\]:hover { box-shadow: var(--igpl-elev-teal) !important; }
+
+/* --------------------------------------------------------------------------
+   4. ICON TILES — bigger, richer, less "free icon set in whitespace"
+   -------------------------------------------------------------------------- */
+.sector-icon {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  background:
+    linear-gradient(135deg, rgba(0,124,102,0.14), rgba(54,221,176,0.10)) !important;
+  box-shadow: inset 0 0 0 1px rgba(0,124,102,0.18);
+}
+.sector-icon svg { width: 28px !important; height: 28px !important; stroke-width: 1.6 !important; flex-shrink: 0; }
+
+/* --------------------------------------------------------------------------
+   5. NEW PREMIUM COMPONENTS (used by rebuilt pages + roll-out agents)
+   -------------------------------------------------------------------------- */
+
+/* 5a. Section tones */
+.section-ink {
+  background-color: var(--igpl-ink);
+  background-image:
+    radial-gradient(120% 130% at 10% 0%, rgba(0,124,102,0.22) 0%, rgba(0,124,102,0) 48%),
+    radial-gradient(120% 120% at 100% 100%, rgba(54,221,176,0.10) 0%, rgba(54,221,176,0) 52%);
+  color: #EAF3EF;
+}
+.section-tint { background-color: var(--igpl-tint); }
+.section-tint-2 { background-color: var(--igpl-tint-2); }
+
+/* 5b. Stat monuments */
+.stat-monument { text-align: left; }
+.stat-monument__value {
+  font-family: var(--igpl-font-display);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 5.2vw, 4.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--igpl-ink);
+}
+.section-ink .stat-monument__value,
+.igpl-page-hero .stat-monument__value { color: #ffffff; }
+.stat-monument__value .unit { font-size: 0.42em; font-weight: 600; letter-spacing: 0; opacity: 0.7; margin-left: 0.15em; }
+.stat-monument__rule {
+  width: 44px; height: 3px; border-radius: 9999px;
+  background: var(--igpl-teal); margin: 0.9rem 0 0.7rem;
+}
+.section-ink .stat-monument__rule { background: var(--igpl-mint); }
+.stat-monument__label {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--igpl-text-secondary, #475569);
+}
+.section-ink .stat-monument__label { color: #9DC3B8; }
+
+/* 5c. Full-bleed photographic band */
+.fullbleed-band { position: relative; overflow: hidden; background-color: var(--igpl-ink); }
+.fullbleed-band > img,
+.fullbleed-band > video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+.fullbleed-band__scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, rgba(8,32,27,0.92) 0%, rgba(8,32,27,0.72) 42%, rgba(8,32,27,0.30) 100%);
+}
+.fullbleed-band__inner { position: relative; z-index: 2; }
+
+/* 5d. Premium elevated card (canonical card for roll-out) */
+.elevated-card {
+  background: #fff;
+  border: 1px solid var(--igpl-hairline);
+  border-top: 3px solid var(--igpl-teal);
+  border-radius: 14px;
+  box-shadow: var(--igpl-elev-1);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.elevated-card:hover { transform: translateY(-6px); box-shadow: var(--igpl-elev-2); }
+
+/* 5e. Frosted card on ink */
+.ink-card {
+  background: var(--igpl-ink-2);
+  border: 1px solid var(--igpl-ink-3);
+  border-radius: 14px;
+}
+.ink-card h3 { color: #fff; }
+.ink-card p { color: #9DC3B8; }
+
+/* 5f. Trust / certification strip */
+.trust-strip {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 2.5rem 3.5rem;
+}
+.trust-strip__item {
+  font-family: var(--igpl-font-display); font-weight: 600;
+  font-size: 0.95rem; letter-spacing: 0.02em; color: #44635A;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+}
+.trust-strip__item svg { color: var(--igpl-teal); width: 22px; height: 22px; }
+
+/* 5g. Eyebrow */
+.eyebrow-2026 {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.16em; color: var(--igpl-teal);
+}
+.eyebrow-2026::before { content: ""; width: 22px; height: 2px; background: var(--igpl-teal); }
+.section-ink .eyebrow-2026, .igpl-page-hero .eyebrow-2026 { color: var(--igpl-mint); }
+.section-ink .eyebrow-2026::before, .igpl-page-hero .eyebrow-2026::before { background: var(--igpl-mint); }
+
+/* --------------------------------------------------------------------------
+   6. BUTTONS — slightly richer, still on-brand
+   -------------------------------------------------------------------------- */
+.btn-primary-2026 {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  background: var(--igpl-teal); color: #fff;
+  font-family: var(--igpl-font-display); font-weight: 600;
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.95rem 1.75rem; border-radius: 9px; border: 0;
+  box-shadow: 0 8px 22px rgba(0,124,102,0.22); transition: all .2s ease; cursor: pointer;
+}
+.btn-primary-2026:hover { background: #006353; box-shadow: var(--igpl-elev-teal); transform: translateY(-1px); color: #fff; }
+.btn-mint-2026 {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  background: var(--igpl-mint); color: var(--igpl-ink);
+  font-family: var(--igpl-font-display); font-weight: 700;
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.95rem 1.75rem; border-radius: 9px; border: 0; transition: all .2s ease; cursor: pointer;
+}
+.btn-mint-2026:hover { background: #2bc79c; transform: translateY(-1px); }
+
+/* --------------------------------------------------------------------------
+   7. ACCESSIBILITY — focus visibility + reduced motion (fixes audit findings)
+   -------------------------------------------------------------------------- */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible,
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid var(--igpl-teal) !important;
+  outline-offset: 2px !important;
+  border-radius: 3px;
+}
+.section-ink a:focus-visible, .igpl-page-hero a:focus-visible { outline-color: var(--igpl-mint) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+  .reveal, .reveal-left, .reveal-right, .stagger > *,
+  .igpl-reveal, .igpl-reveal-left, .igpl-reveal-right, .igpl-stagger > * {
+    opacity: 1 !important; transform: none !important; transition: none !important;
+  }
+  .vc-arrow { animation: none !important; }
+  html { scroll-behavior: auto !important; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Larger touch targets for the hamburger (audit 2.5.5)
+   -------------------------------------------------------------------------- */
+#menu-toggle { padding: 12px !important; }

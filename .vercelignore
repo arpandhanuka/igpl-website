@@ -1,0 +1,12 @@
+.git
+.vercel
+.env*.local
+node_modules
+.firecrawl
+.claude
+__pycache__
+*.pyc
+.DS_Store
+DESIGN_TODO.md
+tools
+REDESIGN_CONTRACT.md
