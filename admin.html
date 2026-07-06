@@ -31,6 +31,8 @@
     .replace-btn.locked { border-color:#D1D5DB;color:#9CA3AF;cursor:not-allowed;pointer-events:none; }
     .copy-btn { display:inline-flex;align-items:center;gap:4px;background:transparent;color:#6B7280;border:1px solid #E5E7EB;font-size:10px;padding:3px 8px;border-radius:4px;cursor:pointer;transition:all .15s; }
     .copy-btn:hover { border-color:#007C66;color:#007C66; }
+    .del-btn { display:inline-flex;align-items:center;gap:5px;background:transparent;color:#DC2626;border:1px solid #FCA5A5;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:5px 10px;border-radius:6px;cursor:pointer;transition:all .2s; }
+    .del-btn:hover { background:#DC2626;color:#fff;border-color:#DC2626; }
     .tab-btn { font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding:12px 20px;border-bottom:2px solid transparent;transition:all .2s;cursor:pointer;background:transparent;color:#6B7280;white-space:nowrap; }
     .tab-btn:hover { color:#374151; }
     .tab-btn.active { border-bottom-color:#007C66;color:#007C66; }
@@ -89,6 +91,7 @@
     <button class="tab-btn active" data-tab="financial">Financial Reports</button>
     <button class="tab-btn" data-tab="governance">Governance</button>
     <button class="tab-btn" data-tab="filings">Filings &amp; Announcements</button>
+    <button class="tab-btn" data-tab="sustainability">Sustainability</button>
   </div>
 </div>
 
@@ -306,6 +309,92 @@
     </div>
   </div>
 
+  <!-- ═══ TAB: SUSTAINABILITY ═══════════════════════════════════════════════════ -->
+  <div id="tab-sustainability" class="hidden">
+
+    <!-- Environment Clearances & Compliance Report -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Environment Clearances &amp; Compliance Report</h2>
+        <span id="sec-sust-ec" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="p-5 border-b border-[#E5E7EB] bg-[#F8FAFC] grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-3 items-end">
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">New Document Label</label>
+          <input id="ec-new-label" type="text" placeholder="e.g. EC Compliance Report – April 2026 to September 2026"
+            class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        </div>
+        <div>
+          <label for="ec-new-file" class="inline-flex items-center gap-2 border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm cursor-pointer hover:border-[#007C66] transition-colors">
+            <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <span id="ec-new-file-label" class="text-[#6B7280]">Choose PDF…</span>
+          </label>
+          <input type="file" id="ec-new-file" accept=".pdf" style="display:none">
+        </div>
+        <button onclick="sustAddDoc('ecReports','ec')" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-lg hover:bg-[#005E4D] transition-colors whitespace-nowrap">Add</button>
+        <span id="ec-add-status" class="sm:col-span-3 text-sm font-[Inter] text-[#6B7280]"></span>
+      </div>
+      <div id="ec-admin-loading" class="px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">Loading…</div>
+      <div id="ec-admin-empty" class="hidden px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">No documents yet.</div>
+      <div id="ec-admin-list" class="hidden divide-y divide-[#E5E7EB]"></div>
+    </div>
+
+    <!-- Policies -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Policies</h2>
+        <span id="sec-sust-pol" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="p-5 border-b border-[#E5E7EB] bg-[#F8FAFC] grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-3 items-end">
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">New Policy Label</label>
+          <input id="pol-new-label" type="text" placeholder="e.g. Data Privacy Policy"
+            class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        </div>
+        <div>
+          <label for="pol-new-file" class="inline-flex items-center gap-2 border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm cursor-pointer hover:border-[#007C66] transition-colors">
+            <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <span id="pol-new-file-label" class="text-[#6B7280]">Choose PDF…</span>
+          </label>
+          <input type="file" id="pol-new-file" accept=".pdf" style="display:none">
+        </div>
+        <button onclick="sustAddDoc('policies','pol')" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-lg hover:bg-[#005E4D] transition-colors whitespace-nowrap">Add</button>
+        <span id="pol-add-status" class="sm:col-span-3 text-sm font-[Inter] text-[#6B7280]"></span>
+      </div>
+      <div id="pol-admin-loading" class="px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">Loading…</div>
+      <div id="pol-admin-empty" class="hidden px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">No policies yet.</div>
+      <div id="pol-admin-list" class="hidden divide-y divide-[#E5E7EB]"></div>
+    </div>
+
+    <!-- Live Oceans Links -->
+    <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
+      <div class="section-hdr px-5 py-3 flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Live Oceans Links</h2>
+        <span id="sec-sust-links" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
+      </div>
+      <div class="p-5 border-b border-[#E5E7EB] bg-[#F8FAFC] grid grid-cols-1 sm:grid-cols-[1fr_1.4fr_auto] gap-3 items-end">
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">Link Label</label>
+          <input id="link-new-label" type="text" placeholder="e.g. Live OCEMS Link"
+            class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        </div>
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">URL</label>
+          <input id="link-new-url" type="url" placeholder="https://…"
+            class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        </div>
+        <button onclick="sustAddLink()" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-lg hover:bg-[#005E4D] transition-colors whitespace-nowrap">Add</button>
+        <span id="link-add-status" class="sm:col-span-3 text-sm font-[Inter] text-[#6B7280]"></span>
+      </div>
+      <div id="link-admin-loading" class="px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">Loading…</div>
+      <div id="link-admin-empty" class="hidden px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">No links yet.</div>
+      <div id="link-admin-list" class="hidden divide-y divide-[#E5E7EB]"></div>
+    </div>
+  </div>
+
 </div><!-- /max-w -->
 
 <script>
@@ -346,6 +435,7 @@ var SECTIONS = {
     {dest:'docs/policies/stakeholders-engagement-policy.pdf',label:'Stakeholders Engagement Policy'},
     {dest:'docs/policies/board-policy-material-events.pdf',label:'Board Policy — Material Events'},
     {dest:'docs/policies/sebi-lodr-reg30.pdf',label:'SEBI LODR Reg 30 Disclosure'},
+    {dest:'docs/policies/material-subsidiaries-policy.pdf',label:'Policy for Determining Material Subsidiaries'},
     {dest:'docs/policies/csr-policy.pdf',label:'CSR Policy'},
     {dest:'docs/policies/csr-annual-action-plan-fy2627.pdf',label:'CSR Annual Action Plan — FY 2026-27'},
   ],
@@ -380,6 +470,7 @@ var SECTIONS = {
     {dest:'docs/shareholding/q1fy2122.pdf',label:'Q1 (Jun 2021) — FY 2021-22'},
   ],
   secretarial: [
+    {dest:'docs/filings/secretarial-compliance-fy2526.pdf',label:'FY 2025-26'},
     {dest:'docs/filings/secretarial-compliance-fy2425.pdf',label:'FY 2024-25'},
     {dest:'docs/filings/secretarial-compliance-fy2324.pdf',label:'FY 2023-24'},
     {dest:'docs/filings/secretarial-compliance-fy2223.pdf',label:'FY 2022-23'},
@@ -409,8 +500,18 @@ var SECTIONS = {
     {dest:'docs/investor-forms/form-sh14.pdf',label:'Form SH-14 — Change in Nomination'},
   ],
   'investor-info': [
-    {dest:'docs/investor-info/rpt-h1-sep2025.pdf',label:'RPT Disclosure — Half Year Ended 30 Sep 2025'},
-    {dest:'docs/investor-info/rpt-h2-mar2026.pdf',label:'RPT Disclosure — Half Year Ended 31 Mar 2026'},
+    {dest:'docs/investor-info/rpt-h1-sep2025.pdf',label:'FY 2025-26 — Half Year Ended 30 Sep 2025 (H1)'},
+    {dest:'docs/investor-info/rpt-h2-mar2026.pdf',label:'FY 2025-26 — Half Year Ended 31 Mar 2026 (H2)'},
+    {dest:'docs/investor-info/rpt-h1-sep2024.pdf',label:'FY 2024-25 — Half Year Ended 30 Sep 2024 (H1)'},
+    {dest:'docs/investor-info/rpt-h2-mar2025.pdf',label:'FY 2024-25 — Half Year Ended 31 Mar 2025 (H2)'},
+    {dest:'docs/investor-info/rpt-h1-sep2023.pdf',label:'FY 2023-24 — Half Year Ended 30 Sep 2023 (H1)'},
+    {dest:'docs/investor-info/rpt-h2-mar2024.pdf',label:'FY 2023-24 — Half Year Ended 31 Mar 2024 (H2)'},
+    {dest:'docs/investor-info/rpt-h1-sep2022.pdf',label:'FY 2022-23 — Half Year Ended 30 Sep 2022 (H1)'},
+    {dest:'docs/investor-info/rpt-h2-mar2023.pdf',label:'FY 2022-23 — Half Year Ended 31 Mar 2023 (H2)'},
+    {dest:'docs/investor-info/rpt-h1-sep2021.pdf',label:'FY 2021-22 — Half Year Ended 30 Sep 2021 (H1)'},
+    {dest:'docs/investor-info/rpt-h2-mar2022.pdf',label:'FY 2021-22 — Half Year Ended 31 Mar 2022 (H2)'},
+    {dest:'docs/investor-info/rpt-h1-sep2020.pdf',label:'FY 2020-21 — Half Year Ended 30 Sep 2020 (H1)'},
+    {dest:'docs/investor-info/rpt-h2-mar2021.pdf',label:'FY 2020-21 — Half Year Ended 31 Mar 2021 (H2)'},
   ],
   certifications: [
     {dest:'docs/certifications/halal-certificate-annexure.pdf',label:'HALAL Certificate with Annexure'},
@@ -442,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function() {
       document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
       btn.classList.add('active');
-      ['financial','governance','filings'].forEach(function(t){
+      ['financial','governance','filings','sustainability'].forEach(function(t){
         document.getElementById('tab-'+t).classList.toggle('hidden', t !== btn.dataset.tab);
       });
     });
@@ -456,8 +557,16 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   // Default date to today
   document.getElementById('ann-date').value = new Date().toISOString().slice(0,10);
+  // Sustainability new-file labels
+  document.getElementById('ec-new-file').addEventListener('change', function(){
+    document.getElementById('ec-new-file-label').textContent = this.files[0] ? this.files[0].name : 'Choose PDF…';
+  });
+  document.getElementById('pol-new-file').addEventListener('change', function(){
+    document.getElementById('pol-new-file-label').textContent = this.files[0] ? this.files[0].name : 'Choose PDF…';
+  });
   fetchManifest();
   loadAnnouncements();
+  loadSustainability();
 });
 
 function buildAll() {
@@ -525,7 +634,7 @@ function buildYearTabs(secId, tabsId, slotsId) {
   });
 }
 
-function makeRow(dest, label) {
+function makeRow(dest, label, onDelete) {
   var u = uid(dest);
   var filename = dest.split('/').pop();
   var row = document.createElement('div');
@@ -556,6 +665,9 @@ function makeRow(dest, label) {
     + '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>'
     + 'Upload</label>'
     + '<input type="file" id="file-'+u+'" accept=".pdf" data-dest="'+dest+'" data-uid="'+u+'">'
+    + '<button type="button" id="del-'+u+'" class="del-btn hidden">'
+    + '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>'
+    + 'Delete</button>'
     + '</div>'
     + '</div>';
 
@@ -564,6 +676,8 @@ function makeRow(dest, label) {
   row.addEventListener('drop', function(e){ e.preventDefault(); row.classList.remove('drag-over'); var f=e.dataTransfer.files[0]; if(f) triggerUpload(f,dest,u); });
   var fi = row.querySelector('input[type="file"]');
   fi.addEventListener('change', function(){ if(this.files[0]) triggerUpload(this.files[0],dest,u); });
+  var delBtn = row.querySelector('#del-'+u);
+  if (delBtn) delBtn.addEventListener('click', function(){ if (onDelete) { onDelete(); } else { triggerDelete(dest, u, label); } });
   return row;
 }
 
@@ -594,6 +708,8 @@ function setSlotStatus(u, state, blob) {
   var urlLink = document.getElementById('urllink-'+u);
   if (!dot) return;
   dot.className = 'status-dot';
+  var delBtn = document.getElementById('del-'+u);
+  if (delBtn) delBtn.classList.toggle('hidden', state !== 'uploaded');
   if (state === 'uploaded' && blob) {
     dot.classList.add('uploaded');
     statusEl.textContent = 'Uploaded';
@@ -635,7 +751,12 @@ async function parseJsonResponse(res) {
   var text = await res.text();
   if (!text) return {};
   try { return JSON.parse(text); }
-  catch (e) { return { error: text.slice(0, 300) }; }
+  catch (e) {
+    if (/^\s*<(!doctype|html|head)/i.test(text)) {
+      return { error: 'API not reachable — the backend is not running. The static preview (npx serve) has no /api routes; use the deployed site or `vercel dev`.' };
+    }
+    return { error: text.slice(0, 300) };
+  }
 }
 
 function uploadErrorMessage(error, fallback) {
@@ -733,6 +854,32 @@ async function triggerUpload(file, dest, u) {
   }
 }
 
+async function triggerDelete(dest, u, label) {
+  var pw = document.getElementById('admin-pw').value.trim();
+  if (!pw) { alert('Enter the admin password first.'); return; }
+  if (!confirm('Delete this document?\n\n' + (label || dest) + '\n\nThis removes the uploaded file permanently.')) return;
+  hideResult(u);
+  try {
+    var res = await fetch('/api/upload', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw, pathname: dest, url: (uploadedMap[dest]||{}).url || null })
+    });
+    var data = await parseJsonResponse(res);
+    if (!res.ok) {
+      if (res.status === 401) { document.getElementById('admin-pw').value=''; updateBtnStates(false); }
+      showResult(u, 'error', data.error || ('Delete failed: HTTP ' + res.status));
+      return;
+    }
+    delete uploadedMap[dest];
+    setSlotStatus(u, 'missing');
+    showResult(u, 'success', 'Deleted');
+    updateBadges(); updateSecCounts();
+  } catch (e) {
+    showResult(u, 'error', uploadErrorMessage(e, 'Network error'));
+  }
+}
+
 function showProg(u,show){ var bar=document.getElementById('prog-'+u); if(bar) bar.classList.toggle('hidden',!show); if(!show){var f=document.getElementById('progfill-'+u);if(f)f.style.width='0%';} }
 function showResult(u,type,msg){ var el=document.getElementById('result-'+u); if(!el) return; el.className='mt-1 ml-[18px] text-xs font-medium '+(type==='success'?'text-emerald-600':'text-red-500'); el.textContent=msg; el.classList.remove('hidden'); setTimeout(function(){el.classList.add('hidden');},6000); }
 function hideResult(u){ var el=document.getElementById('result-'+u); if(el) el.classList.add('hidden'); }
@@ -784,6 +931,14 @@ function updateSecCounts() {
     el.textContent = up+'/'+slots.length;
     el.className = 'ml-auto font-[Montserrat] font-bold text-xs ' + (up===slots.length?'text-emerald-400':up===0?'text-[#94A3B8]':'text-amber-400');
   });
+  // Sustainability document sections (dynamic paths in allSlots)
+  var sc = { 'sec-sust-ec': ['docs/sustainability/ec/',0,0], 'sec-sust-pol': ['docs/sustainability/policy/',0,0] };
+  allSlots.forEach(function(dest){
+    Object.keys(sc).forEach(function(k){
+      if (dest.indexOf(sc[k][0])===0) { sc[k][2]++; var dot=document.getElementById('dot-'+uid(dest)); if(dot&&dot.dataset.uploaded==='1') sc[k][1]++; }
+    });
+  });
+  Object.keys(sc).forEach(function(k){ setSecCount(k, sc[k][1], sc[k][2]); });
 }
 
 function togglePw() {
@@ -912,6 +1067,186 @@ async function deleteAnn(id) {
     if(res.ok) loadAnnouncements();
     else alert('Delete failed.');
   } catch(e){alert('Network error.');}
+}
+
+// ── SUSTAINABILITY ────────────────────────────────────────────────────────────
+// Documents (EC compliance reports, policies) reuse the same makeRow + triggerUpload
+// + manifest machinery as every other section, so the Upload / Replace / Delete UI
+// is identical. Only the *list* of entries (and the ocean links) is dynamic, stored
+// via /api/sustainability. Upload status comes from /api/manifest like everywhere else.
+var SUST_SUB = { ecReports: 'ec', policies: 'policy' };
+
+function requirePw() {
+  var pw = document.getElementById('admin-pw').value.trim();
+  if (!pw) { alert('Enter the admin password first.'); return null; }
+  return pw;
+}
+function setStatus(id, type, msg) {
+  var el = document.getElementById(id); if (!el) return;
+  el.className = 'sm:col-span-3 text-sm font-[Inter] ' + (type==='ok'?'text-emerald-600 font-medium':type==='err'?'text-red-500':'text-[#6B7280]');
+  el.textContent = msg;
+  if (type==='ok') setTimeout(function(){ if(el.textContent===msg) el.textContent=''; }, 4000);
+}
+function setSecCount(elId, up, total) {
+  var el=document.getElementById(elId); if(!el) return;
+  el.textContent=up+'/'+total;
+  el.className='ml-auto font-[Montserrat] font-bold text-xs '+(total>0&&up===total?'text-emerald-400':up===0?'text-[#94A3B8]':'text-amber-400');
+}
+function sustDest(collection, id) { return 'docs/sustainability/'+SUST_SUB[collection]+'/'+id+'.pdf'; }
+
+function loadSustainability() {
+  ['ec','pol','link'].forEach(function(p){
+    var l=document.getElementById(p+'-admin-loading'); if(l) l.style.display='';
+    var e=document.getElementById(p+'-admin-empty'); if(e) e.classList.add('hidden');
+    var list=document.getElementById(p+'-admin-list'); if(list) list.classList.add('hidden');
+  });
+  return fetch('/api/sustainability').then(function(r){ return r.ok?r.json():Promise.reject(); })
+    .then(function(cfg){
+      // Drop any previously-built sustainability rows from the shared slot registry.
+      allSlots = allSlots.filter(function(d){ return d.indexOf('docs/sustainability/')!==0; });
+      renderSustDocs('ecReports','ec', cfg.ecReports||[]);
+      renderSustDocs('policies','pol', cfg.policies||[]);
+      renderSustLinks(cfg.oceansLinks||[]);
+      applyManifest(); // set Uploaded/Not-uploaded status + counts using the current manifest
+      return cfg;
+    }).catch(function(){
+      ['ec','pol','link'].forEach(function(p){
+        var l=document.getElementById(p+'-admin-loading'); if(l) l.style.display='none';
+        var e=document.getElementById(p+'-admin-empty'); if(e) e.classList.remove('hidden');
+      });
+    });
+}
+
+function renderSustDocs(collection, prefix, items) {
+  var loading=document.getElementById(prefix+'-admin-loading');
+  var empty=document.getElementById(prefix+'-admin-empty');
+  var list=document.getElementById(prefix+'-admin-list');
+  if(loading) loading.style.display='none';
+  list.innerHTML='';
+  if(!items.length){ empty.classList.remove('hidden'); list.classList.add('hidden'); setSecCount(prefix==='ec'?'sec-sust-ec':'sec-sust-pol',0,0); return; }
+  empty.classList.add('hidden'); list.classList.remove('hidden');
+  items.forEach(function(it){
+    var dest = sustDest(collection, it.id);
+    allSlots.push(dest);
+    // Default delete (triggerDelete) → removes the uploaded file, row reverts to
+    // "Not uploaded" — identical behaviour to every other document section.
+    list.appendChild(makeRow(dest, it.label));
+  });
+  // Newly-built rows start locked; unlock if a password is present.
+  updateBtnStates(document.getElementById('admin-pw').value.trim().length > 0);
+}
+
+function renderSustLinks(items) {
+  var loading=document.getElementById('link-admin-loading');
+  var empty=document.getElementById('link-admin-empty');
+  var list=document.getElementById('link-admin-list');
+  if(loading) loading.style.display='none';
+  list.innerHTML='';
+  if(!items.length){ empty.classList.remove('hidden'); list.classList.add('hidden'); setSecCount('sec-sust-links',0,0); return; }
+  empty.classList.add('hidden'); list.classList.remove('hidden');
+  var configured=0;
+  items.forEach(function(it){
+    if(it.url) configured++;
+    var row=document.createElement('div');
+    row.className='px-5 py-3 flex items-center gap-3 flex-wrap hover:bg-[#F8FAFC]';
+    var left=document.createElement('div');
+    left.className='flex items-center gap-2 min-w-0 w-full sm:flex-1';
+    left.innerHTML='<span class="status-dot '+(it.url?'uploaded':'')+'"></span>'
+      +'<span class="font-[Inter] text-sm text-[#0F2B4F] truncate flex-shrink-0 sm:w-48">'+escHtml(it.label)+'</span>'
+      +'<input id="linkurl-'+escHtml(it.id)+'" type="url" value="'+escHtml(it.url||'')+'" placeholder="https://…" class="flex-1 min-w-[160px] border border-[#D1D5DB] rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-[#007C66]">';
+    row.appendChild(left);
+    var actions=document.createElement('div');
+    actions.className='flex items-center gap-2 flex-shrink-0';
+    var save=document.createElement('button'); save.type='button'; save.className='replace-btn'; save.textContent='Save';
+    save.addEventListener('click', function(){ sustSaveLink(it.id, it.label); });
+    var del=document.createElement('button'); del.type='button'; del.className='del-btn'; del.textContent='Delete';
+    del.addEventListener('click', function(){ sustDeleteEntry('oceansLinks', it.id, null, it.label); });
+    actions.appendChild(save); actions.appendChild(del);
+    row.appendChild(actions);
+    list.appendChild(row);
+  });
+  setSecCount('sec-sust-links', configured, items.length);
+}
+
+// Add a new document ENTRY (label), then optionally upload its PDF straight away.
+async function sustAddDoc(collection, prefix) {
+  var pw=requirePw(); if(!pw) return;
+  var label=document.getElementById(prefix+'-new-label').value.trim();
+  var file=document.getElementById(prefix+'-new-file').files[0];
+  if(!label){ setStatus(prefix+'-add-status','err','Enter a label.'); return; }
+  if(file && !file.name.toLowerCase().endsWith('.pdf')){ setStatus(prefix+'-add-status','err','Only PDFs allowed.'); return; }
+  setStatus(prefix+'-add-status','info','Adding "'+label+'"…');
+  var id='s'+Date.now();
+  try {
+    var res=await fetch('/api/sustainability',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:pw,collection:collection,item:{id:id,label:label}})});
+    var data=await parseJsonResponse(res);
+    if(!res.ok) throw Object.assign(new Error(data.error||('HTTP '+res.status)),{status:res.status});
+    await loadSustainability();           // build the new row (with Upload button)
+    if(file){                             // upload immediately through the standard path
+      triggerUpload(file, sustDest(collection, id), uid(sustDest(collection, id)));
+    }
+    document.getElementById(prefix+'-new-label').value='';
+    document.getElementById(prefix+'-new-file').value='';
+    document.getElementById(prefix+'-new-file-label').textContent='Choose PDF…';
+    setStatus(prefix+'-add-status','ok','Added "'+label+'".');
+  } catch(e) {
+    setStatus(prefix+'-add-status','err','Error: '+uploadErrorMessage(e,'Add failed'));
+    if(e.status===401){ document.getElementById('admin-pw').value=''; updateBtnStates(false); }
+  }
+}
+
+async function sustAddLink() {
+  var pw=requirePw(); if(!pw) return;
+  var label=document.getElementById('link-new-label').value.trim();
+  var url=document.getElementById('link-new-url').value.trim();
+  if(!label){ setStatus('link-add-status','err','Enter a label.'); return; }
+  setStatus('link-add-status','info','Saving…');
+  try {
+    var res=await fetch('/api/sustainability',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:pw,collection:'oceansLinks',item:{label:label,url:url}})});
+    var data=await parseJsonResponse(res);
+    if(!res.ok) throw Object.assign(new Error(data.error||('HTTP '+res.status)),{status:res.status});
+    setStatus('link-add-status','ok','Added.');
+    document.getElementById('link-new-label').value=''; document.getElementById('link-new-url').value='';
+    loadSustainability();
+  } catch(e) {
+    setStatus('link-add-status','err','Error: '+uploadErrorMessage(e,'Save failed'));
+    if(e.status===401){ document.getElementById('admin-pw').value=''; updateBtnStates(false); }
+  }
+}
+
+async function sustSaveLink(id, label) {
+  var pw=requirePw(); if(!pw) return;
+  var url=(document.getElementById('linkurl-'+id)||{}).value || '';
+  try {
+    var res=await fetch('/api/sustainability',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:pw,collection:'oceansLinks',item:{id:id,label:label,url:url.trim()}})});
+    var data=await parseJsonResponse(res);
+    if(!res.ok){ setStatus('link-add-status','err','Save failed: '+(data.error||res.status)); if(res.status===401){document.getElementById('admin-pw').value='';updateBtnStates(false);} return; }
+    setStatus('link-add-status','ok','Saved "'+label+'".');
+    loadSustainability();
+  } catch(e){ setStatus('link-add-status','err','Network error.'); }
+}
+
+// Remove an entry entirely (and its uploaded file, if any).
+async function sustDeleteEntry(collection, id, dest, label) {
+  var pw=requirePw(); if(!pw) return;
+  if(!confirm('Delete this entry?\n\n'+(label||id)+'\n\nThis removes it from the list' + (dest?' and deletes any uploaded file.':'.'))) return;
+  try {
+    if(dest && uploadedMap[dest]){
+      try {
+        await fetch('/api/upload',{method:'DELETE',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({password:pw,pathname:dest,url:(uploadedMap[dest]||{}).url||null})});
+      } catch(_){}
+      delete uploadedMap[dest];
+    }
+    var res=await fetch('/api/sustainability',{method:'DELETE',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:pw,collection:collection,id:id})});
+    var data=await parseJsonResponse(res);
+    if(!res.ok){ alert('Delete failed: '+(data.error||res.status)); if(res.status===401){document.getElementById('admin-pw').value='';updateBtnStates(false);} return; }
+    loadSustainability();
+  } catch(e){ alert('Network error.'); }
 }
 </script>
 </body>
