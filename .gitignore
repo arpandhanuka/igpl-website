@@ -10,3 +10,6 @@ Profile 1/
 tools/
 node_modules/
 .claude/launch.json
+
+.vercel
+.env*

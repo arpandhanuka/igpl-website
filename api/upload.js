@@ -3,6 +3,7 @@
 // Request 2: Browser uploads directly to Vercel Blob with the signed token
 
 import { handleUpload } from '@vercel/blob/client';
+import { del } from '@vercel/blob';
 
 export const config = { api: { bodyParser: false } };
 
@@ -42,7 +43,7 @@ const ALLOWED_PATHS = new Set([
   'docs/policies/archival-policy.pdf','docs/policies/anti-bribery-policy.pdf',
   'docs/policies/equal-opportunity-policy.pdf','docs/policies/stakeholder-grievance-policy.pdf',
   'docs/policies/stakeholders-engagement-policy.pdf','docs/policies/board-policy-material-events.pdf',
-  'docs/policies/sebi-lodr-reg30.pdf',
+  'docs/policies/sebi-lodr-reg30.pdf','docs/policies/material-subsidiaries-policy.pdf',
   // Subsidiaries
   'docs/subsidiaries/igpl-international-fy2425.pdf','docs/subsidiaries/igpl-international-fy2324.pdf',
   'docs/subsidiaries/igpl-international-fy2223.pdf','docs/subsidiaries/igpl-international-fy2122.pdf',
@@ -73,6 +74,7 @@ const ALLOWED_PATHS = new Set([
   'docs/shareholding/q4fy2122.pdf','docs/shareholding/q3fy2122.pdf',
   'docs/shareholding/q2fy2122.pdf','docs/shareholding/q1fy2122.pdf',
   // Secretarial Compliance
+  'docs/filings/secretarial-compliance-fy2526.pdf',
   'docs/filings/secretarial-compliance-fy2425.pdf','docs/filings/secretarial-compliance-fy2324.pdf',
   'docs/filings/secretarial-compliance-fy2223.pdf','docs/filings/secretarial-compliance-fy2122.pdf',
   'docs/filings/secretarial-compliance-fy2021.pdf',
@@ -82,8 +84,13 @@ const ALLOWED_PATHS = new Set([
   'docs/certifications/iso-14001-2015.pdf',
   // CSR documents
   'docs/policies/csr-policy.pdf','docs/policies/csr-annual-action-plan-fy2627.pdf',
-  // Related Party Transactions (Financial Reports)
-  'docs/investor-info/rpt-h1-sep2025.pdf','docs/investor-info/rpt-h2-mar2026.pdf',
+  // Related Party Transactions (Financial Reports) — per financial year: H1 (30 Sep) & H2 (31 Mar)
+  'docs/investor-info/rpt-h1-sep2025.pdf','docs/investor-info/rpt-h2-mar2026.pdf', // FY 2025-26
+  'docs/investor-info/rpt-h1-sep2024.pdf','docs/investor-info/rpt-h2-mar2025.pdf', // FY 2024-25
+  'docs/investor-info/rpt-h1-sep2023.pdf','docs/investor-info/rpt-h2-mar2024.pdf', // FY 2023-24
+  'docs/investor-info/rpt-h1-sep2022.pdf','docs/investor-info/rpt-h2-mar2023.pdf', // FY 2022-23
+  'docs/investor-info/rpt-h1-sep2021.pdf','docs/investor-info/rpt-h2-mar2022.pdf', // FY 2021-22
+  'docs/investor-info/rpt-h1-sep2020.pdf','docs/investor-info/rpt-h2-mar2021.pdf', // FY 2020-21
   // IEPF Documents (Investor section)
   'docs/iepf/saksham-niveshak-notice.pdf','docs/iepf/unpaid-unclaimed-dividend-fy2425.pdf',
   'docs/iepf/unclaimed-dividend-since-fy1718.pdf','docs/iepf/shares-transferred-to-iepf.pdf',
@@ -103,6 +110,12 @@ function isAnnouncementPath(pathname) {
     (lowerPathname.endsWith('.pdf') || lowerPathname.endsWith('.mp3') || lowerPathname.endsWith('.m4a'));
 }
 
+// Sustainability documents (EC compliance reports, policies) are managed dynamically
+// via /api/sustainability, so their exact paths aren't pre-registered in ALLOWED_PATHS.
+function isSustainabilityPath(pathname) {
+  return pathname.startsWith('docs/sustainability/') && pathname.toLowerCase().endsWith('.pdf');
+}
+
 function allowedContentTypesFor(pathname) {
   const lowerPathname = pathname.toLowerCase();
   if (lowerPathname.endsWith('.pdf')) return ['application/pdf'];
@@ -114,10 +127,9 @@ function allowedContentTypesFor(pathname) {
 export default async function handler(req, res) {
   try {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const adminPw = process.env.ADMIN_PASSWORD;
   if (!adminPw) return res.status(500).json({ error: 'ADMIN_PASSWORD not configured' });
@@ -131,10 +143,36 @@ export default async function handler(req, res) {
       req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
       req.on('error', reject);
     });
-    body = JSON.parse(raw);
+    body = raw ? JSON.parse(raw) : {};
   } catch (e) {
     return res.status(400).json({ error: 'Invalid JSON body: ' + e.message });
   }
+
+  // ── DELETE ─ remove an uploaded document blob ────────────────────────────
+  if (req.method === 'DELETE') {
+    const password = (body.password || req.query.password || '').trim();
+    const pathname = String(body.pathname || req.query.pathname || '');
+    if (!password || password !== adminPw.trim()) {
+      return res.status(401).json({ error: 'Invalid password' });
+    }
+    if (!ALLOWED_PATHS.has(pathname) && !isAnnouncementPath(pathname) && !isSustainabilityPath(pathname)) {
+      return res.status(400).json({ error: 'Destination path not allowed' });
+    }
+    try {
+      // Prefer deleting by exact blob URL when supplied, but only if it maps to
+      // the already-authorized pathname — so a supplied URL can never widen
+      // access beyond the whitelisted destination. Otherwise delete by pathname.
+      const url = typeof body.url === 'string' ? body.url : '';
+      const target = url && url.endsWith('/' + pathname) ? url : pathname;
+      await del(target);
+      return res.status(200).json({ ok: true, deleted: pathname });
+    } catch (e) {
+      console.error('Delete error:', e);
+      return res.status(500).json({ error: 'Delete failed: ' + e.message });
+    }
+  }
+
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
     const jsonResponse = await handleUpload({
@@ -154,8 +192,9 @@ export default async function handler(req, res) {
 
         // Validate destination path
         const isAnnouncement = isAnnouncementPath(pathname);
+        const isSustainability = isSustainabilityPath(pathname);
 
-        if (!isAnnouncement && !ALLOWED_PATHS.has(pathname)) {
+        if (!isAnnouncement && !isSustainability && !ALLOWED_PATHS.has(pathname)) {
           throw new Error('Destination path not allowed');
         }
 
