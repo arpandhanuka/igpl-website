@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     return res.status(200).json(cache);
   }
 
-  const apiKey = process.env.OCEMS_API_KEY;
+  const apiKey = process.env.OCEMS_API_KEY || 'igp_SyFgBsX6ATmtDL7qAAxkSbtXFioO92fZcZJAWnDe8Ss';
   if (!apiKey) {
     return res.status(503).json({ error: 'OCEMS API key not configured' });
   }
