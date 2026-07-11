@@ -47,6 +47,55 @@
     .nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #475569; transition: background 0.15s, color 0.15s; }
     .nav-dropdown a:hover { background: #F0FDF9; color: #007C66; }
     .nav-parent:hover .nav-dropdown { display: block; }
+
+    /* OCEMS Live Data (sustainability panel) */
+    .ocems-tab { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.55rem 1.25rem; border-radius: 9999px; border: 1px solid #E5E7EB; background: #fff; color: #374151; white-space: nowrap; transition: all 0.2s ease; cursor: pointer; }
+    .ocems-tab:hover { background: #F0FDF9; color: #007C66; border-color: #007C66; }
+    .ocems-tab--active { background: #007C66; color: #fff; border-color: #007C66; }
+    .ocems-facility { background: #fff; border: 1px solid rgba(8,32,27,0.10); border-radius: 14px; box-shadow: 0 1px 2px rgba(8,32,27,0.04), 0 4px 16px rgba(8,32,27,0.06); overflow: hidden; }
+    .ocems-facility--ok { border-color: rgba(0,124,102,0.25); }
+    .ocems-facility--approaching { border-color: rgba(234,88,12,0.35); }
+    .ocems-facility--exceed { border-color: rgba(220,38,38,0.35); }
+    .ocems-facility__header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 1rem 1.25rem; color: #fff; }
+    .ocems-facility--ok .ocems-facility__header { background: linear-gradient(135deg, #059669 0%, #007C66 100%); }
+    .ocems-facility--approaching .ocems-facility__header { background: linear-gradient(135deg, #F97316 0%, #EA580C 100%); }
+    .ocems-facility--exceed .ocems-facility__header { background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); }
+    .ocems-facility__title { display: flex; align-items: center; gap: 0.6rem; font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 700; font-size: 1.05rem; }
+    .ocems-facility__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+    .ocems-pill { font-size: 11px; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 9999px; background: rgba(255,255,255,0.22); color: #fff; }
+    .ocems-pill--status { background: #fff; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .ocems-facility--ok .ocems-pill--status { color: #007C66; }
+    .ocems-facility--approaching .ocems-pill--status { color: #EA580C; }
+    .ocems-facility--exceed .ocems-pill--status { color: #DC2626; }
+    .ocems-facility__body { padding: 1.25rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 640px) { .ocems-facility__body { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); } }
+    .ocems-stack { background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; box-shadow: 0 1px 3px rgba(8,32,27,0.05); border-left: 4px solid #007C66; display: flex; flex-direction: column; min-height: 100%; min-width: 0; }
+    .ocems-stack--approaching { border-left-color: #EA580C; }
+    .ocems-stack--exceed { border-left-color: #DC2626; }
+    .ocems-stack__header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0.5rem; padding: 0.85rem 1rem; border-bottom: 1px solid #F1F5F9; background: #FAFCFB; }
+    .ocems-stack__name { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 700; font-size: 0.82rem; color: #0F172A; line-height: 1.3; }
+    .ocems-stack__time { font-size: 11px; color: #94A3B8; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+    .ocems-stack__badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.15rem 0.5rem; border-radius: 9999px; margin-top: 0.35rem; }
+    .ocems-stack__badge--green { background: #ECFDF5; color: #007C66; }
+    .ocems-stack__badge--amber { background: #FFF7ED; color: #EA580C; }
+    .ocems-stack__badge--red { background: #FEF2F2; color: #DC2626; }
+    .ocems-stack__params { flex: 1; min-width: 0; }
+    .ocems-param { display: grid; grid-template-columns: minmax(72px, 1fr) minmax(4.25rem, auto) minmax(8.5rem, max-content); gap: 0.35rem 0.75rem; align-items: center; padding: 0.55rem 1rem 0.55rem 0.75rem; border-bottom: 1px solid #F1F5F9; font-size: 12px; border-left: 3px solid #007C66; }
+    .ocems-param--approaching { border-left-color: #EA580C; }
+    .ocems-param--exceed { border-left-color: #DC2626; }
+    .ocems-param:last-child { border-bottom: 0; }
+    .ocems-param__label { color: #64748B; font-weight: 500; min-width: 0; }
+    .ocems-param__value { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; min-width: 4.25rem; flex-shrink: 0; }
+    .ocems-param__value--ok { color: #007C66; }
+    .ocems-param__value--approaching { color: #EA580C; }
+    .ocems-param__value--exceed { color: #DC2626; }
+    .ocems-param__limit { font-size: 11px; color: #94A3B8; text-align: right; white-space: nowrap; flex-shrink: 0; }
+    .ocems-plants-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 1200px) { .ocems-plants-grid { grid-template-columns: repeat(2, 1fr); } }
+    .ocems-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #36DDB0; box-shadow: 0 0 0 3px rgba(54,221,176,0.25); animation: ocems-pulse 2s ease-in-out infinite; }
+    @keyframes ocems-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .ocems-spinner { width: 32px; height: 32px; border: 3px solid #E5E7EB; border-top-color: #007C66; border-radius: 50%; animation: ocems-spin 0.8s linear infinite; }
+    @keyframes ocems-spin { to { transform: rotate(360deg); } }
   </style>
   <script type="application/ld+json">
   {
@@ -233,6 +282,26 @@
       <div id="oceans-loading" class="text-center font-[Inter] text-sm text-[#94A3B8] py-6">Loading links…</div>
       <div id="oceans-empty" class="hidden text-center font-[Inter] text-sm text-[#94A3B8] py-6">No links available yet.</div>
       <div id="oceans-list" class="hidden flex flex-wrap justify-center gap-3"></div>
+
+      <!-- OCEMS live data panel — hidden until tab is clicked -->
+      <div id="ocems-wrap" data-lazy="true" class="hidden mt-10 bg-[#EEF5F2] border border-[#E5E7EB] rounded-2xl p-6 md:p-8">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center gap-2 font-[Inter] text-[13px] text-[#64748B] mb-3">
+            <span class="ocems-live-dot" aria-hidden="true"></span>
+            <span>Live feed &middot; Last sync <time id="ocems-last-sync">&mdash;</time></span>
+          </div>
+          <p id="ocems-status" class="font-[Inter] text-[12px] text-[#64748B] min-h-[1rem]"></p>
+        </div>
+        <div class="flex items-center justify-center gap-2 mb-8 overflow-x-auto pb-1" id="ocems-tabs" role="tablist" aria-label="OCEMS plants">
+          <button type="button" class="ocems-tab ocems-tab--active" role="tab" aria-selected="true" data-ocems-tab="all">All</button>
+        </div>
+        <div class="ocems-plants-grid" id="ocems-panels">
+          <div class="col-span-full flex flex-col items-center justify-center py-12 gap-3">
+            <div class="ocems-spinner" aria-hidden="true"></div>
+            <p class="font-[Inter] text-[14px] text-[#64748B]">Loading live OCEMS data&hellip;</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -623,6 +692,11 @@
     }
 
     function oceanCard(item) {
+      if (item.id === 'ocems') {
+        return '<button type="button" id="ocems-toggle-btn" aria-expanded="false" aria-controls="ocems-wrap" '
+          + 'class="inline-flex items-center gap-2.5 bg-[#007C66] text-white font-[Montserrat] font-bold text-[12px] uppercase tracking-wider px-6 py-3.5 rounded-xl hover:bg-[#005E4D] transition-colors cursor-pointer">'
+          + extSvg + esc(item.label) + '</button>';
+      }
       if (item.url) {
         return '<a href="' + esc(item.url) + '" target="_blank" rel="noopener" '
           + 'class="inline-flex items-center gap-2.5 bg-[#007C66] text-white font-[Montserrat] font-bold text-[12px] uppercase tracking-wider px-6 py-3.5 rounded-xl hover:bg-[#005E4D] transition-colors">'
@@ -631,6 +705,23 @@
       return '<span class="inline-flex items-center gap-2.5 bg-[#F1F5F9] text-[#94A3B8] font-[Montserrat] font-bold text-[12px] uppercase tracking-wider px-6 py-3.5 rounded-xl">'
         + extSvg + esc(item.label) + ' &middot; not configured</span>';
     }
+
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('#ocems-toggle-btn');
+      if (!btn) return;
+      var wrap = document.getElementById('ocems-wrap');
+      if (!wrap) return;
+      var isOpen = !wrap.classList.contains('hidden');
+      if (isOpen) {
+        wrap.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        wrap.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        if (typeof window.initOcemsLiveData === 'function') window.initOcemsLiveData();
+        setTimeout(function(){ wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+      }
+    });
 
     var SUB = { ecReports: 'ec', policies: 'policy' };
     function withUrls(list, collection, byPath) {
@@ -660,6 +751,7 @@
       });
   })();
   </script>
+  <script src="js/ocems.js"></script>
   <script src="js/igpl.js"></script>
 
 </body>
