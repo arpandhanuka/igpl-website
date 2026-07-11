@@ -96,6 +96,7 @@ const ALLOWED_PATHS = new Set([
   'docs/iepf/unclaimed-dividend-since-fy1718.pdf','docs/iepf/shares-transferred-to-iepf.pdf',
   'docs/iepf/shares-liable-to-iepf.pdf',
   // Annual Return
+  'docs/governance/annual-return-fy2526.pdf',
   'docs/governance/annual-return-fy2425.pdf','docs/governance/annual-return-fy2324.pdf',
   'docs/governance/annual-return-fy2223.pdf','docs/governance/annual-return-fy2122.pdf',
   'docs/governance/annual-return-fy2021.pdf',
