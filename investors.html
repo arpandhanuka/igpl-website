@@ -222,7 +222,7 @@
         <!-- Metric 5: Market Cap -->
         <div class="flex flex-col items-center text-center min-w-[160px]">
           <div class="font-[Montserrat] font-extrabold text-4xl md:text-5xl text-white mb-1 leading-none">
-            &#8377;<span data-counter data-target="1306" data-suffix=" Cr" id="counter-5">0 Cr</span>
+            &#8377;<span data-counter data-target="1330" data-suffix=" Cr" id="counter-5">0 Cr</span>
           </div>
           <div class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.1em] text-[#007C66] mt-2 mb-0.5">Market Cap (approx.)</div>
           <div class="font-[Inter] text-[13px] text-[#64748B]">As per last available data</div>
@@ -233,7 +233,7 @@
   </section>
 
   <!-- ===== SECTION 2A: INVESTOR SNAPSHOT STAT MONUMENTS ===== -->
-  <section class="section-ink py-16 md:py-20" aria-label="Investor Snapshot">
+  <section id="investor-snapshot" class="section-ink py-16 md:py-20" aria-label="Investor Snapshot">
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="reveal text-center mb-12">
         <p class="eyebrow-2026 mb-3" style="color:#5BE9C2;">Investor Snapshot</p>
@@ -242,27 +242,34 @@
       <div class="stagger flex flex-wrap justify-center gap-x-8 gap-y-10 md:gap-x-12 lg:justify-between">
 
         <div class="stat-monument text-center">
-          <div class="stat-monument__value">270,000<span class="unit">MTPA</span></div>
+          <div class="stat-monument__value"><span data-snapshot-counter data-target="270000">0</span><span class="unit">MTPA</span></div>
           <div class="stat-monument__rule"></div>
           <p class="stat-monument__label">PA Capacity</p>
         </div>
 
         <div class="stat-monument text-center">
-          <div class="stat-monument__value">~50<span class="unit">%</span></div>
+          <div class="stat-monument__value">~<span data-snapshot-counter data-target="50">0</span><span class="unit">%</span></div>
           <div class="stat-monument__rule"></div>
           <p class="stat-monument__label">India PA Market Share</p>
         </div>
 
         <div class="stat-monument text-center">
-          <div class="stat-monument__value">34<span class="unit">yrs</span></div>
+          <div class="stat-monument__value"><span data-snapshot-counter data-target="34">0</span><span class="unit">yrs</span></div>
           <div class="stat-monument__rule"></div>
           <p class="stat-monument__label">In Operation (since 1992)</p>
         </div>
 
         <div class="stat-monument text-center">
-          <div class="stat-monument__value">68.74<span class="unit">%</span></div>
+          <div class="stat-monument__value"><span data-snapshot-counter data-target="68.74" data-decimals="2">0</span><span class="unit">%</span></div>
           <div class="stat-monument__rule"></div>
           <p class="stat-monument__label">Promoter Holding</p>
+        </div>
+
+        <div class="stat-monument text-center">
+          <div class="stat-monument__value">&#8377;<span data-snapshot-counter data-target="432" data-decimals="2" id="snapshot-share-price">0</span></div>
+          <div class="stat-monument__rule"></div>
+          <p class="stat-monument__label">Share Price</p>
+          <p class="font-[Inter] text-[11px] text-[#7AAD9E] mt-1" id="snapshot-price-source">NSE / BSE</p>
         </div>
 
         <div class="stat-monument text-center">
@@ -1310,6 +1317,84 @@
     counterObs.observe(metricsSection);
   })();
 
+  // ---- Investor Snapshot animated counters (incl. live share price) ----
+  (function() {
+    var snapshotSection = document.getElementById('investor-snapshot');
+    if (!snapshotSection) return;
+
+    var snapshotVisible = false;
+    var staticAnimated = false;
+    var sharePriceLoaded = false;
+    var sharePriceAnimated = false;
+
+    function formatCounterValue(value, decimals) {
+      if (decimals > 0) return value.toFixed(decimals);
+      return Math.round(value).toLocaleString('en-US');
+    }
+
+    function animateSnapshotCounter(el) {
+      if (!el || el.getAttribute('data-snapshot-counted') === 'true') return;
+      el.setAttribute('data-snapshot-counted', 'true');
+
+      var target = parseFloat(el.getAttribute('data-target')) || 0;
+      var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      var duration = 1800;
+      var startTime = null;
+
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var current = target * easeOutCubic(progress);
+        el.textContent = formatCounterValue(current, progress < 1 ? decimals : decimals);
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = formatCounterValue(target, decimals);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function animateStaticSnapshotCounters() {
+      if (staticAnimated) return;
+      staticAnimated = true;
+      snapshotSection.querySelectorAll('[data-snapshot-counter]').forEach(function(el) {
+        if (el.id !== 'snapshot-share-price') animateSnapshotCounter(el);
+      });
+    }
+
+    function tryAnimateSharePrice() {
+      if (!sharePriceLoaded || !snapshotVisible || sharePriceAnimated) return;
+      sharePriceAnimated = true;
+      animateSnapshotCounter(document.getElementById('snapshot-share-price'));
+    }
+
+    window.applySnapshotSharePrice = function(d) {
+      var el = document.getElementById('snapshot-share-price');
+      if (el && d && d.ltp) {
+        el.setAttribute('data-target', String(d.ltp));
+        el.removeAttribute('data-snapshot-counted');
+      }
+      var srcEl = document.getElementById('snapshot-price-source');
+      if (srcEl && d && d.source) srcEl.textContent = d.source;
+      sharePriceLoaded = true;
+      tryAnimateSharePrice();
+    };
+
+    var snapshotObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          snapshotVisible = true;
+          animateStaticSnapshotCounters();
+          tryAnimateSharePrice();
+          snapshotObs.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+    snapshotObs.observe(snapshotSection);
+  })();
+
   // ---- Live stock data from /api/stock ----
   (function() {
     var REFRESH_MS = 5 * 60 * 1000; // 5 minutes
@@ -1333,19 +1418,26 @@
       var updEl = document.getElementById('stock-updated-at');
 
       if (ltpEl) ltpEl.textContent = fmt(d.ltp);
-      if (highEl) highEl.textContent = fmt(d.weekHigh);
-      if (lowEl) lowEl.textContent = fmt(d.weekLow);
+      if (highEl) highEl.textContent = d.weekHigh ? fmt(d.weekHigh) : '—';
+      if (lowEl) lowEl.textContent = d.weekLow ? fmt(d.weekLow) : '—';
       if (mcEl) mcEl.textContent = fmt(d.mktCapCr);
       if (badgeEl) {
-        var pos = d.pChange >= 0;
-        badgeEl.textContent = (pos ? '+' : '') + d.change.toFixed(2) + ' (' + (pos ? '+' : '') + d.pChange + '%)';
-        badgeEl.style.background = pos ? '#D1FAE5' : '#FEE2E2';
-        badgeEl.style.color = pos ? '#065F46' : '#991B1B';
+        if (d.change) {
+          var pos = d.pChange >= 0;
+          badgeEl.textContent = (pos ? '+' : '') + d.change.toFixed(2) + ' (' + (pos ? '+' : '') + d.pChange + '%)';
+          badgeEl.style.background = pos ? '#D1FAE5' : '#FEE2E2';
+          badgeEl.style.color = pos ? '#065F46' : '#991B1B';
+          badgeEl.classList.remove('hidden');
+        } else {
+          badgeEl.classList.add('hidden');
+        }
       }
       if (updEl) {
         var ts = new Date(d.updatedAt);
         updEl.textContent = 'Data as of ' + ts.toLocaleString('en-IN', {timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',day:'2-digit',month:'short',year:'numeric'}) + ' IST' + (d.stale ? ' (cached)' : '');
       }
+
+      if (window.applySnapshotSharePrice) window.applySnapshotSharePrice(d);
 
       // Update metrics strip counter target + re-animate
       var counter5 = document.getElementById('counter-5');
