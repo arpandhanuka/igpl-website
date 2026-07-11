@@ -102,6 +102,7 @@ const ALLOWED_PATHS = new Set([
   // FY25-26 Subsidiaries
   'docs/subsidiaries/igpl-international-fy2526.pdf',
   'docs/subsidiaries/igpl-charitable-foundation-fy2526.pdf',
+  'docs/subsidiaries/ig-biofuels-fy2526.pdf',
 ]);
 
 function isAnnouncementPath(pathname) {
