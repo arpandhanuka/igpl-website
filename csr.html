@@ -408,7 +408,7 @@ function switchPolicyTab(tabId, btn) {
     .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
     .then(function(data) {
       var blobMap = {};
-      (data.blobs || []).forEach(function(b) { blobMap[b.pathname] = b; });
+      (data.blobs || []).forEach(function(b) { if(b.url&&b.uploadedAt){b.url += (b.url.indexOf('?')===-1?'?':'&')+'v='+new Date(b.uploadedAt).getTime();} blobMap[b.pathname] = b; });
       renderCsrCards(blobMap);
     })
     .catch(function() {

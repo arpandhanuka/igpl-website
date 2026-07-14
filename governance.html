@@ -422,7 +422,7 @@
     fetch('/api/manifest')
       .then(function(r) { return r.ok ? r.json() : Promise.reject('HTTP ' + r.status); })
       .then(function(data) {
-        (data.blobs || []).forEach(function(b) { blobMap.set(b.pathname, b); });
+        (data.blobs || []).forEach(function(b) { if(b.url&&b.uploadedAt){b.url += (b.url.indexOf('?')===-1?'?':'&')+'v='+new Date(b.uploadedAt).getTime();} blobMap.set(b.pathname, b); });
         render();
       })
       .catch(function(e) {
