@@ -738,7 +738,7 @@
       .then(function(results){
         var cfg = results[0];
         var byPath = {};
-        (results[1].blobs || []).forEach(function(b){ byPath[b.pathname] = b; });
+        (results[1].blobs || []).forEach(function(b){ if(b.url&&b.uploadedAt){b.url += (b.url.indexOf('?')===-1?'?':'&')+'v='+new Date(b.uploadedAt).getTime();} byPath[b.pathname] = b; });
         renderList(withUrls(cfg.ecReports, 'ecReports', byPath), 'ec-loading', 'ec-empty', 'ec-grid', function(it){ return docCard(it, true); });
         renderList(withUrls(cfg.policies, 'policies', byPath), 'sust-pol-loading', 'sust-pol-empty', 'sust-pol-list', function(it){ return docCard(it, false); });
         renderList((cfg.oceansLinks||[]), 'oceans-loading', 'oceans-empty', 'oceans-list', oceanCard);

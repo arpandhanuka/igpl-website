@@ -720,7 +720,7 @@ function setSlotStatus(u, state, blob) {
     metaEl.textContent = [kb,d].filter(Boolean).join(' · ');
     metaEl.classList.remove('hidden');
     if (blob.url && urlRow && urlLink) {
-      urlLink.href = blob.url;
+      urlLink.href = blob.uploadedAt ? blob.url + (blob.url.indexOf('?')===-1?'?':'&') + 'v=' + new Date(blob.uploadedAt).getTime() : blob.url;
       urlLink.textContent = blob.url;
       urlRow.classList.remove('hidden');
       urlRow.style.display = 'flex';

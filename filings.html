@@ -805,7 +805,7 @@
     // Load manifest
     fetch('/api/manifest').then(function(r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function(data) {
-        (data.blobs||[]).forEach(function(b) { blobMap[b.pathname] = b; });
+        (data.blobs||[]).forEach(function(b) { if(b.url&&b.uploadedAt){b.url += (b.url.indexOf('?')===-1?'?':'&')+'v='+new Date(b.uploadedAt).getTime();} blobMap[b.pathname] = b; });
         document.getElementById('shareholding-loading').style.display='none';
         document.getElementById('shareholding-content').classList.remove('hidden');
         document.getElementById('secretarial-loading').style.display='none';
