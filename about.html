@@ -96,6 +96,20 @@
     }
     .nav-dropdown a:hover { background: #F0FDF9; color: #007C66; }
     .nav-parent:hover .nav-dropdown { display: block; }
+
+    /* Hero stat monuments sit on the dark hero — force light colours so they
+       read against the background (the hero section is not .section-ink). */
+    #about-hero-stats .stat-monument__value { color: #ffffff; }
+    #about-hero-stats .stat-monument__rule  { background: var(--igpl-mint, #36DDB0); }
+    #about-hero-stats .stat-monument__label { color: #9DC3B8; }
+    /* The shared value size uses 5.2vw, which scales with the full viewport
+       while this grid is capped at 1280px — on wide screens the unbreakable
+       "270,000MTPA" outgrew its ~280px column and overlapped the next stat.
+       Size it to the column instead so the four stats never collide. */
+    #about-hero-stats .stat-monument__value { font-size: clamp(2rem, 3.2vw, 3rem); }
+    @media (max-width: 767px) {
+      #about-hero-stats .stat-monument__value { font-size: clamp(1.75rem, 6.2vw, 2.6rem); }
+    }
   </style>
 </head>
 <body class="bg-white text-[#0F172A] antialiased">
@@ -192,7 +206,7 @@
         <p class="font-[Inter] text-lg text-[#CBD5E1] leading-relaxed max-w-2xl mb-10">IG Petrochemicals Ltd. holds approximately 50% of India's domestic phthalic anhydride capacity — 270,000 MTPA across five plants at a single integrated campus in Taloja, Maharashtra.</p>
       </div>
       <!-- Stat monuments -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mt-2">
+      <div id="about-hero-stats" class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
         <div class="stat-monument">
           <div class="stat-monument__value">270,000<span class="unit">MTPA</span></div>
           <div class="stat-monument__rule"></div>
@@ -764,19 +778,6 @@
         });
       }, { threshold: 0.3 });
       counters.forEach(function(el) { cObs.observe(el); });
-    }
-    var toggle = document.getElementById('menu-toggle');
-    var menu = document.getElementById('mobile-menu');
-    var backdrop = document.getElementById('menu-backdrop');
-    if (toggle && menu) {
-      toggle.addEventListener('click', function() {
-        menu.classList.toggle('hidden');
-        if (backdrop) backdrop.classList.toggle('hidden');
-      });
-      if (backdrop) backdrop.addEventListener('click', function() {
-        menu.classList.add('hidden');
-        backdrop.classList.add('hidden');
-      });
     }
   })();
   </script>

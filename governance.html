@@ -266,19 +266,6 @@
     }
 
     // Mobile menu
-    var toggle = document.getElementById('menu-toggle');
-    var menu = document.getElementById('mobile-menu');
-    var backdrop = document.getElementById('menu-backdrop');
-    if (toggle && menu) {
-      toggle.addEventListener('click', function() {
-        menu.classList.toggle('hidden');
-        if (backdrop) backdrop.classList.toggle('hidden');
-      });
-      if (backdrop) backdrop.addEventListener('click', function() {
-        menu.classList.add('hidden');
-        backdrop.classList.add('hidden');
-      });
-    }
 
     var blobMap = new Map();
 

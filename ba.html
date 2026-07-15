@@ -714,8 +714,6 @@
   (function() {
     var revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger');
     if (revealEls.length) { var obs = new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'}); revealEls.forEach(function(el){obs.observe(el)}); }
-    var toggle=document.getElementById('menu-toggle'),menu=document.getElementById('mobile-menu'),backdrop=document.getElementById('menu-backdrop');
-    if(toggle&&menu){toggle.addEventListener('click',function(){menu.classList.toggle('hidden');if(backdrop)backdrop.classList.toggle('hidden')});if(backdrop)backdrop.addEventListener('click',function(){menu.classList.add('hidden');backdrop.classList.add('hidden')})}
     document.querySelectorAll('.accordion-trigger').forEach(function(t){t.addEventListener('click',function(){var item=t.parentElement;var isOpen=item.classList.contains('open');document.querySelectorAll('.accordion-item.open').forEach(function(s){if(s!==item)s.classList.remove('open')});item.classList.toggle('open',!isOpen)})});
   })();
   </script>
