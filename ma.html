@@ -721,19 +721,7 @@
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
       revealEls.forEach(function(el) { obs.observe(el); });
     }
-    var toggle = document.getElementById('menu-toggle'),
-        menu   = document.getElementById('mobile-menu'),
-        backdrop = document.getElementById('menu-backdrop');
-    if (toggle && menu) {
-      toggle.addEventListener('click', function() {
-        menu.classList.toggle('hidden');
-        if (backdrop) backdrop.classList.toggle('hidden');
-      });
-      if (backdrop) backdrop.addEventListener('click', function() {
-        menu.classList.add('hidden');
-        backdrop.classList.add('hidden');
-      });
-    }
+    // Mobile menu is handled by initMobileMenu() in js/igpl.js (single source of truth)
     // Accordion
     document.querySelectorAll('.accordion-trigger').forEach(function(t) {
       t.addEventListener('click', function() {

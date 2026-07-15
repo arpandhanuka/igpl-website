@@ -1067,18 +1067,6 @@
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
       revealEls.forEach(function(el) { obs.observe(el); });
     }
-    var toggle = document.getElementById('menu-toggle');
-    var menu = document.getElementById('mobile-menu');
-    var backdrop = document.getElementById('menu-backdrop');
-    if (toggle && menu) {
-      toggle.addEventListener('click', function() {
-        menu.classList.toggle('hidden');
-        if (backdrop) backdrop.classList.toggle('hidden');
-      });
-      if (backdrop) backdrop.addEventListener('click', function() {
-        menu.classList.add('hidden'); backdrop.classList.add('hidden');
-      });
-    }
   })();
   </script>
   <script src="js/igpl.js"></script>

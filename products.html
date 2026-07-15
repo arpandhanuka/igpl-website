@@ -837,22 +837,7 @@
 <!-- Scroll reveal + mobile menu -->
 <script>
   (function() {
-    // Mobile menu toggle
-    var toggle = document.getElementById('menu-toggle');
-    var menu = document.getElementById('mobile-menu');
-    var backdrop = document.getElementById('menu-backdrop');
-    if (toggle && menu) {
-      toggle.addEventListener('click', function() {
-        menu.classList.toggle('hidden');
-        if (backdrop) backdrop.classList.toggle('hidden');
-      });
-      if (backdrop) {
-        backdrop.addEventListener('click', function() {
-          menu.classList.add('hidden');
-          backdrop.classList.add('hidden');
-        });
-      }
-    }
+    // Mobile menu is handled by initMobileMenu() in js/igpl.js (single source of truth)
 
     // Scroll reveal
     var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger');
