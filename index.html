@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
   <link rel="preload" as="image" href="hero-plant.webp" fetchpriority="high">
   <link rel="stylesheet" href="css/design-system.css?v=2">
-  <link rel="stylesheet" href="css/igpl-2026.css?v=2">
+  <link rel="stylesheet" href="css/igpl-2026.css?v=3">
 
   <style>
     html, body { overflow-x: hidden; }
@@ -84,7 +84,6 @@
     .nav-transparent .nav-link::after { background: #ffffff; }
     .nav-transparent .nav-link--active { color: #ffffff; }
     .nav-transparent .nav-link--active::after { background: #ffffff; }
-    .nav-transparent .nav-logo { filter: brightness(0) invert(1); }
     .nav-transparent .hamburger-icon { color: #ffffff; }
     .nav-transparent .nav-cta { background: transparent; border-color: rgba(255,255,255,0.6); color: #ffffff; }
     .nav-transparent .nav-cta:hover { background: #ffffff; color: #1E293B; }
@@ -133,9 +132,7 @@
     <div class="max-w-[1280px] mx-auto px-6">
       <div class="flex items-center justify-between h-[72px]">
         <!-- Logo -->
-        <a href="index.html" class="flex items-center flex-shrink-0">
-          <img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="h-10 w-auto nav-logo transition-all duration-300">
-        </a>
+        <a href="index.html" class="igpl-logo-lockup" aria-label="IG Petrochemicals Limited — Home"><img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="igpl-logo-lockup__mark"><span class="igpl-logo-lockup__name">I G Petrochemicals Limited</span></a>
 
         <!-- Desktop Links -->
         <div class="hidden xl:flex items-center gap-7">
