@@ -261,3 +261,45 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
    8. Larger touch targets for the hamburger (audit 2.5.5)
    -------------------------------------------------------------------------- */
 #menu-toggle { padding: 12px !important; }
+
+/* --------------------------------------------------------------------------
+   9. Header logo lockup — colored IGPL mark + "I G PETROCHEMICALS LIMITED".
+      Rendered as the official coloured artwork (no white/inverted variant) and
+      positioned on the RIGHT of the header. `order: 99` moves it to the end of
+      the existing justify-between nav row, so the header layout and its
+      responsive behaviour (desktop links / mobile hamburger on the left) stay
+      intact without reordering the markup.
+   -------------------------------------------------------------------------- */
+.igpl-logo-lockup {
+  order: 99;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3px;
+  flex-shrink: 0;
+  line-height: 1;
+  text-decoration: none;
+}
+.igpl-logo-lockup__mark {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+.igpl-logo-lockup__name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  line-height: 1;
+  color: #D8232A;            /* IGPL company-name red */
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+@media (max-width: 640px) {
+  .igpl-logo-lockup__mark { height: 30px; }
+  .igpl-logo-lockup__name { font-size: 9.5px; letter-spacing: 0.10em; }
+}
+@media (max-width: 360px) {
+  .igpl-logo-lockup__name { font-size: 8.5px; letter-spacing: 0.05em; }
+}
