@@ -13,6 +13,7 @@ const ALLOWED_PATHS = new Set([
   'docs/annual-reports/fy2324.pdf','docs/annual-reports/fy2223.pdf',
   'docs/annual-reports/fy2122.pdf','docs/annual-reports/fy2021.pdf',
   // Quarterly Results
+  'docs/earnings/q4fy2627.pdf','docs/earnings/q3fy2627.pdf','docs/earnings/q2fy2627.pdf','docs/earnings/q1fy2627.pdf',
   'docs/earnings/q4fy2526.pdf','docs/earnings/q3fy2526.pdf','docs/earnings/q2fy2526.pdf','docs/earnings/q1fy2526.pdf',
   'docs/earnings/q4fy2425.pdf','docs/earnings/q3fy2425.pdf','docs/earnings/q2fy2425.pdf','docs/earnings/q1fy2425.pdf',
   'docs/earnings/q4fy2324.pdf','docs/earnings/q3fy2324.pdf','docs/earnings/q2fy2324.pdf','docs/earnings/q1fy2324.pdf',
@@ -20,6 +21,7 @@ const ALLOWED_PATHS = new Set([
   'docs/earnings/q4fy2122.pdf','docs/earnings/q3fy2122.pdf','docs/earnings/q2fy2122.pdf','docs/earnings/q1fy2122.pdf',
   'docs/earnings/q4fy2021.pdf','docs/earnings/q3fy2021.pdf','docs/earnings/q2fy2021.pdf','docs/earnings/q1fy2021.pdf',
   // Investor Presentations
+  'docs/investor-presentations/q4fy2627-presentation.pdf','docs/investor-presentations/q3fy2627-presentation.pdf','docs/investor-presentations/q2fy2627-presentation.pdf','docs/investor-presentations/q1fy2627-presentation.pdf',
   'docs/investor-presentations/q4fy2526-presentation.pdf','docs/investor-presentations/q3fy2526-presentation.pdf','docs/investor-presentations/q2fy2526-presentation.pdf','docs/investor-presentations/q1fy2526-presentation.pdf',
   'docs/investor-presentations/q4fy2425-presentation.pdf','docs/investor-presentations/q3fy2425-presentation.pdf','docs/investor-presentations/q2fy2425-presentation.pdf','docs/investor-presentations/q1fy2425-presentation.pdf',
   'docs/investor-presentations/q4fy2324-presentation.pdf','docs/investor-presentations/q3fy2324-presentation.pdf','docs/investor-presentations/q2fy2324-presentation.pdf','docs/investor-presentations/q1fy2324-presentation.pdf',
@@ -33,6 +35,7 @@ const ALLOWED_PATHS = new Set([
   'docs/governance/kmp-contact-materiality.pdf','docs/governance/code-of-conduct-directors.pdf',
   'docs/governance/code-fair-disclosure.pdf','docs/governance/sebi-lodr-reg46.pdf',
   // Governance — AGM Outcomes
+  'docs/governance/agm-outcome-fy2526.pdf',
   'docs/governance/agm-outcome-fy2425.pdf','docs/governance/agm-outcome-fy2324.pdf',
   'docs/governance/agm-outcome-fy2223.pdf','docs/governance/agm-outcome-fy2122.pdf',
   'docs/governance/agm-outcome-fy2021.pdf','docs/governance/agm-outcome-fy2020.pdf',
@@ -64,6 +67,8 @@ const ALLOWED_PATHS = new Set([
   'docs/products/tds-pa.pdf','docs/products/tds-ma.pdf','docs/products/tds-ba.pdf','docs/products/tds-dep.pdf',
   'docs/products/sds-pa.pdf','docs/products/sds-ma.pdf','docs/products/sds-ba.pdf','docs/products/sds-dep.pdf',
   // Shareholding
+  'docs/shareholding/q4fy2627.pdf','docs/shareholding/q3fy2627.pdf','docs/shareholding/q2fy2627.pdf',
+  'docs/shareholding/q1fy2627.pdf',
   'docs/shareholding/q4fy2526.pdf','docs/shareholding/q3fy2526.pdf','docs/shareholding/q2fy2526.pdf',
   'docs/shareholding/q1fy2526.pdf','docs/shareholding/q4fy2425.pdf',
   'docs/shareholding/q3fy2425.pdf','docs/shareholding/q2fy2425.pdf','docs/shareholding/q1fy2425.pdf',
@@ -85,6 +90,7 @@ const ALLOWED_PATHS = new Set([
   // CSR documents
   'docs/policies/csr-policy.pdf','docs/policies/csr-annual-action-plan-fy2627.pdf',
   // Related Party Transactions (Financial Reports) — per financial year: H1 (30 Sep) & H2 (31 Mar)
+  'docs/investor-info/rpt-h1-sep2026.pdf','docs/investor-info/rpt-h2-mar2027.pdf', // FY 2026-27
   'docs/investor-info/rpt-h1-sep2025.pdf','docs/investor-info/rpt-h2-mar2026.pdf', // FY 2025-26
   'docs/investor-info/rpt-h1-sep2024.pdf','docs/investor-info/rpt-h2-mar2025.pdf', // FY 2024-25
   'docs/investor-info/rpt-h1-sep2023.pdf','docs/investor-info/rpt-h2-mar2024.pdf', // FY 2023-24
