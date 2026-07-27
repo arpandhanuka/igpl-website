@@ -61,7 +61,14 @@
       <div class="flex items-center justify-between h-[68px]">
         <a href="index.html" class="igpl-logo-lockup" aria-label="IG Petrochemicals Limited — Home"><img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="igpl-logo-lockup__mark"><span class="igpl-logo-lockup__name">I G Petrochemicals Limited</span></a>
         <div class="hidden xl:flex items-center gap-7">
-          <a href="about.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link">About</a>
+          <div class="relative nav-parent">
+            <a href="about.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] transition-colors nav-link inline-flex items-center gap-1">About <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></a>
+            <div class="nav-dropdown"><div class="nav-dropdown-inner">
+              <a href="about.html">About Overview</a>
+              <a href="board-of-directors.html">Board of Directors</a>
+              <a href="certifications.html">Certifications</a>
+            </div></div>
+          </div>
           <div class="relative nav-parent">
             <a href="products.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] nav-link inline-flex items-center gap-1">Products <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></a>
             <div class="nav-dropdown"><div class="nav-dropdown-inner">
@@ -92,6 +99,11 @@
     <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-[#E5E7EB]">
       <div class="px-6 py-5 flex flex-col gap-4">
         <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">About</a>
+        <div class="pl-4 flex flex-col gap-3">
+          <a href="about.html" class="font-[Inter] text-sm text-[#475569]">About Overview</a>
+          <a href="board-of-directors.html" class="font-[Inter] text-sm text-[#475569]">Board of Directors</a>
+          <a href="certifications.html" class="font-[Inter] text-sm text-[#475569]">Certifications</a>
+        </div>
         <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
         <div class="pl-4 flex flex-col gap-3">
           <a href="pa.html" class="font-[Inter] text-sm text-[#475569]">Phthalic Anhydride</a>
@@ -150,7 +162,7 @@
       </div>
       <div id="ann-loading" class="flex items-center gap-3 py-10 text-[#94A3B8]">
         <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
-        <span class="font-[Inter] text-sm">Loading announcements…</span>
+        <span class="font-[Inter] text-sm">Loading announcements—¦</span>
       </div>
       <div id="ann-empty" class="hidden py-12 text-center">
         <p class="font-[Inter] text-[#94A3B8] text-sm">No announcements published yet. Check back soon.</p>
@@ -171,7 +183,7 @@
       </div>
       <div id="shareholding-loading" class="flex items-center gap-3 py-6 text-[#94A3B8]">
         <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
-        <span class="font-[Inter] text-sm">Loading…</span>
+        <span class="font-[Inter] text-sm">Loading—¦</span>
       </div>
       <div id="shareholding-content" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white border border-[#E5E7EB] rounded-xl overflow-hidden shadow-sm">
@@ -508,7 +520,7 @@
       </div>
       <div id="secretarial-loading" class="flex items-center gap-3 py-6 text-[#94A3B8]">
         <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
-        <span class="font-[Inter] text-sm">Loading…</span>
+        <span class="font-[Inter] text-sm">Loading—¦</span>
       </div>
       <div id="secretarial-content" class="hidden bg-white border border-[#E5E7EB] rounded-xl overflow-hidden shadow-sm">
         <div class="divide-y divide-[#E5E7EB]">
@@ -601,7 +613,7 @@
       </div>
       <div id="forms-loading" class="flex items-center gap-3 py-6 text-[#94A3B8]">
         <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
-        <span class="font-[Inter] text-sm">Loading…</span>
+        <span class="font-[Inter] text-sm">Loading—¦</span>
       </div>
       <div id="forms-content" class="hidden stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <div class="doc-card card-lift bg-white border border-[#E5E7EB] rounded-xl p-5 flex flex-col gap-3" data-path="docs/investor-forms/form-isr1.pdf">
@@ -821,7 +833,7 @@
           if (metaEl) {
             var kb = blob.size ? (blob.size/1024).toFixed(0)+' KB' : '';
             var d = blob.uploadedAt ? new Date(blob.uploadedAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '';
-            metaEl.textContent = [kb,d].filter(Boolean).join(' · ');
+            metaEl.textContent = [kb,d].filter(Boolean).join(' Â· ');
           }
         } else {
           if (actionEl) actionEl.innerHTML = naSpan();
