@@ -120,7 +120,14 @@
       <div class="flex items-center justify-between h-[72px]">
         <a href="index.html" class="igpl-logo-lockup" aria-label="IG Petrochemicals Limited — Home"><img src="igpl-logo.png" alt="IG Petrochemicals Ltd." class="igpl-logo-lockup__mark"><span class="igpl-logo-lockup__name">I G Petrochemicals Limited</span></a>
         <div class="hidden xl:flex items-center gap-7">
-          <a href="about.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] transition-colors nav-link">About</a>
+          <div class="relative nav-parent">
+            <a href="about.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#007C66] transition-colors nav-link nav-link--active inline-flex items-center gap-1">About Us<svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></a>
+            <div class="nav-dropdown"><div class="nav-dropdown-inner">
+              <a href="about.html">About Overview</a>
+              <a href="board-of-directors.html" style="color:#007C66;background:#F0FDF9;font-weight:600;">Board of Directors</a>
+              <a href="certifications.html">Certifications</a>
+            </div></div>
+          </div>
           <div class="relative nav-parent">
             <a href="products.html" class="font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.06em] text-[#374151] transition-colors nav-link inline-flex items-center gap-1">
               Products
@@ -157,7 +164,12 @@
     </div>
     <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-[#E5E7EB]">
       <div class="px-6 py-5 flex flex-col gap-4">
-        <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">About</a>
+        <a href="about.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#007C66]">About</a>
+        <div class="pl-4 flex flex-col gap-3">
+          <a href="about.html" class="font-[Inter] text-sm text-[#475569]">About Overview</a>
+          <a href="board-of-directors.html" class="font-[Inter] text-sm text-[#007C66] font-semibold">Board of Directors</a>
+          <a href="certifications.html" class="font-[Inter] text-sm text-[#475569]">Certifications</a>
+        </div>
         <a href="products.html" class="font-[Montserrat] font-bold text-xs uppercase tracking-[0.06em] text-[#374151]">Products</a>
         <div class="pl-4 flex flex-col gap-3">
           <a href="pa.html" class="font-[Inter] text-sm text-[#475569]">Phthalic Anhydride</a>

@@ -47,7 +47,7 @@
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const value = Math.round(target * easeOut(progress));
-      // International format (270,000) — not the Indian 2,70,000 grouping.
+      // International format (275,110 ) — not the Indian 2,70,000 grouping.
       el.textContent = prefix + value.toLocaleString('en-US') + suffix;
       if (progress < 1) {
         requestAnimationFrame(update);

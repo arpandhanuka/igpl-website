@@ -12,7 +12,7 @@ Local preview: http://127.0.0.1:8123 . Brand: teal `#007C66`. Display font: **Sp
 1. **Do NOT edit** `index.html`, `css/design-system.css`, `css/igpl-2026.css`, or `js/igpl.js`.
    Only edit the HTML pages assigned to you.
 2. **Never invent facts.** Use only numbers/claims already present on the site:
-   270,000 MTPA · 5 plants · ~50% India PA share · 34 years (since 1992) · NSE: IGPL ·
+   275,110  MTPA · 5 plants · ~50% India PA share · 34 years (since 1992) · NSE: IGPL ·
    BSE: 500199 · 68.74% promoter holding · ISO 9001:2015, ISO 14001:2015, HALAL, Star-K.
    Do NOT invent revenue, EBITDA, customer names, export %, country counts, or awards.
    If a recommended block needs data you don't have, insert `<!-- TODO(owner): add X -->`
@@ -37,7 +37,7 @@ key numbers, render them as **stat monuments** (see below) in the hero or a band
 **Stat monuments** (use for any standout numbers):
 ```html
 <div class="stat-monument">
-  <div class="stat-monument__value">270,000<span class="unit">MTPA</span></div>
+  <div class="stat-monument__value">275,110 <span class="unit">MTPA</span></div>
   <div class="stat-monument__rule"></div>
   <p class="stat-monument__label">PA Capacity</p>
 </div>
