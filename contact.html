@@ -288,8 +288,8 @@
                 <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
               <h4 class="font-[Montserrat] font-bold text-[18px] text-[#0F172A] mb-3">Email Client Opened</h4>
-              <p class="font-[Inter] text-[15px] text-[#475569] leading-relaxed mb-4">Your enquiry has been pre-filled in your email client. Please review and send to complete your submission to pramod.sanap@igpetro.com.</p>
-              <p class="font-[Inter] text-[14px] text-[#64748B] leading-relaxed">If your email client did not open, email <a href="mailto:pramod.sanap@igpetro.com" class="text-[#007C66] font-semibold hover:underline">pramod.sanap@igpetro.com</a> or call <a href="tel:+912240586100" class="text-[#007C66] font-semibold hover:underline">+91 2240586100</a> directly.</p>
+              <p id="form-success-recipient" class="font-[Inter] text-[15px] text-[#475569] leading-relaxed mb-4">Your enquiry has been pre-filled in your email client. Please review and send to complete your submission.</p>
+              <p id="form-success-fallback" class="font-[Inter] text-[14px] text-[#64748B] leading-relaxed">If your email client did not open, use the contact details on this page or call <a href="tel:+912240586100" class="text-[#007C66] font-semibold hover:underline">+91 2240586100</a> directly.</p>
             </div>
 
             <form id="contact-form" class="space-y-5" novalidate>
@@ -351,9 +351,6 @@
                 Send Enquiry
               </button>
 
-              <p class="font-[Inter] text-[12px] text-[#64748B] leading-relaxed text-center pt-1">
-                Clicking will open your email client with this enquiry pre-filled. Alternatively, email <a href="mailto:pramod.sanap@igpetro.com" class="hover:underline text-[#007C66]">pramod.sanap@igpetro.com</a> or call +91 2240586100.
-              </p>
             </form>
           </div>
         </div>
@@ -729,6 +726,17 @@
         var message = (document.getElementById('f-message') || {}).value || '';
 
         var typeLabels = { product:'Product Enquiry', tds:'TDS Request', sds:'SDS Request', commercial:'Commercial Enquiry', investor:'Investor Relations', document:'Document Request', career:'Career Interest', partner:'Partnership Enquiry', general:'General Enquiry' };
+        var recipientsByType = {
+          product: ['raj@igpetro.com', 'rpandey@igpetro.com'],
+          commercial: ['raj@igpetro.com', 'rpandey@igpetro.com'],
+          partner: ['raj@igpetro.com', 'rpandey@igpetro.com'],
+          career: ['pramod.sanap@igpetro.com'],
+          tds: ['igpl@igpetro.com'],
+          sds: ['igpl@igpetro.com'],
+          general: ['igpl@igpetro.com']
+        };
+        var recipients = recipientsByType[typeVal] || ['igpl@igpetro.com'];
+        var recipientDisplay = recipients.join(' and ');
         var subjectLine = '[IGPL] ' + (typeLabels[typeVal] || 'Enquiry');
         var body = 'Name: ' + name.trim()
           + (company.trim() ? '\nCompany: ' + company.trim() : '')
@@ -737,10 +745,21 @@
           + '\nEnquiry Type: ' + (typeLabels[typeVal] || typeVal)
           + '\n\nMessage:\n' + message.trim();
 
-        window.location.href = 'mailto:pramod.sanap@igpetro.com?subject=' + encodeURIComponent(subjectLine) + '&body=' + encodeURIComponent(body);
+        window.location.href = 'mailto:' + recipients.join(',') + '?subject=' + encodeURIComponent(subjectLine) + '&body=' + encodeURIComponent(body);
 
         var success = document.getElementById('form-success');
         if (success) {
+          var recipientMsg = document.getElementById('form-success-recipient');
+          var fallbackMsg = document.getElementById('form-success-fallback');
+          if (recipientMsg) {
+            recipientMsg.textContent = 'Your enquiry has been pre-filled in your email client. Please review and send to complete your submission to ' + recipientDisplay + '.';
+          }
+          if (fallbackMsg) {
+            var mailLinks = recipients.map(function(addr) {
+              return '<a href="mailto:' + addr + '" class="text-[#007C66] font-semibold hover:underline">' + addr + '</a>';
+            }).join(' or ');
+            fallbackMsg.innerHTML = 'If your email client did not open, email ' + mailLinks + ' or call <a href="tel:+912240586100" class="text-[#007C66] font-semibold hover:underline">+91 2240586100</a> directly.';
+          }
           success.classList.remove('hidden');
           form.classList.add('hidden');
         }
