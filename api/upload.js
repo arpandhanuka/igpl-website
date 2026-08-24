@@ -124,6 +124,12 @@ function isSustainabilityPath(pathname) {
   return pathname.startsWith('docs/sustainability/') && pathname.toLowerCase().endsWith('.pdf');
 }
 
+// Investor Service Forms are managed dynamically via /api/investor-forms, so
+// forms the admin adds get ids that aren't pre-registered in ALLOWED_PATHS.
+function isInvestorFormPath(pathname) {
+  return pathname.startsWith('docs/investor-forms/') && pathname.toLowerCase().endsWith('.pdf');
+}
+
 function allowedContentTypesFor(pathname) {
   const lowerPathname = pathname.toLowerCase();
   if (lowerPathname.endsWith('.pdf')) return ['application/pdf'];
@@ -163,7 +169,7 @@ export default async function handler(req, res) {
     if (!password || password !== adminPw.trim()) {
       return res.status(401).json({ error: 'Invalid password' });
     }
-    if (!ALLOWED_PATHS.has(pathname) && !isAnnouncementPath(pathname) && !isSustainabilityPath(pathname)) {
+    if (!ALLOWED_PATHS.has(pathname) && !isAnnouncementPath(pathname) && !isSustainabilityPath(pathname) && !isInvestorFormPath(pathname)) {
       return res.status(400).json({ error: 'Destination path not allowed' });
     }
     try {
@@ -201,8 +207,9 @@ export default async function handler(req, res) {
         // Validate destination path
         const isAnnouncement = isAnnouncementPath(pathname);
         const isSustainability = isSustainabilityPath(pathname);
+        const isInvestorForm = isInvestorFormPath(pathname);
 
-        if (!isAnnouncement && !isSustainability && !ALLOWED_PATHS.has(pathname)) {
+        if (!isAnnouncement && !isSustainability && !isInvestorForm && !ALLOWED_PATHS.has(pathname)) {
           throw new Error('Destination path not allowed');
         }
 

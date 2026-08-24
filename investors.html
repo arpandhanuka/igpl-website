@@ -63,6 +63,9 @@
     /* Shareholding bars */
     .holding-bar { height: 10px; border-radius: 9999px; }
 
+    /* Deep-link offset so headings clear the fixed 72px nav */
+    section[id] { scroll-margin-top: 92px; }
+
     /* Document card category badge */
     .doc-badge { display: inline-block; font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 9999px; }
   </style>
@@ -860,7 +863,7 @@
         </a>
 
         <!-- Investor Service Forms -->
-        <a href="investors.html#forms" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
+        <a href="#forms" class="group bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl p-6 flex items-start gap-4 hover:border-[#007C66] hover:shadow-md transition-all">
           <div class="w-10 h-10 rounded-lg bg-[#E6F5F2] flex items-center justify-center flex-shrink-0 group-hover:bg-[#007C66] transition-colors">
             <svg class="w-5 h-5 text-[#007C66] group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -964,6 +967,35 @@
         </div>
 
       </div><!-- /stagger -->
+    </div>
+  </section>
+
+  <!-- ===== SECTION 5C: INVESTOR SERVICE FORMS ===== -->
+  <!-- Rendered dynamically from /api/investor-forms — managed in the Admin Panel. -->
+  <section id="forms" class="bg-white py-20 md:py-24 border-t border-[#E5E7EB]" aria-label="Investor Service Forms">
+    <div class="max-w-[1280px] mx-auto px-6">
+
+      <!-- Header -->
+      <div class="reveal text-center mb-12">
+        <span class="inline-block font-[Montserrat] font-bold text-[11px] uppercase tracking-[0.12em] text-[#007C66] mb-3">Shareholder Services</span>
+        <h2 class="font-[Montserrat] font-extrabold text-3xl md:text-4xl text-[#0F172A] mb-4">Investor Service Forms</h2>
+        <p class="font-[Inter] text-[16px] text-[#475569] max-w-2xl mx-auto leading-relaxed">SEBI-mandated forms for KYC registration, nomination, and dematerialisation services. Completed forms should be submitted to the Registrar and Share Transfer Agent.</p>
+      </div>
+
+      <!-- Loading -->
+      <div id="isf-loading" class="flex items-center justify-center py-10 gap-3 text-[#94A3B8]">
+        <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg>
+        <span class="font-[Inter] text-sm">Loading forms&hellip;</span>
+      </div>
+
+      <!-- Empty -->
+      <div id="isf-empty" class="hidden text-center py-10">
+        <p class="font-[Inter] text-[15px] text-[#94A3B8]">Forms will be published shortly.</p>
+      </div>
+
+      <!-- Form list -->
+      <div id="isf-list" class="stagger max-w-3xl mx-auto space-y-4 hidden"></div>
+
     </div>
   </section>
 
@@ -1516,6 +1548,100 @@
       .catch(function() {
         renderIepfCards(); // renders all 5 as "publishing shortly"
       });
+  })();
+  </script>
+  <!-- ===== INVESTOR SERVICE FORMS (dynamic) ===== -->
+  <!-- Entries come from /api/investor-forms (Admin Panel); the download URL,      -->
+  <!-- file size and upload date are resolved against /api/manifest, exactly like  -->
+  <!-- the IEPF cards above. Adding or reordering a form needs no code change.     -->
+  <script>
+  (function() {
+    'use strict';
+    var loadingEl = document.getElementById('isf-loading');
+    var emptyEl   = document.getElementById('isf-empty');
+    var listEl    = document.getElementById('isf-list');
+    if (!listEl) return;
+
+    function escHtml(str) {
+      return String(str == null ? '' : str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+    function dlBtn(url) {
+      return '<a href="'+escHtml(url)+'" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-[#007C66] text-white font-[Montserrat] font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded hover:bg-[#005E4D] transition-colors whitespace-nowrap">'
+        +'<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>'
+        +'Download</a>';
+    }
+    function pendingSpan() {
+      return '<span class="inline-flex items-center gap-1.5 font-[Inter] text-[12px] text-[#94A3B8]">'
+        +'<svg class="w-3.5 h-3.5 text-[#CBD5E1]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg>'
+        +'Document will be published shortly</span>';
+    }
+    function metaText(blob) {
+      if (!blob) return '';
+      var kb = blob.size ? (blob.size/1024).toFixed(0)+' KB' : '';
+      var d  = blob.uploadedAt ? new Date(blob.uploadedAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '';
+      return [kb,d].filter(Boolean).join(' \u00B7 ');
+    }
+    function card(form, blob) {
+      var url = blob ? blob.url : (form.pdfUrl || '');
+      return '<div class="doc-card bg-white border border-[#E5E7EB] rounded-xl p-5 flex items-center gap-4">'
+        + '<div class="w-10 h-10 rounded-xl bg-[#E6F5F2] flex items-center justify-center flex-shrink-0">'
+        + '<svg class="w-5 h-5 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>'
+        + '</div>'
+        + '<div class="flex-1 min-w-0">'
+        + '<div class="font-[Montserrat] font-bold text-[14px] text-[#0F172A] leading-snug">'+escHtml(form.name)+'</div>'
+        + (form.description ? '<div class="font-[Inter] text-[13px] text-[#64748B] leading-relaxed mt-0.5">'+escHtml(form.description)+'</div>' : '')
+        + '<div class="font-[Inter] text-[12px] text-[#94A3B8] mt-1">'+escHtml(metaText(blob))+'</div>'
+        + '</div>'
+        + '<div class="flex-shrink-0">'+(url ? dlBtn(url) : pendingSpan())+'</div>'
+        + '</div>';
+    }
+    function render(forms, byPath) {
+      if (loadingEl) loadingEl.style.display = 'none';
+      if (!forms.length) {
+        listEl.classList.add('hidden');
+        if (emptyEl) emptyEl.classList.remove('hidden');
+        return;
+      }
+      if (emptyEl) emptyEl.classList.add('hidden');
+      listEl.innerHTML = forms.map(function(f) { return card(f, byPath[f.pdfPath]); }).join('');
+      listEl.classList.remove('hidden');
+      listEl.classList.add('visible');
+    }
+
+    Promise.all([
+      fetch('/api/investor-forms').then(function(r){ return r.ok ? r.json() : Promise.reject(); }),
+      fetch('/api/manifest').then(function(r){ return r.ok ? r.json() : { blobs: [] }; }).catch(function(){ return { blobs: [] }; })
+    ]).then(function(results) {
+      var byPath = {};
+      (results[1].blobs || []).forEach(function(b) {
+        if (b.url && b.uploadedAt) b.url += (b.url.indexOf('?')===-1?'?':'&')+'v='+new Date(b.uploadedAt).getTime();
+        byPath[b.pathname] = b;
+      });
+      render(results[0].forms || [], byPath);
+    }).catch(function() {
+      if (loadingEl) loadingEl.style.display = 'none';
+      if (emptyEl) emptyEl.classList.remove('hidden');
+    }).then(function() {
+      // The section grows after render, so re-align a #forms deep link once the
+      // real height is known (scroll-margin-top clears the fixed 72px nav).
+      if (window.location.hash === '#forms') {
+        var target = document.getElementById('forms');
+        if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    });
+
+    // In-page anchors to #forms scroll smoothly instead of jumping.
+    document.querySelectorAll('a[href="#forms"], a[href$="investors.html#forms"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var target = document.getElementById('forms');
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (history.replaceState) history.replaceState(null, '', '#forms');
+      });
+    });
   })();
   </script>
   <script src="js/igpl.js"></script>

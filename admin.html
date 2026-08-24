@@ -288,14 +288,45 @@
       <div class="divide-y divide-[#E5E7EB]" id="slots-secretarial"></div>
     </div>
 
-    <!-- Investor Forms -->
+    <!-- Investor Service Forms — fully dynamic (add / edit / reorder / activate / delete) -->
     <div class="mb-8 bg-white border border-[#E5E7EB] rounded-xl shadow-sm overflow-hidden">
       <div class="section-hdr px-5 py-3 flex items-center gap-2">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007C66" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         <h2 class="font-[Montserrat] font-bold text-sm text-white uppercase tracking-wider">Investor Service Forms</h2>
         <span id="sec-forms" class="ml-auto font-[Montserrat] font-bold text-xs text-[#94A3B8]">—</span>
       </div>
-      <div class="divide-y divide-[#E5E7EB]" id="slots-forms"></div>
+
+      <!-- Add a new form -->
+      <div class="p-5 border-b border-[#E5E7EB] bg-[#F8FAFC] grid grid-cols-1 sm:grid-cols-[1fr_1.6fr_90px_auto_auto] gap-3 items-end">
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">Form Name</label>
+          <input id="isf-new-name" type="text" placeholder="e.g. Form ISR-5"
+            class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        </div>
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">Form Description</label>
+          <input id="isf-new-desc" type="text" placeholder="e.g. Request by claimant to the Company"
+            class="w-full border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        </div>
+        <div>
+          <label class="block font-[Montserrat] font-bold text-xs uppercase tracking-wider text-[#0F2B4F] mb-1">Order</label>
+          <input id="isf-new-order" type="number" min="1" step="1" placeholder="7"
+            class="w-full border border-[#D1D5DB] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#007C66]">
+        </div>
+        <div>
+          <label for="isf-new-file" class="inline-flex items-center gap-2 border border-[#D1D5DB] rounded-lg px-4 py-2 text-sm cursor-pointer hover:border-[#007C66] transition-colors">
+            <svg class="w-4 h-4 text-[#007C66]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <span id="isf-new-file-label" class="text-[#6B7280]">Choose PDF…</span>
+          </label>
+          <input type="file" id="isf-new-file" accept=".pdf" style="display:none">
+        </div>
+        <button onclick="isfAddForm()" class="bg-[#007C66] text-white font-[Montserrat] font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-lg hover:bg-[#005E4D] transition-colors whitespace-nowrap">Add</button>
+        <span id="isf-add-status" class="sm:col-span-5 text-sm font-[Inter] text-[#6B7280]"></span>
+      </div>
+
+      <div id="isf-admin-loading" class="px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">Loading…</div>
+      <div id="isf-admin-empty" class="hidden px-5 py-4 text-sm text-[#94A3B8] font-[Inter]">No forms yet.</div>
+      <div id="isf-admin-list" class="hidden divide-y divide-[#E5E7EB]"></div>
     </div>
 
     <!-- IEPF Documents -->
@@ -496,14 +527,6 @@ var SECTIONS = {
     {dest:'docs/subsidiaries/igpl-charitable-foundation-fy2021.pdf',label:'IGPL Charitable Foundation — FY 2020-21'},
     {dest:'docs/subsidiaries/ig-biofuels-fy2526.pdf',label:'I G Biofuels Ltd. — FY 2025-26'},
   ],
-  forms: [
-    {dest:'docs/investor-forms/form-isr1.pdf',label:'Form ISR-1 — KYC Update'},
-    {dest:'docs/investor-forms/form-isr2.pdf',label:'Form ISR-2 — Signature Mismatch'},
-    {dest:'docs/investor-forms/form-isr3.pdf',label:'Form ISR-3 — Opt-out Nomination'},
-    {dest:'docs/investor-forms/form-isr4.pdf',label:'Form ISR-4 — Demat Securities'},
-    {dest:'docs/investor-forms/form-sh13.pdf',label:'Form SH-13 — Nomination Declaration'},
-    {dest:'docs/investor-forms/form-sh14.pdf',label:'Form SH-14 — Change in Nomination'},
-  ],
   'investor-info': [
     {dest:'docs/investor-info/rpt-h1-sep2026.pdf',label:'FY 2026-27 — Half Year Ended 30 Sep 2026 (H1)'},
     {dest:'docs/investor-info/rpt-h2-mar2027.pdf',label:'FY 2026-27 — Half Year Ended 31 Mar 2027 (H2)'},
@@ -571,9 +594,14 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('pol-new-file').addEventListener('change', function(){
     document.getElementById('pol-new-file-label').textContent = this.files[0] ? this.files[0].name : 'Choose PDF…';
   });
+  // Investor Service Forms new-file label
+  document.getElementById('isf-new-file').addEventListener('change', function(){
+    document.getElementById('isf-new-file-label').textContent = this.files[0] ? this.files[0].name : 'Choose PDF…';
+  });
   fetchManifest();
   loadAnnouncements();
   loadSustainability();
+  loadInvestorForms();
 });
 
 function buildAll() {
@@ -588,7 +616,6 @@ function buildAll() {
   buildSimple('shareholding', SECTIONS.shareholding);
   buildSimple('secretarial', SECTIONS.secretarial);
   buildSimple('subsidiaries', SECTIONS.subsidiaries);
-  buildSimple('forms', SECTIONS.forms);
   buildSimple('investor-info', SECTIONS['investor-info']);
   buildSimple('certifications', SECTIONS.certifications);
   buildSimple('iepf', SECTIONS.iepf);
@@ -919,7 +946,6 @@ function updateSecCounts() {
     shareholding: SECTIONS.shareholding.map(function(s){return s.dest;}),
     secretarial: SECTIONS.secretarial.map(function(s){return s.dest;}),
     subsidiaries: SECTIONS.subsidiaries.map(function(s){return s.dest;}),
-    forms: SECTIONS.forms.map(function(s){return s.dest;}),
     'investor-info': SECTIONS['investor-info'].map(function(s){return s.dest;}),
     certifications: SECTIONS.certifications.map(function(s){return s.dest;}),
     iepf: SECTIONS.iepf.map(function(s){return s.dest;}),
@@ -939,7 +965,7 @@ function updateSecCounts() {
     el.className = 'ml-auto font-[Montserrat] font-bold text-xs ' + (up===slots.length?'text-emerald-400':up===0?'text-[#94A3B8]':'text-amber-400');
   });
   // Sustainability document sections (dynamic paths in allSlots)
-  var sc = { 'sec-sust-ec': ['docs/sustainability/ec/',0,0], 'sec-sust-pol': ['docs/sustainability/policy/',0,0] };
+  var sc = { 'sec-sust-ec': ['docs/sustainability/ec/',0,0], 'sec-sust-pol': ['docs/sustainability/policy/',0,0], 'sec-forms': ['docs/investor-forms/',0,0] };
   allSlots.forEach(function(dest){
     Object.keys(sc).forEach(function(k){
       if (dest.indexOf(sc[k][0])===0) { sc[k][2]++; var dot=document.getElementById('dot-'+uid(dest)); if(dot&&dot.dataset.uploaded==='1') sc[k][1]++; }
@@ -1255,6 +1281,147 @@ async function sustDeleteEntry(collection, id, dest, label) {
     loadSustainability();
   } catch(e){ alert('Network error.'); }
 }
+// ── INVESTOR SERVICE FORMS ────────────────────────────────────────────────────
+// Fully dynamic: entries live in /api/investor-forms, PDFs upload to
+// docs/investor-forms/<id>.pdf through the standard /api/upload path.
+function isfDest(form) { return form.pdfPath || ('docs/investor-forms/' + form.id + '.pdf'); }
+
+function loadInvestorForms() {
+  var loading=document.getElementById('isf-admin-loading');
+  var empty=document.getElementById('isf-admin-empty');
+  var list=document.getElementById('isf-admin-list');
+  if(loading) loading.style.display='';
+  if(empty) empty.classList.add('hidden');
+  if(list) list.classList.add('hidden');
+  return fetch('/api/investor-forms?all=1').then(function(r){ return r.ok?r.json():Promise.reject(); })
+    .then(function(data){
+      // Drop previously-built form rows from the shared slot registry.
+      allSlots = allSlots.filter(function(d){ return d.indexOf('docs/investor-forms/')!==0; });
+      renderInvestorForms(data.forms||[]);
+      applyManifest();
+      return data;
+    }).catch(function(){
+      if(loading) loading.style.display='none';
+      if(empty) empty.classList.remove('hidden');
+      setSecCount('sec-forms',0,0);
+    });
+}
+
+function renderInvestorForms(forms) {
+  var loading=document.getElementById('isf-admin-loading');
+  var empty=document.getElementById('isf-admin-empty');
+  var list=document.getElementById('isf-admin-list');
+  if(loading) loading.style.display='none';
+  if(!list) return;
+  list.innerHTML='';
+  if(!forms.length){ empty.classList.remove('hidden'); list.classList.add('hidden'); setSecCount('sec-forms',0,0); return; }
+  empty.classList.add('hidden'); list.classList.remove('hidden');
+
+  forms.forEach(function(f){
+    var dest=isfDest(f);
+    allSlots.push(dest);
+    var inactivePill = ' <span class="text-[10px] font-[Inter] font-semibold uppercase tracking-wider text-amber-600 bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5 ml-1">Inactive</span>';
+    var row=makeRow(dest, escHtml(f.name) + (f.active===false ? inactivePill : ''));
+    if(f.active===false) row.style.opacity='0.65';
+
+    // Editable metadata: name, description, display order, active flag.
+    var edit=document.createElement('div');
+    edit.className='mt-3 ml-[18px] grid grid-cols-1 sm:grid-cols-[1fr_1.6fr_80px_auto] gap-2 items-center';
+    edit.innerHTML=
+        '<input id="isf-name-'+escHtml(f.id)+'" type="text" value="'+escHtml(f.name)+'" placeholder="Form name" class="border border-[#D1D5DB] rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-[#007C66]">'
+      + '<input id="isf-desc-'+escHtml(f.id)+'" type="text" value="'+escHtml(f.description||'')+'" placeholder="Form description" class="border border-[#D1D5DB] rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-[#007C66]">'
+      + '<input id="isf-order-'+escHtml(f.id)+'" type="number" min="1" step="1" value="'+escHtml(f.order)+'" title="Display order" class="border border-[#D1D5DB] rounded-lg px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-[#007C66]">'
+      + '<label class="inline-flex items-center gap-1.5 text-xs font-[Inter] text-[#0F2B4F] whitespace-nowrap">'
+      + '<input id="isf-active-'+escHtml(f.id)+'" type="checkbox" '+(f.active===false?'':'checked')+' class="w-4 h-4 accent-[#007C66]"> Active</label>';
+    var actions=document.createElement('div');
+    actions.className='mt-2 ml-[18px] flex items-center gap-2';
+    var save=document.createElement('button'); save.type='button'; save.className='replace-btn'; save.textContent='Save Details';
+    save.addEventListener('click', function(){ isfSaveForm(f.id); });
+    var remove=document.createElement('button'); remove.type='button'; remove.className='del-btn'; remove.textContent='Remove Form';
+    remove.addEventListener('click', function(){ isfDeleteForm(f.id, dest, f.name); });
+    actions.appendChild(save); actions.appendChild(remove);
+    row.appendChild(edit); row.appendChild(actions);
+    list.appendChild(row);
+  });
+  // Newly-built rows start locked; unlock if a password is present.
+  updateBtnStates(document.getElementById('admin-pw').value.trim().length > 0);
+}
+
+// Add a new form entry, then optionally upload its PDF straight away.
+async function isfAddForm() {
+  var pw=requirePw(); if(!pw) return;
+  var name=document.getElementById('isf-new-name').value.trim();
+  var desc=document.getElementById('isf-new-desc').value.trim();
+  var order=document.getElementById('isf-new-order').value.trim();
+  var file=document.getElementById('isf-new-file').files[0];
+  if(!name){ setStatus('isf-add-status','err','Enter a form name.'); return; }
+  if(file && !file.name.toLowerCase().endsWith('.pdf')){ setStatus('isf-add-status','err','Only PDFs allowed.'); return; }
+  setStatus('isf-add-status','info','Adding "'+name+'"…');
+  var item={name:name, description:desc, active:true};
+  if(order!=='') item.order=Number(order);
+  try {
+    var res=await fetch('/api/investor-forms',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:pw,item:item})});
+    var data=await parseJsonResponse(res);
+    if(!res.ok) throw Object.assign(new Error(data.error||('HTTP '+res.status)),{status:res.status});
+    await loadInvestorForms();          // build the new row (with Upload button)
+    if(file && data.item){              // upload immediately through the standard path
+      var dest=isfDest(data.item);
+      triggerUpload(file, dest, uid(dest));
+    }
+    document.getElementById('isf-new-name').value='';
+    document.getElementById('isf-new-desc').value='';
+    document.getElementById('isf-new-order').value='';
+    document.getElementById('isf-new-file').value='';
+    document.getElementById('isf-new-file-label').textContent='Choose PDF…';
+    setStatus('isf-add-status','ok','Added "'+name+'".');
+  } catch(e) {
+    setStatus('isf-add-status','err','Error: '+uploadErrorMessage(e,'Add failed'));
+    if(e.status===401){ document.getElementById('admin-pw').value=''; updateBtnStates(false); }
+  }
+}
+
+// Save name / description / display order / active flag for one form.
+async function isfSaveForm(id) {
+  var pw=requirePw(); if(!pw) return;
+  var name=(document.getElementById('isf-name-'+id)||{}).value||'';
+  var desc=(document.getElementById('isf-desc-'+id)||{}).value||'';
+  var order=(document.getElementById('isf-order-'+id)||{}).value||'';
+  var activeEl=document.getElementById('isf-active-'+id);
+  if(!name.trim()){ setStatus('isf-add-status','err','Form name cannot be empty.'); return; }
+  var item={id:id, name:name.trim(), description:desc.trim(), active:activeEl?activeEl.checked:true};
+  if(order!=='') item.order=Number(order);
+  try {
+    var res=await fetch('/api/investor-forms',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:pw,item:item})});
+    var data=await parseJsonResponse(res);
+    if(!res.ok){ setStatus('isf-add-status','err','Save failed: '+(data.error||res.status)); if(res.status===401){document.getElementById('admin-pw').value='';updateBtnStates(false);} return; }
+    setStatus('isf-add-status','ok','Saved "'+item.name+'".');
+    loadInvestorForms();
+  } catch(e){ setStatus('isf-add-status','err','Network error.'); }
+}
+
+// Remove a form entry entirely, along with its uploaded PDF.
+async function isfDeleteForm(id, dest, name) {
+  var pw=requirePw(); if(!pw) return;
+  if(!confirm('Delete this form?\n\n'+(name||id)+'\n\nThis removes it from the website and deletes any uploaded PDF.')) return;
+  try {
+    if(dest && uploadedMap[dest]){
+      try {
+        await fetch('/api/upload',{method:'DELETE',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({password:pw,pathname:dest,url:(uploadedMap[dest]||{}).url||null})});
+      } catch(_){}
+      delete uploadedMap[dest];
+    }
+    var res=await fetch('/api/investor-forms',{method:'DELETE',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:pw,id:id})});
+    var data=await parseJsonResponse(res);
+    if(!res.ok){ alert('Delete failed: '+(data.error||res.status)); if(res.status===401){document.getElementById('admin-pw').value='';updateBtnStates(false);} return; }
+    setStatus('isf-add-status','ok','Removed "'+(name||id)+'".');
+    loadInvestorForms();
+  } catch(e){ alert('Network error.'); }
+}
+
 </script>
 </body>
 </html>
