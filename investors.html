@@ -568,7 +568,7 @@
         <div id="stock-live" class="hidden">
           <div class="flex flex-wrap items-end gap-6 mb-5">
             <div>
-              <p class="font-[Inter] text-[12px] text-[#94A3B8] uppercase tracking-wider mb-1">NSE: IGPL &nbsp;Â·&nbsp; Last Price</p>
+              <p class="font-[Inter] text-[12px] text-[#94A3B8] uppercase tracking-wider mb-1">NSE: IGPL &nbsp;&middot;&nbsp; Last Price</p>
               <div class="flex items-baseline gap-3">
                 <span class="font-[Montserrat] font-extrabold text-[36px] text-[#0F172A]">&#8377;<span id="live-ltp">—</span></span>
                 <span id="live-change-badge" class="font-[Montserrat] font-bold text-[13px] px-2 py-0.5 rounded-full">—</span>
@@ -1429,7 +1429,10 @@
   (function() {
     var REFRESH_MS = 5 * 60 * 1000; // 5 minutes
 
-    function fmt(n) { return Number(n).toLocaleString('en-US'); }
+    function fmt(n) {
+      return Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function fmtInt(n) { return Number(n).toLocaleString('en-US'); }
 
     function applyStockData(d) {
       // Ticker UI
@@ -1450,7 +1453,7 @@
       if (ltpEl) ltpEl.textContent = fmt(d.ltp);
       if (highEl) highEl.textContent = d.weekHigh ? fmt(d.weekHigh) : '—';
       if (lowEl) lowEl.textContent = d.weekLow ? fmt(d.weekLow) : '—';
-      if (mcEl) mcEl.textContent = fmt(d.mktCapCr);
+      if (mcEl) mcEl.textContent = fmtInt(d.mktCapCr);
       if (badgeEl) {
         if (d.change) {
           var pos = d.pChange >= 0;
@@ -1473,12 +1476,12 @@
       var counter5 = document.getElementById('counter-5');
       if (counter5) {
         counter5.setAttribute('data-target', String(d.mktCapCr));
-        counter5.textContent = fmt(d.mktCapCr) + ' Cr';
+        counter5.textContent = fmtInt(d.mktCapCr) + ' Cr';
       }
 
       // Update facts table
       var factMc = document.getElementById('fact-mktcap');
-      if (factMc) factMc.firstChild.textContent = '~\u20B9' + fmt(d.mktCapCr) + ' Cr';
+      if (factMc) factMc.firstChild.textContent = '~\u20B9' + fmtInt(d.mktCapCr) + ' Cr';
       var factPu = document.getElementById('fact-paidup');
       if (factPu) factPu.textContent = '~\u20B9' + d.paidUpCapCr + ' Cr';
     }
